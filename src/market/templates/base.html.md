@@ -9,7 +9,9 @@
 2) Блок с подключаемыми ссылками и скриптами front-end 
 
     {% block link_script %}
-    
+         {% block additional_link_script %}
+         
+          {% endblock %}
     {% endblock %}
 
 3) Блок с ярлыками соц сетей и кнопками "Вход", "Профиль", "Главная"
