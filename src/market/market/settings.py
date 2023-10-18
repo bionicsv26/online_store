@@ -76,27 +76,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'market.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-postgresql_name = str(os.getenv("POSTGRESQL_NAME"))
-postgresql_user = str(os.getenv("POSTGRESQL_USER"))
-postgresql_passord = str(os.getenv("POSTGRESQL_PASSWORD"))
-postgresql_port = str(os.getenv("POSTGRESQL_PORT"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': postgresql_name,
-        'USER': postgresql_user,
-        'PASSWORD': postgresql_passord,
+        'NAME': str(os.getenv("POSTGRESQL_NAME")),
+        'USER': str(os.getenv("POSTGRESQL_USER")),
+        'PASSWORD': str(os.getenv("POSTGRESQL_PASSWORD")),
         'HOST': 'localhost',
-        'PORT': postgresql_port,
+        'PORT': str(os.getenv("POSTGRESQL_PORT")),
     }
 }
 
