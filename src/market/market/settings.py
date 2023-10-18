@@ -14,7 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
-DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,14 +85,18 @@ WSGI_APPLICATION = 'market.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+postgresql_name = str(os.getenv("POSTGRESQL_NAME"))
+postgresql_user = str(os.getenv("POSTGRESQL_USER"))
+postgresql_passord = str(os.getenv("POSTGRESQL_PASSWORD"))
+postgresql_port = str(os.getenv("POSTGRESQL_PORT"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'teamproject33',
-        'USER': 'postgres',
-        'PASSWORD': '1505',
+        'NAME': postgresql_name,
+        'USER': postgresql_user,
+        'PASSWORD': postgresql_passord,
         'HOST': 'localhost',
-        'PORT': 5432,
+        'PORT': postgresql_port,
     }
 }
 
