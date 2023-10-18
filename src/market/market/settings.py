@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'market.orders',
     'market.payment',
     'market.paymentsystem',
-    'dev_app.apps.DevAppConfig',
+
     'market.users_permissions.apps.UsersPermissionsConfig',
 ]
 MIDDLEWARE = [
