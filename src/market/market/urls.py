@@ -18,6 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+<<<<<<< HEAD
     path('admin/', admin.site.urls)
+=======
+    path('admin/', admin.site.urls),
+    # path('settings/', include('settingsapp.urls')),
+>>>>>>> 21caedd (intermediate commit)
 ]
 
