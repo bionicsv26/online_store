@@ -27,7 +27,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(BannerSlider)
 class BannerSliderAdmin(admin.ModelAdmin):
-    list_display = ['user', 'product', 'title', 'text', 'created_at', 'is_active']
+    list_display = ['user', 'product', 'title', 'text_short', 'created_at', 'is_active']
 
     list_display_links = 'product',
     search_fields = 'product', 'is_active'

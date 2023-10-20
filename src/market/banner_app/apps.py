@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class DevAppConfig(AppConfig):
+class BannerAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'dev_app'
+    name = 'banner_app'

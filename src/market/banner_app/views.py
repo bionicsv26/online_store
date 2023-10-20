@@ -6,4 +6,4 @@ from django.http import (
 # Create your views here.
 
 def test_view_func(request: HttpRequest):
-    return render(request, 'dev_app/test.html')
+    return render(request, 'banner_app/test.html')

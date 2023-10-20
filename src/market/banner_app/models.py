@@ -22,6 +22,8 @@ def image_directory_path(instance: models.Model, filename):
     return f'images/products/product_{instance.pk}/product_preview/{filename}'
 
 
+
+
 class Product(models.Model):
     name = models.CharField(max_length=20)
     preview = models.ImageField(null=True, blank=True, upload_to=image_directory_path)
