@@ -19,7 +19,7 @@ class Category(models.Model):
 
 # This part of code will be replaced by link to model in Product app
 def image_directory_path(instance: models.Model, filename):
-    return f'images/products/product_{instance.pk}/product_preview/{filename}'
+    return f'media/images/products/product_{instance.pk}/product_preview/{filename}'
 
 
 

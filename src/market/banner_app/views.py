@@ -8,11 +8,15 @@ from django.views.generic import (
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
-from .models import BannerSlider
+from .models import BannerSlider, Product
 
 
 def test_view_func(request: HttpRequest):
-    return render(request, 'banner_app/test.html')
+    products = Product.objects.all()
+    context = {
+        "products": products
+    }
+    return render(request, 'banner_app/test.html', context)
 
 class IndexTemplateView(LoginRequiredMixin, TemplateView):
     template_name = "banner_app/index.html"

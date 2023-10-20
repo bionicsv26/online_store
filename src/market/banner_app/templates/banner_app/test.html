@@ -7,6 +7,17 @@
 {% block middle %}
 
 <h1>Banner</h1>
+
+{% for product in products %}
+        <h3>{{ product.name }}</h3> <br>
+        <h3>{{ product.preview }}</h3> <br>
+        <h3>{{ product.preview.url }}</h3> <br>
+
+        <img src="{{ product.preview.url }}" alt="{{ product.preview.name }}" width="10%"/> <br>
+        <h3>{{ product.slug }}</h3> <br>
+
+    {% endfor %}
+
 {% endblock %}
 
 {% block header-slider %}
