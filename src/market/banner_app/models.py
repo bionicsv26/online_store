@@ -19,7 +19,7 @@ class Category(models.Model):
 
 # This part of code will be replaced by link to model in Product app
 def image_directory_path(instance: models.Model, filename):
-    return f'media/images/products/product_{instance.pk}/product_preview/{filename}'
+    return f'images/products/product_{instance.slug}/product_preview/{filename}'
 
 
 
@@ -35,6 +35,17 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
+class ProjectSettings(models.Model):
+    name = models.CharField(
+        max_length=200,
+        blank=False,
+        verbose_name="Имя кэша",
+    )
+    banners_sliders_cache_timeout = models.SmallIntegerField(
+        default=600,
+        verbose_name="Время кэширования"
+    )
 
 
 class BannerSlider(models.Model):
@@ -83,3 +94,15 @@ class BannerSlider(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core import cache_settings_table
+
+@receiver(post_save, sender=BannerSlider)
+def banner_slider_cash_reset(sender, instance, created, **kwargs):
+    if created:
+        print("New DB element was saved!")
+        Как-то обратиться к cache_settings_table и удалить ключ пару кэша
+        print(f"Cache DB key {instance.cache_key} was deleted!")

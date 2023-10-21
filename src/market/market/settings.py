@@ -80,6 +80,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'market.market.wsgi.application'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        "LOCATION": "cache_settings_table",
+    }
+}
 
 DATABASES = {
     'default': {

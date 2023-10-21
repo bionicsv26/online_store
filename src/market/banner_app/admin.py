@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product, BannerSlider
+from .models import Category, Product, BannerSlider, ProjectSettings
 
 
 class ProductInline(admin.StackedInline):
@@ -23,6 +23,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = 'pk', 'name', 'description'
     list_display_links = 'name',
     prepopulated_fields = {'slug': ('name',)}
+
+@admin.register(ProjectSettings)
+class ProjectSettingsAdmin(admin.ModelAdmin):
+    list_display = 'pk', "name", 'banners_sliders_cache_timeout'
+
 
 
 @admin.register(BannerSlider)
