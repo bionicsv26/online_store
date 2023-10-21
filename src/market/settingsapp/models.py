@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class CacheTimes(models.Model):
+class CacheTime(models.Model):
     categories_cache = models.IntegerField(default=86400)
     seller_data_cache = models.IntegerField(default=86400)
     banners_cache = models.IntegerField(default=600)
