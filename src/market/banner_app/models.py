@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -96,13 +97,21 @@ class BannerSlider(models.Model):
         return self.product.name
 
 
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from django.core import cache_settings_table
+from django.core.cache.utils import make_template_fragment_key
+
 
 @receiver(post_save, sender=BannerSlider)
 def banner_slider_cash_reset(sender, instance, created, **kwargs):
-    if created:
-        print("New DB element was saved!")
-        Как-то обратиться к cache_settings_table и удалить ключ пару кэша
-        print(f"Cache DB key {instance.cache_key} was deleted!")
+    print("Some DB element was saved")
+    key = make_template_fragment_key('slider_banners')
+    cache.delete(key)
+    print(f"Cache was deleted")
+
+@receiver(post_delete, sender=BannerSlider)
+def banner_slider_cash_reset(sender, instance, **kwargs):
+    print("Some DB element was deleted")
+    key = make_template_fragment_key('slider_banners')
+    cache.delete(key)
+    print(f"Cache was deleted")
