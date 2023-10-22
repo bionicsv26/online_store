@@ -5,6 +5,9 @@ env:
   DJANGO_SETTINGS_MODULE: "market.market.settings"
 
 tasks:
+  update-dev-env:
+    cmds:
+      - pip install -r requirements/dev.txt
   runserver:
     cmds:
       - django-admin runserver
