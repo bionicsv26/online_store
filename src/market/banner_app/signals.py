@@ -30,5 +30,6 @@ def banner_slider_cash_reset(sender, instance, **kwargs) -> None:
     :param kwargs: some additional information or parameters
     :return: None
     """
+    # "make_template_fragment_key" need to generate a special cache name from template
     key = make_template_fragment_key('slider_banners')
     cache.delete(key)

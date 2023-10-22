@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# This part of code will be replaced by link to model in Category app
+
+# TODO This part of code will be replaced by link to model in Category app due to MARKET-3 task
 class Category(models.Model):
     class Meta:
         verbose_name = 'category'
@@ -16,12 +17,9 @@ class Category(models.Model):
         return self.name
 
 
-
-# This part of code will be replaced by link to model in Product app
+# TODO This part of code will be replaced by link to model in Product app due to MARKET-3 task
 def image_directory_path(instance: models.Model, filename):
     return f'images/products/product_{instance.slug}/product_preview/{filename}'
-
-
 
 
 class Product(models.Model):
@@ -36,6 +34,7 @@ class Product(models.Model):
         return self.name
 
 
+# TODO This part of code will be replaced by link to model in Settings app due to MARKET-5 task
 class ProjectSettings(models.Model):
     name = models.CharField(
         max_length=200,
