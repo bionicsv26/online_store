@@ -1,0 +1,17 @@
+version: '3'
+
+env:
+  PYTHONPATH: "{{ .PWD }}/src"
+  DJANGO_SETTINGS_MODULE: "market.market.settings"
+
+tasks:
+  runserver:
+    cmds:
+      - django-admin runserver
+  shell:
+    cmds:
+      - django-admin shell
+  migrate:
+    cmds:
+      - django-admin makemigrations
+      - django-admin migrate
