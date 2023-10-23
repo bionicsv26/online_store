@@ -8,7 +8,7 @@
 
 
 {% block header-slider %}
-    {% cache banners_sliders_cache_timeout slider_banners %}
+    <!-- {% cache banners_sliders_cache_timeout slider_banners %} -->
         {% if banners_sliders %}
             <div class="Header-slider">
                 <div class="Slider Slider_main">
@@ -44,7 +44,7 @@
         {% else %}
 
         {% endif %}
-    {% endcache %}
+    <!-- {% endcache %} -->
 {% endblock header-slider %}
 
 

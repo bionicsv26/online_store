@@ -1,7 +1,6 @@
 from django.core.cache import cache
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
-from django.core.cache.utils import make_template_fragment_key
 from .models import BannerSlider
 
 
@@ -16,8 +15,9 @@ def banner_slider_cash_reset(sender, instance, created, **kwargs) -> None:
     :param kwargs: some additional information or parameters
     :return: None
     """
-    key = make_template_fragment_key('slider_banners')
-    cache.delete(key)
+    print("DB BannerSlider was changed")
+    if cache.get("banners_sliders_cache"):
+        cache.delete("banners_sliders_cache")
 
 
 @receiver(post_delete, sender=BannerSlider)
@@ -30,6 +30,6 @@ def banner_slider_cash_reset(sender, instance, **kwargs) -> None:
     :param kwargs: some additional information or parameters
     :return: None
     """
-    # "make_template_fragment_key" need to generate a special cache name from template
-    key = make_template_fragment_key('slider_banners')
-    cache.delete(key)
+    print("One of the object was deleted from DB BannerSlider")
+    if cache.get("banners_sliders_cache"):
+        cache.delete("banners_sliders_cache")

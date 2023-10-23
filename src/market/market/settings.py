@@ -15,7 +15,6 @@ from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -86,6 +85,12 @@ CACHES = {
         "LOCATION": "cache_settings_table",
     }
 }
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+#
+#     }
+# }
 
 DATABASES = {
     'default': {
