@@ -24,10 +24,8 @@ class IndexTemplateView(LoginRequiredMixin, TemplateView):
         context['banners_sliders_cache_timeout'] = my_timeout
 
         banners_sliders_cache = cache.get("banners_sliders_cache")
-        print("1 banners_sliders_cache", banners_sliders_cache)
         if banners_sliders_cache:
             banners_sliders = banners_sliders_cache
-            print("banners_sliders_cache", banners_sliders_cache)
             context['banners_sliders'] = banners_sliders
         else:
             # Take all banners from DB and choose randomly only 3 of them
