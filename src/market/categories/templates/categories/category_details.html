@@ -1,0 +1,15 @@
+{% extends 'categories/index.html' %}
+
+{% block title %}
+  Subcategories
+{% endblock %}
+
+{% block body %}
+  <h1>{{ category.name }} subcategories</h1>
+  <ul>
+    {% for subcategory in subcategories %}
+      <li><a href="{% url 'categories:subcategory-details' category_slug=category.slug subcategory_slug=subcategory.slug %}">{{ subcategory.name }}</a></li>
+      <br>
+    {% endfor %}
+  </ul>
+{% endblock %}
