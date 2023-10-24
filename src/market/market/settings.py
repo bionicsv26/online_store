@@ -50,6 +50,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'market.products',
+    'market.categories',
+
+    'market.users_permissions.apps.UsersPermissionsConfig',
 
     'rest_framework',
     'widget_tweaks',
