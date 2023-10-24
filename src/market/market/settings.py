@@ -27,7 +27,9 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -40,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'market.products',
+    'market.categories',
     'dev_app.apps.DevAppConfig',
     'market.users_permissions.apps.UsersPermissionsConfig',
 ]
@@ -59,7 +63,7 @@ ROOT_URLCONF = 'market.market.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["src/market/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,7 +95,6 @@ DATABASES = {
         },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -130,6 +133,9 @@ USE_TZ = True
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
 STATICFILES_DIRS = ('static',)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
