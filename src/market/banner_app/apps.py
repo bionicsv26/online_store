@@ -4,7 +4,7 @@ from django.db.models.signals import post_save, post_delete
 
 class BannerAppConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'banner_app'
+    name = 'market.banner_app'
 
     def ready(self):
         # importing model classes

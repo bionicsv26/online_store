@@ -3,7 +3,7 @@ from .views import (
     IndexTemplateView,
 )
 
-app_name = 'banner_app'
+app_name = 'market.banner_app'
 
 urlpatterns = [
     path('index/', IndexTemplateView.as_view(), name='index'),

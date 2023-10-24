@@ -1,8 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.cache import cache
-from django.db.models.signals import post_save, post_delete
-from django.dispatch import receiver
 
 # TODO This part of code will be replaced by link to model in Category app due to MARKET-3 task
 class Category(models.Model):
