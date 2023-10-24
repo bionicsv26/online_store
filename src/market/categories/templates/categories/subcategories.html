@@ -1,0 +1,23 @@
+{% extends 'categories/index.html' %}
+
+{% block title %}
+  {{ subcategory.name }}
+{% endblock %}
+
+{% block body %}
+  <h1>{{ subcategory.name }}</h1>
+  <ul>
+    {% for product in products %}
+      <li>
+        <h2><a href="{% url 'products:product-details' product_slug=product.slug %}">{{ product.name }}</a></h2>
+        {% if product.preview %}
+          <p>Preview: <img src="{{ product.preview.url }}" alt="Product preview" style="width: 100px"></p>
+        {% else %}
+          <p>Preview: does not exist</p>
+        {% endif %}
+        <p>Description: {{ product.description }}</p>
+      </li>
+      <br>
+    {% endfor %}
+  </ul>
+{% endblock %}
