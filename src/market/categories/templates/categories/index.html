@@ -1,26 +1,2 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>
-    {% block title %}
-      Index
-    {% endblock %}
-  </title>
-</head>
-<body>
-  {% if categories %}
-    <ul style="list-style: none; display: flex; gap: 30px">
-      {% for category in categories %}
-        <li><a href="{% url 'categories:category-details' category_slug=category.slug %}">{{ category.name }}</a></li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <h1>No categories</h1>
-  {% endif %}
-
- {% block body %}
-
- {% endblock %}
-</body>
-</html>
+{% extends 'repeat_blocks.html' %}
+{% load static %}
