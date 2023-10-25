@@ -1,29 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, DetailView, ListView
+from django.views.generic import TemplateView, DetailView
 
 from .models import Category
 from .mixins import MenuMixin
-from ..products.models import Product
 
 
 class IndexHtmlView(MenuMixin, TemplateView):
-    template_name = 'categories/index.html'
-
-
-# class CategoriesDetailsView(MenuMixin, DetailView):
-#     template_name = 'categories/category_details.html'
-#     model = Category
-#     context_object_name = 'category'
-#     slug_url_kwarg = 'category_slug'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         category = context['category']
-#         context['subcategories'] = category.categories.all()
-#         return context
-
-
-class IndexView(MenuMixin, TemplateView):
     template_name = 'categories/index.html'
 
 
