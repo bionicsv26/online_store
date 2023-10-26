@@ -6,5 +6,5 @@ from .views import (
 app_name = 'market.banner_app'
 
 urlpatterns = [
-    path('index/', IndexTemplateView.as_view(), name='index'),
+    path('', IndexTemplateView.as_view(), name='index'),
 ]
