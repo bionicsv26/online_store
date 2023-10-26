@@ -21,7 +21,6 @@ def banner_slider_post_save_cash_reset(sender, instance, created, **kwargs) -> N
         cache.delete("banners_sliders_cache")
 
 
-
 @receiver(post_delete, sender=BannerSlider)
 def banner_slider_post_delete_cash_reset(sender, instance, **kwargs) -> None:
     """

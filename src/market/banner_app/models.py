@@ -1,36 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-# TODO This part of code will be replaced by link to model in Category app due to MARKET-3 task
-class Category(models.Model):
-    class Meta:
-        verbose_name = 'category'
-        verbose_name_plural = 'categories'
-        ordering = 'name',
-
-    name = models.CharField(max_length=20)
-    parent = models.ForeignKey('Category', null=True, blank=True, on_delete=models.PROTECT, related_name='categories')
-    slug = models.SlugField(max_length=20, unique=True)
-
-    def __str__(self):
-        return self.name
-
-
-# TODO This part of code will be replaced by link to model in Product app due to MARKET-3 task
-def image_directory_path(instance: models.Model, filename):
-    return f'images/products/product_{instance.slug}/product_preview/{filename}'
-
-
-class Product(models.Model):
-    name = models.CharField(max_length=20)
-    preview = models.ImageField(null=True, blank=True, upload_to=image_directory_path)
-    category = models.ManyToManyField(Category, related_name='products')
-    description = models.TextField()
-    is_active = models.BooleanField(default=True)
-    slug = models.SlugField(max_length=20, unique=True)
-
-    def __str__(self):
-        return self.name
+from market.products.models import Product
 
 
 # TODO This part of code will be replaced by link to model in Settings app due to MARKET-5 task

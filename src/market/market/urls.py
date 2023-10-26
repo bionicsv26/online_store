@@ -21,7 +21,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/',  include('market.banner_app.urls')),
+    path('index/', include('market.banner_app.urls')),
     path('products/', include('market.products.urls')),
     path('categories/', include('market.categories.urls')),
 ]
@@ -32,9 +32,4 @@ if settings.DEBUG:
     )
     urlpatterns.extend(
         static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    )
-
-if settings.DEBUG:
-    urlpatterns.extend(
-        static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     )

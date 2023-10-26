@@ -43,12 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'market.products',
-    'market.categories',
+    'market.banner_app.apps.BannerAppConfig',
+    'market.products.apps.ProductsConfig',
+    'market.categories.apps.CategoriesConfig',
     'market.settingsapp.apps.SettingsappConfig',
-    'banner_app.apps.BannerAppConfig',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,12 +84,7 @@ CACHES = {
         "LOCATION": "cache_settings_table",
     }
 }
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-#
-#     }
-# }
+
 
 DATABASES = {
     'default': {

@@ -1,28 +1,6 @@
 from django.contrib import admin
+from .models import BannerSlider, ProjectSettings
 
-from .models import Category, Product, BannerSlider, ProjectSettings
-
-# TODO to be deleted after MARKET-3 task merge
-class ProductInline(admin.StackedInline):
-    model = Product.category.through
-    extra = 0
-
-# TODO to be deleted after MARKET-3 task merge
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'name'
-    list_display_links = 'name',
-    inlines = [
-        ProductInline,
-    ]
-    prepopulated_fields = {'slug': ('name',)}
-
-# TODO to be deleted after MARKET-3 task merge
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'name', 'description'
-    list_display_links = 'name',
-    prepopulated_fields = {'slug': ('name',)}
 
 # TODO to be deleted after MARKET-5 task merge
 @admin.register(ProjectSettings)
