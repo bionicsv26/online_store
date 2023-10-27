@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'settingsapp.apps.SettingsappConfig',
+    'market.settingsapp.apps.SettingsappConfig',
 ]
 
 MIDDLEWARE = [
@@ -54,12 +54,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'market.urls'
+ROOT_URLCONF = 'market.market.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ["src\\market\\templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'market.wsgi.application'
+WSGI_APPLICATION = 'market.market.wsgi.application'
 
 
 # Database
