@@ -62,6 +62,9 @@ coverage.xml
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+src/**/db.sqlite3
+src/**/media
+taskfile.yaml
 
 # Flask stuff:
 instance/
@@ -106,6 +109,7 @@ celerybeat.pid
 # Environments
 .env
 .venv
+venv
 env/
 venv/
 my_venv/
@@ -133,4 +137,3 @@ dmypy.json
 
 # Jetbrains Intellij IDEA
 .idea/
-.env
