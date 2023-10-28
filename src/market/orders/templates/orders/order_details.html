@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <h1>Order №{{ order.pk }}</h1>
+  <p>Cost: {{ order.cost }}</p>
+  <p>Address: {{ order.delivery_address }}</p>
+  <p>Comment: {{ order.comment }}</p>
+  <br>
+  <h2>Products</h2>
+  <ul>
+    {% for product in order.products.all %}
+      <li>{{ product.name }}</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'payment:payment' pk=order.pk %}" style="text-decoration: none; padding: 5px 10px; min-width: 30px; border: 1px solid black; background-color: #dddddd; color: black">Pay</a>
+</body>
+</html>
