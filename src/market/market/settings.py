@@ -32,6 +32,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',
+]
+
 
 # Application definition
 
@@ -43,11 +47,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+
+    'market.products',
+    'market.categories',
     'market.banner_app.apps.BannerAppConfig',
     'market.products.apps.ProductsConfig',
     'market.categories.apps.CategoriesConfig',
     'market.settingsapp.apps.SettingsappConfig',
+    'market.orders',
+    'market.payment',
+    'market.paymentsystem',
 ]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,6 +97,9 @@ CACHES = {
     }
 }
 
+
+# Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -180,3 +195,17 @@ LOGGING = {
         "level": "DEBUG",
     },
 }
+
+
+# DRF
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
+
+# Pay settings
+
+BANK_PAY_URL = os.getenv('BANK_PAY_URL')
+ORDERS_API_URL = os.getenv('ORDERS_API_URL')

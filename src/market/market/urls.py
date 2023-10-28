@@ -24,6 +24,9 @@ urlpatterns = [
     path('index/', include('market.banner_app.urls')),
     path('products/', include('market.products.urls')),
     path('categories/', include('market.categories.urls')),
+    path('profile/orders/', include('market.orders.urls')),
+    path('profile/orders/<int:pk>/', include('market.payment.urls')),
+    path('bank/', include('market.paymentsystem.urls')),
 ]
 
 if settings.DEBUG:
