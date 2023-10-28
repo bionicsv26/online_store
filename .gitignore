@@ -65,7 +65,6 @@ db.sqlite3
 db.sqlite3-journal
 src/**/db.sqlite3
 src/**/media
-taskfile.yaml
 
 # Flask stuff:
 instance/
