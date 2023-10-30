@@ -19,19 +19,13 @@ class ProjectSettings(models.Model):
 class BannerSlider(models.Model):
     class Meta:
         ordering = [
-            "user",
             "is_active",
             "created_at",
         ]
         verbose_name = 'банер слайдер'
         verbose_name_plural = 'банеры слайдеры'
 
-    user = models.ForeignKey(
-        User,
-        null=False,
-        on_delete=models.PROTECT,
-        verbose_name='Создано пользователем',
-    )
+
     # На банере имя продукта и его картинка буруться из модели Product
     product = models.OneToOneField(
         Product,
