@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from market.products.models import Product
 
 
-# TODO This part of code will be replaced by link to model in Settings app due to MARKET-5 task
+# TODO Эта часть кода будет заменена на ссылку на модель из MARKET-5
 class ProjectSettings(models.Model):
     name = models.CharField(
         max_length=200,
@@ -32,7 +32,7 @@ class BannerSlider(models.Model):
         on_delete=models.PROTECT,
         verbose_name='Создано пользователем',
     )
-    # Banner name and banner image will be taken from Product
+    # На банере имя продукта и его картинка буруться из модели Product
     product = models.OneToOneField(
         Product,
         on_delete=models.PROTECT

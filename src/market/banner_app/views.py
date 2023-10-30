@@ -15,7 +15,7 @@ class IndexTemplateView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexTemplateView, self).get_context_data(**kwargs)
 
-        # TODO change "my_timeout" delay for information from settings file due to [MARKET-5] task
+        # TODO изменить параметр "my_timeout" на информацию из приложения settingsapp - задача [MARKET-5]
         my_timeout = ProjectSettings.objects \
             .get(name="banners_sliders_cache_timeout") \
             .banners_sliders_cache_timeout
@@ -26,7 +26,7 @@ class IndexTemplateView(LoginRequiredMixin, TemplateView):
             banners_sliders = banners_sliders_cache
             context['banners_sliders'] = banners_sliders
         else:
-            # Take all banners from DB and choose randomly only 3 of them
+            # Случайным образом выбирает 3 банера со статусом Active из БД
             queryset = BannerSlider.objects.filter(is_active=True)
             banners_sliders = random.sample(list(queryset), 3)
             context['banners_sliders'] = banners_sliders
