@@ -21,15 +21,11 @@ class IndexTemplateView(LoginRequiredMixin, TemplateView):
             .banners_sliders_cache_timeout
         context['banners_sliders_cache_timeout'] = my_timeout
 
-        banners_sliders_cache = cache.get("banners_sliders_cache")
-        if banners_sliders_cache:
-            banners_sliders = banners_sliders_cache
-            context['banners_sliders'] = banners_sliders
-        else:
-            # Случайным образом выбирает 3 банера со статусом Active из БД
+        banners_sliders = cache.get("banners_sliders_cache")
+        if not banners_sliders:
             queryset = BannerSlider.objects.filter(is_active=True)
             banners_sliders = random.sample(list(queryset), 3)
-            context['banners_sliders'] = banners_sliders
             cache.set("banners_sliders_cache", banners_sliders, my_timeout)
+        context['banners_sliders'] = banners_sliders
 
         return context
