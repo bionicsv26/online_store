@@ -137,3 +137,6 @@ dmypy.json
 
 # Jetbrains Intellij IDEA
 .idea/
+
+# Media
+src/market/media/
