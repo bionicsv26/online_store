@@ -2,7 +2,9 @@ from django.core.cache import cache
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from .models import BannerSlider
+import logging
 
+log = logging.getLogger(__name__)
 
 @receiver(post_save, sender=BannerSlider)
 def banner_slider_post_save_cash_reset(sender, instance, created, **kwargs) -> None:
@@ -15,11 +17,11 @@ def banner_slider_post_save_cash_reset(sender, instance, created, **kwargs) -> N
     :param kwargs: дополнительные параметры и переменные
     :return: None
     """
-    print("DB BannerSlider was changed")
+    log.debug("В БД BannerSlider произошло изменение. Вызван метод Save")
     some_cache = cache.get("banners_sliders_cache")
     if some_cache:
         cache.delete("banners_sliders_cache")
-
+        log.debug("Кэш 'banners_sliders_cache' был удален")
 
 @receiver(post_delete, sender=BannerSlider)
 def banner_slider_post_delete_cash_reset(sender, instance, **kwargs) -> None:
@@ -31,6 +33,7 @@ def banner_slider_post_delete_cash_reset(sender, instance, **kwargs) -> None:
     :param kwargs: дополнительные параметры и переменные
     :return: None
     """
-    print("One of the object was deleted from DB BannerSlider")
+    log.debug("В БД BannerSlider произошло изменение. Вызван метод Delete")
     if cache.get("banners_sliders_cache"):
         cache.delete("banners_sliders_cache")
+        log.debug("Кэш 'banners_sliders_cache' был удален")

@@ -142,3 +142,39 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGFILE_NAME = BASE_DIR / "log.txt"
+#LOGFILE_NAME = os.path.join(BASE_DIR, 'logs/teamproject33.log')
+LOGFILE_SIZE = 5 * 1024 * 1024
+LOGFILE_COUNT = 3
+
+LOGGING = {
+    "version": 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        "verbose": {
+            "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "logfile": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOGFILE_NAME,
+            "maxBytes": LOGFILE_SIZE,
+            "backupCount": LOGFILE_COUNT,
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": [
+            "console",
+            "logfile",
+        ],
+        "level": "DEBUG",
+    },
+}
