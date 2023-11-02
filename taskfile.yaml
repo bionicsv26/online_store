@@ -8,6 +8,9 @@ tasks:
   update-dev-env:
     cmds:
       - pip install -r requirements/dev.txt
+  createsuperuser:
+    cmds:
+      - django-admin createsuperuser
   runserver:
     cmds:
       - django-admin runserver
@@ -18,3 +21,21 @@ tasks:
     cmds:
       - django-admin makemigrations
       - django-admin migrate
+  dumpdata-full:
+    cmds:
+      - django-admin dumpdata --exclude auth.permission --exclude contenttypes --exclude admin.logentry --exclude auth.user --exclude sessions.session --indent 4 -o src/market/fixtures/full_db.json
+  loaddata-full:
+    cmds:
+      - django-admin loaddata src/market/fixtures/full_db.json
+  dumpdata-ProjectSettings-model:
+    cmds:
+      - django-admin dumpdata banner_app.ProjectSettings --indent 4 -o src/market/fixtures/fixtures_ProjectSettings_model.json
+  loaddata-ProjectSettings-model:
+    cmds:
+      - django-admin loaddata src/market/fixtures/fixtures_ProjectSettings_model.json --app banner_app.ProjectSettings
+  dumpdata-BannerSlider-model:
+    cmds:
+      - django-admin dumpdata banner_app.BannerSlider --indent 4 -o src/market/fixtures/fixtures_BannerSlider_model.json
+  loaddata-BannerSlider-model:
+    cmds:
+      - django-admin loaddata src/market/fixtures/fixtures_BannerSlider_model.json --app banner_app.BannerSlider

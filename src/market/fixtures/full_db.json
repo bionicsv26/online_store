@@ -1,0 +1,230 @@
+[
+{
+    "model": "banner_app.projectsettings",
+    "pk": 1,
+    "fields": {
+        "name": "banners_sliders_cache_timeout",
+        "banners_sliders_cache_timeout": 600
+    }
+},
+{
+    "model": "banner_app.bannerslider",
+    "pk": 18,
+    "fields": {
+        "product": 1,
+        "is_active": true,
+        "title": "Праздник к нам приходит",
+        "text": "Всегда Coca-Cola",
+        "created_at": "2023-11-02"
+    }
+},
+{
+    "model": "banner_app.bannerslider",
+    "pk": 19,
+    "fields": {
+        "product": 2,
+        "is_active": true,
+        "title": "Лучший тамат на рынке",
+        "text": "Всегда спелые!!!",
+        "created_at": "2023-11-02"
+    }
+},
+{
+    "model": "banner_app.bannerslider",
+    "pk": 20,
+    "fields": {
+        "product": 3,
+        "is_active": true,
+        "title": "Натуральный вкус на все времена",
+        "text": "Без добавления химии",
+        "created_at": "2023-11-02"
+    }
+},
+{
+    "model": "banner_app.bannerslider",
+    "pk": 21,
+    "fields": {
+        "product": 4,
+        "is_active": true,
+        "title": "Отборная морковь",
+        "text": "Свежая и хрустящая",
+        "created_at": "2023-11-02"
+    }
+},
+{
+    "model": "banner_app.bannerslider",
+    "pk": 22,
+    "fields": {
+        "product": 5,
+        "is_active": true,
+        "title": "Несравненный",
+        "text": "Удалит жажду в любое время годя",
+        "created_at": "2023-11-02"
+    }
+},
+{
+    "model": "banner_app.bannerslider",
+    "pk": 23,
+    "fields": {
+        "product": 6,
+        "is_active": true,
+        "title": "Белорусская - отборная",
+        "text": "Лучший импортный картофель на российском рынке",
+        "created_at": "2023-11-02"
+    }
+},
+{
+    "model": "banner_app.bannerslider",
+    "pk": 24,
+    "fields": {
+        "product": 7,
+        "is_active": true,
+        "title": "Согреет душу",
+        "text": "Всегда вкусный и насыщенный",
+        "created_at": "2023-11-02"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "name": "cola",
+        "preview": "images/products/product_cola/product_preview/cola.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "cola",
+        "category": [
+            4
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "name": "tomato",
+        "preview": "images/products/product_tomato/product_preview/Tomato.png",
+        "description": ".",
+        "is_active": true,
+        "slug": "tomato",
+        "category": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "name": "orange juice",
+        "preview": "images/products/product_orange-juice/product_preview/Orangejuice.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "orange-juice",
+        "category": [
+            5
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "name": "carrot",
+        "preview": "images/products/product_carrot/product_preview/carrot.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "carrot",
+        "category": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "name": "grape juice",
+        "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "grape-juice",
+        "category": [
+            5
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "name": "Potato",
+        "preview": "images/products/product_potato/product_preview/potato.png",
+        "description": ".",
+        "is_active": true,
+        "slug": "potato",
+        "category": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "name": "Чай",
+        "preview": "images/products/product_chaj/product_preview/Чашка.png",
+        "description": "Чашка согревающего чая",
+        "is_active": true,
+        "slug": "chaj",
+        "category": [
+            2
+        ]
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 1,
+    "fields": {
+        "name": "food",
+        "parent": null,
+        "slug": "food"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 2,
+    "fields": {
+        "name": "drinks",
+        "parent": null,
+        "slug": "drinks"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 3,
+    "fields": {
+        "name": "vegetables",
+        "parent": 1,
+        "slug": "vegetables"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 4,
+    "fields": {
+        "name": "soda",
+        "parent": 2,
+        "slug": "soda"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 5,
+    "fields": {
+        "name": "juice",
+        "parent": 2,
+        "slug": "juice"
+    }
+}
+]

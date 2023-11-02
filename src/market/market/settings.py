@@ -94,6 +94,9 @@ DATABASES = {
         'PASSWORD': str(os.getenv("POSTGRESQL_PASSWORD")),
         'HOST': 'localhost',
         'PORT': str(os.getenv("POSTGRESQL_PORT")),
+        'OPTIONS': {
+        'client_encoding': 'UTF8'
+        },
     }
 }
 

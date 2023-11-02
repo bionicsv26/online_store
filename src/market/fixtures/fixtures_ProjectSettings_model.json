@@ -1,0 +1,10 @@
+[
+{
+    "model": "banner_app.projectsettings",
+    "pk": 1,
+    "fields": {
+        "name": "banners_sliders_cache_timeout",
+        "banners_sliders_cache_timeout": 600
+    }
+}
+]
