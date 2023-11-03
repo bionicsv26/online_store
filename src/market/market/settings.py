@@ -14,12 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
-
-
-from dotenv import load_dotenv
-
-load_dotenv()
-
 DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -52,6 +46,7 @@ INSTALLED_APPS = [
 
     'market.products',
     'market.categories',
+    'market.settingsapp.apps.SettingsappConfig',
 ]
 
 MIDDLEWARE = [
@@ -85,9 +80,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'market.market.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -98,7 +90,6 @@ DATABASES = {
         'PORT': str(os.getenv("POSTGRESQL_PORT")),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
