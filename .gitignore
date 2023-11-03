@@ -140,3 +140,6 @@ dmypy.json
 
 # Media
 src/market/media/
+
+# Logging
+.txt
