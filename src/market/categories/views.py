@@ -3,6 +3,7 @@ from django.views.generic import TemplateView, DetailView
 
 from .models import Category
 from .mixins import MenuMixin
+from market.banner_app.mixins import BannerSliderMixin
 
 
 class IndexHtmlView(MenuMixin, TemplateView):
@@ -22,7 +23,7 @@ def get_products(category):
     return products
 
 
-class CategoryDetailsView(MenuMixin, DetailView):
+class CategoryDetailsView(MenuMixin, DetailView, BannerSliderMixin):
     template_name = 'categories/category_products_list.html'
     queryset = Category.objects.prefetch_related('products')
     context_object_name = 'category'
