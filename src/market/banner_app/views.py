@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
 from .models import BannerSlider, ProjectSettings
+from market.settingsapp.models import CacheTime
 import logging
 
 log = logging.getLogger(__name__)
@@ -17,11 +18,8 @@ class IndexTemplateView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(IndexTemplateView, self).get_context_data(**kwargs)
         log.debug("Запуск IndexTemplateView для рендеренга index.html")
-        # TODO изменить параметр "my_timeout" на информацию из приложения settingsapp - задача [MARKET-5]
-        my_timeout = ProjectSettings.objects \
-            .get(name="banners_sliders_cache_timeout") \
-            .banners_sliders_cache_timeout
-        context['banners_sliders_cache_timeout'] = my_timeout
+
+        my_timeout = CacheTime.objects.get(pk=1).banners_cache
 
         banners_sliders = cache.get("banners_sliders_cache")
         if not banners_sliders:

@@ -3,19 +3,6 @@ from django.contrib.auth.models import User
 from market.products.models import Product
 
 
-# TODO Эта часть кода будет заменена на ссылку на модель из MARKET-5
-class ProjectSettings(models.Model):
-    name = models.CharField(
-        max_length=200,
-        blank=False,
-        verbose_name="Имя кэша",
-    )
-    banners_sliders_cache_timeout = models.SmallIntegerField(
-        default=600,
-        verbose_name="Время кэширования"
-    )
-
-
 class BannerSlider(models.Model):
     class Meta:
         ordering = [
