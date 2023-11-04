@@ -6,7 +6,7 @@ from django.views.generic import (
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
-from .models import BannerSlider, ProjectSettings
+from .models import BannerSlider
 from market.settingsapp.models import CacheTime
 import logging
 

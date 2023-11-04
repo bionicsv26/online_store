@@ -1,11 +1,5 @@
 from django.contrib import admin
-from .models import BannerSlider, ProjectSettings
-
-
-# TODO to be deleted after MARKET-5 task merge
-@admin.register(ProjectSettings)
-class ProjectSettingsAdmin(admin.ModelAdmin):
-    list_display = 'pk', "name", 'banners_sliders_cache_timeout'
+from .models import BannerSlider
 
 
 @admin.register(BannerSlider)
