@@ -1,13 +1,5 @@
 [
 {
-    "model": "banner_app.projectsettings",
-    "pk": 1,
-    "fields": {
-        "name": "banners_sliders_cache_timeout",
-        "banners_sliders_cache_timeout": 600
-    }
-},
-{
     "model": "banner_app.bannerslider",
     "pk": 18,
     "fields": {
@@ -225,6 +217,18 @@
         "name": "juice",
         "parent": 2,
         "slug": "juice"
+    }
+},
+{
+    "model": "settingsapp.cachetime",
+    "pk": 1,
+    "fields": {
+        "categories_cache": 86400,
+        "seller_data_cache": 86400,
+        "banners_cache": 600,
+        "products_cache": 86400,
+        "top_products_cache": 86400,
+        "product_data_cache": 86400
     }
 }
 ]

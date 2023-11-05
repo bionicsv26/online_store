@@ -6,7 +6,7 @@ from .mixins import MenuMixin
 from market.banner_app.mixins import BannerSliderMixin
 
 
-class IndexHtmlView(MenuMixin, TemplateView):
+class IndexHtmlView(MenuMixin, TemplateView, BannerSliderMixin):
     template_name = 'categories/index.html'
 
 
@@ -23,7 +23,7 @@ def get_products(category):
     return products
 
 
-class CategoryDetailsView(MenuMixin, DetailView, BannerSliderMixin):
+class CategoryDetailsView(MenuMixin, DetailView):
     template_name = 'categories/category_products_list.html'
     queryset = Category.objects.prefetch_related('products')
     context_object_name = 'category'

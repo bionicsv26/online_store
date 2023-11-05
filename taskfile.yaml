@@ -27,15 +27,9 @@ tasks:
   loaddata-full:
     cmds:
       - django-admin loaddata src/market/fixtures/full_db.json
-  dumpdata-ProjectSettings-model:
+  loaddata--apps:
     cmds:
-      - django-admin dumpdata banner_app.ProjectSettings --indent 4 -o src/market/fixtures/fixtures_ProjectSettings_model.json
-  loaddata-ProjectSettings-model:
-    cmds:
-      - django-admin loaddata src/market/fixtures/fixtures_ProjectSettings_model.json --app banner_app.ProjectSettings
-  dumpdata-BannerSlider-model:
-    cmds:
-      - django-admin dumpdata banner_app.BannerSlider --indent 4 -o src/market/fixtures/fixtures_BannerSlider_model.json
-  loaddata-BannerSlider-model:
-    cmds:
-      - django-admin loaddata src/market/fixtures/fixtures_BannerSlider_model.json --app banner_app.BannerSlider
+      - django-admin loaddata src/market/fixtures/full_db.json --app settingsapp.CacheTime
+      - django-admin loaddata src/market/fixtures/full_db.json --app categories.Category
+      - django-admin loaddata src/market/fixtures/full_db.json --app products.Product
+      - django-admin loaddata src/market/fixtures/full_db.json --app banner_app.BannerSlider
