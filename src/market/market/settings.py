@@ -49,9 +49,9 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
-    'market.products',
-    'market.categories',
     'market.banner_app.apps.BannerAppConfig',
+    'market.products.apps.ProductsConfig',
+    'market.categories.apps.CategoriesConfig',
     'market.settingsapp.apps.SettingsappConfig',
     'market.orders',
     'market.payment',
