@@ -14,7 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
-DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,11 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'market.products',
-    'market.categories',
+    'market.banner_app.apps.BannerAppConfig',
+    'market.products.apps.ProductsConfig',
+    'market.categories.apps.CategoriesConfig',
     'market.settingsapp.apps.SettingsappConfig',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -79,6 +78,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'market.market.wsgi.application'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        "LOCATION": "cache_settings_table",
+    }
+}
+
 
 DATABASES = {
     'default': {
@@ -88,6 +94,9 @@ DATABASES = {
         'PASSWORD': str(os.getenv("POSTGRESQL_PASSWORD")),
         'HOST': 'localhost',
         'PORT': str(os.getenv("POSTGRESQL_PORT")),
+        'OPTIONS': {
+        'client_encoding': 'UTF8'
+        },
     }
 }
 
@@ -136,3 +145,38 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGFILE_NAME = BASE_DIR / "log.txt"
+LOGFILE_SIZE = 5 * 1024 * 1024
+LOGFILE_COUNT = 3
+
+LOGGING = {
+    "version": 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        "verbose": {
+            "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+        "logfile": {
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": LOGFILE_NAME,
+            "maxBytes": LOGFILE_SIZE,
+            "backupCount": LOGFILE_COUNT,
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": [
+            "console",
+            "logfile",
+        ],
+        "level": "DEBUG",
+    },
+}

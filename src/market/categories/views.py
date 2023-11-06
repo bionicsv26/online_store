@@ -3,9 +3,10 @@ from django.views.generic import TemplateView, DetailView
 
 from .models import Category
 from .mixins import MenuMixin
+from market.banner_app.mixins import BannerSliderMixin
 
 
-class IndexHtmlView(MenuMixin, TemplateView):
+class IndexHtmlView(MenuMixin, TemplateView, BannerSliderMixin):
     template_name = 'categories/index.html'
 
 

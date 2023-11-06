@@ -48,3 +48,52 @@
     </div>
   </div>
 {% endblock %}
+
+
+
+{% block header-slider %}
+
+        {% if banners_sliders %}
+            <div class="Header-slider">
+                <div class="Slider Slider_main">
+                  <div class="Slider-box">
+                      {% for banner_slider in banners_sliders %}
+                            <div class="Slider-item">
+                              <div class="Slider-content">
+                                <div class="row">
+                                  <div class="row-block">
+                                    <strong class="Slider-title">{{ banner_slider.title }}
+                                    </strong>
+                                    <div class="Slider-text">{{ banner_slider.text }}
+                                    </div>
+                                    <div class="Slider-footer"><a class="btn btn_primary" href="#">Get Started</a>
+                                    </div>
+                                  </div>
+                                  <div class="row-block">
+                                    <div class="Slider-img"><img src="{{ banner_slider.product.preview.url }}" alt="{{ banner_slider.product.preview.name }}" width="100%"/>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                    {% endfor %}
+                  </div>
+                  <div class="Slider-navigateWrap">
+                    <div class="Slider-navigate">
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+        {% else %}
+            <h1>Банеров пока не завезли</h1>
+        {% endif %}
+
+{% endblock header-slider %}
+
+
+{% block middle %}
+<h1>Index page</h1>
+
+
+{% endblock %}
