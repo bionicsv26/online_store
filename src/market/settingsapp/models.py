@@ -8,5 +8,3 @@ class CacheTime(models.Model):
     products_cache = models.IntegerField(default=86400, verbose_name="Время кэширования списка Товаров из Каталога")
     top_products_cache = models.IntegerField(default=86400, verbose_name="Время кэширования списка Топ-Товаров")
     product_data_cache = models.IntegerField(default=86400, verbose_name="Время кэширования данных о Товаре")
-
-
