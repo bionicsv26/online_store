@@ -148,7 +148,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 LOGFILE_NAME = BASE_DIR / "log.txt"
-#LOGFILE_NAME = os.path.join(BASE_DIR, 'logs/teamproject33.log')
 LOGFILE_SIZE = 5 * 1024 * 1024
 LOGFILE_COUNT = 3
 
