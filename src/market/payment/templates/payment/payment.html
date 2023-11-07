@@ -1,0 +1,44 @@
+{% extends 'repeat_blocks.html' %}
+
+{% block header-slider %}
+
+{% endblock %}
+
+{% block middle %}
+  <div class="Middle-top">
+    <div class="wrap">
+      <div class="Middle-header">
+        <h1 class="Middle-title">Оплата
+        </h1>
+        <ul class="breadcrumbs Middle-breadcrumbs">
+          <li class="breadcrumbs-item"><a href="index.html">home</a>
+          </li>
+          <li class="breadcrumbs-item breadcrumbs-item_current"><span>Оплата</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="Section">
+    <div class="wrap">
+      <form class="form Payment" action="." method="post">
+        {% csrf_token %}
+        <div class="Payment-card">
+          {% for field in form %}
+            <div class="form-group">
+              <label class="form-label">Номер карты</label>
+              {{ field }}
+              {% if field.errors %}
+                {% for error in field.errors %}
+                  <div class="form-error">{{ error }}</div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+        <div class="Payment-pay"><button class="btn btn_primary" type="submit">Оплатить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
