@@ -1,0 +1,16 @@
+[
+  {
+    "model": "orders.orderstatus",
+    "pk": 1,
+    "fields": {
+      "name": "payed"
+    }
+  },
+  {
+    "model": "orders.orderstatus",
+    "pk": 2,
+    "fields": {
+      "name": "not paid"
+    }
+  }
+]
