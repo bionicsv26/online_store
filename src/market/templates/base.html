@@ -100,7 +100,7 @@
                             <div class="row ControlPanel-rowSplit">
 
                                 <div class="row-block">
-                                        <a class="ControlPanel-title" href="#">Главная</a>
+                                        <a class="ControlPanel-title" href="{% url 'market.banner_app:index' %}">Главная</a>
                                     {% if user.is_authenticated %}
                                         <a class="ControlPanel-title" href="#">Выход</a>
                                         <a class="ControlPanel-title" href="#">Профиль</a>
@@ -137,9 +137,9 @@
                                         <nav class="row-block row-block_right Header-menu">
                                             <div class="menuModal" id="navigate">
                                                 <ul class="menu menu_main">
-                                                    <li class="menu-item"><a class="menu-link" href="#">Главная</a>
+                                                    <li class="menu-item"><a class="menu-link" href="{% url 'market.banner_app:index' %}">Главная</a>
                                                     </li>
-                                                    <li class="menu-item"><span class="menu-label menu-label_success">Скидки</span><a class="menu-link" href="#">Каталог</a>
+                                                    <li class="menu-item"><span class="menu-label menu-label_success">Скидки</span><a class="menu-link" href="{% url 'market.catalog_app:catalog' %}">Каталог</a>
                                                     </li>
                                                     <li class="menu-item"><a class="menu-link" href="#">Сравнение</a>
                                                     </li>
@@ -377,9 +377,9 @@
                         <strong class="Footer-title">Навигация
                         </strong>
                         <ul class="menu menu_vt Footer-menu">
-                            <li class="menu-item"><a class="menu-link" href="#">Главная</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'market.banner_app:index' %}">Главная</a>
                             </li>
-                            <li class="menu-item"><a class="menu-link" href="#">Каталог</a>
+                            <li class="menu-item"><a class="menu-link" href="{% url 'market.catalog_app:catalog' %}">Каталог</a>
                             </li>
                             <li class="menu-item"><a class="menu-link" href="#">Сравнение</a>
                             </li>
