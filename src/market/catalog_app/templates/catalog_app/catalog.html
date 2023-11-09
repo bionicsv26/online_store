@@ -2,8 +2,8 @@
 {% load static %}
 
 {% block cards %}
-    {% if products %}
-          {% for product in products %}
+    {% if page_obj  %}
+          {% for product in page_obj  %}
             <div class="Card"><a class="Card-picture" href="{% url 'products:product-details' product_slug=product.slug %}"><img src="{{ product.preview.url }}" alt="card.jpg"/></a>
             <div class="Card-content">
               <strong class="Card-title"><a href="{% url 'products:product-details' product_slug=product.slug %}">{{ product.name }}</a></strong>
@@ -20,4 +20,6 @@
     {% else %}
         <h1>Пока продуктов нет</h1>
     {% endif %}
+
 {% endblock %}
+
