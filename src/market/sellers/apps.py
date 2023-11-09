@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class OrdersConfig(AppConfig):
+class SellersConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'market.orders'
+    name = 'market.sellers'
 
     def ready(self):
-        from .signals import count_order_cost
+        from .signals import delete_cache

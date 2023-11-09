@@ -27,6 +27,7 @@ tasks:
       - django-admin dumpdata --exclude auth.permission --exclude contenttypes --exclude admin.logentry --exclude auth.user --exclude sessions.session --indent 4 -o src/market/fixtures/full_db.json
   loaddata-full:
     cmds:
+      - django-admin createcachetable
       - django-admin loaddata src/market/fixtures/full_db.json
   loaddata--apps:
     cmds:

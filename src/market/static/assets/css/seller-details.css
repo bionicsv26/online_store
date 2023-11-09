@@ -1,0 +1,30 @@
+.flex {
+  display: flex;
+}
+
+.Seller__about {
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.about-seller__top {
+  flex-direction: row-reverse;
+}
+
+.about-seller__top {
+  max-width: 400px;
+}
+
+.Seller__logo {
+  width: 100%;
+}
+
+.Seller__descr {
+  max-width: 600px;
+}
+
+.products__title {
+  text-align: center;
+}

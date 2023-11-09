@@ -1,3 +1,4 @@
+from django.db.models import F
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse
 from django.views.generic import TemplateView
@@ -7,9 +8,10 @@ import requests
 
 from .forms import PayForm
 from ..orders.models import Order, OrderStatus
+from ..categories.mixins import MenuMixin
 
 
-class PayView(TemplateView):
+class PayView(MenuMixin, TemplateView):
     template_name = 'payment/payment.html'
 
     def post(self, request: HttpRequest, pk: int) -> HttpResponse:
@@ -25,11 +27,17 @@ class PayView(TemplateView):
             if r.json()['payed']:
                 order.status = OrderStatus.objects.get(name='payed')
                 order.save()
+
+                order.seller_products.update(stock=F('stock') - 1)
+
                 return redirect('payment:successfully', pk)
 
             return redirect('payment:unsuccessfully', pk)
 
-        return render(request, self.template_name, context={'form': form})
+        context = self.get_context_data()
+        context['form'] = form
+
+        return render(request, self.template_name, context=context)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -31,6 +31,7 @@ urlpatterns = [
     path('profile/orders/<int:pk>/', include('market.payment.urls')),
     path('bank/', include('market.paymentsystem.urls')),
     path('profiles/', include('profiles.urls')),
+    path('sellers/', include('market.sellers.urls')),
 ]
 
 if settings.DEBUG:
@@ -39,4 +40,8 @@ if settings.DEBUG:
     )
     urlpatterns.extend(
         static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    )
+
+    urlpatterns.append(
+        path('__debug__/', include('debug_toolbar.urls')),
     )
