@@ -4,8 +4,8 @@ from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to='users/%Y/%m/%d', blank=True)
-    phone = models.CharField(max_length=10, blank=True)
+    avatar = models.ImageField(upload_to='users/%Y/%m/%d', help_text='Выбрать аватар профиля', verbose_name='Аватар профиля', null=True, blank=True, default='img/no_image.png')
+    phone = models.CharField(max_length=10, help_text='Введите номер телефона', verbose_name='Номер телефона', null=True, blank=True)
 
     def __str__(self) -> str:
         return f'{self.user.username}'

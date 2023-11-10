@@ -1,25 +1,27 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.contrib import messages
+from django.views import View
+from django.shortcuts import render, redirect
 from .forms import UserRegistrationForm
-from .models import Profile
 
 
-@login_required
-def dashboard(request):
-    return render(request, 'profiles/dashboard.html')
+class RegisterView(View):
+    form_class = UserRegistrationForm
+    initial = {'key': 'value'}
+    template_name = 'profiles/register.html'
 
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+    
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
 
-def register(request):
-    if request.method =='POST':
-        user_form = UserRegistrationForm(request.POST)
-        if user_form.is_valid():
-            new_user = user_form.save(commit=False)
-            new_user.set_password(
-                user_form.cleaned_data['password']
-            )
-            new_user.save()
-            Profile.objects.create(user=new_user)
-            return render(request, 'profiles/register_done.html', {'new_user': new_user})
-    else:
-        user_form = UserRegistrationForm()
-    return render(request, 'profiles/register.html', {'user_form': user_form})
+        if form.is_valid():
+            form.save()
+
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Аккаунт для {username} создан.')
+
+            return redirect(to='/')
+        
+        return render(request, self.template_name, {'form': form})

@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'profiles.apps.ProfilesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +43,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
     'widget_tweaks',
+
+    'market.products',
+    'market.categories',
+    'market.banner_app.apps.BannerAppConfig',
+    'market.settingsapp.apps.SettingsappConfig',
+    'market.orders',
+    'market.payment',
+    'market.paymentsystem',
 ]
 
 MIDDLEWARE = [

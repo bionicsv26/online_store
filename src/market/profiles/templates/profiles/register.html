@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block header-slider %}
 {% endblock %}
@@ -11,9 +12,26 @@
 
         </div>
         <div class="clear"></div>
-        <form action="#" method="post">
+        <form method="post">
             {% csrf_token %}
-            {{ user_form.as_p }}
+            {% if form.errors %}
+                <div role="alert">
+                    {% for key, value in form.errors.items %}
+                        <strong>{{ value }}</strong>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div>
+                {% render_field  form.username class="user-input" type="text" name="name" id="name" placeholder="Имя"%}
+            </div>
+            <div>
+                {% render_field form.email class="user-input" type="email" name="login" id="name" placeholder="E-mail"%}
+            </div>
+            <div>
+
+                {% render_field form.password type="password" name="pass" id="name" placeholder="Пароль"%}
+            </div>
+            
             <input type="submit" value="Зарегистрироваться" />
 
 
