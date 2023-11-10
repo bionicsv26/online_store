@@ -19,6 +19,12 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
     model = Product
     paginate_by = 3
 
+    def get_queryset(self):
+        print("self.request.GET", self.request.GET)
+        order_by = self.request.GET.get('order_by', 'name')
+        print("order_by", order_by, type(order_by))
+        return Product.objects.order_by(order_by)
+
     def get_context_data(self, **kwargs):
         context = super(CatalogTemplateView, self).get_context_data(**kwargs)
         log.debug("Запуск рендеренга CatalogOldTemplateView")
