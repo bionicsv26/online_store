@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header-slider %}
+{% endblock %}
+
+{% block main_header %}
+    <div class="wrapper">
+        <div class="header">
+            <h3 class="sign-in">Регистрация</h3>
+
+        </div>
+        <div class="clear"></div>
+        <form action="#" method="post">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            <input type="submit" value="Зарегистрироваться" />
+
+
+            <a class="registr" href="{% url "login" %}">
+                Вход
+            </a>
+            <div class="clear"></div>
+        </form>
+    </div>
+{% endblock %}

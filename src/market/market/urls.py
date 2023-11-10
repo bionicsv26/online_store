@@ -29,7 +29,7 @@ urlpatterns = [
     path('profile/orders/', include('market.orders.urls')),
     path('profile/orders/<int:pk>/', include('market.payment.urls')),
     path('bank/', include('market.paymentsystem.urls')),
-    path('profile/', include('profiles.urls', namespace='profile')),
+    path('profiles/', include('profiles.urls')),
 ]
 
 if settings.DEBUG:

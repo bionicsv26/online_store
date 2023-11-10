@@ -8,6 +8,7 @@ tasks:
   update-dev-env:
     cmds:
       - pip install -r requirements/dev.txt
+<<<<<<< HEAD
   createsuperuser:
     cmds:
       - django-admin createsuperuser
@@ -33,3 +34,18 @@ tasks:
       - django-admin loaddata src/market/fixtures/full_db.json --app categories.Category
       - django-admin loaddata src/market/fixtures/full_db.json --app products.Product
       - django-admin loaddata src/market/fixtures/full_db.json --app banner_app.BannerSlider
+=======
+    
+  runserver:
+    cmds:
+      - django-admin runserver
+    
+  shell:
+    cmds:
+      - django-admin shell
+
+  migrate:
+    cmds:
+      - django-admin makemigrations
+      - django-admin migrate
+>>>>>>> 943bec4 (Added email authentication)
