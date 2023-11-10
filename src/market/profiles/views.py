@@ -22,4 +22,4 @@ def register(request):
             return render(request, 'profiles/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
-    return render(request, 'profiles/register.html', {'new_user': new_user})
+    return render(request, 'profiles/register.html', {'user_form': user_form})
