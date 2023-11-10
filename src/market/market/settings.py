@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'market.orders',
     'market.payment',
     'market.paymentsystem',
+    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
