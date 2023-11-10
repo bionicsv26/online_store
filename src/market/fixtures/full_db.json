@@ -31,9 +31,9 @@
     "model": "products.product",
     "pk": 3,
     "fields": {
-        "name": "orange juice",
-        "preview": "images/products/product_orange-juice/product_preview/Orangejuice.jpg",
-        "description": ".",
+        "name": "Апельсиновый сок",
+        "preview": "images/products/product_orange-juice/product_preview/Апельсиновый_сок.jpg",
+        "description": "Свежевыжатый апельсиновый сок",
         "is_active": true,
         "slug": "orange-juice",
         "categories": [
@@ -45,9 +45,9 @@
     "model": "products.product",
     "pk": 4,
     "fields": {
-        "name": "carrot",
-        "preview": "images/products/product_carrot/product_preview/carrot.jpg",
-        "description": ".",
+        "name": "Морковь",
+        "preview": "images/products/product_carrot/product_preview/Морковь.jpg",
+        "description": "Свежая и хрустящая",
         "is_active": true,
         "slug": "carrot",
         "categories": [
@@ -59,9 +59,9 @@
     "model": "products.product",
     "pk": 5,
     "fields": {
-        "name": "grape juice",
-        "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
-        "description": ".",
+        "name": "Виноградный сок",
+        "preview": "images/products/product_grape-juice/product_preview/Виноградный_сок.jpg",
+        "description": "Сок из свежего Кубанского винограда",
         "is_active": true,
         "slug": "grape-juice",
         "categories": [
@@ -73,9 +73,9 @@
     "model": "products.product",
     "pk": 6,
     "fields": {
-        "name": "Potato",
-        "preview": "images/products/product_potato/product_preview/potato.png",
-        "description": ".",
+        "name": "Картошка",
+        "preview": "images/products/product_potato/product_preview/Картофель.jpg",
+        "description": "Вкуснейшая беллорусская картошка",
         "is_active": true,
         "slug": "potato",
         "categories": [
@@ -140,48 +140,231 @@
     }
 },
 {
+    "model": "products.productfeedback",
+    "pk": 7,
+    "fields": {
+        "user": 4,
+        "feedback_text": "Насыщенный вкус!!!",
+        "created_at": "2023-11-10",
+        "product": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 8,
+    "fields": {
+        "user": 3,
+        "feedback_text": "Ничего такой!",
+        "created_at": "2023-11-10",
+        "product": [
+            7
+        ]
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 9,
+    "fields": {
+        "user": 3,
+        "feedback_text": "А белорусская круче!",
+        "created_at": "2023-11-10",
+        "product": [
+            6
+        ]
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 10,
+    "fields": {
+        "user": 5,
+        "feedback_text": "А белорусская круче!!",
+        "created_at": "2023-11-10",
+        "product": [
+            6
+        ]
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 11,
+    "fields": {
+        "user": 3,
+        "feedback_text": "Так бы и ел ее целый день!",
+        "created_at": "2023-11-10",
+        "product": [
+            4
+        ]
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 12,
+    "fields": {
+        "user": 4,
+        "feedback_text": "Так бы и ел ее целый день!!",
+        "created_at": "2023-11-10",
+        "product": [
+            4
+        ]
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 13,
+    "fields": {
+        "user": 5,
+        "feedback_text": "Так бы и ел ее целый день!!!",
+        "created_at": "2023-11-10",
+        "product": [
+            4
+        ]
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 1,
+    "fields": {
+        "user": 3,
+        "product": 5,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "product": 3,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "product": 7,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 4,
+    "fields": {
+        "user": 3,
+        "product": 6,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 5,
+    "fields": {
+        "user": 3,
+        "product": 4,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 6,
+    "fields": {
+        "user": 4,
+        "product": 5,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 7,
+    "fields": {
+        "user": 4,
+        "product": 7,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 8,
+    "fields": {
+        "user": 4,
+        "product": 4,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 9,
+    "fields": {
+        "user": 5,
+        "product": 3,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 10,
+    "fields": {
+        "user": 5,
+        "product": 6,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 11,
+    "fields": {
+        "user": 5,
+        "product": 2,
+        "view_at": "2023-11-10"
+    }
+},
+{
+    "model": "products.productviewhistory",
+    "pk": 12,
+    "fields": {
+        "user": 5,
+        "product": 1,
+        "view_at": "2023-11-10"
+    }
+},
+{
     "model": "categories.category",
     "pk": 1,
     "fields": {
-        "name": "food",
+        "name": "Еда",
         "parent": null,
         "slug": "food"
     }
 },
 {
     "model": "categories.category",
-    "pk": 2,
-    "fields": {
-        "name": "drinks",
-        "parent": null,
-        "slug": "drinks"
-    }
-},
-{
-    "model": "categories.category",
     "pk": 3,
     "fields": {
-        "name": "vegetables",
+        "name": "Овощи",
         "parent": 1,
         "slug": "vegetables"
     }
 },
 {
     "model": "categories.category",
-    "pk": 4,
+    "pk": 6,
     "fields": {
-        "name": "soda",
-        "parent": 2,
-        "slug": "soda"
+        "name": "Сок",
+        "parent": 7,
+        "slug": "sok"
     }
 },
 {
     "model": "categories.category",
-    "pk": 5,
+    "pk": 7,
     "fields": {
-        "name": "juice",
-        "parent": 2,
-        "slug": "juice"
+        "name": "Напитки",
+        "parent": null,
+        "slug": "napitki"
     }
 },
 {

@@ -74,7 +74,7 @@ class SellerProduct(models.Model):
             "seller",
         ]
         verbose_name = 'продукт продавца'
-        verbose_name_plural = 'продукт продавцов'
+        verbose_name_plural = 'продукты продавцов'
 
     product = models.ForeignKey(
         Product, null=False,
