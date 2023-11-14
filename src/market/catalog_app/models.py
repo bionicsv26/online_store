@@ -1,8 +1,10 @@
 from django.db import models
 from market.products.models import Product
 
+
 def seller_logo_directory_path(instance: 'Seller', filename) -> str:
     return f'images/seller/seller_{instance.slug}/seller_logo/{filename}'
+
 
 class Discount(models.Model):
     class Meta:
@@ -26,8 +28,10 @@ class Discount(models.Model):
         default=0,
         verbose_name='сумма скидки'
     )
+
     def __str__(self):
         return self.name
+
 
 class Seller(models.Model):
     class Meta:

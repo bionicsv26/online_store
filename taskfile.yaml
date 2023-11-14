@@ -33,5 +33,10 @@ tasks:
       - django-admin loaddata src/market/fixtures/full_db.json --app settingsapp.CacheTime
       - django-admin loaddata src/market/fixtures/full_db.json --app categories.Category
       - django-admin loaddata src/market/fixtures/full_db.json --app products.Product
+      - django-admin loaddata src/market/fixtures/full_db.json --app products.ProductFeedback
+      - django-admin loaddata src/market/fixtures/full_db.json --app products.ProductViewHistory
       - django-admin loaddata src/market/fixtures/full_db.json --app banner_app.BannerSlider
+      - django-admin loaddata src/market/fixtures/full_db.json --app catalog_app.Discount
+      - django-admin loaddata src/market/fixtures/full_db.json --app catalog_app.Seller
+      - django-admin loaddata src/market/fixtures/full_db.json --app catalog_app.SellerProduct
       - django-admin loaddata src/market/fixtures/order_statuses.json --app orders.OrderStatus
