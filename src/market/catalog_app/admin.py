@@ -18,6 +18,7 @@ class Admin(admin.ModelAdmin):
     search_fields = 'name', 'is_active', 'slug',
     prepopulated_fields = {'slug': ('name',)}
 
+
     def text_description(self, obj: Seller) -> str:
         if len(obj.description) < 48:
             return obj.description
