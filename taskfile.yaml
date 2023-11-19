@@ -21,6 +21,9 @@ tasks:
     cmds:
       - django-admin makemigrations
       - django-admin migrate
+  createcachetable:
+    cmds:
+      - django-admin createcachetable
   dumpdata-full:
     cmds:
       - django-admin dumpdata --exclude admin.logentry --exclude sessions.session --indent 4 -o src/market/fixtures/full_db.json
