@@ -13,7 +13,7 @@ class DiscountAdmin(admin.ModelAdmin):
 
 
 @admin.register(Seller)
-class Admin(admin.ModelAdmin):
+class SellerAdmin(admin.ModelAdmin):
     list_display = ['name', 'text_description', 'is_active', 'slug']
     search_fields = 'name', 'is_active', 'slug',
     prepopulated_fields = {'slug': ('name',)}

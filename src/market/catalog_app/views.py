@@ -30,7 +30,7 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
                 num_of_view=Count('product__product_view_history__view_at')).order_by("-num_of_view")
             return queryset
         else:
-            print(" Ordered_by NOT in self.request.GET")
+            log.debug("Ordered_by NOT in self.request.GET")
             return SellerProduct.objects.order_by('-price')
 
     def get_context_data(self, **kwargs):

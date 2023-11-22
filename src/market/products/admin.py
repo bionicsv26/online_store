@@ -15,7 +15,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProductFeedback)
-class Admin(admin.ModelAdmin):
+class ProductFeedbackAdmin(admin.ModelAdmin):
     list_display = ['user', 'short_feedback_text', 'created_at']
 
     list_display_links = 'user',
@@ -30,7 +30,7 @@ class Admin(admin.ModelAdmin):
 
 
 @admin.register(ProductViewHistory)
-class Admin(admin.ModelAdmin):
+class ProductViewHistoryAdmin(admin.ModelAdmin):
     list_display = ['user', 'product', 'view_at']
 
     list_display_links = 'user', 'product',

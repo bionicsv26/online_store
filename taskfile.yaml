@@ -19,6 +19,7 @@ tasks:
       - django-admin shell
   migrate:
     cmds:
+      - django-admin createcachetable
       - django-admin makemigrations
       - django-admin migrate
   createcachetable:
