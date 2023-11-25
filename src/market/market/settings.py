@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+load_dotenv()  # loads the configs from .env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!6kh#84qcz#!^3+_3xj@$(r+d7=*x%=3*u7o3drsyu0td_2b_&'
+SECRET_KEY = str(os.getenv("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fixtures_app.apps.FixturesAppConfig',
+    'market.users_permissions.apps.UsersPermissionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +78,15 @@ WSGI_APPLICATION = 'market.market.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': str(os.getenv("POSTGRESQL_NAME")),
+        'USER': str(os.getenv("POSTGRESQL_USER")),
+        'PASSWORD': str(os.getenv("POSTGRESQL_PASSWORD")),
+        'HOST': 'localhost',
+        'PORT': str(os.getenv("POSTGRESQL_PORT")),
+        'OPTIONS': {
+        'client_encoding': 'UTF8'
+        },
     }
 }
 
