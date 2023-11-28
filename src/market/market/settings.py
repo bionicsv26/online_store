@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,18 +29,13 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000',
-]
+ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'profiles.apps.ProfilesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'widget_tweaks',
 
     'market.banner_app.apps.BannerAppConfig',
     'market.products.apps.ProductsConfig',
@@ -69,12 +66,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'market.market.urls'
+ROOT_URLCONF = 'market.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["src/market/templates/"],
+        'DIRS': ["templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,18 +84,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'market.market.wsgi.application'
+WSGI_APPLICATION = 'market.wsgi.application'
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        "LOCATION": "cache_settings_table",
-    }
-}
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -108,9 +95,6 @@ DATABASES = {
         'PASSWORD': str(os.getenv("POSTGRESQL_PASSWORD")),
         'HOST': 'localhost',
         'PORT': str(os.getenv("POSTGRESQL_PORT")),
-        'OPTIONS': {
-        'client_encoding': 'UTF8'
-        },
     }
 }
 
@@ -151,10 +135,10 @@ USE_TZ = True
 
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('src/market/static',)
+STATICFILES_DIRS = ('static',)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -209,3 +193,15 @@ REST_FRAMEWORK = {
 
 BANK_PAY_URL = os.getenv('BANK_PAY_URL')
 ORDERS_API_URL = os.getenv('ORDERS_API_URL')
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = LOGIN_URL
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'profiles.authentication.EmailAuthBackend',
+]
