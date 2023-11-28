@@ -5,7 +5,7 @@ from market.products.models import Product
 def seller_logo_directory_path(instance: 'Seller', filename) -> str:
     return f'images/seller/seller_{instance.slug}/seller_logo/{filename}'
 
-
+#TODO Проверить возможную реализацию в Задаче 9 от Андрея. Если так, то заменить
 class Discount(models.Model):
     class Meta:
         ordering = [
@@ -32,7 +32,7 @@ class Discount(models.Model):
     def __str__(self):
         return self.name
 
-
+#TODO Проверить возможную реализацию в Задаче 9 от Андрея. Если так, то заменить
 class Seller(models.Model):
     class Meta:
         ordering = [
@@ -69,7 +69,7 @@ class Seller(models.Model):
         if seller is None:
             super().save(*args, **kwargs)
 
-
+#TODO Проверить возможную реализацию в Задаче 9 от Андрея. Если так, то заменить
 class SellerProduct(models.Model):
     class Meta:
         ordering = [
@@ -81,14 +81,14 @@ class SellerProduct(models.Model):
         verbose_name_plural = 'продукты продавцов'
 
     product = models.ForeignKey(
-        Product, null=False,
+        "products.Product", null=False,
         blank=True,
         on_delete=models.CASCADE,
         related_name='seller_products',
         verbose_name='продукт'
     )
     seller = models.ForeignKey(
-        Seller,
+        "Seller",
         null=False,
         blank=True,
         on_delete=models.CASCADE,
@@ -102,7 +102,7 @@ class SellerProduct(models.Model):
         verbose_name='цена продукта'
     )
     discount = models.ForeignKey(
-        Discount, null=True,
+        "Discount", null=True,
         blank=True,
         on_delete=models.CASCADE,
         related_name='discounts',
