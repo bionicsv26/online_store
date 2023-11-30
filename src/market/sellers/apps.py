@@ -1,9 +1,9 @@
 from django.apps import AppConfig
 
 
-class ProfilesConfig(AppConfig):
+class SellersConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'market.profiles'
+    name = 'market.sellers'
 
     def ready(self):
-        import market.profiles.signals
+        from .signals import delete_cache

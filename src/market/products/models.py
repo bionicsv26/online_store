@@ -10,7 +10,7 @@ def image_directory_path(instance: 'Product', filename) -> str:
 class Product(models.Model):
     name = models.CharField(max_length=20)
     preview = models.ImageField(null=True, unique=True, upload_to=image_directory_path)
-    category = models.ManyToManyField(Category, related_name='products')
+    categories = models.ManyToManyField(Category, related_name='products')
     description = models.TextField()
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(max_length=20, unique=True)

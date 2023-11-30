@@ -19,10 +19,10 @@
                   <div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg"/></div>
                   <span class="CategoriesButton-text">{{ category.name }}</span>
                 </a>
-                {% if category.categories.all %}
+                {% if subcategories %}
                   <a class="CategoriesButton-arrow" href="#"></a>
                   <div class="CategoriesButton-submenu">
-                    {% for subcategory in category.categories.all %}
+                    {% for subcategory in subcategories %}
                       <a class="CategoriesButton-link" href="{% url 'categories:subcategory-products-list' category_slug=category.slug subcategory_slug=subcategory.slug %}">
                         <div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg"/></div>
                         <span class="CategoriesButton-text">{{ subcategory.name }}</span>

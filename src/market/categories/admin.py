@@ -5,7 +5,7 @@ from market.products.models import Product
 
 
 class ProductInline(admin.StackedInline):
-    model = Product.category.through
+    model = Product.categories.through
     extra = 0
 
 
