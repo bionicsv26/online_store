@@ -6,5 +6,12 @@ from market.categories.models import Category
 class MenuMixin(ContextMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu_categories'] = Category.objects.filter(parent=None)
+        categories = Category.objects.prefetch_related('categories').filter(parent=None)
+        subcategories = [
+            subcategory
+            for category in categories
+            for subcategory in category.categories.all()
+        ]
+        context['menu_categories'] = categories
+        context['menu_subcategories'] = subcategories
         return context

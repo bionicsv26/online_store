@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Список продавцов</title>
+</head>
+<body>
+  <h1>Список продавцов</h1>
+  <ul>
+    {% for seller in sellers %}
+      <li><a href="{% url 'sellers:seller-details' seller_slug=seller.slug %}">{{ seller.name }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+</html>

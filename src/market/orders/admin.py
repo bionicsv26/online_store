@@ -4,7 +4,7 @@ from .models import Order, OrderStatus
 
 
 class ProductInline(admin.StackedInline):
-    model = Order.products.through
+    model = Order.seller_products.through
     extra = 0
 
 
@@ -18,7 +18,7 @@ class OrderAdmin(admin.ModelAdmin):
     ]
     fieldsets = (
         ('Required', {
-            'fields': ('cost', 'products', 'status', 'delivery_address'),
+            'fields': ('seller_products', 'cost', 'status', 'delivery_address'),
         }),
         ('Extra', {
             'fields': ('comment',),

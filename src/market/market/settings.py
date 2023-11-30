@@ -29,7 +29,17 @@ SECRET_KEY = str(os.getenv("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -45,6 +55,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'widget_tweaks',
+    'debug_toolbar',
 
     'market.banner_app.apps.BannerAppConfig',
     'market.products.apps.ProductsConfig',
@@ -53,6 +64,9 @@ INSTALLED_APPS = [
     'market.orders',
     'market.payment',
     'market.paymentsystem',
+
+    'market.profiles.apps.ProfilesConfig',
+    'market.sellers.apps.SellersConfig',
 
     'market.users_permissions.apps.UsersPermissionsConfig',
 ]
@@ -64,14 +78,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-ROOT_URLCONF = 'market.urls'
+ROOT_URLCONF = 'market.market.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': ["src/market/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,8 +99,18 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'market.wsgi.application'
+WSGI_APPLICATION = 'market.market.wsgi.application'
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        "LOCATION": "cache_settings_table",
+    }
+}
+
+
+# Database
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -95,9 +120,11 @@ DATABASES = {
         'PASSWORD': str(os.getenv("POSTGRESQL_PASSWORD")),
         'HOST': 'localhost',
         'PORT': str(os.getenv("POSTGRESQL_PORT")),
+        'OPTIONS': {
+        'client_encoding': 'UTF8'
+        },
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -135,10 +162,10 @@ USE_TZ = True
 
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('static',)
+STATICFILES_DIRS = ('src/market/static',)
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -203,5 +230,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'profiles.authentication.EmailAuthBackend',
+    'market.profiles.authentication.EmailAuthBackend',
 ]
