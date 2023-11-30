@@ -1,5 +1,208 @@
 [
 {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "name": "cola",
+        "preview": "images/products/product_cola/product_preview/cola.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "cola",
+        "categories": [
+            4
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "name": "tomato",
+        "preview": "images/products/product_tomato/product_preview/Tomato.png",
+        "description": ".",
+        "is_active": true,
+        "slug": "tomato",
+        "categories": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "name": "orange juice",
+        "preview": "images/products/product_orange-juice/product_preview/Orangejuice.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "orange-juice",
+        "categories": [
+            5
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "name": "carrot",
+        "preview": "images/products/product_carrot/product_preview/carrot.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "carrot",
+        "categories": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "name": "grape juice",
+        "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "grape-juice",
+        "categories": [
+            5
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "name": "Potato",
+        "preview": "images/products/product_potato/product_preview/potato.png",
+        "description": ".",
+        "is_active": true,
+        "slug": "potato",
+        "categories": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "name": "Чай",
+        "preview": "images/products/product_chaj/product_preview/Чашка.png",
+        "description": "Чашка согревающего чая",
+        "is_active": true,
+        "slug": "chaj",
+        "categories": [
+            4
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "name": "Телевизор лучший",
+        "preview": "images/products/product_televizor-luchshij/product_preview/телевизор.jpg",
+        "description": "Самый современный телевизор",
+        "is_active": true,
+        "slug": "televizor-luchshij",
+        "categories": [
+            7
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "name": "Лук",
+        "preview": "images/products/product_luk/product_preview/лук.jpeg",
+        "description": "Хороший лук",
+        "is_active": true,
+        "slug": "luk",
+        "categories": [
+            3
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+        "name": "Капуста",
+        "preview": "images/products/product_kapusta/product_preview/капуста.jfif",
+        "description": "Свежая капуста с огорода",
+        "is_active": true,
+        "slug": "kapusta",
+        "categories": [
+            3
+        ]
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 1,
+    "fields": {
+        "name": "food",
+        "parent": null,
+        "slug": "food"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 2,
+    "fields": {
+        "name": "drinks",
+        "parent": null,
+        "slug": "drinks"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 3,
+    "fields": {
+        "name": "vegetables",
+        "parent": 1,
+        "slug": "vegetables"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 4,
+    "fields": {
+        "name": "soda",
+        "parent": 2,
+        "slug": "soda"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 5,
+    "fields": {
+        "name": "juice",
+        "parent": 2,
+        "slug": "juice"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 6,
+    "fields": {
+        "name": "электроника",
+        "parent": null,
+        "slug": "elektronika"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 7,
+    "fields": {
+        "name": "телевизоры",
+        "parent": 6,
+        "slug": "televizory"
+    }
+},
+{
     "model": "banner_app.bannerslider",
     "pk": 18,
     "fields": {
@@ -77,149 +280,6 @@
     }
 },
 {
-    "model": "products.product",
-    "pk": 1,
-    "fields": {
-        "name": "cola",
-        "preview": "images/products/product_cola/product_preview/cola.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "cola",
-        "category": [
-            4
-        ]
-    }
-},
-{
-    "model": "products.product",
-    "pk": 2,
-    "fields": {
-        "name": "tomato",
-        "preview": "images/products/product_tomato/product_preview/Tomato.png",
-        "description": ".",
-        "is_active": true,
-        "slug": "tomato",
-        "category": [
-            3
-        ]
-    }
-},
-{
-    "model": "products.product",
-    "pk": 3,
-    "fields": {
-        "name": "orange juice",
-        "preview": "images/products/product_orange-juice/product_preview/Orangejuice.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "orange-juice",
-        "category": [
-            5
-        ]
-    }
-},
-{
-    "model": "products.product",
-    "pk": 4,
-    "fields": {
-        "name": "carrot",
-        "preview": "images/products/product_carrot/product_preview/carrot.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "carrot",
-        "category": [
-            3
-        ]
-    }
-},
-{
-    "model": "products.product",
-    "pk": 5,
-    "fields": {
-        "name": "grape juice",
-        "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "grape-juice",
-        "category": [
-            5
-        ]
-    }
-},
-{
-    "model": "products.product",
-    "pk": 6,
-    "fields": {
-        "name": "Potato",
-        "preview": "images/products/product_potato/product_preview/potato.png",
-        "description": ".",
-        "is_active": true,
-        "slug": "potato",
-        "category": [
-            3
-        ]
-    }
-},
-{
-    "model": "products.product",
-    "pk": 7,
-    "fields": {
-        "name": "Чай",
-        "preview": "images/products/product_chaj/product_preview/Чашка.png",
-        "description": "Чашка согревающего чая",
-        "is_active": true,
-        "slug": "chaj",
-        "category": [
-            2
-        ]
-    }
-},
-{
-    "model": "categories.category",
-    "pk": 1,
-    "fields": {
-        "name": "food",
-        "parent": null,
-        "slug": "food"
-    }
-},
-{
-    "model": "categories.category",
-    "pk": 2,
-    "fields": {
-        "name": "drinks",
-        "parent": null,
-        "slug": "drinks"
-    }
-},
-{
-    "model": "categories.category",
-    "pk": 3,
-    "fields": {
-        "name": "vegetables",
-        "parent": 1,
-        "slug": "vegetables"
-    }
-},
-{
-    "model": "categories.category",
-    "pk": 4,
-    "fields": {
-        "name": "soda",
-        "parent": 2,
-        "slug": "soda"
-    }
-},
-{
-    "model": "categories.category",
-    "pk": 5,
-    "fields": {
-        "name": "juice",
-        "parent": 2,
-        "slug": "juice"
-    }
-},
-{
     "model": "settingsapp.cachetime",
     "pk": 1,
     "fields": {
@@ -227,8 +287,211 @@
         "seller_data_cache": 86400,
         "banners_cache": 600,
         "products_cache": 86400,
-        "top_products_cache": 86400,
+        "top_products_cache": 3600,
         "product_data_cache": 86400
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 48,
+    "fields": {
+        "cost": "2691.00",
+        "comment": "",
+        "delivery_address": "dfsdf",
+        "created_at": "2023-11-17T15:48:21.003Z",
+        "status": 1,
+        "seller_products": [
+            8,
+            2,
+            4,
+            6
+        ]
+    }
+},
+{
+    "model": "orders.orderstatus",
+    "pk": 1,
+    "fields": {
+        "name": "payed"
+    }
+},
+{
+    "model": "orders.orderstatus",
+    "pk": 2,
+    "fields": {
+        "name": "not paid"
+    }
+},
+{
+    "model": "sellers.seller",
+    "pk": 1,
+    "fields": {
+        "name": "DNS",
+        "description": "Лучший магазин техники",
+        "logo": "images/sellers/dns/logo/dns_rgr16qU.jpg",
+        "archived": false,
+        "slug": "dns"
+    }
+},
+{
+    "model": "sellers.seller",
+    "pk": 2,
+    "fields": {
+        "name": "mvideo",
+        "description": "Лучше  чем  DNS",
+        "logo": "images/sellers/mvideo/logo/mvideo_13Jz1AM.png",
+        "archived": false,
+        "slug": "mvideo"
+    }
+},
+{
+    "model": "sellers.seller",
+    "pk": 3,
+    "fields": {
+        "name": "Овощной магазин",
+        "description": "Самые свежие овощи на рынке",
+        "logo": "images/sellers/ovoshnoj-magazin/logo/овощной_магазин_UkoA6tF.png",
+        "archived": false,
+        "slug": "ovoshnoj-magazin"
+    }
+},
+{
+    "model": "sellers.seller",
+    "pk": 4,
+    "fields": {
+        "name": "Магазин напитков",
+        "description": "Освежись, взбодрись!",
+        "logo": "images/sellers/magazin-napitkov/logo/Без_названия.png",
+        "archived": false,
+        "slug": "magazin-napitkov"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 1,
+    "fields": {
+        "product": 2,
+        "seller": 3,
+        "price": "12.00",
+        "stock": 31,
+        "discount": 1,
+        "sales": 1
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 2,
+    "fields": {
+        "product": 4,
+        "seller": 3,
+        "price": "123.00",
+        "stock": 312,
+        "discount": 1,
+        "sales": 2
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 3,
+    "fields": {
+        "product": 6,
+        "seller": 3,
+        "price": "324.00",
+        "stock": 330,
+        "discount": 1,
+        "sales": 2
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 4,
+    "fields": {
+        "product": 8,
+        "seller": 1,
+        "price": "2322.00",
+        "stock": 9,
+        "discount": 1,
+        "sales": 2
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 5,
+    "fields": {
+        "product": 8,
+        "seller": 2,
+        "price": "2344.00",
+        "stock": 22,
+        "discount": 1,
+        "sales": 0
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 6,
+    "fields": {
+        "product": 1,
+        "seller": 4,
+        "price": "33.00",
+        "stock": 122,
+        "discount": 1,
+        "sales": 1
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 7,
+    "fields": {
+        "product": 3,
+        "seller": 4,
+        "price": "223.00",
+        "stock": 11,
+        "discount": 1,
+        "sales": 0
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 8,
+    "fields": {
+        "product": 5,
+        "seller": 4,
+        "price": "213.00",
+        "stock": 22,
+        "discount": 1,
+        "sales": 1
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 9,
+    "fields": {
+        "product": 9,
+        "seller": 3,
+        "price": "343.00",
+        "stock": 343,
+        "discount": 1,
+        "sales": 0
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 10,
+    "fields": {
+        "product": 10,
+        "seller": 3,
+        "price": "342.00",
+        "stock": 43,
+        "discount": 1,
+        "sales": 0
+    }
+},
+{
+    "model": "sellers.discount",
+    "pk": 1,
+    "fields": {
+        "name": "Без скидки",
+        "value": 0
     }
 }
 ]

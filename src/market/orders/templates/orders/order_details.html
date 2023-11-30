@@ -12,8 +12,8 @@
   <br>
   <h2>Products</h2>
   <ul>
-    {% for product in order.products.all %}
-      <li>{{ product.name }}</li>
+    {% for seller_product in seller_products %}
+      <li>{{ seller_product.product.name }}</li>
     {% endfor %}
   </ul>
   <a href="{% url 'payment:payment' pk=order.pk %}" style="text-decoration: none; padding: 5px 10px; min-width: 30px; border: 1px solid black; background-color: #dddddd; color: black">Pay</a>
