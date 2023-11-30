@@ -62,8 +62,8 @@ INSTALLED_APPS = [
     'market.orders',
     'market.payment',
     'market.paymentsystem',
+    'market.profiles.apps.ProfilesConfig',
     'market.sellers.apps.SellersConfig',
-    'profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -95,7 +95,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'market.wsgi.application'
+WSGI_APPLICATION = 'market.market.wsgi.application'
 
 CACHES = {
     'default': {
@@ -226,5 +226,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'profiles.authentication.EmailAuthBackend',
+    'market.profiles.authentication.EmailAuthBackend',
 ]
