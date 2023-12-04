@@ -1,303 +1,812 @@
 [
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 1,
     "fields": {
-        "name": "кола",
-        "preview": "images/products/product_cola/product_preview/cola.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "cola",
-        "categories": [
-            4
-        ]
+        "name": "Can add log entry",
+        "content_type": 1,
+        "codename": "add_logentry"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 2,
     "fields": {
-        "name": "томат",
-        "preview": "images/products/product_tomato/product_preview/Tomato.png",
-        "description": ".",
-        "is_active": true,
-        "slug": "tomato",
-        "categories": [
-            3
-        ]
+        "name": "Can change log entry",
+        "content_type": 1,
+        "codename": "change_logentry"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 3,
     "fields": {
-        "name": "апельсиновый сок",
-        "preview": "images/products/product_orange-juice/product_preview/Orangejuice.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "orange-juice",
-        "categories": [
-            5
-        ]
+        "name": "Can delete log entry",
+        "content_type": 1,
+        "codename": "delete_logentry"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 4,
     "fields": {
-        "name": "морковь",
-        "preview": "images/products/product_carrot/product_preview/carrot.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "carrot",
-        "categories": [
-            3
-        ]
+        "name": "Can view log entry",
+        "content_type": 1,
+        "codename": "view_logentry"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 5,
     "fields": {
-        "name": "виноградный сок",
-        "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
-        "description": ".",
-        "is_active": true,
-        "slug": "grape-juice",
-        "categories": [
-            5
-        ]
+        "name": "Can add permission",
+        "content_type": 2,
+        "codename": "add_permission"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 6,
     "fields": {
-        "name": "картофель",
-        "preview": "images/products/product_potato/product_preview/potato.png",
-        "description": ".",
-        "is_active": true,
-        "slug": "potato",
-        "categories": [
-            3
-        ]
+        "name": "Can change permission",
+        "content_type": 2,
+        "codename": "change_permission"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 7,
     "fields": {
-        "name": "Чай",
-        "preview": "images/products/product_chaj/product_preview/Чашка.png",
-        "description": "Чашка согревающего чая",
-        "is_active": true,
-        "slug": "chaj",
-        "categories": [
-            4
-        ]
+        "name": "Can delete permission",
+        "content_type": 2,
+        "codename": "delete_permission"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 8,
     "fields": {
-        "name": "Телевизор лучший",
-        "preview": "images/products/product_televizor-luchshij/product_preview/телевизор.jpg",
-        "description": "Самый современный телевизор",
-        "is_active": true,
-        "slug": "televizor-luchshij",
-        "categories": [
-            7
-        ]
+        "name": "Can view permission",
+        "content_type": 2,
+        "codename": "view_permission"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 9,
     "fields": {
-        "name": "Лук",
-        "preview": "images/products/product_luk/product_preview/лук.jpeg",
-        "description": "Хороший лук",
-        "is_active": true,
-        "slug": "luk",
-        "categories": [
-            3
-        ]
+        "name": "Can add group",
+        "content_type": 3,
+        "codename": "add_group"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 10,
     "fields": {
-        "name": "Капуста",
-        "preview": "images/products/product_kapusta/product_preview/капуста.jfif",
-        "description": "Свежая капуста с огорода",
-        "is_active": true,
-        "slug": "kapusta",
-        "categories": [
-            3
-        ]
+        "name": "Can change group",
+        "content_type": 3,
+        "codename": "change_group"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 11,
     "fields": {
-        "name": "кабачок",
-        "preview": "images/products/product_kabachok/product_preview/кабачок.png",
-        "description": "лучшие кабачки",
-        "is_active": true,
-        "slug": "kabachok",
-        "categories": [
-            3
-        ]
+        "name": "Can delete group",
+        "content_type": 3,
+        "codename": "delete_group"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 12,
     "fields": {
-        "name": "брокколи",
-        "preview": "images/products/product_brokkoli/product_preview/брокколи.png",
-        "description": "вкусная брокколи",
-        "is_active": true,
-        "slug": "brokkoli",
-        "categories": [
-            3
-        ]
+        "name": "Can view group",
+        "content_type": 3,
+        "codename": "view_group"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 13,
     "fields": {
-        "name": "шпинат",
-        "preview": "images/products/product_shpinat/product_preview/шпинат.jpg",
-        "description": "лучший шпинат",
-        "is_active": true,
-        "slug": "shpinat",
-        "categories": [
-            3
-        ]
+        "name": "Can add user",
+        "content_type": 4,
+        "codename": "add_user"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 14,
     "fields": {
-        "name": "руккола",
-        "preview": "images/products/product_rukkola/product_preview/руккола.jpg",
-        "description": "лучшая руккола",
-        "is_active": true,
-        "slug": "rukkola",
-        "categories": [
-            3
-        ]
+        "name": "Can change user",
+        "content_type": 4,
+        "codename": "change_user"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 15,
     "fields": {
-        "name": "кинза",
-        "preview": "images/products/product_kinza/product_preview/кинза.jpg",
-        "description": "лучшая кинза",
-        "is_active": true,
-        "slug": "kinza",
-        "categories": [
-            3
-        ]
+        "name": "Can delete user",
+        "content_type": 4,
+        "codename": "delete_user"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 16,
     "fields": {
-        "name": "укроп",
-        "preview": "images/products/product_ukrop/product_preview/укроп.jpg",
-        "description": "лучший укроп",
-        "is_active": true,
-        "slug": "ukrop",
-        "categories": [
-            3
-        ]
+        "name": "Can view user",
+        "content_type": 4,
+        "codename": "view_user"
     }
 },
 {
-    "model": "products.product",
+    "model": "auth.permission",
     "pk": 17,
     "fields": {
-        "name": "петрушка",
-        "preview": "images/products/product_petrushka/product_preview/петрушка.jpg",
-        "description": "лучшая петрушка",
-        "is_active": true,
-        "slug": "petrushka",
-        "categories": [
-            3
-        ]
+        "name": "Can add content type",
+        "content_type": 5,
+        "codename": "add_contenttype"
     }
 },
 {
-    "model": "categories.category",
+    "model": "auth.permission",
+    "pk": 18,
+    "fields": {
+        "name": "Can change content type",
+        "content_type": 5,
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 19,
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": 5,
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 20,
+    "fields": {
+        "name": "Can view content type",
+        "content_type": 5,
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 21,
+    "fields": {
+        "name": "Can add session",
+        "content_type": 6,
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 22,
+    "fields": {
+        "name": "Can change session",
+        "content_type": 6,
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 23,
+    "fields": {
+        "name": "Can delete session",
+        "content_type": 6,
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 24,
+    "fields": {
+        "name": "Can view session",
+        "content_type": 6,
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 25,
+    "fields": {
+        "name": "Can add банер слайдер",
+        "content_type": 7,
+        "codename": "add_bannerslider"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 26,
+    "fields": {
+        "name": "Can change банер слайдер",
+        "content_type": 7,
+        "codename": "change_bannerslider"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 27,
+    "fields": {
+        "name": "Can delete банер слайдер",
+        "content_type": 7,
+        "codename": "delete_bannerslider"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 28,
+    "fields": {
+        "name": "Can view банер слайдер",
+        "content_type": 7,
+        "codename": "view_bannerslider"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 29,
+    "fields": {
+        "name": "Can add cache time",
+        "content_type": 8,
+        "codename": "add_cachetime"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 30,
+    "fields": {
+        "name": "Can change cache time",
+        "content_type": 8,
+        "codename": "change_cachetime"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 31,
+    "fields": {
+        "name": "Can delete cache time",
+        "content_type": 8,
+        "codename": "delete_cachetime"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 32,
+    "fields": {
+        "name": "Can view cache time",
+        "content_type": 8,
+        "codename": "view_cachetime"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 33,
+    "fields": {
+        "name": "Can add order",
+        "content_type": 9,
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 34,
+    "fields": {
+        "name": "Can change order",
+        "content_type": 9,
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 35,
+    "fields": {
+        "name": "Can delete order",
+        "content_type": 9,
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 36,
+    "fields": {
+        "name": "Can view order",
+        "content_type": 9,
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 37,
+    "fields": {
+        "name": "Can add order status",
+        "content_type": 10,
+        "codename": "add_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 38,
+    "fields": {
+        "name": "Can change order status",
+        "content_type": 10,
+        "codename": "change_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 39,
+    "fields": {
+        "name": "Can delete order status",
+        "content_type": 10,
+        "codename": "delete_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 40,
+    "fields": {
+        "name": "Can view order status",
+        "content_type": 10,
+        "codename": "view_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 41,
+    "fields": {
+        "name": "Can add category",
+        "content_type": 11,
+        "codename": "add_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 42,
+    "fields": {
+        "name": "Can change category",
+        "content_type": 11,
+        "codename": "change_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 43,
+    "fields": {
+        "name": "Can delete category",
+        "content_type": 11,
+        "codename": "delete_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 44,
+    "fields": {
+        "name": "Can view category",
+        "content_type": 11,
+        "codename": "view_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 45,
+    "fields": {
+        "name": "Can add product",
+        "content_type": 12,
+        "codename": "add_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 46,
+    "fields": {
+        "name": "Can change product",
+        "content_type": 12,
+        "codename": "change_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 47,
+    "fields": {
+        "name": "Can delete product",
+        "content_type": 12,
+        "codename": "delete_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 48,
+    "fields": {
+        "name": "Can view product",
+        "content_type": 12,
+        "codename": "view_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 49,
+    "fields": {
+        "name": "Can add просмотр продукта",
+        "content_type": 13,
+        "codename": "add_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 50,
+    "fields": {
+        "name": "Can change просмотр продукта",
+        "content_type": 13,
+        "codename": "change_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 51,
+    "fields": {
+        "name": "Can delete просмотр продукта",
+        "content_type": 13,
+        "codename": "delete_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 52,
+    "fields": {
+        "name": "Can view просмотр продукта",
+        "content_type": 13,
+        "codename": "view_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 53,
+    "fields": {
+        "name": "Can add отзыв на продукт",
+        "content_type": 14,
+        "codename": "add_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 54,
+    "fields": {
+        "name": "Can change отзыв на продукт",
+        "content_type": 14,
+        "codename": "change_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 55,
+    "fields": {
+        "name": "Can delete отзыв на продукт",
+        "content_type": 14,
+        "codename": "delete_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 56,
+    "fields": {
+        "name": "Can view отзыв на продукт",
+        "content_type": 14,
+        "codename": "view_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 57,
+    "fields": {
+        "name": "Can add profile",
+        "content_type": 15,
+        "codename": "add_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 58,
+    "fields": {
+        "name": "Can change profile",
+        "content_type": 15,
+        "codename": "change_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 59,
+    "fields": {
+        "name": "Can delete profile",
+        "content_type": 15,
+        "codename": "delete_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 60,
+    "fields": {
+        "name": "Can view profile",
+        "content_type": 15,
+        "codename": "view_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 61,
+    "fields": {
+        "name": "Can add скидка",
+        "content_type": 16,
+        "codename": "add_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 62,
+    "fields": {
+        "name": "Can change скидка",
+        "content_type": 16,
+        "codename": "change_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 63,
+    "fields": {
+        "name": "Can delete скидка",
+        "content_type": 16,
+        "codename": "delete_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 64,
+    "fields": {
+        "name": "Can view скидка",
+        "content_type": 16,
+        "codename": "view_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 65,
+    "fields": {
+        "name": "Can add продавец",
+        "content_type": 17,
+        "codename": "add_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 66,
+    "fields": {
+        "name": "Can change продавец",
+        "content_type": 17,
+        "codename": "change_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 67,
+    "fields": {
+        "name": "Can delete продавец",
+        "content_type": 17,
+        "codename": "delete_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 68,
+    "fields": {
+        "name": "Can view продавец",
+        "content_type": 17,
+        "codename": "view_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 69,
+    "fields": {
+        "name": "Can add продукт продавца",
+        "content_type": 18,
+        "codename": "add_sellerproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 70,
+    "fields": {
+        "name": "Can change продукт продавца",
+        "content_type": 18,
+        "codename": "change_sellerproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 71,
+    "fields": {
+        "name": "Can delete продукт продавца",
+        "content_type": 18,
+        "codename": "delete_sellerproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 72,
+    "fields": {
+        "name": "Can view продукт продавца",
+        "content_type": 18,
+        "codename": "view_sellerproduct"
+    }
+},
+{
+    "model": "auth.user",
     "pk": 1,
     "fields": {
-        "name": "еда",
-        "parent": null,
-        "slug": "food"
+        "password": "pbkdf2_sha256$260000$SdjoIX4A8tZXtN3xobXCkN$sfrMlxvDYrAfX7IHL8CBCFd8Xxey399ZZT23papt5Go=",
+        "last_login": "2023-12-03T10:32:27.506Z",
+        "is_superuser": true,
+        "username": "suf",
+        "first_name": "",
+        "last_name": "",
+        "email": "sufk@rambler.ru",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-12-03T10:32:03.032Z",
+        "groups": [],
+        "user_permissions": []
     }
 },
 {
-    "model": "categories.category",
+    "model": "contenttypes.contenttype",
+    "pk": 1,
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
     "pk": 2,
     "fields": {
-        "name": "напитки",
-        "parent": null,
-        "slug": "drinks"
+        "app_label": "auth",
+        "model": "permission"
     }
 },
 {
-    "model": "categories.category",
+    "model": "contenttypes.contenttype",
     "pk": 3,
     "fields": {
-        "name": "овощи",
-        "parent": 1,
-        "slug": "vegetables"
+        "app_label": "auth",
+        "model": "group"
     }
 },
 {
-    "model": "categories.category",
+    "model": "contenttypes.contenttype",
     "pk": 4,
     "fields": {
-        "name": "газированные напитки",
-        "parent": 2,
-        "slug": "soda"
+        "app_label": "auth",
+        "model": "user"
     }
 },
 {
-    "model": "categories.category",
+    "model": "contenttypes.contenttype",
     "pk": 5,
     "fields": {
-        "name": "соки",
-        "parent": 2,
-        "slug": "juices"
+        "app_label": "contenttypes",
+        "model": "contenttype"
     }
 },
 {
-    "model": "categories.category",
+    "model": "contenttypes.contenttype",
     "pk": 6,
     "fields": {
-        "name": "электроника",
-        "parent": null,
-        "slug": "elektronika"
+        "app_label": "sessions",
+        "model": "session"
     }
 },
 {
-    "model": "categories.category",
+    "model": "contenttypes.contenttype",
     "pk": 7,
     "fields": {
-        "name": "телевизоры",
-        "parent": 6,
-        "slug": "televizory"
+        "app_label": "banner_app",
+        "model": "bannerslider"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 8,
+    "fields": {
+        "app_label": "settingsapp",
+        "model": "cachetime"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 9,
+    "fields": {
+        "app_label": "orders",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 10,
+    "fields": {
+        "app_label": "orders",
+        "model": "orderstatus"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 11,
+    "fields": {
+        "app_label": "categories",
+        "model": "category"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 12,
+    "fields": {
+        "app_label": "products",
+        "model": "product"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 13,
+    "fields": {
+        "app_label": "products",
+        "model": "productviewhistory"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 14,
+    "fields": {
+        "app_label": "products",
+        "model": "productfeedback"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 15,
+    "fields": {
+        "app_label": "profiles",
+        "model": "profile"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 16,
+    "fields": {
+        "app_label": "sellers",
+        "model": "discount"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 17,
+    "fields": {
+        "app_label": "sellers",
+        "model": "seller"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "pk": 18,
+    "fields": {
+        "app_label": "sellers",
+        "model": "sellerproduct"
     }
 },
 {
@@ -393,7 +902,7 @@
     "model": "orders.order",
     "pk": 48,
     "fields": {
-        "cost": "369.00",
+        "cost": "0.00",
         "comment": "",
         "delivery_address": "Сочи",
         "created_at": "2023-11-17T15:48:21.003Z",
@@ -407,30 +916,9 @@
 },
 {
     "model": "orders.order",
-    "pk": 49,
-    "fields": {
-        "cost": "3392.00",
-        "comment": "доставьте мой заказ в целости и сохранности",
-        "delivery_address": "Владивосток",
-        "created_at": "2023-12-03T11:47:06.898Z",
-        "status": 1,
-        "seller_products": [
-            5,
-            7,
-            9,
-            10,
-            11,
-            14,
-            16,
-            18
-        ]
-    }
-},
-{
-    "model": "orders.order",
     "pk": 50,
     "fields": {
-        "cost": "3159.00",
+        "cost": "0.00",
         "comment": "быстрее пожалуйста",
         "delivery_address": "СПБ",
         "created_at": "2023-12-03T11:48:47.907Z",
@@ -450,20 +938,84 @@
     "model": "orders.order",
     "pk": 51,
     "fields": {
-        "cost": "5411.00",
+        "cost": "33.00",
         "comment": "",
         "delivery_address": "Москва",
         "created_at": "2023-12-03T11:49:34.600Z",
         "status": 2,
         "seller_products": [
-            2,
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 54,
+    "fields": {
+        "cost": "2545.00",
+        "comment": "",
+        "delivery_address": "111",
+        "created_at": "2023-12-04T19:24:02.221Z",
+        "status": 1,
+        "seller_products": [
             4,
-            5,
-            7,
-            9,
-            13,
-            14,
-            17
+            7
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 55,
+    "fields": {
+        "cost": "33.00",
+        "comment": "",
+        "delivery_address": "222",
+        "created_at": "2023-12-04T19:26:24.192Z",
+        "status": 1,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 56,
+    "fields": {
+        "cost": "33.00",
+        "comment": "",
+        "delivery_address": "333",
+        "created_at": "2023-12-04T19:26:55.413Z",
+        "status": 1,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 57,
+    "fields": {
+        "cost": "33.00",
+        "comment": "",
+        "delivery_address": "444",
+        "created_at": "2023-12-04T19:27:07.358Z",
+        "status": 1,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 58,
+    "fields": {
+        "cost": "33.00",
+        "comment": "",
+        "delivery_address": "555",
+        "created_at": "2023-12-04T19:27:53.522Z",
+        "status": 1,
+        "seller_products": [
+            6
         ]
     }
 },
@@ -479,6 +1031,380 @@
     "pk": 2,
     "fields": {
         "name": "not paid"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 1,
+    "fields": {
+        "name": "еда",
+        "parent": null,
+        "slug": "food"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 2,
+    "fields": {
+        "name": "напитки",
+        "parent": null,
+        "slug": "drinks"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 3,
+    "fields": {
+        "name": "овощи",
+        "parent": 1,
+        "slug": "vegetables"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 4,
+    "fields": {
+        "name": "газированные напитки",
+        "parent": 2,
+        "slug": "soda"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 5,
+    "fields": {
+        "name": "соки",
+        "parent": 2,
+        "slug": "juices"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 6,
+    "fields": {
+        "name": "электроника",
+        "parent": null,
+        "slug": "elektronika"
+    }
+},
+{
+    "model": "categories.category",
+    "pk": 7,
+    "fields": {
+        "name": "телевизоры",
+        "parent": 6,
+        "slug": "televizory"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "feedback_text": "Goood",
+        "created_at": "2023-12-04"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 5,
+    "fields": {
+        "user": 1,
+        "feedback_text": "+5",
+        "created_at": "2023-12-04"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "feedback_text": "Забористый",
+        "created_at": "2023-12-04"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 7,
+    "fields": {
+        "user": 1,
+        "feedback_text": "Кубанский",
+        "created_at": "2023-12-04"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 8,
+    "fields": {
+        "user": 1,
+        "feedback_text": "Потрясающий",
+        "created_at": "2023-12-04"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+        "name": "кола",
+        "preview": "images/products/product_cola/product_preview/cola.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "cola",
+        "categories": [
+            4
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+        "name": "томат",
+        "preview": "images/products/product_tomato/product_preview/Tomato.png",
+        "description": ".",
+        "is_active": true,
+        "slug": "tomato",
+        "categories": [
+            3
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+        "name": "апельсиновый сок",
+        "preview": "images/products/product_orange-juice/product_preview/Orangejuice.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "orange-juice",
+        "categories": [
+            5
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "name": "морковь",
+        "preview": "images/products/product_carrot/product_preview/carrot.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "carrot",
+        "categories": [
+            3
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "name": "виноградный сок",
+        "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
+        "description": ".",
+        "is_active": true,
+        "slug": "grape-juice",
+        "categories": [
+            5
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "name": "картофель",
+        "preview": "images/products/product_potato/product_preview/potato.png",
+        "description": ".",
+        "is_active": true,
+        "slug": "potato",
+        "categories": [
+            3
+        ],
+        "feedback": [
+            8
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "name": "Чай",
+        "preview": "images/products/product_chaj/product_preview/Чашка.png",
+        "description": "Чашка согревающего чая",
+        "is_active": true,
+        "slug": "chaj",
+        "categories": [
+            4
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "name": "Телевизор лучший",
+        "preview": "images/products/product_televizor-luchshij/product_preview/телевизор.jpg",
+        "description": "Самый современный телевизор",
+        "is_active": true,
+        "slug": "televizor-luchshij",
+        "categories": [
+            7
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "name": "Лук",
+        "preview": "images/products/product_luk/product_preview/лук.jpeg",
+        "description": "Хороший лук",
+        "is_active": true,
+        "slug": "luk",
+        "categories": [
+            3
+        ],
+        "feedback": [
+            6,
+            7,
+            8
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+        "name": "Капуста",
+        "preview": "images/products/product_kapusta/product_preview/капуста.jfif",
+        "description": "Свежая капуста с огорода",
+        "is_active": true,
+        "slug": "kapusta",
+        "categories": [
+            3
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 11,
+    "fields": {
+        "name": "кабачок",
+        "preview": "images/products/product_kabachok/product_preview/кабачок.png",
+        "description": "лучшие кабачки",
+        "is_active": true,
+        "slug": "kabachok",
+        "categories": [
+            3
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 12,
+    "fields": {
+        "name": "брокколи",
+        "preview": "images/products/product_brokkoli/product_preview/брокколи.png",
+        "description": "вкусная брокколи",
+        "is_active": true,
+        "slug": "brokkoli",
+        "categories": [
+            3
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 13,
+    "fields": {
+        "name": "шпинат",
+        "preview": "images/products/product_shpinat/product_preview/шпинат.jpg",
+        "description": "лучший шпинат",
+        "is_active": true,
+        "slug": "shpinat",
+        "categories": [
+            3
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 14,
+    "fields": {
+        "name": "руккола",
+        "preview": "images/products/product_rukkola/product_preview/руккола.jpg",
+        "description": "лучшая руккола",
+        "is_active": true,
+        "slug": "rukkola",
+        "categories": [
+            3
+        ],
+        "feedback": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 15,
+    "fields": {
+        "name": "кинза",
+        "preview": "images/products/product_kinza/product_preview/кинза.jpg",
+        "description": "лучшая кинза",
+        "is_active": true,
+        "slug": "kinza",
+        "categories": [
+            3
+        ],
+        "feedback": [
+            4,
+            5
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 16,
+    "fields": {
+        "name": "укроп",
+        "preview": "images/products/product_ukrop/product_preview/укроп.jpg",
+        "description": "лучший укроп",
+        "is_active": true,
+        "slug": "ukrop",
+        "categories": [
+            3
+        ],
+        "feedback": [
+            4
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 17,
+    "fields": {
+        "name": "петрушка",
+        "preview": "images/products/product_petrushka/product_preview/петрушка.jpg",
+        "description": "лучшая петрушка",
+        "is_active": true,
+        "slug": "petrushka",
+        "categories": [
+            3
+        ],
+        "feedback": []
     }
 },
 {
@@ -542,7 +1468,8 @@
         "seller": 3,
         "price": "12.00",
         "stock": 31,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-11-04"
     }
 },
 {
@@ -553,7 +1480,8 @@
         "seller": 3,
         "price": "123.00",
         "stock": 312,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-10-04"
     }
 },
 {
@@ -564,7 +1492,8 @@
         "seller": 3,
         "price": "324.00",
         "stock": 330,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-09-04"
     }
 },
 {
@@ -575,7 +1504,8 @@
         "seller": 1,
         "price": "2322.00",
         "stock": 9,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-08-04"
     }
 },
 {
@@ -586,7 +1516,8 @@
         "seller": 2,
         "price": "2344.00",
         "stock": 21,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-07-04"
     }
 },
 {
@@ -597,7 +1528,8 @@
         "seller": 4,
         "price": "33.00",
         "stock": 122,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-07-05"
     }
 },
 {
@@ -608,7 +1540,8 @@
         "seller": 4,
         "price": "223.00",
         "stock": 10,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-07-06"
     }
 },
 {
@@ -619,7 +1552,8 @@
         "seller": 4,
         "price": "213.00",
         "stock": 22,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-06-04"
     }
 },
 {
@@ -630,7 +1564,8 @@
         "seller": 3,
         "price": "343.00",
         "stock": 342,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-05-04"
     }
 },
 {
@@ -641,7 +1576,8 @@
         "seller": 3,
         "price": "342.00",
         "stock": 42,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-04"
     }
 },
 {
@@ -652,7 +1588,8 @@
         "seller": 3,
         "price": "100.00",
         "stock": 321,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-02"
     }
 },
 {
@@ -663,7 +1600,8 @@
         "seller": 3,
         "price": "32.00",
         "stock": 3234,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-05"
     }
 },
 {
@@ -674,7 +1612,8 @@
         "seller": 3,
         "price": "11.00",
         "stock": 322,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-04"
     }
 },
 {
@@ -685,7 +1624,8 @@
         "seller": 3,
         "price": "13.00",
         "stock": 321,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-04"
     }
 },
 {
@@ -696,7 +1636,8 @@
         "seller": 3,
         "price": "14.00",
         "stock": 531,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-04"
     }
 },
 {
@@ -707,7 +1648,8 @@
         "seller": 3,
         "price": "13.00",
         "stock": 431,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-04"
     }
 },
 {
@@ -718,7 +1660,8 @@
         "seller": 3,
         "price": "15.00",
         "stock": 1234,
-        "discount": 1
+        "discount": 1,
+        "created_at": "2023-12-04"
     }
 },
 {

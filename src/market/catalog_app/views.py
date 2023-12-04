@@ -5,7 +5,6 @@ from django.views.generic import (
 from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
-#TODO модель SellerProduct взять из реализации Задаче 9 от Андрея.
 from market.sellers.models import SellerProduct
 
 import logging
@@ -21,22 +20,18 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
 
     def get_queryset(self):
         if "order_by" in self.request.GET:
-            # TODO проверить работоспособность после замены модели
             order_by = self.request.GET.get('order_by', 'price')
             return SellerProduct.objects.order_by(order_by)
         elif "feedback" in self.request.GET:
-            #TODO проверить работоспособность после замены модели
             queryset = SellerProduct.objects.annotate(
                 num_feedbacks=Count('product__feedback__feedback_text')).order_by("-num_feedbacks")
             return queryset
         elif "rating" in self.request.GET:
-            #TODO Переделать на модель Андрея из задачи 9 -> SellerProduct сортировку по количеству покупок товара в соответствии с ТЗ
             queryset = SellerProduct.objects.annotate(
-                num_of_view=Count('product__product_view_history__view_at')).order_by("-num_of_view")
+                num_of_sale=Count('orders__seller_products__product')).order_by("-num_of_sale")
             return queryset
         else:
             log.debug("Ordered_by NOT in self.request.GET")
-            # TODO проверить работоспособность после замены модели
             return SellerProduct.objects.order_by('-price')
 
     def get_context_data(self, **kwargs):
