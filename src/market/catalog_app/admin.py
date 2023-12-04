@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 
-#
+
 # @admin.register(Discount)
 # class DiscountAdmin(admin.ModelAdmin):
 #     list_display = ['name', 'type', 'value']
