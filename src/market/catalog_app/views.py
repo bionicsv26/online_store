@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
 #TODO модель SellerProduct взять из реализации Задаче 9 от Андрея.
-from .models import SellerProduct
+from market.sellers.models import SellerProduct
 
 import logging
 from django.db.models import Count
