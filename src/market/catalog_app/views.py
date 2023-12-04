@@ -27,7 +27,7 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         elif "feedback" in self.request.GET:
             #TODO проверить работоспособность после замены модели
             queryset = SellerProduct.objects.annotate(
-                num_feedbacks=Count('product__product_feedbacks__feedback_text')).order_by("-num_feedbacks")
+                num_feedbacks=Count('product__feedback__feedback_text')).order_by("-num_feedbacks")
             return queryset
         elif "rating" in self.request.GET:
             #TODO Переделать на модель Андрея из задачи 9 -> SellerProduct сортировку по количеству покупок товара в соответствии с ТЗ

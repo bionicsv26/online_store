@@ -25,7 +25,7 @@ class ProductFeedback(models.Model):
     )
 
     def __str__(self):
-        return f" Пользователь {self.name} оставил отзыв"
+        return f" Пользователь {self.user.username} оставил отзыв"
 
 
 
