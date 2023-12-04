@@ -13,7 +13,7 @@
             </div>
           </div>
           <div class="CategoriesButton-content">
-            {% for category in menu_categories %}
+            {% for category, subcategories in menu_categories %}
               <div class="CategoriesButton-link">
                 <a href="{% url 'categories:category-products-list' category_slug=category.slug %}">
                   <div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg"/></div>

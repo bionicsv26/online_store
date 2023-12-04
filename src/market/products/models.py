@@ -41,11 +41,15 @@ def image_directory_path(instance: 'Product', filename) -> str:
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=20)
-    preview = models.ImageField(null=True, unique=True, upload_to=image_directory_path)
-    categories = models.ManyToManyField(Category, related_name='products')
-    description = models.TextField()
-    is_active = models.BooleanField(default=True)
+    class Meta:
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
+
+    name = models.CharField(max_length=20, verbose_name='название')
+    preview = models.ImageField(null=True, unique=True, upload_to=image_directory_path, verbose_name='изображение')
+    categories = models.ManyToManyField(Category, related_name='products', verbose_name='категории')
+    description = models.TextField(verbose_name='описание')
+    is_active = models.BooleanField(default=True, verbose_name='активирован')
     slug = models.SlugField(max_length=20, unique=True)
 
     def __str__(self):

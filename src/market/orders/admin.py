@@ -10,21 +10,27 @@ class ProductInline(admin.StackedInline):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'cost', 'delivery_address', 'status', 'comment', 'created_at'
+    list_display = 'pk', 'cost', 'delivery_address', 'status', 'created_at'
     list_display_links = 'pk',
-    ordering = 'cost', 'comment'
+    ordering = 'cost',
     inlines = [
         ProductInline,
     ]
     fieldsets = (
         ('Required', {
-            'fields': ('seller_products', 'cost', 'status', 'delivery_address'),
-        }),
-        ('Extra', {
-            'fields': ('comment',),
-            'classes': {
-                'collapse': True,
-            },
+            'fields': (
+                'user',
+                'full_name',
+                'phone',
+                'email',
+                'seller_products',
+                'cost',
+                'status',
+                'delivery_city',
+                'delivery_address',
+                'delivery_method',
+                'payment_method',
+            ),
         }),
     )
 
