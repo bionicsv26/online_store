@@ -4,9 +4,9 @@
 {% block cards %}
     {% if page_obj  %}
           {% for sellerproduct in page_obj  %}
-            <div class="Card"><a class="Card-picture" href="#"><img src="{{ sellerproduct.product.preview.url }}" alt="card.jpg"/></a>
+            <div class="Card"><a class="Card-picture" href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}"><img src="{{ sellerproduct.product.preview.url }}" alt="card.jpg"/></a>
             <div class="Card-content">
-              <strong class="Card-title"><a href="#">{{ sellerproduct.product.name }} от {{ sellerproduct.seller }}</a></strong>
+              <strong class="Card-title"><a href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}">{{ sellerproduct.product.name }} от {{ sellerproduct.seller }}</a></strong>
               <div class="Card-description">
                 <div class="Card-cost"><span class="Card-price">{{ sellerproduct.price }} руб.</span></div>
                     {% for category in sellerproduct.product.category.all %}
