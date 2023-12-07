@@ -5,10 +5,16 @@ from django.db.models import options
 options.DEFAULT_NAMES += ('permissions_model', )
 
 
-class Post(models.Model):
-    name = models.CharField(max_length=30)
-
-    class Meta:
-        permissions_model = {"Customer": ("add_post", "view_post"),
-                             "Moderator": ("add_post", "change_post", "view_post"),
-                             "Administrator": ("add_post", "change_post", "delete_post", "view_post")}
+# class BaseModel(models.Model):
+#
+#     permissions_model = {
+#         "Customer": (f"add_basemodel",
+#                      f"view_basemodel"),
+#         "Moderator": (f"add_basemodel",
+#                       f"change_basemodel",
+#                       f"view_basemodel"),
+#         "Administrator": (f"add_basemodel",
+#                           f"change_basemodel",
+#                           f"delete_basemodel",
+#                           f"view_basemodel")
+#     }

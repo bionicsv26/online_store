@@ -52,6 +52,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'rest_framework',
+    'widget_tweaks',
+    'debug_toolbar',
+
     'market.banner_app.apps.BannerAppConfig',
     'market.products.apps.ProductsConfig',
     'market.categories.apps.CategoriesConfig',
@@ -59,21 +63,12 @@ INSTALLED_APPS = [
 
     'market.users_permissions.apps.UsersPermissionsConfig',
 
-    'rest_framework',
-    'widget_tweaks',
-    'debug_toolbar',
-
-    'market.banner_app.apps.BannerAppConfig',
-
-    'market.settingsapp.apps.SettingsappConfig',
     'market.orders',
     'market.payment',
     'market.paymentsystem',
-
     'market.profiles.apps.ProfilesConfig',
     'market.sellers.apps.SellersConfig',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -129,6 +124,7 @@ DATABASES = {
         },
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

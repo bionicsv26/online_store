@@ -96,10 +96,11 @@ def update_user_groups_permissions(sender, **kwargs):
             for model in models:
                 if model.__name__ not in ['LogEntry', 'Permission', 'Group', 'ContentType', 'Session', 'User']:
                     for user_group in ('Customer', 'Administrator', 'Moderator'):
-                        if model._meta.permissions_model.get(user_group) is not None:
-                            for perm in model._meta.permissions_model.get(user_group):
-                                user_group_permissions[user_group] = user_group_permissions.get(user_group, []) + [
-                                    permission_id[perm]]
+                        if hasattr(model._meta, 'permissions_model'):
+                            if model._meta.permissions_model.get(user_group) is not None:
+                                for perm in model._meta.permissions_model.get(user_group):
+                                    user_group_permissions[user_group] = user_group_permissions.get(user_group, []) + [
+                                        permission_id[perm]]
 
         if not os.path.isfile('market/fixtures/user_groups.json'):
             create_fixture_user_groups()
