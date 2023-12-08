@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
 from market.sellers.models import SellerProduct
-
+from django.db.models import Q
 import logging
 from django.db.models import Count
 
@@ -28,7 +28,8 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
             return queryset
         elif "rating" in self.request.GET:
             queryset = SellerProduct.objects.annotate(
-                num_of_sale=Count('orders__seller_products__product')).order_by("-num_of_sale")
+                num_of_sale=Count('orders', filter=Q(orders__status__name='payed'))
+            ).order_by("-num_of_sale")
             return queryset
         else:
             log.debug("Ordered_by NOT in self.request.GET")
