@@ -14,7 +14,7 @@ class BannerSlider(models.Model):
 
     # На банере имя продукта и его картинка буруться из модели Product
     product = models.OneToOneField(
-        Product,
+        "products.Product",
         on_delete=models.PROTECT
     )
 
