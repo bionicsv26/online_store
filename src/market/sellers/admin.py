@@ -24,9 +24,9 @@ class SellerAdmin(admin.ModelAdmin):
 
 @admin.register(SellerProduct)
 class SellerProductAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'product', 'seller', 'price', 'stock', 'discount'
+    list_display = 'pk', 'product', 'seller', 'price', 'stock', 'discount', 'created_at'
     list_display_links = 'pk',
-    ordering = 'pk', 'price', 'stock'
+    ordering = 'pk', 'price', 'stock', 'created_at'
 
 
 @admin.register(Discount)
