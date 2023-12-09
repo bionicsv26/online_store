@@ -67,9 +67,9 @@
           </div>
           <div class="Sort-variants">
 
-            <a class="Sort-sortBy Sort-sortBy_dec" href="?rating=rating">Популярности</a>
+            <a class="Sort-sortBy Sort-sortBy_dec" href="?order_by=rating">Популярности</a>
             <a class="Sort-sortBy"  href="?order_by=price">Цене</a>
-            <a class="Sort-sortBy" href="?feedback=feedback">Отзывам</a>
+            <a class="Sort-sortBy" href="?order_by=feedback">Отзывам</a>
             <a class="Sort-sortBy Sort-sortBy_inc" href="?order_by=-created_at">Новизне</a>
           </div>
         </div>
@@ -85,8 +85,8 @@
             <div class="Pagination">
               <div class="Pagination-ins">
                   {% if page_obj.has_previous %}
-                    <a href="?page=1">1 ... &laquo;</a>
-                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}
+                    <a href="?page=1&order_by={{ order_by }}">1 ... &laquo;</a>
+                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.previous_page_number }}&order_by={{ order_by }}">{{ page_obj.previous_page_number }}
                         <img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg"/>
                     </a>
                   {% endif %}
@@ -97,10 +97,10 @@
                     </a>
 
                   {% if page_obj.has_next %}
-                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}
+                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}&order_by={{ order_by }}">{{ page_obj.next_page_number }}
                         <img src="{% static 'assets/img/icons/nextPagination.svg' %}" alt="nextPagination.svg"/>
                     </a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}"> ...  {{ page_obj.paginator.num_pages }} &raquo;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}&order_by={{ order_by }}"> ...  {{ page_obj.paginator.num_pages }} &raquo;</a>
                   {% endif %}
               </div>
             </div>
