@@ -27,6 +27,7 @@ urlpatterns = [
     path('profile/orders/', include('market.orders.urls')),
     path('profile/orders/<int:pk>/', include('market.payment.urls')),
     path('bank/', include('market.paymentsystem.urls')),
+    path('catalog/', include('market.catalog_app.urls')),
     path('profiles/', include('market.profiles.urls')),
     path('sellers/', include('market.sellers.urls')),
 ]

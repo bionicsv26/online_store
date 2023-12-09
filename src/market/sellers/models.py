@@ -33,7 +33,7 @@ class SellerProduct(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='цена')
     stock = models.IntegerField(default=0, verbose_name='сколько в наличии')
     discount = models.ForeignKey('Discount', on_delete=models.PROTECT, null=True, related_name='seller_products', verbose_name='скидка')
-
+    created_at = models.DateField(auto_now_add=True, verbose_name='продукт продавца создан')
     def __str__(self):
         return f'Продукт продавца "{self.product.name}"'
 
