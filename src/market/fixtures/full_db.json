@@ -219,7 +219,7 @@
     "model": "auth.permission",
     "pk": 25,
     "fields": {
-        "name": "Can add Р±Р°РЅРµСЂ СЃР»Р°Р№РґРµСЂ",
+        "name": "Can add банер слайдер",
         "content_type": 7,
         "codename": "add_bannerslider"
     }
@@ -228,7 +228,7 @@
     "model": "auth.permission",
     "pk": 26,
     "fields": {
-        "name": "Can change Р±Р°РЅРµСЂ СЃР»Р°Р№РґРµСЂ",
+        "name": "Can change банер слайдер",
         "content_type": 7,
         "codename": "change_bannerslider"
     }
@@ -237,7 +237,7 @@
     "model": "auth.permission",
     "pk": 27,
     "fields": {
-        "name": "Can delete Р±Р°РЅРµСЂ СЃР»Р°Р№РґРµСЂ",
+        "name": "Can delete банер слайдер",
         "content_type": 7,
         "codename": "delete_bannerslider"
     }
@@ -246,7 +246,7 @@
     "model": "auth.permission",
     "pk": 28,
     "fields": {
-        "name": "Can view Р±Р°РЅРµСЂ СЃР»Р°Р№РґРµСЂ",
+        "name": "Can view банер слайдер",
         "content_type": 7,
         "codename": "view_bannerslider"
     }
@@ -435,7 +435,7 @@
     "model": "auth.permission",
     "pk": 49,
     "fields": {
-        "name": "Can add РїСЂРѕСЃРјРѕС‚СЂ РїСЂРѕРґСѓРєС‚Р°",
+        "name": "Can add просмотр продукта",
         "content_type": 13,
         "codename": "add_productviewhistory"
     }
@@ -444,7 +444,7 @@
     "model": "auth.permission",
     "pk": 50,
     "fields": {
-        "name": "Can change РїСЂРѕСЃРјРѕС‚СЂ РїСЂРѕРґСѓРєС‚Р°",
+        "name": "Can change просмотр продукта",
         "content_type": 13,
         "codename": "change_productviewhistory"
     }
@@ -453,7 +453,7 @@
     "model": "auth.permission",
     "pk": 51,
     "fields": {
-        "name": "Can delete РїСЂРѕСЃРјРѕС‚СЂ РїСЂРѕРґСѓРєС‚Р°",
+        "name": "Can delete просмотр продукта",
         "content_type": 13,
         "codename": "delete_productviewhistory"
     }
@@ -462,7 +462,7 @@
     "model": "auth.permission",
     "pk": 52,
     "fields": {
-        "name": "Can view РїСЂРѕСЃРјРѕС‚СЂ РїСЂРѕРґСѓРєС‚Р°",
+        "name": "Can view просмотр продукта",
         "content_type": 13,
         "codename": "view_productviewhistory"
     }
@@ -471,7 +471,7 @@
     "model": "auth.permission",
     "pk": 53,
     "fields": {
-        "name": "Can add РѕС‚Р·С‹РІ РЅР° РїСЂРѕРґСѓРєС‚",
+        "name": "Can add отзыв на продукт",
         "content_type": 14,
         "codename": "add_productfeedback"
     }
@@ -480,7 +480,7 @@
     "model": "auth.permission",
     "pk": 54,
     "fields": {
-        "name": "Can change РѕС‚Р·С‹РІ РЅР° РїСЂРѕРґСѓРєС‚",
+        "name": "Can change отзыв на продукт",
         "content_type": 14,
         "codename": "change_productfeedback"
     }
@@ -489,7 +489,7 @@
     "model": "auth.permission",
     "pk": 55,
     "fields": {
-        "name": "Can delete РѕС‚Р·С‹РІ РЅР° РїСЂРѕРґСѓРєС‚",
+        "name": "Can delete отзыв на продукт",
         "content_type": 14,
         "codename": "delete_productfeedback"
     }
@@ -498,7 +498,7 @@
     "model": "auth.permission",
     "pk": 56,
     "fields": {
-        "name": "Can view РѕС‚Р·С‹РІ РЅР° РїСЂРѕРґСѓРєС‚",
+        "name": "Can view отзыв на продукт",
         "content_type": 14,
         "codename": "view_productfeedback"
     }
@@ -543,7 +543,7 @@
     "model": "auth.permission",
     "pk": 61,
     "fields": {
-        "name": "Can add СЃРєРёРґРєР°",
+        "name": "Can add скидка",
         "content_type": 16,
         "codename": "add_discount"
     }
@@ -552,7 +552,7 @@
     "model": "auth.permission",
     "pk": 62,
     "fields": {
-        "name": "Can change СЃРєРёРґРєР°",
+        "name": "Can change скидка",
         "content_type": 16,
         "codename": "change_discount"
     }
@@ -561,7 +561,7 @@
     "model": "auth.permission",
     "pk": 63,
     "fields": {
-        "name": "Can delete СЃРєРёРґРєР°",
+        "name": "Can delete скидка",
         "content_type": 16,
         "codename": "delete_discount"
     }
@@ -570,7 +570,7 @@
     "model": "auth.permission",
     "pk": 64,
     "fields": {
-        "name": "Can view СЃРєРёРґРєР°",
+        "name": "Can view скидка",
         "content_type": 16,
         "codename": "view_discount"
     }
@@ -579,7 +579,7 @@
     "model": "auth.permission",
     "pk": 65,
     "fields": {
-        "name": "Can add РїСЂРѕРґР°РІРµС†",
+        "name": "Can add продавец",
         "content_type": 17,
         "codename": "add_seller"
     }
@@ -588,7 +588,7 @@
     "model": "auth.permission",
     "pk": 66,
     "fields": {
-        "name": "Can change РїСЂРѕРґР°РІРµС†",
+        "name": "Can change продавец",
         "content_type": 17,
         "codename": "change_seller"
     }
@@ -597,7 +597,7 @@
     "model": "auth.permission",
     "pk": 67,
     "fields": {
-        "name": "Can delete РїСЂРѕРґР°РІРµС†",
+        "name": "Can delete продавец",
         "content_type": 17,
         "codename": "delete_seller"
     }
@@ -606,7 +606,7 @@
     "model": "auth.permission",
     "pk": 68,
     "fields": {
-        "name": "Can view РїСЂРѕРґР°РІРµС†",
+        "name": "Can view продавец",
         "content_type": 17,
         "codename": "view_seller"
     }
@@ -615,7 +615,7 @@
     "model": "auth.permission",
     "pk": 69,
     "fields": {
-        "name": "Can add РїСЂРѕРґСѓРєС‚ РїСЂРѕРґР°РІС†Р°",
+        "name": "Can add продукт продавца",
         "content_type": 18,
         "codename": "add_sellerproduct"
     }
@@ -624,7 +624,7 @@
     "model": "auth.permission",
     "pk": 70,
     "fields": {
-        "name": "Can change РїСЂРѕРґСѓРєС‚ РїСЂРѕРґР°РІС†Р°",
+        "name": "Can change продукт продавца",
         "content_type": 18,
         "codename": "change_sellerproduct"
     }
@@ -633,7 +633,7 @@
     "model": "auth.permission",
     "pk": 71,
     "fields": {
-        "name": "Can delete РїСЂРѕРґСѓРєС‚ РїСЂРѕРґР°РІС†Р°",
+        "name": "Can delete продукт продавца",
         "content_type": 18,
         "codename": "delete_sellerproduct"
     }
@@ -642,7 +642,7 @@
     "model": "auth.permission",
     "pk": 72,
     "fields": {
-        "name": "Can view РїСЂРѕРґСѓРєС‚ РїСЂРѕРґР°РІС†Р°",
+        "name": "Can view продукт продавца",
         "content_type": 18,
         "codename": "view_sellerproduct"
     }
@@ -815,8 +815,8 @@
     "fields": {
         "product": 1,
         "is_active": true,
-        "title": "РџСЂР°Р·РґРЅРёРє Рє РЅР°Рј РїСЂРёС…РѕРґРёС‚",
-        "text": "Р’СЃРµРіРґР° Coca-Cola",
+        "title": "Праздник к нам приходит",
+        "text": "Всегда Coca-Cola",
         "created_at": "2023-11-02"
     }
 },
@@ -826,8 +826,8 @@
     "fields": {
         "product": 2,
         "is_active": true,
-        "title": "Р›СѓС‡С€РёР№ С‚Р°РјР°С‚ РЅР° СЂС‹РЅРєРµ",
-        "text": "Р’СЃРµРіРґР° СЃРїРµР»С‹Рµ!!!",
+        "title": "Лучший тамат на рынке",
+        "text": "Всегда спелые!!!",
         "created_at": "2023-11-02"
     }
 },
@@ -837,8 +837,8 @@
     "fields": {
         "product": 3,
         "is_active": true,
-        "title": "РќР°С‚СѓСЂР°Р»СЊРЅС‹Р№ РІРєСѓСЃ РЅР° РІСЃРµ РІСЂРµРјРµРЅР°",
-        "text": "Р‘РµР· РґРѕР±Р°РІР»РµРЅРёСЏ С…РёРјРёРё",
+        "title": "Натуральный вкус на все времена",
+        "text": "Без добавления химии",
         "created_at": "2023-11-02"
     }
 },
@@ -848,8 +848,8 @@
     "fields": {
         "product": 4,
         "is_active": true,
-        "title": "РћС‚Р±РѕСЂРЅР°СЏ РјРѕСЂРєРѕРІСЊ",
-        "text": "РЎРІРµР¶Р°СЏ Рё С…СЂСѓСЃС‚СЏС‰Р°СЏ",
+        "title": "Отборная морковь",
+        "text": "Свежая и хрустящая",
         "created_at": "2023-11-02"
     }
 },
@@ -859,8 +859,8 @@
     "fields": {
         "product": 5,
         "is_active": true,
-        "title": "РќРµСЃСЂР°РІРЅРµРЅРЅС‹Р№",
-        "text": "РЈРґР°Р»РёС‚ Р¶Р°Р¶РґСѓ РІ Р»СЋР±РѕРµ РІСЂРµРјСЏ РіРѕРґСЏ",
+        "title": "Несравненный",
+        "text": "Удалит жажду в любое время годя",
         "created_at": "2023-11-02"
     }
 },
@@ -870,8 +870,8 @@
     "fields": {
         "product": 6,
         "is_active": true,
-        "title": "Р‘РµР»РѕСЂСѓСЃСЃРєР°СЏ - РѕС‚Р±РѕСЂРЅР°СЏ",
-        "text": "Р›СѓС‡С€РёР№ РёРјРїРѕСЂС‚РЅС‹Р№ РєР°СЂС‚РѕС„РµР»СЊ РЅР° СЂРѕСЃСЃРёР№СЃРєРѕРј СЂС‹РЅРєРµ",
+        "title": "Белорусская - отборная",
+        "text": "Лучший импортный картофель на российском рынке",
         "created_at": "2023-11-02"
     }
 },
@@ -881,8 +881,8 @@
     "fields": {
         "product": 7,
         "is_active": true,
-        "title": "РЎРѕРіСЂРµРµС‚ РґСѓС€Сѓ",
-        "text": "Р’СЃРµРіРґР° РІРєСѓСЃРЅС‹Р№ Рё РЅР°СЃС‹С‰РµРЅРЅС‹Р№",
+        "title": "Согреет душу",
+        "text": "Всегда вкусный и насыщенный",
         "created_at": "2023-11-02"
     }
 },
@@ -904,7 +904,7 @@
     "fields": {
         "cost": "0.00",
         "comment": "",
-        "delivery_address": "РЎРѕС‡Рё",
+        "delivery_address": "Сочи",
         "created_at": "2023-11-17T15:48:21.003Z",
         "status": 1,
         "seller_products": [
@@ -919,8 +919,8 @@
     "pk": 50,
     "fields": {
         "cost": "0.00",
-        "comment": "Р±С‹СЃС‚СЂРµРµ РїРѕР¶Р°Р»СѓР№СЃС‚Р°",
-        "delivery_address": "РЎРџР‘",
+        "comment": "быстрее пожалуйста",
+        "delivery_address": "СПБ",
         "created_at": "2023-12-03T11:48:47.907Z",
         "status": 2,
         "seller_products": [
@@ -940,7 +940,7 @@
     "fields": {
         "cost": "33.00",
         "comment": "",
-        "delivery_address": "РњРѕСЃРєРІР°",
+        "delivery_address": "Москва",
         "created_at": "2023-12-03T11:49:34.600Z",
         "status": 2,
         "seller_products": [
@@ -1037,7 +1037,7 @@
     "model": "categories.category",
     "pk": 1,
     "fields": {
-        "name": "РµРґР°",
+        "name": "еда",
         "parent": null,
         "slug": "food"
     }
@@ -1046,7 +1046,7 @@
     "model": "categories.category",
     "pk": 2,
     "fields": {
-        "name": "РЅР°РїРёС‚РєРё",
+        "name": "напитки",
         "parent": null,
         "slug": "drinks"
     }
@@ -1055,7 +1055,7 @@
     "model": "categories.category",
     "pk": 3,
     "fields": {
-        "name": "РѕРІРѕС‰Рё",
+        "name": "овощи",
         "parent": 1,
         "slug": "vegetables"
     }
@@ -1064,7 +1064,7 @@
     "model": "categories.category",
     "pk": 4,
     "fields": {
-        "name": "РіР°Р·РёСЂРѕРІР°РЅРЅС‹Рµ РЅР°РїРёС‚РєРё",
+        "name": "газированные напитки",
         "parent": 2,
         "slug": "soda"
     }
@@ -1073,7 +1073,7 @@
     "model": "categories.category",
     "pk": 5,
     "fields": {
-        "name": "СЃРѕРєРё",
+        "name": "соки",
         "parent": 2,
         "slug": "juices"
     }
@@ -1082,7 +1082,7 @@
     "model": "categories.category",
     "pk": 6,
     "fields": {
-        "name": "СЌР»РµРєС‚СЂРѕРЅРёРєР°",
+        "name": "электроника",
         "parent": null,
         "slug": "elektronika"
     }
@@ -1091,145 +1091,142 @@
     "model": "categories.category",
     "pk": 7,
     "fields": {
-        "name": "С‚РµР»РµРІРёР·РѕСЂС‹",
+        "name": "телевизоры",
         "parent": 6,
         "slug": "televizory"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 4,
+    "pk": 11,
     "fields": {
         "user": 1,
-        "feedback_text": "Goood",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Хорошая Кола",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 5,
+    "pk": 12,
     "fields": {
         "user": 1,
-        "feedback_text": "+5",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Превосходная Кола",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 6,
+    "pk": 13,
     "fields": {
         "user": 1,
-        "feedback_text": "Р—Р°Р±РѕСЂРёСЃС‚С‹Р№",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Кола что надо",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 7,
+    "pk": 14,
     "fields": {
         "user": 1,
-        "feedback_text": "РљСѓР±Р°РЅСЃРєРёР№",
-        "created_at": "2023-12-04"
+        "product": 6,
+        "feedback_text": "Хрустящий - настоящий",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 8,
+    "pk": 15,
     "fields": {
         "user": 1,
-        "feedback_text": "РџРѕС‚СЂСЏСЃР°СЋС‰РёР№",
-        "created_at": "2023-12-04"
+        "product": 6,
+        "feedback_text": "Хороший Русский!",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.product",
     "pk": 1,
     "fields": {
-        "name": "РєРѕР»Р°",
+        "name": "кола",
         "preview": "images/products/product_cola/product_preview/cola.jpg",
         "description": ".",
         "is_active": true,
         "slug": "cola",
         "categories": [
             4
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 2,
     "fields": {
-        "name": "С‚РѕРјР°С‚",
+        "name": "томат",
         "preview": "images/products/product_tomato/product_preview/Tomato.png",
         "description": ".",
         "is_active": true,
         "slug": "tomato",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 3,
     "fields": {
-        "name": "Р°РїРµР»СЊСЃРёРЅРѕРІС‹Р№ СЃРѕРє",
+        "name": "апельсиновый сок",
         "preview": "images/products/product_orange-juice/product_preview/Orangejuice.jpg",
         "description": ".",
         "is_active": true,
         "slug": "orange-juice",
         "categories": [
             5
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 4,
     "fields": {
-        "name": "РјРѕСЂРєРѕРІСЊ",
+        "name": "морковь",
         "preview": "images/products/product_carrot/product_preview/carrot.jpg",
         "description": ".",
         "is_active": true,
         "slug": "carrot",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 5,
     "fields": {
-        "name": "РІРёРЅРѕРіСЂР°РґРЅС‹Р№ СЃРѕРє",
+        "name": "виноградный сок",
         "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
         "description": ".",
         "is_active": true,
         "slug": "grape-juice",
         "categories": [
             5
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 6,
     "fields": {
-        "name": "РєР°СЂС‚РѕС„РµР»СЊ",
+        "name": "картофель",
         "preview": "images/products/product_potato/product_preview/potato.png",
         "description": ".",
         "is_active": true,
         "slug": "potato",
         "categories": [
             3
-        ],
-        "feedback": [
-            8
         ]
     }
 },
@@ -1237,48 +1234,41 @@
     "model": "products.product",
     "pk": 7,
     "fields": {
-        "name": "Р§Р°Р№",
-        "preview": "images/products/product_chaj/product_preview/Р§Р°С€РєР°.png",
-        "description": "Р§Р°С€РєР° СЃРѕРіСЂРµРІР°СЋС‰РµРіРѕ С‡Р°СЏ",
+        "name": "Чай",
+        "preview": "images/products/product_chaj/product_preview/Чашка.png",
+        "description": "Чашка согревающего чая",
         "is_active": true,
         "slug": "chaj",
         "categories": [
             4
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 8,
     "fields": {
-        "name": "РўРµР»РµРІРёР·РѕСЂ Р»СѓС‡С€РёР№",
-        "preview": "images/products/product_televizor-luchshij/product_preview/С‚РµР»РµРІРёР·РѕСЂ.jpg",
-        "description": "РЎР°РјС‹Р№ СЃРѕРІСЂРµРјРµРЅРЅС‹Р№ С‚РµР»РµРІРёР·РѕСЂ",
+        "name": "Телевизор лучший",
+        "preview": "images/products/product_televizor-luchshij/product_preview/телевизор.jpg",
+        "description": "Самый современный телевизор",
         "is_active": true,
         "slug": "televizor-luchshij",
         "categories": [
             7
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 9,
     "fields": {
-        "name": "Р›СѓРє",
-        "preview": "images/products/product_luk/product_preview/Р»СѓРє.jpeg",
-        "description": "РҐРѕСЂРѕС€РёР№ Р»СѓРє",
+        "name": "Лук",
+        "preview": "images/products/product_luk/product_preview/лук.jpeg",
+        "description": "Хороший лук",
         "is_active": true,
         "slug": "luk",
         "categories": [
             3
-        ],
-        "feedback": [
-            6,
-            7,
-            8
         ]
     }
 },
@@ -1286,92 +1276,83 @@
     "model": "products.product",
     "pk": 10,
     "fields": {
-        "name": "РљР°РїСѓСЃС‚Р°",
-        "preview": "images/products/product_kapusta/product_preview/РєР°РїСѓСЃС‚Р°.jfif",
-        "description": "РЎРІРµР¶Р°СЏ РєР°РїСѓСЃС‚Р° СЃ РѕРіРѕСЂРѕРґР°",
+        "name": "Капуста",
+        "preview": "images/products/product_kapusta/product_preview/капуста.jfif",
+        "description": "Свежая капуста с огорода",
         "is_active": true,
         "slug": "kapusta",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 11,
     "fields": {
-        "name": "РєР°Р±Р°С‡РѕРє",
-        "preview": "images/products/product_kabachok/product_preview/РєР°Р±Р°С‡РѕРє.png",
-        "description": "Р»СѓС‡С€РёРµ РєР°Р±Р°С‡РєРё",
+        "name": "кабачок",
+        "preview": "images/products/product_kabachok/product_preview/кабачок.png",
+        "description": "лучшие кабачки",
         "is_active": true,
         "slug": "kabachok",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 12,
     "fields": {
-        "name": "Р±СЂРѕРєРєРѕР»Рё",
-        "preview": "images/products/product_brokkoli/product_preview/Р±СЂРѕРєРєРѕР»Рё.png",
-        "description": "РІРєСѓСЃРЅР°СЏ Р±СЂРѕРєРєРѕР»Рё",
+        "name": "брокколи",
+        "preview": "images/products/product_brokkoli/product_preview/брокколи.png",
+        "description": "вкусная брокколи",
         "is_active": true,
         "slug": "brokkoli",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 13,
     "fields": {
-        "name": "С€РїРёРЅР°С‚",
-        "preview": "images/products/product_shpinat/product_preview/С€РїРёРЅР°С‚.jpg",
-        "description": "Р»СѓС‡С€РёР№ С€РїРёРЅР°С‚",
+        "name": "шпинат",
+        "preview": "images/products/product_shpinat/product_preview/шпинат.jpg",
+        "description": "лучший шпинат",
         "is_active": true,
         "slug": "shpinat",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 14,
     "fields": {
-        "name": "СЂСѓРєРєРѕР»Р°",
-        "preview": "images/products/product_rukkola/product_preview/СЂСѓРєРєРѕР»Р°.jpg",
-        "description": "Р»СѓС‡С€Р°СЏ СЂСѓРєРєРѕР»Р°",
+        "name": "руккола",
+        "preview": "images/products/product_rukkola/product_preview/руккола.jpg",
+        "description": "лучшая руккола",
         "is_active": true,
         "slug": "rukkola",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
     "model": "products.product",
     "pk": 15,
     "fields": {
-        "name": "РєРёРЅР·Р°",
-        "preview": "images/products/product_kinza/product_preview/РєРёРЅР·Р°.jpg",
-        "description": "Р»СѓС‡С€Р°СЏ РєРёРЅР·Р°",
+        "name": "кинза",
+        "preview": "images/products/product_kinza/product_preview/кинза.jpg",
+        "description": "лучшая кинза",
         "is_active": true,
         "slug": "kinza",
         "categories": [
             3
-        ],
-        "feedback": [
-            4,
-            5
         ]
     }
 },
@@ -1379,16 +1360,13 @@
     "model": "products.product",
     "pk": 16,
     "fields": {
-        "name": "СѓРєСЂРѕРї",
-        "preview": "images/products/product_ukrop/product_preview/СѓРєСЂРѕРї.jpg",
-        "description": "Р»СѓС‡С€РёР№ СѓРєСЂРѕРї",
+        "name": "укроп",
+        "preview": "images/products/product_ukrop/product_preview/укроп.jpg",
+        "description": "лучший укроп",
         "is_active": true,
         "slug": "ukrop",
         "categories": [
             3
-        ],
-        "feedback": [
-            4
         ]
     }
 },
@@ -1396,15 +1374,14 @@
     "model": "products.product",
     "pk": 17,
     "fields": {
-        "name": "РїРµС‚СЂСѓС€РєР°",
-        "preview": "images/products/product_petrushka/product_preview/РїРµС‚СЂСѓС€РєР°.jpg",
-        "description": "Р»СѓС‡С€Р°СЏ РїРµС‚СЂСѓС€РєР°",
+        "name": "петрушка",
+        "preview": "images/products/product_petrushka/product_preview/петрушка.jpg",
+        "description": "лучшая петрушка",
         "is_active": true,
         "slug": "petrushka",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1421,7 +1398,7 @@
     "pk": 1,
     "fields": {
         "name": "DNS",
-        "description": "Р›СѓС‡С€РёР№ РјР°РіР°Р·РёРЅ С‚РµС…РЅРёРєРё",
+        "description": "Лучший магазин техники",
         "logo": "images/sellers/dns/logo/dns_rgr16qU.jpg",
         "archived": false,
         "slug": "dns"
@@ -1432,7 +1409,7 @@
     "pk": 2,
     "fields": {
         "name": "mvideo",
-        "description": "Р›СѓС‡С€Рµ  С‡РµРј  DNS",
+        "description": "Лучше  чем  DNS",
         "logo": "images/sellers/mvideo/logo/mvideo_13Jz1AM.png",
         "archived": false,
         "slug": "mvideo"
@@ -1442,9 +1419,9 @@
     "model": "sellers.seller",
     "pk": 3,
     "fields": {
-        "name": "РћРІРѕС‰РЅРѕР№ РјР°РіР°Р·РёРЅ",
-        "description": "РЎР°РјС‹Рµ СЃРІРµР¶РёРµ РѕРІРѕС‰Рё РЅР° СЂС‹РЅРєРµ",
-        "logo": "images/sellers/ovoshnoj-magazin/logo/РѕРІРѕС‰РЅРѕР№_РјР°РіР°Р·РёРЅ_UkoA6tF.png",
+        "name": "Овощной магазин",
+        "description": "Самые свежие овощи на рынке",
+        "logo": "images/sellers/ovoshnoj-magazin/logo/овощной_магазин_UkoA6tF.png",
         "archived": false,
         "slug": "ovoshnoj-magazin"
     }
@@ -1453,9 +1430,9 @@
     "model": "sellers.seller",
     "pk": 4,
     "fields": {
-        "name": "РњР°РіР°Р·РёРЅ РЅР°РїРёС‚РєРѕРІ",
-        "description": "РћСЃРІРµР¶РёСЃСЊ, РІР·Р±РѕРґСЂРёСЃСЊ!",
-        "logo": "images/sellers/magazin-napitkov/logo/Р‘РµР·_РЅР°Р·РІР°РЅРёСЏ.png",
+        "name": "Магазин напитков",
+        "description": "Освежись, взбодрись!",
+        "logo": "images/sellers/magazin-napitkov/logo/Без_названия.png",
         "archived": false,
         "slug": "magazin-napitkov"
     }
@@ -1668,7 +1645,7 @@
     "model": "sellers.discount",
     "pk": 1,
     "fields": {
-        "name": "Р‘РµР· СЃРєРёРґРєРё",
+        "name": "Без скидки",
         "value": 0
     }
 }

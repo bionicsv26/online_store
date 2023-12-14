@@ -22,6 +22,15 @@ tasks:
       - django-admin createcachetable
       - django-admin makemigrations
       - django-admin migrate
+  makemigrations:
+    cmds:
+      - django-admin makemigrations
+  migrate_only:
+    cmds:
+      - django-admin migrate
+  migrate_back_to:
+    cmds:
+      - django-admin migrate products 0001_initial.py
   createcachetable:
     cmds:
       - django-admin createcachetable
