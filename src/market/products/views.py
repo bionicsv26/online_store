@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
-
+from .forms import ProductFeedbackForm
 from market.categories.mixins import MenuMixin
 from market.banner_app.mixins import BannerSliderMixin
 from django.contrib.auth.mixins import (
@@ -17,6 +17,23 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
     model = Product
     context_object_name = 'product'
     slug_url_kwarg = 'product_slug'
+
+    form_class = ProductFeedbackForm
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+
+        ProductFeedback.object.create(
+            user=self.request.user,
+            product=self.object,
+            feedback_text=form,
+        )
+        # for image in form.files.getlist("images"):
+        #     ProductImage.objects.create(
+        #         product=self.object,
+        #         image=image,
+        #     )
+        return response
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
