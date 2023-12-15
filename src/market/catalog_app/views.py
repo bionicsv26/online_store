@@ -24,7 +24,7 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
             return SellerProduct.objects.order_by(order_by)
         elif order_by == "feedback":
             queryset = SellerProduct.objects.annotate(
-                num_feedbacks=Count('product__feedback__feedback_text')).order_by("-num_feedbacks")
+                num_feedbacks=Count('product__productfeedback__feedback_text')).order_by("-num_feedbacks")
             return queryset
         elif order_by == "rating":
             queryset = SellerProduct.objects.annotate(
