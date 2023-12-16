@@ -666,6 +666,24 @@
     }
 },
 {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$yxUu1DYt8ta0PrXm98vS8G$qa9JkxZ/1z6h1b5OkxAHwfajOnNp4QK32MUpM3cNFfQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Gest1",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-15T20:08:14.641Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
     "model": "contenttypes.contenttype",
     "pk": 1,
     "fields": {
@@ -1147,6 +1165,36 @@
     }
 },
 {
+    "model": "products.productfeedback",
+    "pk": 16,
+    "fields": {
+        "user": 2,
+        "product": 1,
+        "feedback_text": "Прям как CocaCola",
+        "created_at": "2023-12-15"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 17,
+    "fields": {
+        "user": 2,
+        "product": 6,
+        "feedback_text": "Очень вкусный!",
+        "created_at": "2023-12-15"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 30,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "Ваш королевский отзыв!!!",
+        "created_at": "2023-12-16"
+    }
+},
+{
     "model": "products.product",
     "pk": 1,
     "fields": {
@@ -1389,6 +1437,15 @@
     "pk": 1,
     "fields": {
         "user": 1,
+        "avatar": "img/no_image.png",
+        "phone": null
+    }
+},
+{
+    "model": "profiles.profile",
+    "pk": 2,
+    "fields": {
+        "user": 2,
         "avatar": "img/no_image.png",
         "phone": null
     }
