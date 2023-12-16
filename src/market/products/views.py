@@ -23,11 +23,7 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
     form_class = ProductFeedbackForm
     success_url = reverse_lazy('products:product-details')
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
-        return render(request, self.template_name, {'form': form})
 
-    # Handle POST GTTP requests
     def post(self, request, *args, **kwargs):
         success_url = self.success_url
         form = self.form_class(request.POST)
@@ -39,13 +35,12 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                 product=self.get_object(),
                 feedback_text=feedback_text2,
             )
-            return HttpResponseRedirect(success_url)
+            return HttpResponseRedirect(self.success_url)
         return render(request, self.template_name, {'form': form})
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
-        prod = self.object
-        print("prod", prod)
+        context['form'] = self.form_class(initial=self.initial)
         context['product_feedbacks'] = ProductFeedback.objects.filter(product=self.object)
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
