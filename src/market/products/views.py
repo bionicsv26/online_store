@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
 from .forms import ProductFeedbackForm
@@ -8,6 +9,7 @@ from django.contrib.auth.mixins import (
 )
 from market.products.models import Product, ProductFeedback
 import logging
+from django.urls import reverse_lazy
 
 log = logging.getLogger(__name__)
 
@@ -17,26 +19,33 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
     model = Product
     context_object_name = 'product'
     slug_url_kwarg = 'product_slug'
-
+    initial = {'feedback_text': 'Ваш королевский отзыв'}
     form_class = ProductFeedbackForm
+    success_url = reverse_lazy('products:product-details')
 
-    def form_valid(self, form):
-        response = super().form_valid(form)
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
 
-        ProductFeedback.object.create(
-            user=self.request.user,
-            product=self.object,
-            feedback_text=form,
-        )
-        # for image in form.files.getlist("images"):
-        #     ProductImage.objects.create(
-        #         product=self.object,
-        #         image=image,
-        #     )
-        return response
+    # Handle POST GTTP requests
+    def post(self, request, *args, **kwargs):
+        success_url = self.success_url
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            feedback_text2 = form.cleaned_data.get("feedback_text")
+            print("User put information to field 2 - feedback_text", feedback_text2)
+            ProductFeedback.objects.create(
+                user=self.request.user,
+                product=self.get_object(),
+                feedback_text=feedback_text2,
+            )
+            return HttpResponseRedirect(success_url)
+        return render(request, self.template_name, {'form': form})
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
+        prod = self.object
+        print("prod", prod)
         context['product_feedbacks'] = ProductFeedback.objects.filter(product=self.object)
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")

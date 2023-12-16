@@ -294,7 +294,16 @@
                   </h3>
                 </header>
                 <div class="Tabs-addComment">
-                  <form class="form" method="post">
+                  <form method="post">
+                    {% csrf_token %}
+
+                    {{ form.feedback_text }}
+
+                    <button type="submit">
+                        Опубликовать отзыв
+                    </button>
+                  </form>
+                  <!-- <form class="form" method="post">
                     {% csrf_token %}
 
                     <div class="form-group">
@@ -306,7 +315,7 @@
                       <button class="btn btn_muted" type="submit">Отправить отзыв
                       </button>
                     </div>
-                  </form>
+                  </form> -->
                 </div>
 
             </div>
