@@ -1235,6 +1235,56 @@
     }
 },
 {
+    "model": "products.productfeedback",
+    "pk": 35,
+    "fields": {
+        "user": 1,
+        "product": 6,
+        "feedback_text": "На ужин - топчик",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 36,
+    "fields": {
+        "user": 1,
+        "product": 6,
+        "feedback_text": "Ничего так!",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 37,
+    "fields": {
+        "user": 1,
+        "product": 6,
+        "feedback_text": "Последний отзыв на сегодня",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 38,
+    "fields": {
+        "user": 1,
+        "product": 8,
+        "feedback_text": "Не самый плохой",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 39,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "!!!!",
+        "created_at": "2023-12-16"
+    }
+},
+{
     "model": "products.product",
     "pk": 1,
     "fields": {

@@ -20,7 +20,7 @@ class ProductFeedback(models.Model):
     )
     product = models.ForeignKey(
         'Product',
-        null=True,
+        null=False,
         blank=True,
         on_delete=models.CASCADE,
         verbose_name='Продукт',
@@ -47,7 +47,6 @@ class Product(models.Model):
     description = models.TextField()
     is_active = models.BooleanField(default=True)
     slug = models.SlugField(max_length=20, unique=True)
-    #feedback = models.ManyToManyField(ProductFeedback, related_name='feedbacks')
 
     def __str__(self):
         return self.name

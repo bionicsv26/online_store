@@ -39,9 +39,12 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
         return render(request, self.template_name, {'form': form})
 
     def get_context_data(self, **kwargs):
-        context = super(ProductDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['form'] = self.form_class()
-        context['product_feedbacks'] = ProductFeedback.objects.filter(product=self.object)
+        context['product_feedbacks'] = (ProductFeedback.objects.
+                                        prefetch_related('user', 'product').
+                                        filter(product=self.object)
+                                        )
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context
