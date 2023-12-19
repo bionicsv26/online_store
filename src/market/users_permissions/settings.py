@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv()  # loads the configs from .env
 
+DJANGO_SETTINGS_MODULE = os.getenv('DJANGO_SETTINGS_MODULE')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,18 +57,18 @@ INSTALLED_APPS = [
     'debug_toolbar',
 
     'market.banner_app.apps.BannerAppConfig',
-    'market.settingsapp.apps.SettingsappConfig',
-    'market.orders.apps.OrdersConfig',
-    'market.payment.apps.PaymentConfig',
-    'market.paymentsystem.apps.PaymentsystemConfig',
-    'market.categories.apps.CategoriesConfig',
     'market.products.apps.ProductsConfig',
-    'market.catalog_app.apps.CatalogAppConfig',
+    'market.categories.apps.CategoriesConfig',
+    'market.settingsapp.apps.SettingsappConfig',
+
+    'market.users_permissions.apps.UsersPermissionsConfig',
+
+    'market.orders',
+    'market.payment',
+    'market.paymentsystem',
     'market.profiles.apps.ProfilesConfig',
     'market.sellers.apps.SellersConfig',
-    'market.users_permissions.apps.UsersPermissionsConfig',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -84,7 +85,7 @@ ROOT_URLCONF = 'market.market.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["market/templates/"],
+        'DIRS': ["src/market/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,6 +125,7 @@ DATABASES = {
     }
 }
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -160,7 +162,7 @@ USE_TZ = True
 
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('market/static',)
+STATICFILES_DIRS = ('src/market/static',)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
