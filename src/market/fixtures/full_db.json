@@ -652,7 +652,7 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$260000$SdjoIX4A8tZXtN3xobXCkN$sfrMlxvDYrAfX7IHL8CBCFd8Xxey399ZZT23papt5Go=",
-        "last_login": "2023-12-03T10:32:27.506Z",
+        "last_login": "2023-12-17T19:48:54.385Z",
         "is_superuser": true,
         "username": "suf",
         "first_name": "",
@@ -661,6 +661,24 @@
         "is_staff": true,
         "is_active": true,
         "date_joined": "2023-12-03T10:32:03.032Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$yxUu1DYt8ta0PrXm98vS8G$qa9JkxZ/1z6h1b5OkxAHwfajOnNp4QK32MUpM3cNFfQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Gest1",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-12-15T20:08:14.641Z",
         "groups": [],
         "user_permissions": []
     }
@@ -1098,47 +1116,172 @@
 },
 {
     "model": "products.productfeedback",
-    "pk": 4,
+    "pk": 11,
     "fields": {
         "user": 1,
-        "feedback_text": "Goood",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Хорошая Кола",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 5,
+    "pk": 12,
     "fields": {
         "user": 1,
-        "feedback_text": "+5",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Превосходная Кола",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 6,
+    "pk": 13,
     "fields": {
         "user": 1,
-        "feedback_text": "Забористый",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Кола что надо",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 7,
+    "pk": 14,
     "fields": {
         "user": 1,
-        "feedback_text": "Кубанский",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Хрустящий - настоящий",
+        "created_at": "2023-12-14"
     }
 },
 {
     "model": "products.productfeedback",
-    "pk": 8,
+    "pk": 15,
     "fields": {
         "user": 1,
-        "feedback_text": "Потрясающий",
-        "created_at": "2023-12-04"
+        "product": 1,
+        "feedback_text": "Хороший Русский!",
+        "created_at": "2023-12-14"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 16,
+    "fields": {
+        "user": 2,
+        "product": 1,
+        "feedback_text": "Прям как CocaCola",
+        "created_at": "2023-12-15"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 17,
+    "fields": {
+        "user": 2,
+        "product": 1,
+        "feedback_text": "Очень вкусный!",
+        "created_at": "2023-12-15"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 30,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "Ваш королевский отзыв!!!",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 31,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "New feedback",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 32,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "new",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 33,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "Самый лучший телевизор!!!",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 34,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "Топ за свои деньги",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 35,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "На ужин - топчик",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 36,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "Ничего так!",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 37,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "Последний отзыв на сегодня",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 38,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "Не самый плохой",
+        "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 39,
+    "fields": {
+        "user": 1,
+        "product": 1,
+        "feedback_text": "!!!!",
+        "created_at": "2023-12-16"
     }
 },
 {
@@ -1152,8 +1295,7 @@
         "slug": "cola",
         "categories": [
             4
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1167,8 +1309,7 @@
         "slug": "tomato",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1182,8 +1323,7 @@
         "slug": "orange-juice",
         "categories": [
             5
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1197,8 +1337,7 @@
         "slug": "carrot",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1212,8 +1351,7 @@
         "slug": "grape-juice",
         "categories": [
             5
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1227,9 +1365,6 @@
         "slug": "potato",
         "categories": [
             3
-        ],
-        "feedback": [
-            8
         ]
     }
 },
@@ -1244,8 +1379,7 @@
         "slug": "chaj",
         "categories": [
             4
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1259,8 +1393,7 @@
         "slug": "televizor-luchshij",
         "categories": [
             7
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1274,11 +1407,6 @@
         "slug": "luk",
         "categories": [
             3
-        ],
-        "feedback": [
-            6,
-            7,
-            8
         ]
     }
 },
@@ -1293,8 +1421,7 @@
         "slug": "kapusta",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1308,8 +1435,7 @@
         "slug": "kabachok",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1323,8 +1449,7 @@
         "slug": "brokkoli",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1338,8 +1463,7 @@
         "slug": "shpinat",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1353,8 +1477,7 @@
         "slug": "rukkola",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1368,10 +1491,6 @@
         "slug": "kinza",
         "categories": [
             3
-        ],
-        "feedback": [
-            4,
-            5
         ]
     }
 },
@@ -1386,9 +1505,6 @@
         "slug": "ukrop",
         "categories": [
             3
-        ],
-        "feedback": [
-            4
         ]
     }
 },
@@ -1403,8 +1519,7 @@
         "slug": "petrushka",
         "categories": [
             3
-        ],
-        "feedback": []
+        ]
     }
 },
 {
@@ -1412,6 +1527,15 @@
     "pk": 1,
     "fields": {
         "user": 1,
+        "avatar": "img/no_image.png",
+        "phone": null
+    }
+},
+{
+    "model": "profiles.profile",
+    "pk": 2,
+    "fields": {
+        "user": 2,
         "avatar": "img/no_image.png",
         "phone": null
     }
