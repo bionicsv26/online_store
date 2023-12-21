@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'market.catalog_app.apps.CatalogAppConfig',
     'market.profiles.apps.ProfilesConfig',
     'market.sellers.apps.SellersConfig',
+    'market.browsing_history_app.apps.BrowsingHistoryAppConfig',
     'market.sellers.apps.BrowsingHistoryAppConfig',
     'market.users_permissions.apps.UsersPermissionsConfig',
 ]
