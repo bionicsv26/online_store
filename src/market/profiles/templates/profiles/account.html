@@ -11,36 +11,36 @@
     <div class="Middle Middle_top">
         <div class="Section Section_column Section_columnLeft">
             <div class="wrap">
-                <div class="Section-column">
-                    <div class="Section-columnSection">
-                        <header class="Section-header">
-                            <strong class="Section-title">Навигация
-                            </strong>
-                        </header>
-                        <div class="Section-columnContent">
-                            <div class="NavigateProfile">
-                                <ul class="menu menu_vt">
-                                    <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="{% url 'market.profiles:account' %}">Личный кабинет</a>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="{% url 'market.profiles:profile' %}">Профиль</a>
-                                    </li>
-                                    <li class="menu-item"><a class="menu-link" href="#">История заказов</a>
-                                    </li>
-                                </ul>
+                    <div class="Section-column">
+                        <div class="Section-columnSection">
+                            <header class="Section-header">
+                                <strong class="Section-title">Навигация
+                                </strong>
+                            </header>
+                            <div class="Section-columnContent">
+                                <div class="NavigateProfile">
+                                    <ul class="menu menu_vt">
+                                        <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="{% url 'market.profiles:account' %}">Личный кабинет</a>
+                                        </li>
+                                        <li class="menu-item"><a class="menu-link" href="{% url 'market.profiles:profile' %}">Профиль</a>
+                                        </li>
+                                        <li class="menu-item"><a class="menu-link" href="#">История заказов</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <div class="Section-content">
                     <div class="Account">
                         <div class="Account-group">
                             <div class="Account-column">
-                                <div class="Account-avatar"><img src="assets/img/content/home/card.jpg" alt="card.jpg" />
+                                <div class="Account-avatar"><img src="{% static 'assets/img/content/home/avatar.png' %}" alt="avatar.png" />
                                 </div>
                             </div>
                             <div class="Account-column">
-                                <div class="Account-name">Иванов Иван Иванович
-                                </div><a class="Account-editLink" href="profile.html">Редактировать профиль</a>
+                                <div class="Account-name">{{account_user_name.first_name}} {{account_user_name.last_name}}
+                                </div><a class="Account-editLink" href="{% url 'market.profiles:profile' %}">Редактировать профиль</a>
                             </div>
                         </div>
                         <div class="Account-group">
@@ -49,7 +49,7 @@
                                     <div class="Order-personal">
                                         <div class="row">
                                             <div class="row-block"><a class="Order-title" href="oneorder.html">Заказ&#32;<span class="Order-numberOrder">№200</span>&#32;от&#32;<span class="Order-dateOrder">21.07.2020</span></a>
-                                                <div class="Account-editLink"><a href="historyorder.html">История заказов</a>
+                                                <div class="Account-editLink"><a href="#">История заказов</a>
                                                 </div>
                                             </div>
                                             <div class="row-block">
@@ -82,6 +82,25 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="Account-group">
+                            <div class="Account-column">
+                                <div>Some product history information via cycle For
+                                </div>
+                            </div>
+                            <div class="Account-column">
+                                <div>Some product history information via cycle For
+                                </div>
+                            </div>
+                            <div class="Account-column">
+                                <div>Some product history information via cycle For
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="Account-group">
+                            <a class="Account-editLink" href="#">Посмотреть весь список из истории просмотров</a>
                         </div>
                     </div>
                 </div>
