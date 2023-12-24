@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
 from market.products.models import Product, ProductFeedback
+from market.browsing_history_app.models import ProductBrowsingHistory
 import logging
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
@@ -45,6 +46,10 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                                         prefetch_related('user', 'product').
                                         filter(product=self.object)
                                         )
+        ProductBrowsingHistory.objects.create(
+            user=self.request.user,
+            product=self.get_object(),
+        )
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context
