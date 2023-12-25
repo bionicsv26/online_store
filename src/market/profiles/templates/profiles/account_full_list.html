@@ -87,13 +87,11 @@
                         <div class="Account-group">
                             {% if brosing_history %}
                                 {% for i_product in brosing_history %}
-
                                     <div class="Account-column">
                                         <div>
                                             {{i_product.product.name}}
                                         </div>
                                     </div>
-
                                 {% endfor %}
                             {% else %} У вас нет ни одного просмотренного товара
 
@@ -101,7 +99,7 @@
                         </div>
 
                         <div class="Account-group">
-                            <a class="Account-editLink" href="{% url 'market.profiles:account_full_list' %}">Посмотреть весь список из истории просмотров</a>
+                            <a class="Account-editLink" href="{% url 'market.profiles:account' %}">Вернуться к списку 3 последних просмотренных товаров</a>
                         </div>
                     </div>
                 </div>

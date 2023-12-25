@@ -56,5 +56,24 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         log.debug("Контекст готов и передан на страницу account.html")
         return context
 
+class AccountFullListTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
+    template_name = "profiles/account_full_list.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['account_user_name'] = self.request.user
+
+        browsing_history = (ProductBrowsingHistory.objects.
+                                        prefetch_related('user', 'product').
+                                        filter(user=self.request.user).
+                                        order_by('-view_at')[:19]
+                                        )
+        context['brosing_history'] = browsing_history
+
+        log.debug("Запуск рендеренга AccountFullListTemplateView")
+        log.debug("Контекст готов и передан на страницу account_full_list.html")
+        return context
+
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
     template_name = "profiles/profile.html"
