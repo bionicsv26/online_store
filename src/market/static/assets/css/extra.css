@@ -1246,6 +1246,7 @@ a.Cart-title {
 
 .Cart-block_price {
     text-align: right;
+    width: 100%;
 }
 
 @media screen and (max-width: 600px) {
@@ -3597,10 +3598,6 @@ a.Cart-title {
 .Order .form .Section-header:first-child {
     padding-top: 3px;
     margin-top: 0;
-}
-
-.Order-block {
-    display: none;
 }
 
 .Order-block_OPEN {

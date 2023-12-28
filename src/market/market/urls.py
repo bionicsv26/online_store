@@ -24,12 +24,16 @@ urlpatterns = [
     path('index/', include('market.banner_app.urls')),
     path('products/', include('market.products.urls')),
     path('categories/', include('market.categories.urls')),
-    path('profile/orders/', include('market.orders.urls')),
-    path('profile/orders/<int:pk>/', include('market.payment.urls')),
     path('bank/', include('market.paymentsystem.urls')),
     path('catalog/', include('market.catalog_app.urls')),
     path('profiles/', include('market.profiles.urls')),
     path('sellers/', include('market.sellers.urls')),
+
+    # путь к приложению orders
+    path('profiles/orders/', include('market.orders.urls')),
+
+    # путь к приложению payment
+    path('profiles/orders/<int:pk>/pay/', include('market.payment.urls')),
 ]
 
 if settings.DEBUG:
