@@ -1,0 +1,162 @@
+{% extends 'orders/making_an_order_base.html' %}
+{% load static %}
+{% load orders_tags %}
+
+{% block form %}
+  <form class="form" action="." method="post">
+    {% csrf_token %}
+    {% if page == 1 %}
+      <div class="Order-block Order-block_OPEN" id="step1">
+        <header class="Section-header Section-header_sm"><h2 class="Section-title">Шаг 1. Параметры пользователя</h2></header>
+        <div class="row">
+          <div class="row-block">
+            {% for field in form %}
+              <div class="form-group">
+                <label class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                  <div class="form-error">{{ field.errors }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="Order-footer">
+          <button class="btn btn_success" type="submit" name="next_page" value="{{ page|add:1 }}">Дальше</button>
+        </div>
+      </div>
+    {% endif %}
+    {% if page == 2 %}
+      <div class="Order-block" id="step2">
+        <header class="Section-header Section-header_sm"><h2 class="Section-title">Шаг 2. Способ доставки</h2></header>
+        <div class="form-group">
+          <div>
+            <label class="toggle">
+              <input type="radio" name="delivery_method" value="ordinary" {% if form.delivery_method.value == 'ordinary' %} checked="checked" {% endif %}/>
+              <span class="toggle-box"></span>
+              <span class="toggle-text">Обычная доставка</span>
+            </label>
+          </div>
+          <div>
+            <label class="toggle">
+              <input type="radio" name="delivery_method" value="express" {% if form.delivery_method.value == 'express' %} checked="checked" {% endif %}/>
+              <span class="toggle-box"></span>
+              <span class="toggle-text">Экспресс доставка</span>
+            </label>
+          </div>
+        </div>
+        {% if form.delivery_method.errors %}
+          <div class="form-error">{{ form.delivery_method.errors }}</div>
+        {% endif %}
+        <div class="form-group">
+          <label class="form-label" for="delivery_city">Город</label>
+          {{ form.delivery_city }}
+          <div class="form-error">{{ form.delivery_city.errors }}</div>
+          {% if form.delivery_city.errors %}
+            <div class="form-error">{{ form.delivery_city.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="address">Адрес</label>
+          {{ form.delivery_address }}
+          <div class="form-error">{{ form.delivery_address.errors }}</div>
+          {% if form.delivery_address.errors %}
+            <div class="form-error">{{ form.delivery_address.errors }}</div>
+          {% endif %}
+        </div>
+        <div class="Order-footer">
+          <button class="btn btn_success" type="submit" name="next_page" value="{{ page|add:1 }}">Дальше</button>
+        </div>
+      </div>
+    {% endif %}
+    {% if page == 3 %}
+      <div class="Order-block" id="step3">
+        <header class="Section-header Section-header_sm"><h2 class="Section-title">Шаг 3. Способ оплаты</h2></header>
+        <div class="form-group">
+          <div>
+            <label class="toggle">
+              <input type="radio" name="payment_method" value="online" {% if form.payment_method.value == 'online' %} checked="checked" {% endif %}/>
+              <span class="toggle-box"></span>
+              <span class="toggle-text">Онлайн картой</span>
+            </label>
+          </div>
+          <div>
+            <label class="toggle">
+              <input type="radio" name="payment_method" value="someone" {% if form.payment_method.value == 'someone' %} checked="checked" {% endif %}/>
+              <span class="toggle-box"></span>
+              <span class="toggle-text">Онлайн со случайного чужого счета</span>
+            </label>
+          </div>
+        </div>
+        {% if form.payment_method.errors %}
+          <div class="form-error">{{ form.payment_method.errors }}</div>
+        {% endif %}
+        <div class="Order-footer">
+          <button class="btn btn_success" type="submit" name="next_page" value="{{ page|add:1 }}">Дальше</button>
+        </div>
+      </div>
+    {% endif %}
+    {% if page == 4 %}
+      <div class="Order-block" id="step4">
+        <header class="Section-header Section-header_sm"><h2 class="Section-title">Шаг 4. Подтверждение заказа</h2></header>
+        <div class="Order-infoBlock">
+          <div class="Order-personal">
+            <div class="row">
+              <div class="row-block">
+                {% for field in forms.form_1 %}
+                  <div class="Order-info">
+                    <div class="Order-infoType">{{ field.label }}:</div>
+                    <div class="Order-infoContent">{{ field.value }}</div>
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="row-block">
+                {% for field in forms.form_2 %}
+                  {% if field.field.widget.input_type == 'radio' %}
+                    <div class="Order-info">
+                      <div class="Order-infoType">{{ field.label }}:</div>
+                      <div class="Order-infoContent">{% get_current_radio_value field %}</div>
+                    </div>
+                  {% else %}
+                    <div class="Order-info">
+                      <div class="Order-infoType">{{ field.label }}:</div>
+                      <div class="Order-infoContent">{{ field.value }}</div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+                <div class="Order-info Order-info_pay">
+                  <div class="Order-infoType">{{ forms.form_3.payment_method.label }}:</div>
+                  <div class="Order-infoContent">{% get_current_radio_value forms.form_3.payment_method %}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="Cart Cart_order">
+            {% for seller_product in seller_products %}
+              <div class="Cart-product">
+                <div class="Cart-block Cart-block_row">
+                  <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="{% url 'products:product-details' product_slug=seller_product.product.slug %}"><img class="Cart-img" src="{{ seller_product.product.preview.url }}" alt="card.jpg"/></a></div>
+                  <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'products:product-details' product_slug=seller_product.product.slug %}">{{ seller_product.product.name }}</a>
+                    <div class="Cart-desc">{{ seller_product.product.description }}</div>
+                  </div>
+                  <div class="Cart-block Cart-block_price">
+                    <div class="Cart-price">{{ seller_product.price }} Р.</div>
+                  </div>
+                </div>
+                <div class="Cart-block Cart-block_row">
+                  <div class="Cart-block Cart-block_amount">1 шт.</div>
+                </div>
+              </div>
+            {% endfor %}
+            <div class="Cart-total">
+              <div class="Cart-block Cart-block_total"><strong class="Cart-title">Итого:</strong><span class="Cart-price">{{ cart.cost }} Р.</span></div>
+              <div class="Cart-block">
+                <button class="btn btn_primary btn_lg" type="submit">Оплатить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </form>
+{% endblock %}
