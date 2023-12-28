@@ -1,0 +1,5 @@
+.menu_vt .menu-link-disabled {
+  pointer-events: none;
+  cursor: default;
+  color: grey;
+}
