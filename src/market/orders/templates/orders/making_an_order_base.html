@@ -1,0 +1,44 @@
+{% extends 'repeat_blocks.html' %}
+{% load static %}
+
+{% block header-slider %}
+{% endblock %}
+
+{% block additional_link_script %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="{% static 'assets/js/jquery.maskedinput.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'assets/css/making_an_order.css' %}">
+{% endblock %}
+
+{% block middle %}
+  <div class="Section Section_column Section_columnRight Section_columnWide Order">
+    <div class="wrap">
+      <div class="Section-column">
+        <div class="Section-columnSection">
+          <header class="Section-header">
+            <strong class="Section-title">Прогресс заполнения</strong>
+          </header>
+          <div class="Section-columnContent">
+            <div class="NavigateProfile">
+              <ul class="menu menu_vt">
+                <li class="{% if page == 1 %}menu-item_ACTIVE{% endif %} menu-item"><a href="{% url 'orders:making_an_order_page_1' %}" class="menu-link {% if 1 > current_page %}menu-link-disabled{% endif %}">Шаг 1. Параметры пользователя</a></li>
+                <li class="{% if page == 2 %}menu-item_ACTIVE{% endif %} menu-item"><a href="{% url 'orders:making_an_order_page_2' %}" class="menu-link {% if 2 > current_page %}menu-link-disabled{% endif %}">Шаг 2. Способ доставки</a></li>
+                <li class="{% if page == 3 %}menu-item_ACTIVE{% endif %} menu-item"><a href="{% url 'orders:making_an_order_page_3' %}" class="menu-link {% if 3 > current_page %}menu-link-disabled{% endif %}">Шаг 3. Способ оплаты</a></li>
+                <li class="{% if page == 4 %}menu-item_ACTIVE{% endif %} menu-item"><a href="{% url 'orders:making_an_order_page_4' %}" class="menu-link {% if 4 > current_page %}menu-link-disabled{% endif %}">Шаг 4. Подтверждение заказа</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="Section-content">
+        {% block form %}
+
+        {% endblock %}
+      </div>
+    </div>
+  </div>
+  <script>
+      $('#phone').mask('+7 (999) 9999999', {autoclear: false});
+  </script>
+{% endblock %}
