@@ -13,6 +13,11 @@ from django.shortcuts import render, redirect
 
 log = logging.getLogger(__name__)
 
+def product_in_queryset_check(product_name:str, query):
+    for i_product in query:
+        if i_product.product.name == product_name:
+            return False
+    return True
 
 class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, DetailView):
     template_name = 'products/product_details.html'
@@ -46,10 +51,16 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                                         prefetch_related('user', 'product').
                                         filter(product=self.object)
                                         )
-        ProductBrowsingHistory.objects.create(
-            user=self.request.user,
-            product=self.get_object(),
-        )
+        # Проверяем, был ли данный товар уже в списке ранее просмотренных товаров. Если нет, то добавляем
+        # Если товар уже в списке, то не добавляем
+        products = ProductBrowsingHistory.objects.filter(user=self.request.user).all()
+        product = self.get_object()
+        if product_in_queryset_check(product.name, products):
+            ProductBrowsingHistory.objects.create(
+                user=self.request.user,
+                product=self.get_object(),
+            )
+
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context
