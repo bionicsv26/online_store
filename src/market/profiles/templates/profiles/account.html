@@ -83,26 +83,23 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                             {% if brosing_history %}
                                 {% for i_product in brosing_history %}
-
-
                                         <div>
-                                            {{i_product.product.name}} <a href="{% url 'products:product-details' product_slug=i_product.product.slug %}">Удалить продукт из списка просмотренных товаров</a>
+                                            {{i_product.product.name}}<a href="?product_to_delete_from_browsing_history={{i_product.product.slug}}">Удалить продукт из списка просмотренных товаров</a>
                                         </div>
-
-
                                 {% endfor %}
+                                    {% if brosing_history|length > 3 %}
+                                        <div class="Account-group">
+                                            <a class="Account-editLink" href="?browsing_view=short_list">Посмотреть последние 3 просмотренных товара</a>
+                                        </div>
+                                    {% else %}
+                                        <div class="Account-group">
+                                            <a class="Account-editLink" href="?browsing_view=long_list">Посмотреть весь список из истории просмотров товаров</a>
+                                         </div>
+                                    {% endif %}
                             {% else %} У вас нет ни одного просмотренного товара
-
                             {% endif %}
-
-                        <div class="Account-group">
-                            <a class="Account-editLink" href="{% url 'market.profiles:account_full_list' %}">Посмотреть весь список из истории просмотров</a>
-                        </div>
                     </div>
                 </div>
             </div>
