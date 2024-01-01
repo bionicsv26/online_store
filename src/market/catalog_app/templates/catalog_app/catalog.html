@@ -17,6 +17,7 @@
                           </div>
                         </div>
                     </div>
+
                 {% else %}
                     <div class="Card"><a class="Card-picture" href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}"><img src="{{ sellerproduct.product.preview.url }}" alt="card.jpg"/></a>
                         <div class="Card-content">
