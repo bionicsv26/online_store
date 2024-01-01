@@ -62,17 +62,21 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                         prefetch_related('user', 'product').
                         filter(user=self.request.user)[:19]
                         )
+        total_browsing_product_in_the_list = (ProductBrowsingHistory.
+                                              objects.
+                                              prefetch_related('user', 'product').
+                                              filter(user=self.request.user)[:19]
+                                              )
         context = {
             'brosing_history': queryset,
+            'total_browsing_product_in_the_list': total_browsing_product_in_the_list,
         }
         return self.render_to_response(context)
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
         context['account_user_name'] = self.request.user
-
         log.debug("Запуск рендеренга AccountTemplateView")
         log.debug("Контекст готов и передан на страницу account.html")
         return context

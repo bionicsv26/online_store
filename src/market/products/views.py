@@ -11,6 +11,8 @@ import logging
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 
+from ..catalog_app.views import list_of_product_names
+
 log = logging.getLogger(__name__)
 
 def product_in_queryset_check(product_name:str, query):
@@ -60,7 +62,8 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                 user=self.request.user,
                 product=self.get_object(),
             )
-
+        browsing_history = ProductBrowsingHistory.objects.filter(user=self.request.user).all()
+        context['browsing_history'] = list_of_product_names(browsing_history)
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context
