@@ -1,7 +1,10 @@
 from django.contrib import messages
 from django.views import View
 from django.shortcuts import render, redirect
+from django.views.generic import TemplateView
+
 from .forms import UserRegistrationForm
+from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.views.generic import (
@@ -24,7 +27,7 @@ class RegisterView(View):
     def get(self, request, *args, **kwargs):
         form = self.form_class(initial=self.initial)
         return render(request, self.template_name, {'form': form})
-    
+
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 
@@ -84,3 +87,22 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
 
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
     template_name = "profiles/profile.html"
+
+
+class CartDetailsView(TemplateView):
+    template_name = 'profiles/cart_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart = self.request.user.cart
+
+        context['cart'] = cart
+        context['seller_products'] = cart.seller_products.all().select_related(
+            'discount',
+            'product',
+        ).prefetch_related(
+            'product__categories',
+            'product__categories__parent',
+        )
+
+        return context

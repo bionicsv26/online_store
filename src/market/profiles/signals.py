@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 from .models import Profile
 from ..orders.models import Cart
+from ..sellers.models import Discount
 
 
 @receiver(post_save, sender=User)
@@ -21,4 +22,5 @@ def save_profile(sender, instance, **kwargs):
 @receiver(post_save, sender=User)
 def create_cart(sender, instance, created, **kwargs):
     if created:
-        Cart.objects.create(user=instance)
+        discount_type_2 = Discount.objects.get(type=2)
+        Cart.objects.create(user=instance, discount=discount_type_2)

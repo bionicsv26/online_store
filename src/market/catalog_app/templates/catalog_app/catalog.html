@@ -9,7 +9,7 @@
                         <div class="Card-content">
                           <strong class="Card-title"><a href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}">{{ sellerproduct.product.name }} от {{ sellerproduct.seller }}</a></strong>
                           <div class="Card-description">
-                            <div class="Card-cost"><span class="Card-price">{{ sellerproduct.price }} руб.</span></div>
+                            <div class="Card-cost"><span class="Card-price">{{ sellerproduct.get_format_discounted_price }} руб.</span></div>
                                 {% for category in sellerproduct.product.category.all %}
                                     <div class="Card-category">{% if category.parent %} {{ category.parent.name }} {% else %} {{ category.name }} {% endif %} </div>
                                 {% endfor %}

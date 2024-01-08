@@ -31,6 +31,29 @@ class SellerProductAdmin(admin.ModelAdmin):
 
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'name', 'value'
+    list_display = 'pk', 'name', 'type', 'value'
     list_display_links = 'pk', 'name'
     ordering = 'pk', 'name'
+    fieldsets = (
+        ('Обязательные поля', {
+            'fields': ('name', 'type', 'value'),
+        }),
+        ('Поля для скидки на количество товаров в корзине', {
+            'fields': ('amount_products',),
+            'classes': {
+                'collapse': True,
+            },
+        }),
+        ('Поля для скидки на категории товаров', {
+            'fields': ('categories',),
+            'classes': {
+                'collapse': True,
+            },
+        }),
+        ('Необязательные поля', {
+            'fields': ('expires',),
+            'classes': {
+                'collapse': True,
+            },
+        }),
+    )

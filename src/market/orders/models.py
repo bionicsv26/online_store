@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-from market.sellers.models import SellerProduct
+from market.sellers.models import SellerProduct, Discount
 
 
 class Order(models.Model):
@@ -46,3 +46,8 @@ class Cart(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
     seller_products = models.ManyToManyField(SellerProduct, related_name='carts', verbose_name='Продукт продавца')
     cost = models.DecimalField(default=0, max_digits=12, decimal_places=2, verbose_name='Общая стоимость')
+    discount = models.ForeignKey(Discount, null=True, on_delete=models.PROTECT, related_name='carts')
+
+    def get_format_discounted_cost(self) -> str:
+        discounted_cost = float(self.cost) * (1 - self.discount.value / 100)
+        return '{:.2f}'.format(discounted_cost)
