@@ -7,7 +7,7 @@ from market.orders.models import Order, Cart
 @receiver(m2m_changed, sender=Cart.seller_products.through)
 def count_order_cost(sender, instance, action, **kwargs):
     """
-    Сигнал, который высчитывает стоимость корзины, если заказ был создан или изменен.
+    Сигнал, который считает стоимость корзины.
     """
     if action != 'pre_add':
         instance.cost = sum(

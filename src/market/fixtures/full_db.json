@@ -720,6 +720,366 @@
     }
 },
 {
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+        "name": "Can add статус заказа",
+        "content_type": 9,
+        "codename": "add_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+        "name": "Can change статус заказа",
+        "content_type": 9,
+        "codename": "change_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+        "name": "Can delete статус заказа",
+        "content_type": 9,
+        "codename": "delete_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+        "name": "Can view статус заказа",
+        "content_type": 9,
+        "codename": "view_orderstatus"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 81,
+    "fields": {
+        "name": "Can add заказ",
+        "content_type": 10,
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 82,
+    "fields": {
+        "name": "Can change заказ",
+        "content_type": 10,
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 83,
+    "fields": {
+        "name": "Can delete заказ",
+        "content_type": 10,
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 84,
+    "fields": {
+        "name": "Can view заказ",
+        "content_type": 10,
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 85,
+    "fields": {
+        "name": "Can add корзина",
+        "content_type": 11,
+        "codename": "add_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 86,
+    "fields": {
+        "name": "Can change корзина",
+        "content_type": 11,
+        "codename": "change_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 87,
+    "fields": {
+        "name": "Can delete корзина",
+        "content_type": 11,
+        "codename": "delete_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 88,
+    "fields": {
+        "name": "Can view корзина",
+        "content_type": 11,
+        "codename": "view_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 89,
+    "fields": {
+        "name": "Can add Категория",
+        "content_type": 12,
+        "codename": "add_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 90,
+    "fields": {
+        "name": "Can change Категория",
+        "content_type": 12,
+        "codename": "change_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 91,
+    "fields": {
+        "name": "Can delete Категория",
+        "content_type": 12,
+        "codename": "delete_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 92,
+    "fields": {
+        "name": "Can view Категория",
+        "content_type": 12,
+        "codename": "view_category"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 93,
+    "fields": {
+        "name": "Can add Продукт",
+        "content_type": 13,
+        "codename": "add_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 94,
+    "fields": {
+        "name": "Can change Продукт",
+        "content_type": 13,
+        "codename": "change_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 95,
+    "fields": {
+        "name": "Can delete Продукт",
+        "content_type": 13,
+        "codename": "delete_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 96,
+    "fields": {
+        "name": "Can view Продукт",
+        "content_type": 13,
+        "codename": "view_product"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 97,
+    "fields": {
+        "name": "Can add просмотр продукта",
+        "content_type": 14,
+        "codename": "add_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 98,
+    "fields": {
+        "name": "Can change просмотр продукта",
+        "content_type": 14,
+        "codename": "change_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 99,
+    "fields": {
+        "name": "Can delete просмотр продукта",
+        "content_type": 14,
+        "codename": "delete_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 100,
+    "fields": {
+        "name": "Can view просмотр продукта",
+        "content_type": 14,
+        "codename": "view_productviewhistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 101,
+    "fields": {
+        "name": "Can add отзыв на продукт",
+        "content_type": 15,
+        "codename": "add_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 102,
+    "fields": {
+        "name": "Can change отзыв на продукт",
+        "content_type": 15,
+        "codename": "change_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 103,
+    "fields": {
+        "name": "Can delete отзыв на продукт",
+        "content_type": 15,
+        "codename": "delete_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 104,
+    "fields": {
+        "name": "Can view отзыв на продукт",
+        "content_type": 15,
+        "codename": "view_productfeedback"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 105,
+    "fields": {
+        "name": "Can add profile",
+        "content_type": 16,
+        "codename": "add_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 106,
+    "fields": {
+        "name": "Can change profile",
+        "content_type": 16,
+        "codename": "change_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 107,
+    "fields": {
+        "name": "Can delete profile",
+        "content_type": 16,
+        "codename": "delete_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 108,
+    "fields": {
+        "name": "Can view profile",
+        "content_type": 16,
+        "codename": "view_profile"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 109,
+    "fields": {
+        "name": "Can add скидка",
+        "content_type": 17,
+        "codename": "add_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 110,
+    "fields": {
+        "name": "Can change скидка",
+        "content_type": 17,
+        "codename": "change_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 111,
+    "fields": {
+        "name": "Can delete скидка",
+        "content_type": 17,
+        "codename": "delete_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 112,
+    "fields": {
+        "name": "Can view скидка",
+        "content_type": 17,
+        "codename": "view_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 113,
+    "fields": {
+        "name": "Can add продавец",
+        "content_type": 18,
+        "codename": "add_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 114,
+    "fields": {
+        "name": "Can change продавец",
+        "content_type": 18,
+        "codename": "change_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 115,
+    "fields": {
+        "name": "Can delete продавец",
+        "content_type": 18,
+        "codename": "delete_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 116,
+    "fields": {
+        "name": "Can view продавец",
+        "content_type": 18,
+        "codename": "view_seller"
+    }
+},
+{
     "model": "auth.user",
     "pk": 1,
     "fields": {
@@ -860,6 +1220,257 @@
         "products_cache": 86400,
         "top_products_cache": 3600,
         "product_data_cache": 86400
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 48,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "Сочи",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-11-17T15:48:21.003Z",
+        "status": 1,
+        "seller_products": [
+            8,
+            2,
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 50,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "СПБ",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-12-03T11:48:47.907Z",
+        "status": 2,
+        "seller_products": [
+            1,
+            3,
+            5,
+            7,
+            8,
+            13,
+            14
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 51,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "Москва",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-12-03T11:49:34.600Z",
+        "status": 2,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 54,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "111",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-12-04T19:24:02.221Z",
+        "status": 1,
+        "seller_products": [
+            4,
+            7
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 55,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "222",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-12-04T19:26:24.192Z",
+        "status": 1,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 56,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "333",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-12-04T19:26:55.413Z",
+        "status": 1,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 57,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "444",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-12-04T19:27:07.358Z",
+        "status": 1,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 58,
+    "fields": {
+        "user": null,
+        "cost": "0.00",
+        "delivery_city": null,
+        "delivery_address": "555",
+        "delivery_method": null,
+        "payment_method": null,
+        "full_name": null,
+        "phone": null,
+        "email": null,
+        "created_at": "2023-12-04T19:27:53.522Z",
+        "status": 1,
+        "seller_products": [
+            6
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 59,
+    "fields": {
+        "user": 3,
+        "cost": "0.00",
+        "delivery_city": "Красноярск",
+        "delivery_address": "ул. Лобова д. 2 кв. 16",
+        "delivery_method": "ordinary",
+        "payment_method": "online",
+        "full_name": "Петров Петр Петрович",
+        "phone": "+7 (112) 1211133",
+        "email": "petrov1211@yandex.ru",
+        "created_at": "2023-12-21T18:42:21.440Z",
+        "status": 1,
+        "seller_products": [
+            1,
+            4,
+            5,
+            6,
+            10,
+            11,
+            13,
+            14
+        ]
+    }
+},
+{
+    "model": "orders.orderstatus",
+    "pk": 1,
+    "fields": {
+        "name": "paid"
+    }
+},
+{
+    "model": "orders.orderstatus",
+    "pk": 2,
+    "fields": {
+        "name": "not paid"
+    }
+},
+{
+    "model": "orders.cart",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "cost": "0.00",
+        "discount": null,
+        "seller_products": []
+    }
+},
+{
+    "model": "orders.cart",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "cost": "0.00",
+        "discount": null,
+        "seller_products": []
+    }
+},
+{
+    "model": "orders.cart",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "cost": "5666.90",
+        "discount": 2,
+        "seller_products": [
+            1,
+            10,
+            11,
+            3,
+            4,
+            16,
+            18,
+            7,
+            8,
+            5
+        ]
     }
 },
 {
@@ -1093,6 +1704,16 @@
         "product": 1,
         "feedback_text": "!!!!",
         "created_at": "2023-12-16"
+    }
+},
+{
+    "model": "products.productfeedback",
+    "pk": 40,
+    "fields": {
+        "user": 3,
+        "product": 8,
+        "feedback_text": "Лучший телек",
+        "created_at": "2023-12-21"
     }
 },
 {
@@ -1385,7 +2006,7 @@
         "seller": 3,
         "price": "12.00",
         "stock": 31,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-11-04"
     }
 },
@@ -1397,7 +2018,7 @@
         "seller": 3,
         "price": "123.00",
         "stock": 312,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-10-04"
     }
 },
@@ -1409,7 +2030,7 @@
         "seller": 3,
         "price": "324.00",
         "stock": 330,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-09-04"
     }
 },
@@ -1481,7 +2102,7 @@
         "seller": 3,
         "price": "343.00",
         "stock": 342,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-05-04"
     }
 },
@@ -1493,7 +2114,7 @@
         "seller": 3,
         "price": "342.00",
         "stock": 42,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -1505,7 +2126,7 @@
         "seller": 3,
         "price": "100.00",
         "stock": 321,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-02"
     }
 },
@@ -1517,7 +2138,7 @@
         "seller": 3,
         "price": "32.00",
         "stock": 3234,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-05"
     }
 },
@@ -1529,7 +2150,7 @@
         "seller": 3,
         "price": "11.00",
         "stock": 322,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -1541,7 +2162,7 @@
         "seller": 3,
         "price": "13.00",
         "stock": 321,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -1553,7 +2174,7 @@
         "seller": 3,
         "price": "14.00",
         "stock": 531,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -1565,7 +2186,7 @@
         "seller": 3,
         "price": "13.00",
         "stock": 431,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -1577,7 +2198,7 @@
         "seller": 3,
         "price": "15.00",
         "stock": 1234,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -1598,7 +2219,37 @@
     "pk": 1,
     "fields": {
         "name": "Без скидки",
-        "value": 0
+        "type": 1,
+        "value": 0,
+        "amount_products": null,
+        "expires": null,
+        "categories": []
+    }
+},
+{
+    "model": "sellers.discount",
+    "pk": 2,
+    "fields": {
+        "name": "Скидка на количество продуктов в корзине",
+        "type": 2,
+        "value": 20,
+        "amount_products": 5,
+        "expires": null,
+        "categories": []
+    }
+},
+{
+    "model": "sellers.discount",
+    "pk": 3,
+    "fields": {
+        "name": "Скидка на категории товаров",
+        "type": 3,
+        "value": 30,
+        "amount_products": null,
+        "expires": null,
+        "categories": [
+            1
+        ]
     }
 }
 ]

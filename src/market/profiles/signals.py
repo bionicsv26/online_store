@@ -22,5 +22,6 @@ def save_profile(sender, instance, **kwargs):
 @receiver(post_save, sender=User)
 def create_cart(sender, instance, created, **kwargs):
     if created:
-        discount_type_2 = Discount.objects.get(type=2)
-        Cart.objects.create(user=instance, discount=discount_type_2)
+        discount_type_2 = Discount.objects.filter(type=3).first()
+        if discount_type_2:
+            Cart.objects.create(user=instance, discount=discount_type_2)
