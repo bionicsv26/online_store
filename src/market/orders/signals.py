@@ -11,7 +11,7 @@ def count_order_cost(sender, instance, action, **kwargs):
     """
     if action != 'pre_add':
         instance.cost = sum(
-            seller_product.get_discounted_price()
-            for seller_product in instance.seller_products.all().select_related('discount')
+            seller_product.price
+            for seller_product in instance.seller_products.all()
         )
         instance.save()

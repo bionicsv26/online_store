@@ -48,6 +48,18 @@ class Cart(models.Model):
     cost = models.DecimalField(default=0, max_digits=12, decimal_places=2, verbose_name='Общая стоимость')
     discount = models.ForeignKey(Discount, null=True, on_delete=models.PROTECT, related_name='carts')
 
-    def get_format_discounted_cost(self) -> str:
-        discounted_cost = float(self.cost) * (1 - self.discount.value / 100)
-        return '{:.2f}'.format(discounted_cost)
+    def discounted_cart_cost(self) -> float:
+        return float(self.cost) * (1 - self.discount.value / 100)
+
+    def total_discounted_seller_products_price(self) -> float:
+        return sum(
+            seller_product.get_discounted_price()
+            for seller_product in self.seller_products.all()
+        )
+
+    def priority_discounted_cost(self) -> str:
+        cart_discount_cost = self.discounted_cart_cost()
+        total_discounted_seller_products_price = self.total_discounted_seller_products_price()
+        return '{:.2f}'.format(
+            min((cart_discount_cost, total_discounted_seller_products_price)),
+        )

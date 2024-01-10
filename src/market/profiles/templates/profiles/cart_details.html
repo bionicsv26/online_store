@@ -11,16 +11,12 @@
       <img src="{{ seller_product.product.preview.url }}" alt="Изображение продукта" style="width: 200px">
       <p>{{ seller_product.product.name }}</p>
       <p>{{ seller_product.product.description }}</p>
-      {% if seller_product.discount.type != 1 %}
-        <p><span style="text-decoration: line-through; color: #adaaac ">{{ seller_product.price }}</span> <b>{{ seller_product.get_format_discounted_price }}</b> Р</p>
-      {% else %}
-        <p>{{ seller_product.price }} Р</p>
-      {% endif %}
+      <p>{{ seller_product.price }} Р</p>
     </li>
   {% endfor %}
 </ul>
 {% if cart.discount.type == 2 %}
-  <p>Итого: <span style="text-decoration: line-through; color: #adaaac ">{{ cart.cost }}</span> <b>{{ cart.get_format_discounted_cost }}</b> Р</p>
+  <p>Итого: <span style="text-decoration: line-through; color: #adaaac ">{{ cart.cost }}</span> <b>{{ discounted_cart_cost }}</b> Р</p>
 {% else %}
   <p>Итого: {{ total_cost }} Р</p>
 {% endif %}

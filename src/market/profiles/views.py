@@ -104,5 +104,6 @@ class CartDetailsView(TemplateView):
             'product__categories',
             'product__categories__parent',
         )
+        context['discounted_cart_cost'] = cart.priority_discounted_cost()
 
         return context
