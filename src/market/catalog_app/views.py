@@ -96,16 +96,3 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         log.debug("Запуск рендеренга CatalogOldTemplateView")
         log.debug("Контекст готов. Продукты отсортированы")
         return context
-
-
-class FilterCatalogView(ListView):
-    template_name = "catalog_app/catalog.html"
-    model = SellerProduct
-    paginate_by = 20
-
-    def get_queryset(self):
-        price_range = self.request.GET.get('price').split(";")
-        range_start = price_range[0]
-        range_end = price_range[1]
-
-
