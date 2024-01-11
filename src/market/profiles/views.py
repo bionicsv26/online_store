@@ -97,13 +97,12 @@ class CartDetailsView(TemplateView):
         cart = self.request.user.cart
 
         context['cart'] = cart
-        context['seller_products'] = cart.seller_products.all().select_related(
+        context['seller_products'] = cart.seller_products.select_related(
             'discount',
-            'product',
+            'product'
         ).prefetch_related(
             'product__categories',
-            'product__categories__parent',
         )
-        context['discounted_cart_cost'] = cart.priority_discounted_cost()
+        context['discounted_cart_cost'], context['priority_discount_type'] = cart.priority_discounted_cost()
 
         return context

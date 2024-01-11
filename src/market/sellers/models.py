@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Max
 
 from market.categories.models import Category
 from market.products.models import Product
@@ -40,11 +40,11 @@ class SellerProduct(models.Model):
     def __str__(self):
         return f'Продукт продавца "{self.product.name}"'
 
-    def get_discounted_price(self) -> float:
+    def discounted_price(self) -> float:
         return float(self.price) * (1 - self.discount.value / 100)
 
-    def get_format_discounted_price(self) -> str:
-        discounted_price = self.get_discounted_price()
+    def format_discounted_price(self) -> str:
+        discounted_price = self.discounted_price()
         return '{:.2f}'.format(discounted_price)
 
 
@@ -56,9 +56,9 @@ class Discount(models.Model):
 
     name = models.CharField(max_length=256, verbose_name='название')
     type = models.SmallIntegerField(null=True, verbose_name='тип скидки')
-    value = models.IntegerField(default=0, max_length=100, verbose_name='скидка в %')
+    value = models.IntegerField(default=0, verbose_name='скидка в %')
     amount_products = models.IntegerField(null=True, blank=True, verbose_name='количество товаров в корзине')
-    categories = models.ManyToManyField(Category, null=True, blank=True, related_name='discounts', verbose_name='скидка на категории')
+    categories = models.ManyToManyField(Category, blank=True, related_name='discounts', verbose_name='скидка на категории')
     expires = models.DateTimeField(null=True, blank=True, verbose_name='дата и время окончания скидки')
 
     def __str__(self):

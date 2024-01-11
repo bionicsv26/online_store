@@ -10,16 +10,16 @@
     <li>
       <img src="{{ seller_product.product.preview.url }}" alt="Изображение продукта" style="width: 200px">
       <p>{{ seller_product.product.name }}</p>
-      <p>{{ seller_product.product.description }}</p>
-      <p>{{ seller_product.price }} Р</p>
+      <p>Описание: {{ seller_product.product.description }}</p>
+      {% if priority_discount_type != 2 %}
+        <p>Стоимость: <span style="text-decoration: line-through; color: #adaaac ">{{ seller_product.price }}</span> <b>{{ seller_product.format_discounted_price }} Р</b></p>
+      {% else %}
+        <p>Стоимость: <b>{{ seller_product.price }} Р</b></p>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>
-{% if cart.discount.type == 2 %}
-  <p>Итого: <span style="text-decoration: line-through; color: #adaaac ">{{ cart.cost }}</span> <b>{{ discounted_cart_cost }}</b> Р</p>
-{% else %}
-  <p>Итого: {{ total_cost }} Р</p>
-{% endif %}
+<p>Итого: <span style="text-decoration: line-through; color: #adaaac">{{ cart.cost }}</span> <b>{{ discounted_cart_cost }} Р</b></p>
 <a href="{% url 'orders:making_an_order_page_1' %}">Оформить заказ</a>
 </body>
 </html>

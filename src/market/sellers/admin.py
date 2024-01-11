@@ -40,20 +40,11 @@ class DiscountAdmin(admin.ModelAdmin):
         }),
         ('Поля для скидки на количество товаров в корзине', {
             'fields': ('amount_products',),
-            'classes': {
-                'collapse': True,
-            },
         }),
         ('Поля для скидки на категории товаров', {
             'fields': ('categories',),
-            'classes': {
-                'collapse': True,
-            },
         }),
         ('Необязательные поля', {
             'fields': ('expires',),
-            'classes': {
-                'collapse': True,
-            },
         }),
     )
