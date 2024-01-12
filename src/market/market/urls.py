@@ -30,6 +30,7 @@ urlpatterns = [
     path('catalog/', include('market.catalog_app.urls')),
     path('profiles/', include('market.profiles.urls')),
     path('sellers/', include('market.sellers.urls')),
+    path('cart/', include('market.cart.urls', namespace='cart')),
 ]
 
 if settings.DEBUG:
