@@ -1,32 +1,34 @@
 from django.db.models import Q
 from django.dispatch import receiver
-from django.db.models.signals import m2m_changed, post_save
+from django.db.models.signals import m2m_changed
 
-from market.orders.models import Order, Cart
+from market.profiles.models import Cart
 from market.sellers.models import Discount
 
 
 @receiver(m2m_changed, sender=Cart.seller_products.through)
-def count_order_cost(sender, instance, action, **kwargs):
+def count_order_cost_and_change_cart_discount(sender, instance, action, **kwargs):
     """
-    Сигнал, который считает стоимость корзины без скидки.
+    Сигнал, который считает стоимость корзины без скидки и изменяет тип скидки корзины
+    в зависимости от количества в ней продуктов.
     """
-    if action != 'pre_add':
+    if action in ('post_add', 'post_remove'):
+        seller_products = instance.seller_products.all()
+
+        # подсчет стоимости корзины без скидки
         instance.cost = sum(
             seller_product.price
-            for seller_product in instance.seller_products.all()
+            for seller_product in seller_products
         )
         instance.save()
 
+        # изменение типа скидки корзины в зависимости от количества в ней продуктов
+        discount_type_1, discount_type_2 = Discount.objects.filter(Q(type=1) | Q(type=2)).order_by('type')
+        if discount_type_1 and discount_type_2:
+            total_cart_seller_products = len(seller_products)
+            if total_cart_seller_products >= discount_type_2.amount_products:
+                instance.discount = discount_type_2
+            else:
+                instance.discount = discount_type_1
 
-@receiver(m2m_changed, sender=Cart.seller_products.through)
-def change_cart_discount(sender, instance, **kwargs):
-    discount_type_1, discount_type_2 = Discount.objects.filter(Q(type=1) | Q(type=2))
-    if discount_type_1 and discount_type_2:
-        total_cart_seller_products = len(instance.seller_products.all())
-        if total_cart_seller_products >= discount_type_2.amount_products:
-            instance.discount = discount_type_2
-        else:
-            instance.discount = discount_type_1
-
-        instance.save()
+            instance.save()

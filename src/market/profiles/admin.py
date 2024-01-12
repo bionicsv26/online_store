@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Profile
-from ..orders.models import Cart
+from .models import Profile, Cart
 
 
 @admin.register(Profile)
