@@ -1,4 +1,13 @@
 import logging
+from market.categories.mixins import MenuMixin
+from django.views.generic import (
+    ListView,
+)
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin,
+)
+from market.sellers.models import SellerProduct
+from django.db.models import Q, Max
 
 from django.db.models import Q, Min, Max
 from django.views.generic import ListView
@@ -24,7 +33,7 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         if category:
             queryset = queryset.prefetch_related('seller_products').filter(
                 Q(categories__slug=category) | Q(categories__parent__slug=category),
-            )
+                )
 
         match order_by:
             case 'rating' | '-rating':
@@ -47,6 +56,12 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
                     Max('seller_products__created_at')
                 ).order_by('seller_products__created_at__max')
 
+        if self.request.GET.get('price_filter'):
+            price_range = self.request.GET.get('price_filter').split(";")
+            range_start = price_range[0]
+            range_end = price_range[1]
+            queryset = queryset.filter(price__range=(range_start, range_end))
+
         return queryset.reverse() if order_by.startswith('-') else queryset
 
     def get_context_data(self, **kwargs):
@@ -55,6 +70,7 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         category = self.request.GET.get('category')
         context['order_by'] = order_by
         context['category'] = category
+        context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
         browsing_history = (ProductBrowsingHistory.objects.
                             select_related('user', 'product').
                             filter(user=self.request.user).
@@ -64,7 +80,6 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         log.debug("Запуск рендеренга CatalogOldTemplateView")
         log.debug("Контекст готов. Продукты отсортированы")
         return context
-
 
 
 class FilterCatalogView(ListView):
@@ -80,12 +95,40 @@ class FilterCatalogView(ListView):
         in_stock = self.request.GET.get('in_stock')
         free_delivery = self.request.GET.get('free_delivery')
 
-        queryset = SellerProduct.objects.filter(price__range=(range_start, range_end))
-
         if title:
-            queryset = queryset.filter(product__name__icontains=title)
+            queryset = queryset.filter(product__name__icontains=title) | queryset.filter(
+                product__description__icontains=title)
 
         if in_stock:
             queryset = queryset.filter(stock__gt=0)
 
         return queryset
+
+
+# class FilterCatalogView(ListView):
+#     template_name = "catalog_app/catalog.html"
+#     model = SellerProduct
+#     paginate_by = 8
+#
+#     def get_queryset(self):
+#         price_range = self.request.GET.get('price').split(";")
+#         range_start = price_range[0]
+#         range_end = price_range[1]
+#         title = self.request.GET.get('title')
+#         in_stock = self.request.GET.get('in_stock')
+#         free_delivery = self.request.GET.get('free_delivery')
+#
+#         queryset = SellerProduct.objects.filter(price__range=(range_start, range_end))
+#
+#         if title:
+#             queryset = queryset.filter(product__name__icontains=title) | queryset.filter(product__description__icontains=title)
+#
+#         if in_stock:
+#             queryset = queryset.filter(stock__gt=0)
+#
+#         return queryset
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(FilterCatalogView, self).get_context_data(**kwargs)
+#         context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
+#         return context

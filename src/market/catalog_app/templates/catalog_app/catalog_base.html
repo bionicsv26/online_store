@@ -23,11 +23,11 @@
             </strong>
           </header>
           <div class="Section-columnContent">
-            <form class="form" action="{% url 'market.catalog_app:filter' %}" method="get">
+            <form class="form" action="{% url 'market.catalog_app:catalog' %}" method="get">
               {% csrf_token %}
               <div class="form-group">
                 <div class="range Section-columnRange">
-                  <input class="range-line" id="price" name="price" type="text" data-type="double" data-min="0" data-max="10000" data-from="0" data-to="10000"/>
+                  <input class="range-line" id="price_filter" name="price_filter" type="text" data-type="double" data-min="0" data-max="{{ max_price }}" data-from="0" data-to="{{ max_price }}"/>
                   <div class="range-price">Цена:&#32;
                     <div class="rangePrice">
                     </div>
