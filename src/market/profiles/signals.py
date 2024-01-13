@@ -22,8 +22,10 @@ def save_profile(sender, instance, **kwargs):
 @receiver(post_save, sender=User)
 def create_cart(sender, instance, created, **kwargs):
     if created:
+        cart = Cart.objects.create(user=instance)
         discount_type_1 = Discount.objects.filter(type=1).filter()
-        Cart.objects.create(user=instance, discount=discount_type_1)
+        if discount_type_1:
+            cart.objects.update(discount=discount_type_1)
 
 
 @receiver(m2m_changed, sender=Cart.seller_products.through)
