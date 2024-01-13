@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Min, Max
+
 from market.categories.models import Category
 
 
@@ -35,7 +37,6 @@ class ProductFeedback(models.Model):
         return f" Пользователь {self.user.username} оставил отзыв"
 
 
-
 def image_directory_path(instance: 'Product', filename) -> str:
     return f'images/products/product_{instance.slug}/product_preview/{filename}'
 
@@ -60,6 +61,16 @@ class Product(models.Model):
         product = Product.objects.filter(preview=preview_path).first()
         if product is None:
             super().save(*args, **kwargs)
+
+    def min_max_price(self) -> str:
+        min_max = self.seller_products.aggregate(Min('price'), Max('price'))
+        if min_max['price__min'] == min_max['price__max']:
+            result = '{:.2f}'.format(min_max['price__min'])
+        else:
+            result = '{:.2f} - {:.2f}'.format(min_max['price__min'], min_max['price__max'])
+
+        return result
+
 
 class ProductViewHistory(models.Model):
     class Meta:

@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView
 
@@ -10,12 +11,12 @@ class IndexHtmlView(MenuMixin, TemplateView, BannerSliderMixin):
     template_name = 'categories/index.html'
 
 
-def get_products(category):
+def get_products(category: Category) -> QuerySet:
     if not category.parent:
         products = [
             product
-            for category in category.categories.all()
-            for product in category.products.all()
+            for subcategory in category.categories.all()
+            for product in subcategory.products.all()
         ]
     else:
         products = category.products.all()
