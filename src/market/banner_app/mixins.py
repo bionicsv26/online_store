@@ -64,13 +64,13 @@ class TopSellerProductsMixin(ContextMixin):
                 top_products = queryset
             else:
                 log.debug(f"There is no any Seller products upload from DB")
-
-        log.debug(f"top_products was taken from the cache {top_products}."
+        else:
+            log.debug(f"top_products was taken from the cache {top_products}."
                   f"\nNumber of seller products is {len(top_products)}")
         if len(top_products) >= 8:
             context['top_products_card'] = top_products[:4]
             context['top_products_card_hide_md'] = top_products[4:6]
-            context['top_products_card_hide_md_hide_1450'] = top_products[6:]
+            context['top_products_card_hide_md_hide_1450'] = top_products[6:8]
         elif 0 < len(top_products) < 8:
             context['top_products_card'] = top_products
 
