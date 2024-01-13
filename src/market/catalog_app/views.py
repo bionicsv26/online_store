@@ -19,20 +19,24 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
 
     def get_queryset(self):
         order_by = self.request.GET.get('order_by', 'price')
-        queryset = self.model.objects.prefetch_related('seller_products')
+        category = self.request.GET.get('category')
+        if category:
+            queryset = self.model.objects.prefetch_related('seller_products').filter(
+                Q(categories__slug=category) | Q(categories__parent__slug=category),
+            )
+        else:
+            queryset = self.model.objects.prefetch_related('seller_products')
+
         if order_by in ('price', '-price'):
             return queryset.annotate(Min('seller_products__price')).order_by(
                  '{}seller_products__price__min'.format('-' if order_by == '-price' else '')
             )
-
         elif order_by == '-created_at':
             return queryset.order_by(order_by)
-
         elif order_by == "feedback":
             return queryset.annotate(
                 num_feedbacks=Count('productfeedback__feedback_text')
             ).order_by("-num_feedbacks")
-
         elif order_by == "rating":
             return queryset.annotate(
                 num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__name='payed'))
@@ -41,7 +45,9 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(CatalogTemplateView, self).get_context_data(**kwargs)
         order_by = self.request.GET.get('order_by', 'price')
+        category = self.request.GET.get('category')
         context['order_by'] = order_by
+        context['category'] = category
         browsing_history = (ProductBrowsingHistory.objects.
                             select_related('user', 'product').
                             filter(user=self.request.user).
