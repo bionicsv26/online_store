@@ -5,7 +5,5 @@ app_name = 'cart'
 
 urlpatterns = [
     path('', views.cart_detail, name='cart_detail'),
-    path('change_amount/<int:product_id>/<int:amount>/', views.change_amount, name='change_amount'),
-    path('add/<int:product_id>/', views.cart_add, name='cart_add'),
-    path('remove/<int:product_id>/', views.cart_remove, name='cart_remove'),
+    path('remove/<str:product_id>/', views.cart_remove, name='cart_remove'),
 ]

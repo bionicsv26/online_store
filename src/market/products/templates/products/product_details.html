@@ -45,7 +45,7 @@
                 <div class="ProductCard-cartElement">
                   <a class="btn btn_primary" href="#modal_open">
                     <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
-                    <button class="btn-content">Купить</button>
+                    <button class="btn-content" type="submit">Купить</button>
                   </a>
                 </div>
                 <div id="modal_open" class="my_modal">
@@ -127,23 +127,25 @@
                 </table>
               </div>
             </div>
-            {% for product in product.seller_products.all %}
-              <div class="Tabs-block" id="sellers">
-                <div class="Section-content">
-                  <div class="Orders">
-                    <div class="Order Order_anons">
-                      <div class="Order-personal">
+            <div class="Tabs-block" id="sellers">
+              <div class="Section-content">
+                <div class="Orders">
+                  <div class="Order Order_anons">
+                    <div class="Order-personal">
+                      {% for product in product.seller_products.all %}
                         <div class="row">
                           <div class="row-block">
                             <a class="Order-title" href="oneorder.html">
                               {{ product.seller.name }}
                             </a>
-                            <div class="ProductCard-cartElement" style="margin-top: 10px;">
-                              <a class="btn btn_primary" href="#modal_open">
-                                <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
-                                <span class="btn-content">Купить</span>
-                              </a>
-                            </div>
+                            <form>
+                              <div class="ProductCard-cartElement" style="margin-top: 10px;">
+                                <a class="btn btn_primary" href="?seller_product_pk={{ product.pk }}#modal_open" type="submit">
+                                  <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
+                                  <span class="btn-content">Купить</span>
+                                </a>
+                              </div>
+                            </form>
                           </div>
                           <div class="row-block">
                             <div class="Order-info Order-info_delivery">
@@ -166,12 +168,12 @@
                             </div>
                           </div>
                         </div>
-                      </div>
+                      {% endfor %}
                     </div>
                   </div>
                 </div>
               </div>
-            {% endfor %}
+            </div>
             <div class="Tabs-block" id="addit">
               <div class="Product-props">
                 <div class="Product-prop">

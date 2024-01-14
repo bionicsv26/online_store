@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from market.categories.models import Category
+from django.urls import reverse
 
 
 class ProductFeedback(models.Model):
@@ -50,6 +51,10 @@ class Product(models.Model):
         product = Product.objects.filter(preview=preview_path).first()
         if product is None:
             super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("products:product-details", kwargs={"product_slug": self.slug})
+    
 
 class ProductViewHistory(models.Model):
     class Meta:
