@@ -11,15 +11,10 @@ import logging
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 
-from ..catalog_app.views import list_of_product_names
+
 
 log = logging.getLogger(__name__)
 
-def product_in_queryset_check(product_name:str, query):
-    for i_product in query:
-        if i_product.product.name == product_name:
-            return False
-    return True
 
 class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, DetailView):
     template_name = 'products/product_details.html'
@@ -55,15 +50,22 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                                         )
         # Проверяем, был ли данный товар уже в списке ранее просмотренных товаров. Если нет, то добавляем
         # Если товар уже в списке, то не добавляем
-        products = ProductBrowsingHistory.objects.filter(user=self.request.user).all()
+        products = (ProductBrowsingHistory.objects.
+                    select_related('user', 'product').
+                    filter(user=self.request.user))
         product = self.get_object()
-        if product_in_queryset_check(product.name, products):
+        #if product_in_queryset_check(product.name, products):
+        if not products.filter(product=product).exists():
             ProductBrowsingHistory.objects.create(
                 user=self.request.user,
-                product=self.get_object(),
+                product=product,
             )
-        browsing_history = ProductBrowsingHistory.objects.filter(user=self.request.user).all()
-        context['browsing_history'] = list_of_product_names(browsing_history)
+        browsing_history = (ProductBrowsingHistory.objects.
+                            select_related('user', 'product').
+                            filter(user=self.request.user).
+                            values_list("product__name", flat=True)
+                            )
+        context['browsing_history'] = browsing_history
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context

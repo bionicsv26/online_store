@@ -17,9 +17,6 @@ tasks:
   shell:
     cmds:
       - django-admin shell
-  startapp:
-    cmds:
-      - django-admin startapp browsing_history_app src/market/browsing_history_app
   migrate:
     cmds:
       - django-admin createcachetable
