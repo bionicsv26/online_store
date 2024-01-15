@@ -651,36 +651,72 @@
     "model": "auth.permission",
     "pk": 73,
     "fields": {
-        "name": "Can add продукт продавца",
+        "name": "Can add история просмотра",
         "content_type": 19,
-        "codename": "add_sellerproduct"
+        "codename": "add_productbrowsinghistory"
     }
 },
 {
     "model": "auth.permission",
     "pk": 74,
     "fields": {
-        "name": "Can change продукт продавца",
+        "name": "Can change история просмотра",
         "content_type": 19,
-        "codename": "change_sellerproduct"
+        "codename": "change_productbrowsinghistory"
     }
 },
 {
     "model": "auth.permission",
     "pk": 75,
     "fields": {
-        "name": "Can delete продукт продавца",
+        "name": "Can delete история просмотра",
         "content_type": 19,
-        "codename": "delete_sellerproduct"
+        "codename": "delete_productbrowsinghistory"
     }
 },
 {
     "model": "auth.permission",
     "pk": 76,
     "fields": {
-        "name": "Can view продукт продавца",
+        "name": "Can view история просмотра",
         "content_type": 19,
-        "codename": "view_sellerproduct"
+        "codename": "view_productbrowsinghistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+        "name": "Can add корзина",
+        "content_type": 20,
+        "codename": "add_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+        "name": "Can change корзина",
+        "content_type": 20,
+        "codename": "change_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+        "name": "Can delete корзина",
+        "content_type": 20,
+        "codename": "delete_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+        "name": "Can view корзина",
+        "content_type": 20,
+        "codename": "view_cart"
     }
 },
 {
@@ -688,15 +724,15 @@
     "pk": 1,
     "fields": {
         "password": "pbkdf2_sha256$260000$SdjoIX4A8tZXtN3xobXCkN$sfrMlxvDYrAfX7IHL8CBCFd8Xxey399ZZT23papt5Go=",
-        "last_login": "2023-12-17T19:48:54.385Z",
+        "last_login": "2024-01-01T07:45:19.633Z",
         "is_superuser": true,
-        "username": "suf",
-        "first_name": "",
-        "last_name": "",
+        "username": "Suf",
+        "first_name": "Konstantin",
+        "last_name": "Suftin",
         "email": "sufk@rambler.ru",
         "is_staff": true,
         "is_active": true,
-        "date_joined": "2023-12-03T10:32:03.032Z",
+        "date_joined": "2023-12-03T10:32:03Z",
         "groups": [],
         "user_permissions": []
     }
@@ -709,12 +745,12 @@
         "last_login": null,
         "is_superuser": false,
         "username": "Gest1",
-        "first_name": "",
-        "last_name": "",
+        "first_name": "Гестов1",
+        "last_name": "Гестович1",
         "email": "",
         "is_staff": false,
         "is_active": true,
-        "date_joined": "2023-12-15T20:08:14.641Z",
+        "date_joined": "2023-12-15T20:08:14Z",
         "groups": [],
         "user_permissions": []
     }
@@ -723,16 +759,16 @@
     "model": "auth.user",
     "pk": 3,
     "fields": {
-        "password": "pbkdf2_sha256$260000$mvj8U0Nc1UbChRj1IMrGra$ElYUt8dcoXYVyU3o96JXorgRoQHuafCp0L2IQUzenys=",
-        "last_login": "2023-12-21T17:38:48.086Z",
-        "is_superuser": true,
-        "username": "admin",
+        "password": "pbkdf2_sha256$260000$CJRoijNRPK9GgYxqTy0UYO$ey3wb0VzLjFg1rxJG3ocU9PRYiaE7SrAeafZYkyi4VM=",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "Guest2",
         "first_name": "",
         "last_name": "",
         "email": "",
-        "is_staff": true,
+        "is_staff": false,
         "is_active": true,
-        "date_joined": "2023-12-21T17:38:44.526Z",
+        "date_joined": "2024-01-01T07:43:52.730Z",
         "groups": [],
         "user_permissions": []
     }
@@ -824,252 +860,6 @@
         "products_cache": 86400,
         "top_products_cache": 3600,
         "product_data_cache": 86400
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 48,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "Сочи",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-11-17T15:48:21.003Z",
-        "status": 1,
-        "seller_products": [
-            8,
-            2,
-            6
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 50,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "СПБ",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-12-03T11:48:47.907Z",
-        "status": 2,
-        "seller_products": [
-            1,
-            3,
-            5,
-            7,
-            8,
-            13,
-            14
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 51,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "Москва",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-12-03T11:49:34.600Z",
-        "status": 2,
-        "seller_products": [
-            6
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 54,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "111",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-12-04T19:24:02.221Z",
-        "status": 1,
-        "seller_products": [
-            4,
-            7
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 55,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "222",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-12-04T19:26:24.192Z",
-        "status": 1,
-        "seller_products": [
-            6
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 56,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "333",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-12-04T19:26:55.413Z",
-        "status": 1,
-        "seller_products": [
-            6
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 57,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "444",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-12-04T19:27:07.358Z",
-        "status": 1,
-        "seller_products": [
-            6
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 58,
-    "fields": {
-        "user": null,
-        "cost": "0.00",
-        "delivery_city": null,
-        "delivery_address": "555",
-        "delivery_method": null,
-        "payment_method": null,
-        "full_name": null,
-        "phone": null,
-        "email": null,
-        "created_at": "2023-12-04T19:27:53.522Z",
-        "status": 1,
-        "seller_products": [
-            6
-        ]
-    }
-},
-{
-    "model": "orders.order",
-    "pk": 59,
-    "fields": {
-        "user": 3,
-        "cost": "5196.00",
-        "delivery_city": "Красноярск",
-        "delivery_address": "ул. Лобова д. 2 кв. 16",
-        "delivery_method": "ordinary",
-        "payment_method": "online",
-        "full_name": "Петров Петр Петрович",
-        "phone": "+7 (112) 1211133",
-        "email": "petrov1211@yandex.ru",
-        "created_at": "2023-12-21T18:42:21.440Z",
-        "status": 1,
-        "seller_products": [
-            1,
-            4,
-            5,
-            6,
-            10,
-            11,
-            13,
-            14
-        ]
-    }
-},
-{
-    "model": "orders.orderstatus",
-    "pk": 1,
-    "fields": {
-        "name": "paid"
-    }
-},
-{
-    "model": "orders.orderstatus",
-    "pk": 2,
-    "fields": {
-        "name": "not paid"
-    }
-},
-{
-    "model": "orders.cart",
-    "pk": 1,
-    "fields": {
-        "user": 1,
-        "cost": "0.00",
-        "seller_products": []
-    }
-},
-{
-    "model": "orders.cart",
-    "pk": 2,
-    "fields": {
-        "user": 2,
-        "cost": "0.00",
-        "seller_products": []
-    }
-},
-{
-    "model": "orders.cart",
-    "pk": 3,
-    "fields": {
-        "user": 3,
-        "cost": "0.00",
-        "seller_products": [
-            4,
-            5,
-            6,
-            10,
-            11,
-            13,
-            14,
-            1
-        ]
     }
 },
 {
@@ -1303,16 +1093,6 @@
         "product": 1,
         "feedback_text": "!!!!",
         "created_at": "2023-12-16"
-    }
-},
-{
-    "model": "products.productfeedback",
-    "pk": 40,
-    "fields": {
-        "user": 3,
-        "product": 8,
-        "feedback_text": "Лучший телек",
-        "created_at": "2023-12-21"
     }
 },
 {
@@ -1554,33 +1334,39 @@
     }
 },
 {
-    "model": "profiles.profile",
-    "pk": 1,
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 54,
     "fields": {
         "user": 1,
-        "avatar": "img/no_image.png",
-        "phone": null,
-        "full_name": null
+        "product": 13,
+        "view_at": "2024-01-01"
     }
 },
 {
-    "model": "profiles.profile",
-    "pk": 2,
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 55,
     "fields": {
-        "user": 2,
-        "avatar": "img/no_image.png",
-        "phone": null,
-        "full_name": null
+        "user": 1,
+        "product": 14,
+        "view_at": "2024-01-01"
     }
 },
 {
-    "model": "profiles.profile",
-    "pk": 3,
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 56,
     "fields": {
-        "user": 3,
-        "avatar": "img/no_image.png",
-        "phone": null,
-        "full_name": null
+        "user": 1,
+        "product": 2,
+        "view_at": "2024-01-01"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 58,
+    "fields": {
+        "user": 1,
+        "product": 17,
+        "view_at": "2024-01-01"
     }
 },
 {
@@ -1634,7 +1420,7 @@
         "product": 2,
         "seller": 3,
         "price": "12.00",
-        "stock": 30,
+        "stock": 31,
         "discount": 1,
         "created_at": "2023-11-04"
     }
@@ -1670,7 +1456,7 @@
         "product": 8,
         "seller": 1,
         "price": "2322.00",
-        "stock": 8,
+        "stock": 9,
         "discount": 1,
         "created_at": "2023-08-04"
     }
@@ -1682,7 +1468,7 @@
         "product": 8,
         "seller": 2,
         "price": "2344.00",
-        "stock": 20,
+        "stock": 21,
         "discount": 1,
         "created_at": "2023-07-04"
     }
@@ -1694,7 +1480,7 @@
         "product": 1,
         "seller": 4,
         "price": "33.00",
-        "stock": 121,
+        "stock": 122,
         "discount": 1,
         "created_at": "2023-07-05"
     }
@@ -1742,7 +1528,7 @@
         "product": 10,
         "seller": 3,
         "price": "342.00",
-        "stock": 41,
+        "stock": 42,
         "discount": 1,
         "created_at": "2023-12-04"
     }
@@ -1754,7 +1540,7 @@
         "product": 11,
         "seller": 3,
         "price": "100.00",
-        "stock": 320,
+        "stock": 321,
         "discount": 1,
         "created_at": "2023-12-02"
     }
@@ -1766,7 +1552,7 @@
         "product": 12,
         "seller": 3,
         "price": "32.00",
-        "stock": 3233,
+        "stock": 3234,
         "discount": 1,
         "created_at": "2023-12-05"
     }
@@ -1778,7 +1564,7 @@
         "product": 13,
         "seller": 3,
         "price": "11.00",
-        "stock": 321,
+        "stock": 322,
         "discount": 1,
         "created_at": "2023-12-04"
     }
