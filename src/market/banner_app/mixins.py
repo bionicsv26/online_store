@@ -13,14 +13,14 @@ log = logging.getLogger(__name__)
 class BannerSliderMixin(ContextMixin):
     '''
     Миксин проверяет кэш "banners_sliders_cache" и если его нет, создает его.
-    После проверки или создания возвращает сонтекст, который используется в рендере.
+    После проверки или создания возвращает контекст, который используется в рендере.
     '''
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         log.debug("Start BannerSliderMixin to prepare BannerSlider")
-        my_timeout = CacheTime.objects.get(pk=1).banners_cache
+        my_timeout = CacheTime.objects.first().banners_cache
 
         banners_sliders = cache.get("banners_sliders_cache")
         if not banners_sliders:
@@ -39,14 +39,14 @@ class TopSellerProductsMixin(ContextMixin):
     '''
     Миксин проверяет кэш "top_products_cache" и если его нет, создает его.
     Берет из БД товары продавцов, отсортированных по количеству продаж.
-    После проверки или создания возвращает сонтекст, который используется в рендере.
+    После проверки или создания возвращает контекст, который используется в рендере.
     '''
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
         log.debug("Start TopSellerProductsMixin to prepare Top Seller products for Index page")
-        top_products_timeout = CacheTime.objects.get(pk=1).top_products_cache
+        top_products_timeout = CacheTime.objects.first().top_products_cache
         log.debug(f"top_products_timeout is: {top_products_timeout}")
         top_products = cache.get("top_products_cache")
         if not top_products:
@@ -55,7 +55,7 @@ class TopSellerProductsMixin(ContextMixin):
                 num_of_sale=Count('orders', filter=Q(orders__status__name='payed'))
             ).order_by("-num_of_sale")
 
-            if queryset:
+            if queryset.exists():
                 log.debug(
                     f"Seller products upload from DB and ordered by number of sale {queryset}. "
                     f"There is : {len(queryset)} objects")
