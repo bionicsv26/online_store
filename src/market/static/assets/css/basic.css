@@ -451,7 +451,6 @@ textarea {
     justify-content: center;
     min-height: 42px;
     border: 1px solid #fff;
-    border-color: #fff;
     border-radius: 100px;
     background: #fff;
     padding: 3px 15px;
@@ -461,9 +460,6 @@ textarea {
     text-decoration: none;
     position: relative;
     font-size: 16px;
-    border-color: #fff;
-    color: #424650;
-    background: #fff;
     transition: all 200ms;
     font-weight: 500;
     text-transform: uppercase;
