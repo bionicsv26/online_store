@@ -4,3 +4,117 @@
     <title>Index</title>
 {% endblock %}
 
+{% block middle %}
+<h1>Index page!!!</h1>
+
+    <div class="Section Section_column Section_columnLeft Section_columnDesktop">
+            <div class="wrap">
+                <div class="Section-column">
+                    <div class="Section-columnSection Section-columnSection_mark">
+                      <header class="Section-columnHeader">
+                        <strong class="Section-columnTitle">ОГРАНИЧЕННЫЕ ПРЕДЛОЖЕНИЯ
+                        </strong>
+                      </header>
+                      <div class="Card"><a class="Card-picture" href="#"><img src="assets/img/content/home/card.jpg" alt="card.jpg"/></a>
+                        <div class="Card-content">
+                          <strong class="Card-title"><a href="#">Corsair Carbide Series Arctic White Steel</a>
+                          </strong>
+                          <div class="Card-description">
+                            <div class="Card-cost"><span class="Card-priceOld">$115.00</span><span class="Card-price">$85.00</span>
+                            </div>
+                            <div class="Card-category">News / xbox
+                            </div>
+                          </div>
+                          <div class="CountDown" data-date="31.09.2020 03:59">
+                            <div class="CountDown-block">
+                              <div class="CountDown-wrap">
+                                <div class="CountDown-days">
+                                </div><span class="CountDown-label">days</span>
+                              </div>
+                            </div>
+                            <div class="CountDown-block">
+                              <div class="CountDown-wrap">
+                                <div class="CountDown-hours">
+                                </div><span class="CountDown-label">hours</span>
+                              </div>
+                            </div>
+                            <div class="CountDown-block">
+                              <div class="CountDown-wrap">
+                                <div class="CountDown-minutes">
+                                </div><span class="CountDown-label">mins</span>
+                              </div>
+                            </div>
+                            <div class="CountDown-block">
+                              <div class="CountDown-wrap">
+                                <div class="CountDown-secs">
+                                </div><span class="CountDown-label">secs</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="Section-content">
+                    <header class="Section-header">
+                        <h2 class="Section-title">Популярные товары
+                        </h2>
+                    </header>
+                    <div class="Cards">
+
+                        {% if top_products_card %}
+                            {% for sellerproduct in top_products_card %}
+                                <div class="Card"><a class="Card-picture" href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}"><img src="{{ sellerproduct.product.preview.url }}" alt="card.jpg"/></a>
+                                    <div class="Card-content">
+                                      <strong class="Card-title"><a href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}">{{ sellerproduct.product.name }} от {{ sellerproduct.seller }}</a></strong>
+                                      <div class="Card-description">
+                                        <div class="Card-cost"><span class="Card-price">{{ sellerproduct.price }} руб.</span></div>
+                                            {% for category in sellerproduct.product.category.all %}
+                                                <div class="Card-category">{% if category.parent %} {{ category.parent.name }} {% else %} {{ category.name }} {% endif %} </div>
+                                            {% endfor %}
+                                        <div class="Card-hover"><a class="Card-btn" href="#"><img src="{% static 'assets\img\icons\card\cart.svg' %}" alt="cart.svg"/></a></div>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if top_products_card_hide_md  %}
+                            {% for sellerproduct in top_products_card_hide_md %}
+                                <div class="Card hide_md"><a class="Card-picture" href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}"><img src="{{ sellerproduct.product.preview.url }}" alt="card.jpg"/></a>
+                                    <div class="Card-content">
+                                      <strong class="Card-title"><a href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}">{{ sellerproduct.product.name }} от {{ sellerproduct.seller }}</a></strong>
+                                      <div class="Card-description">
+                                        <div class="Card-cost"><span class="Card-price">{{ sellerproduct.price }} руб.</span></div>
+                                            {% for category in sellerproduct.product.category.all %}
+                                                <div class="Card-category">{% if category.parent %} {{ category.parent.name }} {% else %} {{ category.name }} {% endif %} </div>
+                                            {% endfor %}
+                                        <div class="Card-hover"><a class="Card-btn" href="#"><img src="{% static 'assets\img\icons\card\cart.svg' %}" alt="cart.svg"/></a></div>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if top_products_card_hide_md_hide_1450  %}
+                            {% for sellerproduct in top_products_card_hide_md_hide_1450  %}
+                                <div class="Card hide_md hide_1450"><a class="Card-picture" href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}"><img src="{{ sellerproduct.product.preview.url }}" alt="card.jpg"/></a>
+                                    <div class="Card-content">
+                                      <strong class="Card-title"><a href="{% url 'products:product-details' product_slug=sellerproduct.product.slug %}">{{ sellerproduct.product.name }} от {{ sellerproduct.seller }}</a></strong>
+                                      <div class="Card-description">
+                                        <div class="Card-cost"><span class="Card-price">{{ sellerproduct.price }} руб.</span></div>
+                                            {% for category in sellerproduct.product.category.all %}
+                                                <div class="Card-category">{% if category.parent %} {{ category.parent.name }} {% else %} {{ category.name }} {% endif %} </div>
+                                            {% endfor %}
+                                        <div class="Card-hover"><a class="Card-btn" href="#"><img src="{% static 'assets\img\icons\card\cart.svg' %}" alt="cart.svg"/></a></div>
+                                      </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}

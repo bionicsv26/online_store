@@ -1334,42 +1334,6 @@
     }
 },
 {
-    "model": "browsing_history_app.productbrowsinghistory",
-    "pk": 54,
-    "fields": {
-        "user": 1,
-        "product": 13,
-        "view_at": "2024-01-01"
-    }
-},
-{
-    "model": "browsing_history_app.productbrowsinghistory",
-    "pk": 55,
-    "fields": {
-        "user": 1,
-        "product": 14,
-        "view_at": "2024-01-01"
-    }
-},
-{
-    "model": "browsing_history_app.productbrowsinghistory",
-    "pk": 56,
-    "fields": {
-        "user": 1,
-        "product": 2,
-        "view_at": "2024-01-01"
-    }
-},
-{
-    "model": "browsing_history_app.productbrowsinghistory",
-    "pk": 58,
-    "fields": {
-        "user": 1,
-        "product": 17,
-        "view_at": "2024-01-01"
-    }
-},
-{
     "model": "sellers.seller",
     "pk": 1,
     "fields": {
@@ -1615,6 +1579,18 @@
         "stock": 1234,
         "discount": 1,
         "created_at": "2023-12-04"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 19,
+    "fields": {
+        "product": 15,
+        "seller": 3,
+        "price": "111.00",
+        "stock": 5,
+        "discount": 1,
+        "created_at": "2024-01-13"
     }
 },
 {
