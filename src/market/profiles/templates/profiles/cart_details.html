@@ -11,8 +11,8 @@
       <img src="{{ seller_product.product.preview.url }}" alt="Изображение продукта" style="width: 200px">
       <p>{{ seller_product.product.name }}</p>
       <p>Описание: {{ seller_product.product.description }}</p>
-      {% if priority_discount_type == seller_product.discount.type %}
-        <p>Стоимость: <span style="text-decoration: line-through; color: #adaaac ">{{ seller_product.price }}</span> <b>{{ seller_product.format_discounted_price }} Р</b></p>
+      {% if priority_discount_type == seller_product.discount.type.name %}
+        <p>Стоимость: <span style="text-decoration: line-through; color: #adaaac ">{{ seller_product.price }}</span> <b>{{ seller_product.get_format_discounted_price }} Р</b></p>
       {% else %}
         <p>Стоимость: <b>{{ seller_product.price }} Р</b></p>
       {% endif %}

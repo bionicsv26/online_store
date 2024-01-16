@@ -63,7 +63,7 @@ class Product(models.Model):
         if product is None:
             super().save(*args, **kwargs)
 
-    def min_max_price(self) -> str:
+    def get_price_range(self) -> str:
         min_max = self.seller_products.aggregate(Min('price'), Max('price'))
         if min_max['price__min'] == min_max['price__max']:
             result = '{:.2f}'.format(min_max['price__min'])

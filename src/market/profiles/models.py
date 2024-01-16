@@ -25,17 +25,17 @@ class Cart(models.Model):
     cost = models.DecimalField(default=0, max_digits=12, decimal_places=2, verbose_name='общая стоимость')
     discount = models.ForeignKey(Discount, null=True, blank=True, on_delete=models.PROTECT, related_name='carts', verbose_name='скидка')
 
-    def discounted_cost(self) -> float:
+    def get_discounted_cost(self) -> float:
         return float(self.cost) * (1 - self.discount.value / 100)
 
-    def total_discounted_seller_products_price(self) -> float:
+    def get_total_discounted_seller_products_price(self) -> float:
         return sum(
-            seller_product.discounted_price()
+            seller_product.get_discounted_price()
             for seller_product in self.seller_products.all().prefetch_related('discount')
         )
 
-    def priority_discounted_cost(self) -> tuple[str, float]:
-        cart_discount_cost = (self.discounted_cost(), 2)
-        total_discounted_seller_products_price = (self.total_discounted_seller_products_price(), 3)
+    def get_priority_discounted_cost(self) -> tuple[str, str]:
+        cart_discount_cost = (self.get_discounted_cost(), 'cart_discount')
+        total_discounted_seller_products_price = (self.get_total_discounted_seller_products_price(), 'category_discount')
         sorted_discounts = sorted((cart_discount_cost, total_discounted_seller_products_price))
         return '{:.2f}'.format(sorted_discounts[0][0]), sorted_discounts[0][1]

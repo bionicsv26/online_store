@@ -67,9 +67,9 @@
           </div>
           <div class="Sort-variants">
 
-            <a class="Sort-sortBy Sort-sortBy_dec" href="?order_by=rating{% if category %}&category={{ category }}{% endif %}">Популярности</a>
+            <a class="Sort-sortBy Sort-sortBy_dec" href="?order_by=-rating{% if category %}&category={{ category }}{% endif %}">Популярности</a>
             <a class="Sort-sortBy"  href="?order_by=price{% if category %}&category={{ category }}{% endif %}">Цене</a>
-            <a class="Sort-sortBy" href="?order_by=feedback{% if category %}&category={{ category }}{% endif %}">Отзывам</a>
+            <a class="Sort-sortBy" href="?order_by=-feedback{% if category %}&category={{ category }}{% endif %}">Отзывам</a>
             <a class="Sort-sortBy Sort-sortBy_inc" href="?order_by=-created_at{% if category %}&category={{ category }}{% endif %}">Новизне</a>
           </div>
         </div>

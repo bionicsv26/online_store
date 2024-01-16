@@ -23,9 +23,9 @@ def save_profile(sender, instance, **kwargs):
 def create_cart(sender, instance, created, **kwargs):
     if created:
         cart = Cart.objects.create(user=instance)
-        discount_type_1 = Discount.objects.filter(type=1).filter()
-        if discount_type_1:
-            cart.objects.update(discount=discount_type_1)
+        undiscounted_discount = Discount.objects.filter(type__name='undiscounted').filter()
+        if undiscounted_discount:
+            cart.objects.update(discount=undiscounted_discount)
 
 
 @receiver(m2m_changed, sender=Cart.seller_products.through)
@@ -45,7 +45,9 @@ def count_cart_cost_and_change_cart_discount(sender, instance, action, **kwargs)
         instance.save()
 
         # изменение типа скидки корзины в зависимости от количества в ней продуктов
-        discount_type_1, discount_type_2 = Discount.objects.filter(Q(type=1) | Q(type=2)).order_by('type')
+        discount_type_1, discount_type_2 = Discount.objects.filter(
+            Q(type__name='undiscounted') | Q(type__name='cart_discount')
+        ).order_by('type')
         if discount_type_1 and discount_type_2:
             total_cart_seller_products = len(seller_products)
             if total_cart_seller_products >= discount_type_2.amount_products:

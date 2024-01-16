@@ -718,5 +718,41 @@
         "content_type": 20,
         "codename": "view_cart"
     }
+},
+{
+    "model": "auth.permission",
+    "pk": 77,
+    "fields": {
+        "name": "Can add тип скидки",
+        "content_type": 20,
+        "codename": "add_discounttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 78,
+    "fields": {
+        "name": "Can change тип скидки",
+        "content_type": 20,
+        "codename": "change_discounttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 79,
+    "fields": {
+        "name": "Can delete тип скидки",
+        "content_type": 20,
+        "codename": "delete_discounttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 80,
+    "fields": {
+        "name": "Can view тип скидки",
+        "content_type": 20,
+        "codename": "view_discounttype"
+    }
 }
 ]

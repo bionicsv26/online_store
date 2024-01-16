@@ -18,29 +18,35 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
     paginate_by = 8
 
     def get_queryset(self):
+        queryset = self.model.objects.prefetch_related('seller_products')
         order_by = self.request.GET.get('order_by', 'price')
         category = self.request.GET.get('category')
         if category:
             queryset = self.model.objects.prefetch_related('seller_products').filter(
                 Q(categories__slug=category) | Q(categories__parent__slug=category),
             )
-        else:
-            queryset = self.model.objects.prefetch_related('seller_products')
 
-        if order_by in ('price', '-price'):
-            return queryset.annotate(Min('seller_products__price')).order_by(
-                 '{}seller_products__price__min'.format('-' if order_by == '-price' else '')
-            )
-        elif order_by == '-created_at':
-            return queryset.order_by(order_by)
-        elif order_by == "feedback":
-            return queryset.annotate(
-                num_feedbacks=Count('productfeedback__feedback_text')
-            ).order_by("-num_feedbacks")
-        elif order_by == "rating":
-            return queryset.annotate(
-                num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__name='payed'))
-            ).order_by("-num_of_sale")
+        match order_by:
+            case 'price' | '-price':
+                return queryset.annotate(Min('seller_products__price')).order_by(
+                    '{}seller_products__price__min'.format('-' if order_by.startswith('-price') else '')
+                )
+
+            case 'created_at' | 'created_at':
+                return queryset.order_by(order_by)
+
+            case 'feedback' | '-feedback':
+                return queryset.annotate(num_feedbacks=Count('productfeedback__feedback_text')).order_by(
+                    "{}num_feedbacks".format('-' if order_by.startswith('-feedback') else '')
+                )
+
+            case 'rating' | '-rating':
+                return queryset.annotate(num_of_sale=Count(
+                    'seller_products__orders',
+                    filter=Q(seller_products__orders__status__name='paid')
+                )).order_by(
+                    '{}num_of_sale'.format('-' if order_by.startswith('-rating') else '')
+                )
 
     def get_context_data(self, **kwargs):
         context = super(CatalogTemplateView, self).get_context_data(**kwargs)
