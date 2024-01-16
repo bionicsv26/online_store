@@ -6,9 +6,12 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin,
 )
 from market.products.models import Product, ProductFeedback
+from market.browsing_history_app.models import ProductBrowsingHistory
 import logging
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
+
+
 
 log = logging.getLogger(__name__)
 
@@ -45,6 +48,24 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                                         prefetch_related('user', 'product').
                                         filter(product=self.object)
                                         )
+        # Проверяем, был ли данный товар уже в списке ранее просмотренных товаров. Если нет, то добавляем
+        # Если товар уже в списке, то не добавляем
+        products = (ProductBrowsingHistory.objects.
+                    select_related('user', 'product').
+                    filter(user=self.request.user))
+        product = self.get_object()
+        #if product_in_queryset_check(product.name, products):
+        if not products.filter(product=product).exists():
+            ProductBrowsingHistory.objects.create(
+                user=self.request.user,
+                product=product,
+            )
+        browsing_history = (ProductBrowsingHistory.objects.
+                            select_related('user', 'product').
+                            filter(user=self.request.user).
+                            values_list("product__name", flat=True)
+                            )
+        context['browsing_history'] = browsing_history
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context

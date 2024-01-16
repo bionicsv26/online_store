@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'market.products.apps.ProductsConfig',
     'market.catalog_app.apps.CatalogAppConfig',
     'market.profiles.apps.ProfilesConfig',
+    'market.browsing_history_app.apps.BrowsingHistoryAppConfig',
     'market.sellers.apps.SellersConfig',
     'market.users_permissions.apps.UsersPermissionsConfig',
 ]
@@ -84,7 +85,7 @@ ROOT_URLCONF = 'market.market.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["market/templates/"],
+        'DIRS': ["src/market/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -160,7 +161,7 @@ USE_TZ = True
 
 STATIC_ROOT = ''
 STATIC_URL = '/static/'
-STATICFILES_DIRS = ('market/static',)
+STATICFILES_DIRS = ('src/market/static',)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

@@ -9,6 +9,7 @@ from market.sellers.models import SellerProduct
 from django.db.models import Q
 import logging
 from django.db.models import Count
+from market.browsing_history_app.models import ProductBrowsingHistory
 
 log = logging.getLogger(__name__)
 
@@ -36,6 +37,12 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         context = super(CatalogTemplateView, self).get_context_data(**kwargs)
         order_by = self.request.GET.get('order_by', 'price')
         context['order_by'] = order_by
+        browsing_history = (ProductBrowsingHistory.objects.
+                            select_related('user', 'product').
+                            filter(user=self.request.user).
+                            values_list("product__name", flat=True)
+                            )
+        context['browsing_history'] = browsing_history
         log.debug("Запуск рендеренга CatalogOldTemplateView")
         log.debug("Контекст готов. Продукты отсортированы")
         return context
