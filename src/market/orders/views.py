@@ -8,9 +8,10 @@ from django.urls import reverse_lazy
 from rest_framework.viewsets import ModelViewSet
 
 from .forms import OrderCreationPage1Form, OrderCreationPage2Form, OrderCreationPage3Form
-from .models import Order, OrderStatus, Cart
+from .models import Order, OrderStatus
 from .serializers import OrderSerializer
 from ..categories.mixins import MenuMixin
+from ..profiles.models import Cart
 
 
 class OrderViewSet(ModelViewSet):

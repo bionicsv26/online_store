@@ -15,7 +15,7 @@
           <div class="CategoriesButton-content">
             {% for category, subcategories in menu_categories %}
               <div class="CategoriesButton-link">
-                <a href="{% url 'categories:category-products-list' category_slug=category.slug %}">
+                <a href="{% url 'market.catalog_app:catalog' %}?category={{ category.slug }}">
                   <div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg"/></div>
                   <span class="CategoriesButton-text">{{ category.name }}</span>
                 </a>
@@ -23,7 +23,7 @@
                   <a class="CategoriesButton-arrow" href="#"></a>
                   <div class="CategoriesButton-submenu">
                     {% for subcategory in subcategories %}
-                      <a class="CategoriesButton-link" href="{% url 'categories:subcategory-products-list' category_slug=category.slug subcategory_slug=subcategory.slug %}">
+                      <a class="CategoriesButton-link" href="{% url 'market.catalog_app:catalog' %}?category={{ subcategory.slug }}">
                         <div class="CategoriesButton-icon"><img src="{% static 'assets/img/icons/departments/1.svg' %}" alt="1.svg"/></div>
                         <span class="CategoriesButton-text">{{ subcategory.name }}</span>
                       </a>

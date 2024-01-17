@@ -6,4 +6,4 @@ class ProfilesConfig(AppConfig):
     name = 'market.profiles'
 
     def ready(self):
-        import market.profiles.signals
+        from .signals import count_cart_cost_and_change_cart_discount

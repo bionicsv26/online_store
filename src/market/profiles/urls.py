@@ -16,4 +16,7 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
     path('account/', views.AccountTemplateView.as_view(), name='account'),
     path('profile/', views.ProfileTemplateView.as_view(), name='profile'),
+
+    # временный путь к странице корзины
+    path('cart/', views.CartDetailsView.as_view(), name='cart_details')
 ]
