@@ -35,14 +35,3 @@ class OrderStatus(models.Model):
 
     def __str__(self):
         return self.name
-
-
-# временная сущность
-class Cart(models.Model):
-    class Meta:
-        verbose_name = 'корзина'
-        verbose_name_plural = 'корзины'
-
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='пользователь')
-    seller_products = models.ManyToManyField(SellerProduct, related_name='carts', verbose_name='Продукт продавца')
-    cost = models.DecimalField(default=0, max_digits=12, decimal_places=2, verbose_name='Общая стоимость')
