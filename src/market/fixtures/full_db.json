@@ -2015,7 +2015,6 @@
     "model": "sellers.discount",
     "pk": 1,
     "fields": {
-        "name": "Без скидки",
         "type": 1,
         "value": 0,
         "amount_products": null,
@@ -2027,7 +2026,6 @@
     "model": "sellers.discount",
     "pk": 2,
     "fields": {
-        "name": "Скидка на количество продуктов в корзине",
         "type": 2,
         "value": 30,
         "amount_products": 5,
@@ -2039,7 +2037,6 @@
     "model": "sellers.discount",
     "pk": 3,
     "fields": {
-        "name": "Скидка на категории товаров",
         "type": 3,
         "value": 30,
         "amount_products": null,
@@ -2047,6 +2044,27 @@
         "categories": [
             7
         ]
+    }
+},
+{
+    "model": "sellers.discounttype",
+    "pk": 1,
+    "fields": {
+        "name": "undiscounted"
+    }
+},
+{
+    "model": "sellers.discounttype",
+    "pk": 2,
+    "fields": {
+        "name": "cart_discount"
+    }
+},
+{
+    "model": "sellers.discounttype",
+    "pk": 3,
+    "fields": {
+        "name": "category_discount"
     }
 }
 ]
