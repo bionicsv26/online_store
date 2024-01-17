@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from market.sellers.models import Seller, SellerProduct, Discount
+from market.sellers.models import Seller, SellerProduct, Discount, DiscountType
 
 
 @admin.register(Seller)
@@ -31,6 +31,27 @@ class SellerProductAdmin(admin.ModelAdmin):
 
 @admin.register(Discount)
 class DiscountAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'name', 'value'
-    list_display_links = 'pk', 'name'
+    list_display = 'pk', 'type', 'value'
+    list_display_links = 'pk',
+    ordering = 'pk',
+    fieldsets = (
+        ('Обязательные поля', {
+            'fields': ('type', 'value'),
+        }),
+        ('Поля для скидки на количество товаров в корзине', {
+            'fields': ('amount_products',),
+        }),
+        ('Поля для скидки на категории товаров', {
+            'fields': ('categories',),
+        }),
+        ('Необязательные поля', {
+            'fields': ('expires',),
+        }),
+    )
+
+
+@admin.register(DiscountType)
+class DiscountTypeAdmin(admin.ModelAdmin):
+    list_display = 'pk', 'name'
+    list_display_links = 'name',
     ordering = 'pk', 'name'

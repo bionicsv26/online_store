@@ -6,4 +6,4 @@ class SellersConfig(AppConfig):
     name = 'market.sellers'
 
     def ready(self):
-        from .signals import delete_cache
+        from .signals import delete_cache, change_seller_product_discount
