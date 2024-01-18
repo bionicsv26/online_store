@@ -62,6 +62,17 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
             range_end = price_range[1]
             queryset = queryset.filter(price__range=(range_start, range_end))
 
+        title = self.request.GET.get('title')
+        in_stock = self.request.GET.get('in_stock')
+        # free_delivery = self.request.GET.get('free_delivery')
+
+        if title:
+            queryset = queryset.filter(product__name__icontains=title) | queryset.filter(
+                product__description__icontains=title)
+
+        if in_stock:
+            queryset = queryset.filter(stock__gt=0)
+
         return queryset.reverse() if order_by.startswith('-') else queryset
 
     def get_context_data(self, **kwargs):
@@ -71,6 +82,11 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         context['order_by'] = order_by
         context['category'] = category
         context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
+        context['price_filter'] = self.request.GET.get('price_filter')
+        if context['price_filter']:
+            context['set_price'] = context['price_filter'].split(";")[1]
+        context['title'] = self.request.GET.get('title')
+        context['in_stock'] = self.request.GET.get('in_stock')
         browsing_history = (ProductBrowsingHistory.objects.
                             select_related('user', 'product').
                             filter(user=self.request.user).
@@ -91,44 +107,5 @@ class FilterCatalogView(ListView):
         price_range = self.request.GET.get('price').split(";")
         range_start = price_range[0]
         range_end = price_range[1]
-        title = self.request.GET.get('title')
-        in_stock = self.request.GET.get('in_stock')
-        free_delivery = self.request.GET.get('free_delivery')
-
-        if title:
-            queryset = queryset.filter(product__name__icontains=title) | queryset.filter(
-                product__description__icontains=title)
-
-        if in_stock:
-            queryset = queryset.filter(stock__gt=0)
-
-        return queryset
 
 
-# class FilterCatalogView(ListView):
-#     template_name = "catalog_app/catalog.html"
-#     model = SellerProduct
-#     paginate_by = 8
-#
-#     def get_queryset(self):
-#         price_range = self.request.GET.get('price').split(";")
-#         range_start = price_range[0]
-#         range_end = price_range[1]
-#         title = self.request.GET.get('title')
-#         in_stock = self.request.GET.get('in_stock')
-#         free_delivery = self.request.GET.get('free_delivery')
-#
-#         queryset = SellerProduct.objects.filter(price__range=(range_start, range_end))
-#
-#         if title:
-#             queryset = queryset.filter(product__name__icontains=title) | queryset.filter(product__description__icontains=title)
-#
-#         if in_stock:
-#             queryset = queryset.filter(stock__gt=0)
-#
-#         return queryset
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(FilterCatalogView, self).get_context_data(**kwargs)
-#         context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
-#         return context
