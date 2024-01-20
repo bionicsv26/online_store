@@ -18,11 +18,11 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
     paginate_by = 8
 
     def get_queryset(self):
-        queryset = self.model.objects.prefetch_related('seller_products')
+        queryset = self.model.objects.prefetch_related('seller_products').filter(seller_products__isnull=False)
         order_by = self.request.GET.get('order_by', 'price')
         category = self.request.GET.get('category')
         if category:
-            queryset = self.model.objects.prefetch_related('seller_products').filter(
+            queryset = queryset.prefetch_related('seller_products').filter(
                 Q(categories__slug=category) | Q(categories__parent__slug=category),
             )
 
@@ -44,8 +44,8 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
 
             case 'created_at' | '-created_at':
                 queryset = queryset.annotate(
-                    Min('seller_products__created_at')
-                ).order_by('seller_products__created_at__min')
+                    Max('seller_products__created_at')
+                ).order_by('seller_products__created_at__max')
 
         return queryset.reverse() if order_by.startswith('-') else queryset
 

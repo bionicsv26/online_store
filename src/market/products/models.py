@@ -41,7 +41,6 @@ def image_directory_path(instance: 'Product', filename) -> str:
     return f'images/products/product_{instance.slug}/product_preview/{filename}'
 
 
-# необходимо добавить поле created_at к модели, чтобы можно было сортировать каталог по новизне
 class Product(models.Model):
     class Meta:
         verbose_name = 'Продукт'
