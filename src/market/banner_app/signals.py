@@ -3,8 +3,9 @@ from django.db.models.signals import post_save, post_delete
 from market.settingsapp.signals import clear_cache
 from django.dispatch import receiver
 from .models import BannerSlider
-from market.sellers.models import SellerProduct
 import logging
+
+from ..products.models import Product
 
 log = logging.getLogger(__name__)
 
@@ -56,41 +57,41 @@ def banner_slider_admin_cash_reset(sender, **kwargs) -> None:
         log.debug("Кэш 'banners_sliders_cache' был удален")
 
 
-@receiver(post_save, sender=SellerProduct)
-def seller_products_post_save_cash_reset(sender, instance, created, **kwargs) -> None:
+@receiver(post_save, sender=Product)
+def products_post_save_cash_reset(sender, instance, created, **kwargs) -> None:
     """
     Эта функция receiver отчищает кэш" "top_products_cache" для страницы index.html
-    когда в модели SellerProduct произошло сохранение
-    :param sender: model SellerProduct
+    когда в модели Product произошло сохранение
+    :param sender: model Product
     :param instance: объект модели
     :param created: boolean тригер о создании нового объекта в модели
     :param kwargs: дополнительные параметры и переменные
     :return: None
     """
-    log.debug("В БД SellerProduct произошло изменение. Вызван метод Save")
+    log.debug("В БД Product произошло изменение. Вызван метод Save")
     some_cache = cache.get("top_products_cache")
     if some_cache:
         cache.delete("top_products_cache")
         log.debug("Кэш 'top_products_cache' был удален")
 
 
-@receiver(post_delete, sender=SellerProduct)
-def seller_products_post_delete_cash_reset(sender, instance, **kwargs) -> None:
+@receiver(post_delete, sender=Product)
+def products_post_delete_cash_reset(sender, instance, **kwargs) -> None:
     """
     Эта функция receiver отчищает кэш" "top_products_cache" для страницы index.html
-    когда в модели SellerProduct был удален объект и об этом пришел сигнал
-    :param sender: model SellerProduct
+    когда в модели Product был удален объект и об этом пришел сигнал
+    :param sender: model Product
     :param instance: model object
     :param kwargs: дополнительные параметры и переменные
     :return: None
     """
-    log.debug("В БД SellerProduct произошло изменение. Вызван метод Delete")
+    log.debug("В БД Product произошло изменение. Вызван метод Delete")
     if cache.get("top_products_cache"):
         cache.delete("top_products_cache")
         log.debug("Кэш 'top_products_cache' был удален")
 
 @receiver(clear_cache)
-def seller_products_admin_cash_reset(sender, **kwargs) -> None:
+def products_admin_cash_reset(sender, **kwargs) -> None:
     """
     Эта функция receiver отчищает кэш" "top_products_cache" для страницы index.html
     когда в админ панели нажали кнопку "Clear cache"

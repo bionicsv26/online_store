@@ -20,4 +20,4 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Cart)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'cost']
-    fields = ['user', 'cost', 'seller_products', 'discount']
+    fields = ['user', 'seller_products', 'discount']

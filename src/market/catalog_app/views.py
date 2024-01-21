@@ -1,6 +1,6 @@
 import logging
 
-from django.db.models import Count, Q, Min
+from django.db.models import Q, Min, Max
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -18,35 +18,36 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
     paginate_by = 8
 
     def get_queryset(self):
-        queryset = self.model.objects.prefetch_related('seller_products')
+        queryset = self.model.objects.prefetch_related('seller_products').filter(seller_products__isnull=False)
         order_by = self.request.GET.get('order_by', 'price')
         category = self.request.GET.get('category')
         if category:
-            queryset = self.model.objects.prefetch_related('seller_products').filter(
+            queryset = queryset.prefetch_related('seller_products').filter(
                 Q(categories__slug=category) | Q(categories__parent__slug=category),
             )
 
         match order_by:
-            case 'price' | '-price':
-                return queryset.annotate(Min('seller_products__price')).order_by(
-                    '{}seller_products__price__min'.format('-' if order_by.startswith('-price') else '')
-                )
+            case 'rating' | '-rating':
+                queryset = queryset.annotate(
+                    num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__name='paid'))
+                ).order_by('num_of_sale')
 
-            case 'created_at' | 'created_at':
-                return queryset.order_by(order_by)
+            case 'price' | '-price':
+                queryset = queryset.annotate(
+                    Min('seller_products__price')
+                ).order_by('seller_products__price__min')
 
             case 'feedback' | '-feedback':
-                return queryset.annotate(num_feedbacks=Count('productfeedback__feedback_text')).order_by(
-                    "{}num_feedbacks".format('-' if order_by.startswith('-feedback') else '')
-                )
+                queryset = queryset.annotate(
+                    num_feedbacks=Count('productfeedback__feedback_text')
+                ).order_by('num_feedbacks')
 
-            case 'rating' | '-rating':
-                return queryset.annotate(num_of_sale=Count(
-                    'seller_products__orders',
-                    filter=Q(seller_products__orders__status__name='paid')
-                )).order_by(
-                    '{}num_of_sale'.format('-' if order_by.startswith('-rating') else '')
-                )
+            case 'created_at' | '-created_at':
+                queryset = queryset.annotate(
+                    Max('seller_products__created_at')
+                ).order_by('seller_products__created_at__max')
+
+        return queryset.reverse() if order_by.startswith('-') else queryset
 
     def get_context_data(self, **kwargs):
         context = super(CatalogTemplateView, self).get_context_data(**kwargs)

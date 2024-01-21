@@ -70,10 +70,11 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                                               prefetch_related('user', 'product').
                                               filter(user=self.request.user)[:19]
                                               )
-        context = {
+        context = self.get_context_data()
+        context.update({
             'brosing_history': queryset,
             'total_browsing_product_in_the_list': total_browsing_product_in_the_list,
-        }
+        })
         return self.render_to_response(context)
 
 

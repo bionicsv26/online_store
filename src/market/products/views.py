@@ -25,7 +25,6 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
     success_url = reverse_lazy('products:product-details')
 
     def post(self, request, *args, **kwargs):
-        success_url = self.success_url
         form = self.form_class(request.POST)
         if form.is_valid():
             feedback_text = form.cleaned_data.get("feedback_text")
@@ -48,13 +47,13 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                                         prefetch_related('user', 'product').
                                         filter(product=self.object)
                                         )
+
         # Проверяем, был ли данный товар уже в списке ранее просмотренных товаров. Если нет, то добавляем
         # Если товар уже в списке, то не добавляем
         products = (ProductBrowsingHistory.objects.
                     select_related('user', 'product').
                     filter(user=self.request.user))
         product = self.get_object()
-        #if product_in_queryset_check(product.name, products):
         if not products.filter(product=product).exists():
             ProductBrowsingHistory.objects.create(
                 user=self.request.user,
