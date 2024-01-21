@@ -3,9 +3,10 @@ import random
 from django.core.cache import cache
 from .models import BannerSlider
 from market.settingsapp.models import CacheTime
-from market.sellers.models import SellerProduct
 from django.db.models import Count, Q
 import logging
+
+from ..products.models import Product
 
 log = logging.getLogger(__name__)
 
@@ -35,7 +36,7 @@ class BannerSliderMixin(ContextMixin):
         return context
 
 
-class TopSellerProductsMixin(ContextMixin):
+class TopProductsMixin(ContextMixin):
     '''
     Миксин проверяет кэш "top_products_cache" и если его нет, создает его.
     Берет из БД товары продавцов, отсортированных по количеству продаж.
@@ -45,28 +46,28 @@ class TopSellerProductsMixin(ContextMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        log.debug("Start TopSellerProductsMixin to prepare Top Seller products for Index page")
+        log.debug("Start TopProductsMixin to prepare Top Seller products for Index page")
         top_products_timeout = CacheTime.objects.first().top_products_cache
         log.debug(f"top_products_timeout is: {top_products_timeout}")
         top_products = cache.get("top_products_cache")
         if not top_products:
             log.debug(f"There is no top_products in the cache yet")
-            queryset = SellerProduct.objects.annotate(
-                num_of_sale=Count('orders', filter=Q(orders__status__name='payed'))
+            queryset = Product.objects.annotate(
+                num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__name='paid'))
             ).order_by("-num_of_sale")
 
             if queryset.exists():
                 log.debug(
-                    f"Seller products upload from DB and ordered by number of sale {queryset}. "
+                    f"Products upload from DB and ordered by number of sale {queryset}. "
                     f"There is : {len(queryset)} objects")
                 cache.set("top_products_cache", queryset, top_products_timeout)
-                log.debug(f"Seller products upload from DB and saved on cache: {queryset}")
+                log.debug(f"Products upload from DB and saved on cache: {queryset}")
                 top_products = queryset
             else:
-                log.debug(f"There is no any Seller products upload from DB")
+                log.debug(f"There is no any products upload from DB")
         else:
             log.debug(f"top_products was taken from the cache {top_products}."
-                  f"\nNumber of seller products is {len(top_products)}")
+                  f"\nNumber of products is {len(top_products)}")
         if len(top_products) >= 8:
             context['top_products_card'] = top_products[:4]
             context['top_products_card_hide_md'] = top_products[4:6]

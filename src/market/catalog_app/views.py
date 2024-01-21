@@ -1,6 +1,6 @@
 import logging
 
-from django.db.models import Count, Q, Min, Max
+from django.db.models import Q, Min, Max
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
