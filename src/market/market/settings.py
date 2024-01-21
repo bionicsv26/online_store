@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from django.urls import reverse_lazy
 load_dotenv()  # loads the configs from .env
 
 
@@ -220,9 +221,9 @@ REST_FRAMEWORK = {
 BANK_PAY_URL = os.getenv('BANK_PAY_URL')
 ORDERS_API_URL = os.getenv('ORDERS_API_URL')
 
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = reverse_lazy('market.profiles:login')
+LOGOUT_URL = reverse_lazy('market.profiles:logout')
+LOGIN_REDIRECT_URL = reverse_lazy('market.banner_app:index')
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
