@@ -1,4 +1,4 @@
-from . cart import Cart
+from .cart import Cart
 
 
 def cart(request):
