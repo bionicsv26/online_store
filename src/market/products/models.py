@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Min, Max
+from django.urls import reverse
 
 from market.categories.models import Category
 
@@ -62,6 +63,10 @@ class Product(models.Model):
         product = Product.objects.filter(preview=preview_path).first()
         if product is None:
             super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("products:product-details", kwargs={"product_slug": self.slug})
+    
 
     def get_price_range(self) -> str:
         min_max = self.seller_products.aggregate(Min('price'), Max('price'))

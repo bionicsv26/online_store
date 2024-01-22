@@ -1,3 +1,6 @@
+from typing import Any
+from django.db.models.query import QuerySet
+from django.http import HttpRequest, HttpResponse
 from django.views.generic import DetailView
 from .forms import ProductFeedbackForm
 from market.categories.mixins import MenuMixin
@@ -11,6 +14,9 @@ import logging
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 
+from market.cart.cart import Cart
+from market.sellers.models import SellerProduct
+
 
 
 log = logging.getLogger(__name__)
@@ -23,6 +29,28 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
     slug_url_kwarg = 'product_slug'
     form_class = ProductFeedbackForm
     success_url = reverse_lazy('products:product-details')
+
+    def get_queryset(self) -> QuerySet[Any]:
+        return super().get_queryset().prefetch_related('seller_products')
+    
+    def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        response = super().get(request, *args, **kwargs)
+        cart = Cart(request)
+        amount = request.GET.get('amount')
+        seller_product_id = request.GET.get('seller_product_id')
+
+        if seller_product_id is None:
+            product = self.get_object()
+            seller_product = product.seller_products.order_by('price').first()
+        else:
+            seller_product = SellerProduct.objects.get(id=seller_product_id)
+            amount = 1
+
+        if amount or seller_product_id:
+            cart.add(seller_product, amount)
+
+        return response
+
 
     def post(self, request, *args, **kwargs):
         success_url = self.success_url

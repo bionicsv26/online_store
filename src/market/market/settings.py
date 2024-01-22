@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+from django.urls import reverse_lazy
 load_dotenv()  # loads the configs from .env
 
 
@@ -67,6 +68,7 @@ INSTALLED_APPS = [
     'market.browsing_history_app.apps.BrowsingHistoryAppConfig',
     'market.sellers.apps.SellersConfig',
     'market.users_permissions.apps.UsersPermissionsConfig',
+    'market.cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -93,6 +95,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'market.cart.context_processors.cart',
             ],
         },
     },
@@ -220,9 +224,9 @@ REST_FRAMEWORK = {
 BANK_PAY_URL = os.getenv('BANK_PAY_URL')
 ORDERS_API_URL = os.getenv('ORDERS_API_URL')
 
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'index'
+LOGIN_URL = reverse_lazy('market.profiles:login')
+LOGOUT_URL = reverse_lazy('market.profiles:logout')
+LOGIN_REDIRECT_URL = reverse_lazy('market.banner_app:index')
 LOGOUT_REDIRECT_URL = LOGIN_URL
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -231,3 +235,5 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'market.profiles.authentication.EmailAuthBackend',
 ]
+
+CART_SESSION_ID = 'cart'
