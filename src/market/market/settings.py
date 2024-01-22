@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'market.browsing_history_app.apps.BrowsingHistoryAppConfig',
     'market.sellers.apps.SellersConfig',
     'market.users_permissions.apps.UsersPermissionsConfig',
+    'market.cart.apps.CartConfig',
     'market.comparison.apps.ComparisonConfig',
 ]
 
@@ -95,6 +96,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'market.cart.context_processors.cart',
             ],
         },
     },
@@ -235,3 +238,5 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 14
+
+CART_SESSION_ID = 'cart'

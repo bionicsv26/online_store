@@ -1,5 +1,6 @@
 import logging
 
+from django.http import HttpRequest
 from django.db.models import Q, Min, Max
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -64,3 +65,4 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         log.debug("Запуск рендеренга CatalogOldTemplateView")
         log.debug("Контекст готов. Продукты отсортированы")
         return context
+
