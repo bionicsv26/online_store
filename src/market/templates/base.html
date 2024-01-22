@@ -106,7 +106,7 @@
                                         <a class="ControlPanel-title" href="{% url 'market.profiles:profile' %}">Профиль</a>
                                       {% else %}
                                         <a class="ControlPanel-title" href="{% url 'market.profiles:login' %}">Вход</a>
-                                        <a class="ControlPanel-title" href="#">Регистрация</a>
+                                        <a class="ControlPanel-title" href="{% url 'market.profiles:register' %}">Регистрация</a>
                                       {% endif %}
                                 </div>
 

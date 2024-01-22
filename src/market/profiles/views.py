@@ -34,10 +34,11 @@ class RegisterView(View):
         if form.is_valid():
             form.save()
 
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Аккаунт для {username} создан.')
+            #username = form.cleaned_data.get('username')
+            #messages.success(request, f'Аккаунт для {username} создан.')
 
-            return redirect(to='/')
+            #return redirect(to='/')
+            return redirect('market.profiles:login')
 
         return render(request, self.template_name, {'form': form})
 
