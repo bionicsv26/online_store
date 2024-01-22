@@ -61,7 +61,7 @@ class Discount(models.Model):
     expires = models.DateTimeField(null=True, blank=True, verbose_name='дата и время окончания скидки')
 
     def __str__(self):
-        return f'Скидка {self.pk}'
+        return f'Скидка с типом {self.type.name} на {self.value}%'
 
 
 class DiscountType(models.Model):

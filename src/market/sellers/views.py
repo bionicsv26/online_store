@@ -43,7 +43,7 @@ class SellerDetailsView(MenuMixin, View):
             cache.set(f'seller_cache_{seller_slug}', seller, seller_cache_time)
 
         if not seller_products:
-            payed_status = OrderStatus.objects.get(name='payed')
+            payed_status = OrderStatus.objects.get(name='paid')
 
             seller_products = seller.seller_products.select_related(
                 'product', 'discount'
@@ -51,8 +51,8 @@ class SellerDetailsView(MenuMixin, View):
                 'product__categories',
                 'orders__status',
             ).annotate(
-                payed_status_count=Count('orders__status', filter=Q(orders__status__name=payed_status.name))
-            ).order_by('-payed_status_count')[:10]
+                paid_status_count=Count('orders__status', filter=Q(orders__status__name=payed_status.name))
+            ).order_by('-paid_status_count')[:10]
 
             top_seller_products_cache_time = cache_settings.top_products_cache
             cache.set(f'seller_products_cache_{seller_slug}', seller_products, top_seller_products_cache_time)
