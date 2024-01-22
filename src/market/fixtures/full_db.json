@@ -687,42 +687,6 @@
     "model": "auth.permission",
     "pk": 77,
     "fields": {
-        "name": "Can add корзина",
-        "content_type": 20,
-        "codename": "add_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 78,
-    "fields": {
-        "name": "Can change корзина",
-        "content_type": 20,
-        "codename": "change_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 79,
-    "fields": {
-        "name": "Can delete корзина",
-        "content_type": 20,
-        "codename": "delete_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 80,
-    "fields": {
-        "name": "Can view корзина",
-        "content_type": 20,
-        "codename": "view_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 77,
-    "fields": {
         "name": "Can add статус заказа",
         "content_type": 9,
         "codename": "add_orderstatus"
@@ -1120,7 +1084,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$260000$mvj8U0Nc1UbChRj1IMrGra$ElYUt8dcoXYVyU3o96JXorgRoQHuafCp0L2IQUzenys=",
-        "last_login": "2024-01-13T16:38:00.073Z",
+        "last_login": "2024-01-19T16:59:46.762Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -1563,7 +1527,7 @@
     "fields": {
         "name": "виноградный сок",
         "preview": "images/products/product_grape-juice/product_preview/grapejuice.jpg",
-        "description": ".",
+        "description": "Освежает!!",
         "is_active": true,
         "slug": "grape-juice",
         "categories": [
@@ -1737,6 +1701,60 @@
         "categories": [
             3
         ]
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 1,
+    "fields": {
+        "user": 3,
+        "product": 13,
+        "view_at": "2024-01-20"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "product": 2,
+        "view_at": "2024-01-20"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "product": 17,
+        "view_at": "2024-01-20"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 4,
+    "fields": {
+        "user": 3,
+        "product": 12,
+        "view_at": "2024-01-20"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 5,
+    "fields": {
+        "user": 3,
+        "product": 8,
+        "view_at": "2024-01-21"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 7,
+    "fields": {
+        "user": 3,
+        "product": 11,
+        "view_at": "2024-01-21"
     }
 },
 {
@@ -1991,24 +2009,24 @@
     "model": "sellers.sellerproduct",
     "pk": 19,
     "fields": {
-        "product": 7,
-        "seller": 4,
-        "price": "34.00",
-        "stock": 45,
-        "discount": 1,
-        "created_at": "2024-01-13"
-    }
-},
-{
-    "model": "sellers.sellerproduct",
-    "pk": 19,
-    "fields": {
         "product": 15,
         "seller": 3,
         "price": "111.00",
         "stock": 5,
         "discount": 1,
         "created_at": "2024-01-13"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 20,
+    "fields": {
+        "product": 7,
+        "seller": 4,
+        "price": "321.00",
+        "stock": 233,
+        "discount": 1,
+        "created_at": "2024-01-20"
     }
 },
 {
