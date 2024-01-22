@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.contrib import messages
 from django.views import View
 from django.shortcuts import render, redirect
@@ -21,19 +22,24 @@ log = logging.getLogger(__name__)
 
 class RegisterView(View):
     form_class = UserRegistrationForm
-    initial = {'key': 'value'}
     template_name = 'profiles/register.html'
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
+        form = self.form_class()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            form.save()
-            return redirect('market.profiles:login')
+            new_user = form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password'])
+            new_user.save()
+
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Аккаунт для {username} создан.')
+
+            return redirect(to=reverse('market.profiles:login'))
 
         return render(request, self.template_name, {'form': form})
 
@@ -66,11 +72,10 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                                               prefetch_related('user', 'product').
                                               filter(user=self.request.user)[:19]
                                               )
-        context = self.get_context_data()
-        context.update({
+        context = {
             'brosing_history': queryset,
             'total_browsing_product_in_the_list': total_browsing_product_in_the_list,
-        })
+        }
         return self.render_to_response(context)
 
 
