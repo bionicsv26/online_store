@@ -1,3 +1,5 @@
+from typing import Optional
+
 from django.db import models
 from django.conf import settings
 
@@ -25,8 +27,10 @@ class Cart(models.Model):
     cost = models.DecimalField(default=0, max_digits=12, decimal_places=2, verbose_name='общая стоимость')
     discount = models.ForeignKey(Discount, null=True, blank=True, on_delete=models.PROTECT, related_name='carts', verbose_name='скидка')
 
-    def get_discounted_cost(self) -> float:
-        return float(self.cost) * (1 - self.discount.value / 100)
+    def get_discounted_cost(self) -> float | int:
+        if self.discount:
+            return float(self.cost) * (1 - self.discount.value / 100)
+        return 0
 
     def get_total_discounted_seller_products_price(self) -> float:
         return sum(
