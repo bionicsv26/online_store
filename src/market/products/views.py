@@ -35,7 +35,7 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
     
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         response = super().get(request, *args, **kwargs)
-        cart = Cart(request)
+        cart = Cart(request.session)
         amount = request.GET.get('amount')
         seller_product_id = request.GET.get('seller_product_id')
 
