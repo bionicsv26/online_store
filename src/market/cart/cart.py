@@ -1,17 +1,15 @@
 from decimal import Decimal
 from django.contrib import messages
 from django.conf import settings
-from django.http import HttpRequest
-from market.products.models import Product
 from market.sellers.models import SellerProduct
 
 
 class Cart:
-    def __init__(self, request: HttpRequest):
+    def __init__(self, session):
         """
         Инициализация корзины
         """
-        self.session = request.session
+        self.session = session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
             # сохранить пустую корзину
@@ -30,23 +28,23 @@ class Cart:
             cart[str(product.id)]['product'] = product
         for item in cart.values():
             item['price'] = Decimal(item['price'])
-            item['total_price'] = item['price'] * int(item['quantity'])
+            item['total_price'] = item['price'] * item['quantity']
             yield item
 
     def __len__(self):
         """
         Подсчитать все товарные позиции в корзине
         """
-        return sum(int(item['quantity']) for item in self.cart.values())
+        return sum(item['quantity'] for item in self.cart.values())
     
-    def add(self, product: SellerProduct, amount: str):
+    def add(self, product: SellerProduct, amount: int):
         """
         Добавить товар в корзину
         """
         product_id = str(product.id)
         product_stock = product.stock
 
-        if product_stock >= int(amount):
+        if product_stock >= amount:
             if product_id not in self.cart:
                 self.cart[product_id] = {'quantity': amount,
                                          'price': str(product.price)}
@@ -74,7 +72,7 @@ class Cart:
         """
         Получить итоговую сумму корзины.
         """
-        return sum(Decimal(item['price']) * int(item['quantity'])
+        return sum(Decimal(item['price']) * item['quantity']
                    for item in self.cart.values())
     
     def clear(self):

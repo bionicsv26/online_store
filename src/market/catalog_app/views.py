@@ -1,6 +1,5 @@
 import logging
 
-from django.http import HttpRequest
 from django.db.models import Count, Q, Min
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
