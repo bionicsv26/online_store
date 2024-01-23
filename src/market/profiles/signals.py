@@ -23,9 +23,10 @@ def save_profile(sender, instance, **kwargs):
 def create_cart(sender, instance, created, **kwargs):
     if created:
         cart = Cart.objects.create(user=instance)
-        undiscounted_discount = Discount.objects.filter(type__name='undiscounted').filter()
+        undiscounted_discount = Discount.objects.filter(type__name='undiscounted')
         if undiscounted_discount:
-            cart.objects.update(discount=undiscounted_discount)
+            cart.discount = undiscounted_discount[0]
+            cart.save()
 
 
 @receiver(m2m_changed, sender=Cart.seller_products.through)
