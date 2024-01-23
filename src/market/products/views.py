@@ -47,7 +47,7 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
             amount = 1
 
         if amount or seller_product_id:
-            cart.add(seller_product, amount)
+            cart.add(seller_product, int(amount))
 
         return response
 
