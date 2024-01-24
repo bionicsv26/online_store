@@ -1,8 +1,6 @@
-from typing import Optional
-
 from django.contrib import messages
+from django.contrib.postgres.aggregates import ArrayAgg
 from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.views import View
 from django.views.generic import TemplateView
 
@@ -12,98 +10,73 @@ from ..sellers.models import SellerProduct
 
 
 class CompareList:
-    def __init__(self, request):
-        self.request = request
-        if 'compare_list' not in self.request.session:
-            self.request.session['compare_list'] = []
+    def __init__(self, session):
+        self.session = session
+        if 'compare_list' not in self.session:
+            self.session['compare_list'] = []
 
-    def parse_url_request_page(self):
-        """
-        Функция возвращает url исходной страницы с параметрами для возврата на нее же
-        после выполнения методов add_to_compare и remove_from_compare
-        """
-        referer_url: str = self.request.META.get('HTTP_REFERER')
-        string_reverse: str = ''
-        dict_for_kwargs: Optional[dict] = dict()
-        if 'products/' in referer_url:
-            list_referer_url = referer_url.split('products/')
-            string_reverse = 'products:product-details'
-            dict_for_kwargs = {"product_slug": list_referer_url[1]}
-        elif 'categories/' in referer_url:
-            list_referer_url = referer_url.split('categories/')
-            match list_referer_url[1].count('/'):
-                case 1:
-                    string_reverse = 'categories:category-products-list'
-                    dict_for_kwargs = {"category_slug": list_referer_url[1].strip('/')}
-                case 2:
-                    string_reverse = 'categories:subcategory-products-list'
-                    split_kwargs = list_referer_url[1].strip('/').split('/')
-                    dict_for_kwargs = {"category_slug": split_kwargs[0], "subcategory_slug": split_kwargs[1]}
-        elif 'comparison/' in referer_url:
-            string_reverse = 'comparison:compared_products'
-            dict_for_kwargs = None
-        url_reverse = reverse(string_reverse, kwargs=dict_for_kwargs)
-        return url_reverse
-
-    def add_to_compare(self, product_id):
+    def add_to_compare(self, product_id: int) -> str:
         """Функция добавляет id выбранного товара в список для сравнения товаров"""
-        if product_id not in self.request.session['compare_list'] and len(self.request.session['compare_list']) < 4:
-            self.request.session['compare_list'].append(product_id)
+        if product_id not in self.session['compare_list'] and len(self.session['compare_list']) < 4:
             added_product = Product.objects.filter(id=product_id).first()
-            message: str = f"Товар {added_product.name} добавлен в сравнение.\n"
-            messages.success(self.request, message)
-        self.request.session.modified = True
+            if added_product is not None:
+                self.session['compare_list'].append(product_id)
+                message: str = f"Товар {added_product.name} добавлен в сравнение.\n"
+                self.session.modified = True
+                return message
 
-    def remove_from_compare(self, product_id):
+    def remove_from_compare(self, product_id: int):
         """Функция удаляет id выбранного товара из списка для сравнения товаров"""
-        if product_id in self.request.session['compare_list']:
-            self.request.session['compare_list'].remove(product_id)
+        if product_id in self.session['compare_list']:
             removed_product = Product.objects.filter(id=product_id).first()
-            message: str = f"Товар {removed_product.name} удален из сравнения.\n"
-            messages.success(self.request, message)
-            self.request.session.modified = True
+            if removed_product is not None:
+                self.session['compare_list'].remove(product_id)
+                message: str = f"Товар {removed_product.name} удален из сравнения.\n"
+                self.session.modified = True
+                return message
 
     def get_compared_products(self):
         """Функция формирует queryset из товаров списка для сравнения"""
-        if 'compare_list' in self.request.session and len(self.request.session['compare_list']) in range(2, 5):
-            return (Product.objects.filter(id__in=self.request.session['compare_list'])
-                    .prefetch_related("specification"))
+        if 'compare_list' in self.session and len(self.session['compare_list']) in range(2, 5):
+            return (Product.objects.filter(id__in=self.session['compare_list'])
+                    .prefetch_related("specification", "categories"))
         else:
             return []
 
     def get_prices_products(self):
-        """Функция формирует словарь цен для товаров из списка для сравнения"""
-        dict_prices_products: dict = dict()
-        queryset = (SellerProduct.objects.filter(product_id__in=self.request.session['compare_list'])
-                    .only("product_id", "price"))
-        for item_id in self.request.session['compare_list']:
-            list_prices: list = list()
-            for item in queryset.filter(product_id=item_id):
-                list_prices.append(item.price)
-            if len(list_prices) > 1:
-                dict_prices_products.update({item_id: f"{min(list_prices)} - {max(list_prices)}"})
-            else:
-                dict_prices_products.update({item_id: f"{min(list_prices)}"})
-        return dict_prices_products
+        queryset = SellerProduct.objects.filter(
+            product_id__in=self.session['compare_list'],
+        ).values(
+            "product_id",
+        ).annotate(
+            prices=ArrayAgg("price")
+        ).order_by(
+            "product_id",
+        )
+        return queryset
 
 
 class AddToCompareView(MenuMixin, View):
     def get(self, request, product_id):
-        compare_list = CompareList(request)
-        compare_list.add_to_compare(product_id)
-        url_reverse = compare_list.parse_url_request_page()
-        return HttpResponseRedirect(url_reverse)
+        compare_list = CompareList(self.request.session)
+        message = compare_list.add_to_compare(product_id)
+        if message is not None:
+            messages.success(self.request, message)
+        referer_url: str = self.request.META.get('HTTP_REFERER')
+        return HttpResponseRedirect(referer_url)
 
 
 class RemoveFromCompareView(MenuMixin, View):
     def get(self, request, product_id):
-        compare_list = CompareList(request)
-        compare_list.remove_from_compare(product_id)
-        url_reverse = compare_list.parse_url_request_page()
-        if len(self.request.session['compare_list']) == 1 and "comparison" in url_reverse:
+        compare_list = CompareList(self.request.session)
+        message: str = compare_list.remove_from_compare(product_id)
+        if message is not None:
+            messages.success(self.request, message)
+        referer_url: str = self.request.META.get('HTTP_REFERER')
+        if len(self.request.session['compare_list']) == 1 and "comparison" in referer_url:
             product_id_last = self.request.session['compare_list'][0]
             compare_list.remove_from_compare(product_id_last)
-        return HttpResponseRedirect(url_reverse)
+        return HttpResponseRedirect(referer_url)
 
 
 class CompareListView(MenuMixin, TemplateView):
@@ -111,7 +84,7 @@ class CompareListView(MenuMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CompareListView, self).get_context_data(**kwargs)
-        compare_list = CompareList(self.request)
+        compare_list = CompareList(self.request.session)
         compared_products = compare_list.get_compared_products()
         only_categories: list = list()
         for product in compared_products:
@@ -122,8 +95,8 @@ class CompareListView(MenuMixin, TemplateView):
         else:
             context['different_categories'] = True
         if len(compared_products) > 0:
-            dict_prices_products = compare_list.get_prices_products()
-            context['prices_products'] = dict_prices_products
+            prices_compared_products = compare_list.get_prices_products()
+            context['prices_products'] = prices_compared_products
         if self.request.GET.get('checkbox_only_diff') == 'on':
             list_differences = create_list_differences(compared_products)
             context['checked'] = True
@@ -165,4 +138,3 @@ def create_list_specifications(compared_products: CompareList) -> list:
     else:
         list_specifications = list(set(list_specifications))
     return list_specifications
-
