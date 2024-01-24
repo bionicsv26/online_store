@@ -89,6 +89,19 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
 
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
     template_name = "profiles/profile.html"
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data()
+        if context["form"].is_valid():
+            print('yes done')
+            #save your model
+            #redirect
+        return super(TemplateView, self).render_to_response(context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = UserProfileForm(self.request.POST or None)  # instance= None
+        context["form"] = form
+        #context["latest_article"] = latest_article
+        return context
 
 
 class CartDetailsView(TemplateView):

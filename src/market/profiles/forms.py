@@ -12,7 +12,7 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
-    
+
     def clean_email(self):
         data = self.cleaned_data['email']
         if User.objects.filter(email=data).exists():
@@ -53,7 +53,7 @@ class UserLoginForm(forms.Form):
                 self.confirm_login_allowed(self.user_cache)
 
         return self.cleaned_data
-    
+
     def confirm_login_allowed(self, user):
         """
         Controls whether the given User may log in. This is a policy setting,
@@ -96,7 +96,7 @@ class UserSetPasswordForm(forms.Form):
         password1 = self.cleaned_data.get('new_password')
         password_validation.validate_password(password1, self.user)
         return password1
-    
+
     def save(self, commit=True):
         password = self.cleaned_data["new_password"]
         self.user.set_password(password)
