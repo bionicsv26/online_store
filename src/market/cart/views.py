@@ -27,4 +27,4 @@ class CartRemoveView(View):
     def get(self, request: HttpRequest, product_id: str) -> HttpResponse:
         cart = Cart(request.session)
         cart.remove(product_id=product_id)
-        return redirect(reverse('cart:cart_details'))
+        return redirect(reverse('market.cart:cart_details'))
