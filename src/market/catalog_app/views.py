@@ -67,8 +67,9 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         # free_delivery = self.request.GET.get('free_delivery')
 
         if title:
-            queryset = queryset.filter(product__name__icontains=title) | queryset.filter(
-                product__description__icontains=title)
+            queryset = queryset.filter(
+                Q(product__name__icontains=title) | Q(product__description__icontains=title)
+            )
 
         if in_stock:
             queryset = queryset.filter(stock__gt=0)
@@ -97,26 +98,3 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         log.debug("Контекст готов. Продукты отсортированы")
         return context
 
-
-class FilterCatalogView(ListView):
-    template_name = "catalog_app/catalog.html"
-    model = SellerProduct
-    paginate_by = 20
-
-    def get_queryset(self):
-        price_range = self.request.GET.get('price').split(";")
-        range_start = price_range[0]
-        range_end = price_range[1]
-        title = self.request.GET.get('title')
-        in_stock = self.request.GET.get('in_stock')
-        free_delivery = self.request.GET.get('free_delivery')
-
-        queryset = SellerProduct.objects.filter(price__range=(range_start, range_end))
-
-        if title:
-            queryset = queryset.filter(product__name__icontains=title)
-
-        if in_stock:
-            queryset = queryset.filter(stock__gt=0)
-
-        return queryset
