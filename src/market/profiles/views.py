@@ -5,7 +5,6 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from .forms import UserRegistrationForm
-from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.views.generic import (
