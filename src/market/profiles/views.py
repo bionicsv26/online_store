@@ -5,6 +5,9 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from .forms import UserRegistrationForm
+from django.urls import reverse_lazy, reverse
+from .forms import UserRegistrationForm, UserProfileForm
+from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.views.generic import (
@@ -89,18 +92,47 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
 
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
     template_name = "profiles/profile.html"
+    form_class = UserProfileForm
+
     def post(self, request, *args, **kwargs):
-        context = self.get_context_data()
-        if context["form"].is_valid():
-            print('yes done')
-            #save your model
-            #redirect
-        return super(TemplateView, self).render_to_response(context)
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            print("The form is valid")
+            full_name = form.cleaned_data.get("full_name")
+            phone = form.cleaned_data.get("phone")
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            password_repeat = form.cleaned_data.get("password_repeat")
+            print("full_name is  ----    ", full_name)
+            print("phone is  ----    ", phone)
+            print("email is  ----    ", email)
+            print("password is  ----    ", password)
+            print("password_repeat is  ----    ", password_repeat)
+            log.debug(f"Form was saved")
+            return redirect(reverse(
+                'market.profiles:profile'
+            ))
+        else:
+            print("The form is not valid")
+            full_name = form.cleaned_data.get("full_name")
+            phone = form.cleaned_data.get("phone")
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            password_repeat = form.cleaned_data.get("password_repeat")
+            print("full_name is  ----    ", full_name)
+            print("phone is  ----    ", phone)
+            print("email is  ----    ", email)
+            print("password is  ----    ", password)
+            print("password_repeat is  ----    ", password_repeat)
+            log.debug(f"Form was saved")
+        return render(request, self.template_name, {'form': form})
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        form = UserProfileForm(self.request.POST or None)  # instance= None
-        context["form"] = form
-        #context["latest_article"] = latest_article
+        context['form'] = self.form_class()
+
+        log.debug("Запуск рендеренга ProfileTemplateView")
+        log.debug("Контекст для form готов. ")
         return context
 
 
