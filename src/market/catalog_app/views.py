@@ -64,3 +64,4 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         log.debug("Запуск рендеренга CatalogOldTemplateView")
         log.debug("Контекст готов. Продукты отсортированы")
         return context
+    

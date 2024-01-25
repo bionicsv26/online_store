@@ -45,6 +45,7 @@ INTERNAL_IPS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'market.profiles.apps.ProfilesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -64,10 +65,10 @@ INSTALLED_APPS = [
     'market.categories.apps.CategoriesConfig',
     'market.products.apps.ProductsConfig',
     'market.catalog_app.apps.CatalogAppConfig',
-    'market.profiles.apps.ProfilesConfig',
     'market.browsing_history_app.apps.BrowsingHistoryAppConfig',
     'market.sellers.apps.SellersConfig',
     'market.users_permissions.apps.UsersPermissionsConfig',
+    'market.cart.apps.CartConfig',
 ]
 
 MIDDLEWARE = [
@@ -94,6 +95,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'market.cart.context_processors.cart',
             ],
         },
     },
@@ -232,3 +235,5 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'market.profiles.authentication.EmailAuthBackend',
 ]
+
+CART_SESSION_ID = 'cart'
