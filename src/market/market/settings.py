@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'market.browsing_history_app.apps.BrowsingHistoryAppConfig',
     'market.sellers.apps.SellersConfig',
     'market.users_permissions.apps.UsersPermissionsConfig',
+    'market.comparison.apps.ComparisonConfig',
 ]
 
 MIDDLEWARE = [
@@ -232,3 +233,5 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'market.profiles.authentication.EmailAuthBackend',
 ]
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 14

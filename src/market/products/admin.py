@@ -5,6 +5,7 @@ from .models import (
     ProductFeedback,
     ProductViewHistory,
 )
+from .models import Product, Specification
 
 
 @admin.register(Product)
@@ -12,6 +13,13 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = 'pk', 'name', 'description',
     list_display_links = 'name',
     prepopulated_fields = {'slug': ('name',)}
+    filter_horizontal = ('specification', )
+
+
+@admin.register(Specification)
+class SpecificationAdmin(admin.ModelAdmin):
+    list_display = 'pk', 'name', 'type', 'value'
+    list_display_links = 'name',
 
 
 @admin.register(ProductFeedback)

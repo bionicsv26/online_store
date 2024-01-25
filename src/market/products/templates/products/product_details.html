@@ -46,6 +46,24 @@
                   <span class="btn-content">Купить</span>
                 </a>
               </div>
+               {% if product.id not in request.session.compare_list %}
+                  {% if request.session.compare_list|length < 4 %}
+                <div class="ProductCard-cartElement">
+                  <a class="btn btn_primary" href="{% url 'comparison:add_to_compare' product.id %}">
+                    <img class="btn-icon" src="{% static 'assets/img/icons/card/compare_white.svg' %}" width="23px" height="23px" alt="compare_white.svg"/>
+                    <span class="btn-content">Добавить в сравнение</span>
+                  </a>
+                </div>
+                  {% endif %}
+                {% else %}
+                <div class="ProductCard-cartElement">
+                  <a class="btn btn_primary" href="{% url 'comparison:remove_from_compare' product.id %}">
+                    <img class="btn-icon" src="{% static 'assets/img/icons/card/compare_white.svg' %}" width="23px" height="23px" alt="compare_white.svg"/>
+                    <span class="btn-content">Убрать из сравнения</span>
+                    <br>
+                  </a>
+                </div>
+                {% endif %}
               <div id="modal_open" class="my_modal">
                 <div class="my_modal-dialog">
                   <div class="my_modal-content">
