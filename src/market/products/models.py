@@ -52,6 +52,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='описание')
     is_active = models.BooleanField(default=True, verbose_name='активирован')
     slug = models.SlugField(max_length=20, unique=True)
+    specification = models.ManyToManyField("Specification", related_name='specifications')
 
     def __str__(self):
         return self.name
@@ -102,3 +103,24 @@ class ProductViewHistory(models.Model):
 
     def __str__(self):
         return f" Пользователь {self.name} просматривал продукт {self.product} {self.view_at}."
+
+class Specification(models.Model):
+    class Characteristics(models.IntegerChoices):
+        CLASS = 1, 'Class'
+        MODEL = 2, 'Model'
+        YEAR_RELEASE = 3, 'Year release'
+        COLOUR = 4, 'Colour'
+        DIAGONAL = 5, 'Diagonal'
+        SCREEN_RESOLUTION = 6, 'Screen resolution'
+        MATRIX = 7, 'Matrix'
+        REFRASH_RATE = 8, 'Refresh rate'
+        PIXEL_DENSITY = 9, 'Pixel density'
+        RAM = 10, 'Ram'
+        INTERNAL_MEMORY = 11, 'Internal memory'
+
+    name = models.CharField(max_length=50)
+    type = models.SmallIntegerField(choices=Characteristics.choices, default=Characteristics.MATRIX)
+    value = models.TextField()
+
+    def __str__(self):
+        return f"{self.name}: {self.value}"
