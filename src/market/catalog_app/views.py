@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from market.browsing_history_app.models import ProductBrowsingHistory
 from market.categories.mixins import MenuMixin
 from market.products.models import Product
-from market.sellers.models import SellerProduct
 
 log = logging.getLogger(__name__)
 
@@ -19,14 +18,22 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
     paginate_by = 8
 
     def get_queryset(self):
-        queryset = self.model.objects.prefetch_related('seller_products').filter(seller_products__isnull=False)
-        order_by = self.request.GET.get('order_by', 'price')
+        queryset = self.model.objects.prefetch_related(
+            'seller_products',
+            'tags',
+        ).filter(seller_products__isnull=False)
+
+        search = self.request.GET.get('search')
+        if search:
+            queryset = queryset.filter(Q(name__istartswith=search) | Q(tags__name__istartswith=search))
+
         category = self.request.GET.get('category')
         if category:
             queryset = queryset.prefetch_related('seller_products').filter(
                 Q(categories__slug=category) | Q(categories__parent__slug=category),
-                )
+            )
 
+        order_by = self.request.GET.get('order_by', 'price')
         match order_by:
             case 'rating' | '-rating':
                 queryset = queryset.annotate(
@@ -72,8 +79,11 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         context = super(CatalogTemplateView, self).get_context_data(**kwargs)
         order_by = self.request.GET.get('order_by', 'price')
         category = self.request.GET.get('category')
+        search = self.request.GET.get('search')
+
         context['order_by'] = order_by
         context['category'] = category
+        context['search'] = search
         context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
         context['price_filter'] = self.request.GET.get('price_filter')
         if context['price_filter']:
@@ -89,4 +99,3 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         log.debug("Запуск рендеренга CatalogOldTemplateView")
         log.debug("Контекст готов. Продукты отсортированы")
         return context
-
