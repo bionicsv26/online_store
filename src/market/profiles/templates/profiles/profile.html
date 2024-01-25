@@ -52,6 +52,9 @@
                                     <div class="form-group">
                                         <label class="form-label"> {{ form.full_name.label }}</label>
                                         {{ form.full_name }}
+                                        {% if form.full_name.errors %}
+                                          <div class="form-error">{{ form.full_name.errors }}</div>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="row-block">
@@ -59,16 +62,23 @@
                                     <div class="form-group">
                                         <label class="form-label"> {{ form.phone.label }}</label>
                                         {{ form.phone }}
+                                        {% if form.phone.errors %}
+                                          <div class="form-error">{{ form.phone.errors }}</div>
+                                        {% endif %}
                                     </div>
 
                                     <div class="form-group">
                                         <label class="form-label"> {{ form.email.label }}</label>
                                         {{ form.email }}
+                                        {% if form.email.errors %}
+                                          <div class="form-error">{{ form.email.errors }}</div>
+                                        {% endif %}
                                     </div>
 
                                     <div class="form-group">
                                         <label class="form-label"> {{ form.password.label }}</label>
                                         {{ form.password }}
+
                                     </div>
 
                                     <div class="form-group">
