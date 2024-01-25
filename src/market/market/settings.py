@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'market.users_permissions.apps.UsersPermissionsConfig',
     'market.cart.apps.CartConfig',
     'market.comparison.apps.ComparisonConfig',
+    'market.filter.apps.FilterConfig',
 ]
 
 MIDDLEWARE = [
