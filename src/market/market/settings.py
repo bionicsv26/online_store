@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'market.cart.apps.CartConfig',
     'market.comparison.apps.ComparisonConfig',
     # 'market.filter.apps.FilterConfig',
+    'market.tags.apps.TagsConfig',
 ]
 
 MIDDLEWARE = [

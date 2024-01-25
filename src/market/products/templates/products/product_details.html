@@ -81,8 +81,14 @@
             </form>
             <div class="ProductCard-footer">
               <div class="ProductCard-tags">
-                <strong class="ProductCard-tagsTitle">Тэги:
-                </strong><a href="#">Аксессуары</a>,<a href="#">Дизайн</a>,<a href="#">Игры</a>
+                {% if product_tags %}
+                  <strong class="ProductCard-tagsTitle">Тэги:</strong>
+                  {% for tag in product_tags %}
+                    <a href="#">{{ tag.name }}</a>{% if product_tags.last != tag %},{% endif %}
+                  {% endfor %}
+                {% else %}
+                  <span style="color: #a8aab4">У этого продукта нет тегов</span>
+                {% endif %}
               </div>
             </div>
           </div>

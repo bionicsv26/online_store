@@ -93,6 +93,7 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                             values_list("product__name", flat=True)
                             )
         context['browsing_history'] = browsing_history
+        context['product_tags'] = context['product'].tags.all()
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context
