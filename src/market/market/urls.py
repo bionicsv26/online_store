@@ -34,6 +34,8 @@ urlpatterns = [
 
     # путь к приложению payment
     path('profiles/orders/<int:pk>/pay/', include('market.payment.urls')),
+
+    path('cart/', include('market.cart.urls')),
     path('comparison/', include('market.comparison.urls')),
 ]
 
