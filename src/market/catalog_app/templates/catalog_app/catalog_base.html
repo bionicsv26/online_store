@@ -23,10 +23,11 @@
             </strong>
           </header>
           <div class="Section-columnContent">
-            <form class="form" action="#" method="post">
+            <form class="form" action="{% url 'market.catalog_app:catalog' %}" method="get">
+              {% csrf_token %}
               <div class="form-group">
                 <div class="range Section-columnRange">
-                  <input class="range-line" id="price" name="price" type="text" data-type="double" data-min="7" data-max="50" data-from="7" data-to="27"/>
+                  <input class="range-line" id="price_filter" name="price_filter" type="text" data-type="double" data-min="0" data-max="{{ max_price }}" data-from="0" data-to="{{ set_price }}"/>
                   <div class="range-price">Цена:&#32;
                     <div class="rangePrice">
                     </div>
@@ -41,16 +42,16 @@
               </div>
               <div class="form-group">
                 <label class="toggle">
-                  <input type="checkbox"/><span class="toggle-box"></span><span class="toggle-text">Только товары в наличии</span>
+                  <input type="checkbox" name="in_stock" value="True"><span class="toggle-box"></span><span class="toggle-text">Только товары в наличии</span>
                 </label>
               </div>
               <div class="form-group">
                 <label class="toggle">
-                  <input type="checkbox"/><span class="toggle-box"></span><span class="toggle-text">С бесплатной доставкой</span>
+                  <input type="checkbox" name="free_delivery" value="True"><span class="toggle-box"></span><span class="toggle-text">С бесплатной доставкой</span>
                 </label>
               </div>
               <div class="form-group">
-                <div class="buttons"><a class="btn btn_square btn_dark btn_narrow" href="#">Фильтр</a>
+                <div class="buttons"><button class="btn btn_primary" type="submit">Фильтр</button>
                 </div>
               </div>
             </form>
@@ -93,8 +94,9 @@
             <div class="Pagination">
               <div class="Pagination-ins">
                   {% if page_obj.has_previous %}
-                    <a href="?page=1&order_by={{ order_by }}">1 &laquo;&laquo;&nbsp;</a>
-                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.previous_page_number }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}">
+                    <a href="?page=1&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">1 ... &laquo;</a>
+                    <a class="Pagination-element Pagination-element_prev"
+                       href="?page={{ page_obj.previous_page_number }}&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">{{ page_obj.previous_page_number }}
                         <img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg"/>
                     </a>
                   {% endif %}
@@ -105,10 +107,10 @@
                     </a>
 
                   {% if page_obj.has_next %}
-                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}">
+                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">{{ page_obj.next_page_number }}
                         <img src="{% static 'assets/img/icons/nextPagination.svg' %}" alt="nextPagination.svg"/>
                     </a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}">&nbsp;&raquo;&raquo; {{ page_obj.paginator.num_pages }}</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}"> ...  {{ page_obj.paginator.num_pages }} &raquo;</a>
                   {% endif %}
               </div>
             </div>
