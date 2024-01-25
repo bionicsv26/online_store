@@ -96,43 +96,57 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
     template_name = "profiles/profile.html"
     #form_class = UserProfileForm
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        initial_data = {}
+        if self.request.user.is_authenticated:
+            user = self.request.user
+            initial_data['email'] = user.email
+            profile = user.profile
+            initial_data['full_name'] = profile.full_name
+            initial_data['phone'] = profile.phone
+        context['form'] = UserProfileForm(initial=initial_data)
+        return context
+
     def post(self, request, *args, **kwargs):
         form = UserProfileForm(request.POST)
         if form.is_valid():
             print("The form is valid")
-            full_name = form.cleaned_data.get("full_name")
-            phone = form.cleaned_data.get("phone")
-            email = form.cleaned_data.get("email")
-            password = form.cleaned_data.get("password")
-            password_repeat = form.cleaned_data.get("password_repeat")
+            full_name = form.cleaned_data.get("full_name", "ФИО")
+            phone = form.cleaned_data.get("phone", "+7 (___) _______")
+            email = form.cleaned_data.get("email", 'user@server.com')
+            password = form.cleaned_data.get("password", "qwerty")
+            password_repeat = form.cleaned_data.get("password_repeat", "qwerty")
             print("full_name is  ----    ", full_name)
             print("phone is  ----    ", phone)
             print("email is  ----    ", email)
             print("password is  ----    ", password)
             print("password_repeat is  ----    ", password_repeat)
             print("request.user  ----    ", request.user)
-            user = User.objects.get(id=request.user.id)
-            user.email = email
-            user.save()
-            profile = Profile.objects.get(user=request.user.id)
-            profile.phone = phone
-            profile.save()
-            log.debug(f"Form was saved")
+            if password == password_repeat:
+                user = User.objects.get(id=request.user.id)
+                user.email = email
+                user.set_password(password)
+                user.save()
+                profile = Profile.objects.get(user=request.user.id)
+                profile.full_name = full_name
+                profile.phone = phone
+                profile.save()
+                log.debug(f"Form was saved")
+            else:
+                form.add_error('password_repeat',
+                               'Пароль и подтверждение пароля не совпадают')  # Добавляем ошибку в форму
+                return self.render_to_response({'form': form})
+
             return redirect(reverse(
                 'market.profiles:profile'
             ))
         else:
             print("The form is not valid")
             return self.render_to_response({'form': form})
-        return render(request, self.template_name, {'form': form})
+        #return render(request, self.template_name, {'form': form})
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = UserProfileForm()
 
-        log.debug("Запуск рендеренга ProfileTemplateView")
-        log.debug("Контекст для form готов. ")
-        return context
 
 
 class CartDetailsView(TemplateView):
