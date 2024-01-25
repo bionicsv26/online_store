@@ -1,22 +1,14 @@
 import logging
-from market.categories.mixins import MenuMixin
-from django.views.generic import (
-    ListView,
-)
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-)
-from market.sellers.models import SellerProduct
-from django.db.models import Q, Max
 
 from django.db.models import Q, Min, Max
+from django.db.models import Count
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from market.browsing_history_app.models import ProductBrowsingHistory
 from market.categories.mixins import MenuMixin
 from market.products.models import Product
-from django.db.models import Count
-from market.browsing_history_app.models import ProductBrowsingHistory
+from market.sellers.models import SellerProduct
 
 log = logging.getLogger(__name__)
 
