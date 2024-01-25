@@ -5,11 +5,8 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 
-class UserRegistrationForm(forms.ModelForm):
-    username = forms.CharField()
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
-    
+class UserRegistrationForm(forms.ModelForm): 
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = User
         fields = ['username', 'email', 'password']
@@ -23,7 +20,7 @@ class UserRegistrationForm(forms.ModelForm):
 
 class UserLoginForm(forms.Form):
     email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput)
 
     error_messages = {
         'invalid_login': _(
@@ -104,18 +101,3 @@ class UserSetPasswordForm(forms.Form):
         if commit:
             self.user.save()
         return self.user
-
-
-# class UserEditForm(forms.ModelForm):
-
-#     class Meta:
-#         model = User
-#         fields = ['username', 'email', 'password']
-
-#     def clean_email(self):
-#         data = self.cleaned_data['email']
-#         qs = User.objects.exclude(id=self.instance.id).filter(email=data)
-#         if qs.exists():
-#             raise forms.ValidationError('Email уже используется.')
-#         return data
-    
