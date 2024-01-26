@@ -34,7 +34,7 @@
                     </div>
                 <div class="Section-content">
                     <div class="Profile">
-                        <form class="form Profile-form" action="." method="post">
+                        <form class="form Profile-form" action="." method="post" enctype="multipart/form-data"Ф>
                             {% csrf_token %}
 
                             <div class="row">
@@ -42,10 +42,8 @@
                                     <div class="form-group">
                                         <label class="form-label"> {{ form.avatar.label }}</label>
                                         <div class="Profile-avatar Profile-avatar_noimg">
-
-                                            <label class="Profile-fileLabel" for="avatar"><img src="assets/img/icons/upload.png" alt="#.png" />Загрузить фото
+                                            <label class="Account-avatar" for="avatar"><img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}"  />Загрузить фото
                                             </label>
-
                                             <input class="Profile-file form-input" id="avatar" name="avatar" type="file" data-validate="onlyImgAvatar" />
                                         </div>
                                     </div>
@@ -58,7 +56,6 @@
                                     </div>
                                 </div>
                                 <div class="row-block">
-
                                     <div class="form-group">
                                         <label class="form-label"> {{ form.phone.label }}</label>
                                         {{ form.phone }}
@@ -96,7 +93,8 @@
                                             </button>
                                         </div>
 
-                                        <div class="Profile-success">Профиль успешно сохранен
+                                        <div class="Profile-success">
+                                            Профиль успешно сохранен
                                         </div>
                                     </div>
                                 </div>

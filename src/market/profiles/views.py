@@ -1,25 +1,21 @@
 from django.urls import reverse
 from django.contrib import messages
 from django.views import View
-from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from .forms import UserRegistrationForm
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from .forms import UserRegistrationForm, UserProfileForm
-from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
-from django.views.generic import (
-    TemplateView,
-)
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-)
-from market.browsing_history_app.models import ProductBrowsingHistory
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from .models import Profile
 from market.products.models import Product
+from market.browsing_history_app.models import ProductBrowsingHistory
 import logging
 
 log = logging.getLogger(__name__)
@@ -94,35 +90,33 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
 
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
     template_name = "profiles/profile.html"
-    #form_class = UserProfileForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         initial_data = {}
         if self.request.user.is_authenticated:
+            log.debug("Пользователь авторизован, предзаполняем форму")
             user = self.request.user
             initial_data['email'] = user.email
             profile = user.profile
             initial_data['full_name'] = profile.full_name
             initial_data['phone'] = profile.phone
+            initial_data['avatar'] = profile.avatar
+        else:
+            log.debug("Пользователь не авторизован, форма передается без предзаполнения")
         context['form'] = UserProfileForm(initial=initial_data)
         return context
 
     def post(self, request, *args, **kwargs):
-        form = UserProfileForm(request.POST)
+        form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            print("The form is valid")
+            log.debug("Форма заполнена правильно. Проверка валидности прошла")
             full_name = form.cleaned_data.get("full_name", "ФИО")
             phone = form.cleaned_data.get("phone", "+7 (___) _______")
             email = form.cleaned_data.get("email", 'user@server.com')
             password = form.cleaned_data.get("password", "qwerty")
             password_repeat = form.cleaned_data.get("password_repeat", "qwerty")
-            print("full_name is  ----    ", full_name)
-            print("phone is  ----    ", phone)
-            print("email is  ----    ", email)
-            print("password is  ----    ", password)
-            print("password_repeat is  ----    ", password_repeat)
-            print("request.user  ----    ", request.user)
+
             if password == password_repeat:
                 user = User.objects.get(id=request.user.id)
                 user.email = email
@@ -131,22 +125,24 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                 profile = Profile.objects.get(user=request.user.id)
                 profile.full_name = full_name
                 profile.phone = phone
+                profile.avatar = form.cleaned_data['avatar']
                 profile.save()
-                log.debug(f"Form was saved")
+                log.debug(f"Полученные из формы данные сохранены в БД User & Profile")
             else:
+                log.debug("Введенные пароли отличаются. вызываем form.add_error")
                 form.add_error('password_repeat',
                                'Пароль и подтверждение пароля не совпадают')  # Добавляем ошибку в форму
                 return self.render_to_response({'form': form})
-
+            user = authenticate(request, username=request.user.username, password=password)
+            if user is not None:
+                login(request, user)
             return redirect(reverse(
                 'market.profiles:profile'
             ))
         else:
-            print("The form is not valid")
+            log.debug("Форма заполнена не правильно. Проверка валидности не пройдена. "
+                      "Фаорма с описанием ошибки возвращается пользователю")
             return self.render_to_response({'form': form})
-        #return render(request, self.template_name, {'form': form})
-
-
 
 
 class CartDetailsView(TemplateView):
