@@ -1044,6 +1044,258 @@
     }
 },
 {
+    "model": "auth.permission",
+    "pk": 117,
+    "fields": {
+        "name": "Can add корзина",
+        "content_type": 16,
+        "codename": "add_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 118,
+    "fields": {
+        "name": "Can change корзина",
+        "content_type": 16,
+        "codename": "change_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 119,
+    "fields": {
+        "name": "Can delete корзина",
+        "content_type": 16,
+        "codename": "delete_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 120,
+    "fields": {
+        "name": "Can view корзина",
+        "content_type": 16,
+        "codename": "view_cart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 121,
+    "fields": {
+        "name": "Can add история просмотра",
+        "content_type": 17,
+        "codename": "add_productbrowsinghistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 122,
+    "fields": {
+        "name": "Can change история просмотра",
+        "content_type": 17,
+        "codename": "change_productbrowsinghistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 123,
+    "fields": {
+        "name": "Can delete история просмотра",
+        "content_type": 17,
+        "codename": "delete_productbrowsinghistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 124,
+    "fields": {
+        "name": "Can view история просмотра",
+        "content_type": 17,
+        "codename": "view_productbrowsinghistory"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 125,
+    "fields": {
+        "name": "Can add скидка",
+        "content_type": 18,
+        "codename": "add_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 126,
+    "fields": {
+        "name": "Can change скидка",
+        "content_type": 18,
+        "codename": "change_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 127,
+    "fields": {
+        "name": "Can delete скидка",
+        "content_type": 18,
+        "codename": "delete_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 128,
+    "fields": {
+        "name": "Can view скидка",
+        "content_type": 18,
+        "codename": "view_discount"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 129,
+    "fields": {
+        "name": "Can add продавец",
+        "content_type": 19,
+        "codename": "add_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 130,
+    "fields": {
+        "name": "Can change продавец",
+        "content_type": 19,
+        "codename": "change_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 131,
+    "fields": {
+        "name": "Can delete продавец",
+        "content_type": 19,
+        "codename": "delete_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 132,
+    "fields": {
+        "name": "Can view продавец",
+        "content_type": 19,
+        "codename": "view_seller"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 133,
+    "fields": {
+        "name": "Can add продукт продавца",
+        "content_type": 20,
+        "codename": "add_sellerproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 134,
+    "fields": {
+        "name": "Can change продукт продавца",
+        "content_type": 20,
+        "codename": "change_sellerproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 135,
+    "fields": {
+        "name": "Can delete продукт продавца",
+        "content_type": 20,
+        "codename": "delete_sellerproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 136,
+    "fields": {
+        "name": "Can view продукт продавца",
+        "content_type": 20,
+        "codename": "view_sellerproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 137,
+    "fields": {
+        "name": "Can add тип скидки",
+        "content_type": 21,
+        "codename": "add_discounttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 138,
+    "fields": {
+        "name": "Can change тип скидки",
+        "content_type": 21,
+        "codename": "change_discounttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 139,
+    "fields": {
+        "name": "Can delete тип скидки",
+        "content_type": 21,
+        "codename": "delete_discounttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 140,
+    "fields": {
+        "name": "Can view тип скидки",
+        "content_type": 21,
+        "codename": "view_discounttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 141,
+    "fields": {
+        "name": "Can add specification",
+        "content_type": 22,
+        "codename": "add_specification"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 142,
+    "fields": {
+        "name": "Can change specification",
+        "content_type": 22,
+        "codename": "change_specification"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 143,
+    "fields": {
+        "name": "Can delete specification",
+        "content_type": 22,
+        "codename": "delete_specification"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 144,
+    "fields": {
+        "name": "Can view specification",
+        "content_type": 22,
+        "codename": "view_specification"
+    }
+},
+{
     "model": "auth.user",
     "pk": 1,
     "fields": {
@@ -1093,6 +1345,24 @@
         "is_staff": true,
         "is_active": true,
         "date_joined": "2023-12-21T17:38:44.526Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$ndXz3v0o0BvzuFnbR4VKvA$rCZuDIj03dXZi9t2sQGWZ6kyyDoFi80TNCsdEB0EFuY=",
+        "last_login": "2024-01-25T13:02:14.496Z",
+        "is_superuser": true,
+        "username": "war",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-01-25T13:00:59.292Z",
         "groups": [],
         "user_permissions": []
     }
@@ -1286,6 +1556,15 @@
     }
 },
 {
+    "model": "categories.category",
+    "pk": 8,
+    "fields": {
+        "name": "смартфоны",
+        "parent": 6,
+        "slug": "smartfony"
+    }
+},
+{
     "model": "products.productfeedback",
     "pk": 11,
     "fields": {
@@ -1476,7 +1755,8 @@
         "slug": "cola",
         "categories": [
             4
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1490,7 +1770,8 @@
         "slug": "tomato",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1504,7 +1785,8 @@
         "slug": "orange-juice",
         "categories": [
             5
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1518,7 +1800,8 @@
         "slug": "carrot",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1532,7 +1815,8 @@
         "slug": "grape-juice",
         "categories": [
             5
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1546,7 +1830,8 @@
         "slug": "potato",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1560,7 +1845,8 @@
         "slug": "chaj",
         "categories": [
             4
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1574,7 +1860,8 @@
         "slug": "televizor-luchshij",
         "categories": [
             7
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1588,7 +1875,8 @@
         "slug": "luk",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1602,7 +1890,8 @@
         "slug": "kapusta",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1616,7 +1905,8 @@
         "slug": "kabachok",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1630,7 +1920,8 @@
         "slug": "brokkoli",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1644,7 +1935,8 @@
         "slug": "shpinat",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1658,7 +1950,8 @@
         "slug": "rukkola",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1672,7 +1965,8 @@
         "slug": "kinza",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1686,7 +1980,8 @@
         "slug": "ukrop",
         "categories": [
             3
-        ]
+        ],
+        "specification": []
     }
 },
 {
@@ -1700,7 +1995,233 @@
         "slug": "petrushka",
         "categories": [
             3
+        ],
+        "specification": []
+    }
+},
+{
+    "model": "products.product",
+    "pk": 18,
+    "fields": {
+        "name": "Redmi Note 12 4/128",
+        "preview": "images/products/product_redmi-note-12-4_128/product_preview/xiaomi_note_12.jpg",
+        "description": "Смартфон Xiaomi Redmi Note произведет мгновенный запуск требовательных приложений и не заставит ощутить задержки во время серфинга между окнами. Впечатляющая работоспособность достигается вычислительной мощностью, которая состоит из 8-ядерного процессора и оперативной памяти объемом 4 ГБ. Оптика с 3 модулями добавит водяной знак, создаст естественные портреты, распознает тексты и QR-коды.\r\nДисплей смартфона Xiaomi Redmi Note заключен в едва уловимые взглядом рамки. Вам гарантирован эффект непосредственного присутствия в эпицентре событий. AMOLED-технология и разрешение 2400x1080 пикселей позволяют достичь четкости каждой детали и расширить цветовой охват. Зашита корпуса по стандарту IP53 предупреждает негативное воздействие влаги. При касании боковой стенки производится идентификация личности по отпечатку пальца. На хранение данных отведено 128 ГБ памяти.",
+        "is_active": true,
+        "slug": "redmi-note-12-4_128",
+        "categories": [
+            8
+        ],
+        "specification": [
+            1,
+            2,
+            3,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            15
         ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 19,
+    "fields": {
+        "name": "Redmi Note 12 6/128",
+        "preview": "images/products/product_redmi-note-12-6_128/product_preview/Xiaomi_Redmi_Note_12_128_ГБ_голубой.jpg",
+        "description": "Смартфон Xiaomi Redmi Note 12 в голубом цвете корпуса стал обладателем аккумулятора повышенной емкости 5000 мАч. Модель способна длительное время работать без подзарядки, обеспечивая до 31 часа вызовов, 21 часа воспроизведения видео и 9 часов игр. Тройная камера 50+8+2 Мп позволит запечатлеть мир с любого ракурса, чтобы на память о лучших моментах жизни у вас остались цифровые снимки. На боковой панели расположился сканер отпечатка пальца, отвечающий за конфиденциальность хранящихся на устройстве данных и их недоступность посторонним лицам.\r\nСмартфон Xiaomi Redmi Note 12 оснащен стандартным разъемом 3.5 mm jack, который позволит подключить к нему обычные проводные наушники. ИК-излучатель способен превратить устройство в пульт дистанционного управления для удобного управления бытовой техникой в доме. 6.67-дюймовый дисплей с матрицей AMOLED и пиковой яркостью 1200 нит позволит наслаждаться яркой цветопередачей и насыщенными оттенками черного при просмотре любого контента.",
+        "is_active": true,
+        "slug": "redmi-note-12-6_128",
+        "categories": [
+            8
+        ],
+        "specification": [
+            1,
+            2,
+            3,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            15
+        ]
+    }
+},
+{
+    "model": "products.product",
+    "pk": 20,
+    "fields": {
+        "name": "Redmi Note 12 8/256",
+        "preview": "images/products/product_redmi-note-12-8_256/product_preview/Xiaomi_Redmi_Note_12_256_ГБ__ILdtVOm.jpg",
+        "description": "Смартфон Xiaomi Redmi Note 12 в золотистом корпусе из пластика оснащен 6.67-дюймовым экраном с защитой Corning Gorilla Glass. Благодаря безрамочной конструкции экрана с разрешением 2400x1080 пикс. картинка на нем выглядит практически безграничной. Это делает смартфон привлекательным выбором для просмотра видео и прохождения мобильных игр.\r\nЗа производительность модели отвечают 8-ядерный процессор, графический ускоритель Adreno 610 и 8 ГБ оперативной памяти. Камеры на 50 и 13 Мп делают четкие фото и позволяют поддерживать видеосвязь. Функция бьютификации придает владельцу уверенности при этом. Для хранения приложений, видео и фото у смартфона Xiaomi Redmi Note 12 есть память на 256 ГБ.",
+        "is_active": true,
+        "slug": "redmi-note-12-8_256",
+        "categories": [
+            8
+        ],
+        "specification": [
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            16
+        ]
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 1,
+    "fields": {
+        "name": "Тип",
+        "type": 1,
+        "value": "Смартфон"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 2,
+    "fields": {
+        "name": "Модель",
+        "type": 2,
+        "value": "Xiaomi Redmi Note 12"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 3,
+    "fields": {
+        "name": "Год релиза",
+        "type": 3,
+        "value": "2023"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 4,
+    "fields": {
+        "name": "Цвет",
+        "type": 4,
+        "value": "голубой"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 5,
+    "fields": {
+        "name": "Цвет",
+        "type": 4,
+        "value": "зеленый"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 6,
+    "fields": {
+        "name": "Цвет",
+        "type": 4,
+        "value": "золотой"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 7,
+    "fields": {
+        "name": "Диагональ экрана (дюйм)",
+        "type": 5,
+        "value": "6.67\""
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 8,
+    "fields": {
+        "name": "Разрешение экрана",
+        "type": 6,
+        "value": "2400x1080"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 9,
+    "fields": {
+        "name": "Тип матрицы",
+        "type": 7,
+        "value": "AMOLED"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 10,
+    "fields": {
+        "name": "Частота обновления экрана (Гц)",
+        "type": 8,
+        "value": "120"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 11,
+    "fields": {
+        "name": "Плотность пикселей",
+        "type": 9,
+        "value": "395"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 12,
+    "fields": {
+        "name": "Объем оперативной памяти (Гб)",
+        "type": 10,
+        "value": "4"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 13,
+    "fields": {
+        "name": "Объем оперативной памяти (Гб)",
+        "type": 10,
+        "value": "6"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 14,
+    "fields": {
+        "name": "Объем оперативной памяти (Гб)",
+        "type": 10,
+        "value": "8"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 15,
+    "fields": {
+        "name": "Объем встроенной памяти (Гб)",
+        "type": 11,
+        "value": "128"
+    }
+},
+{
+    "model": "products.specification",
+    "pk": 16,
+    "fields": {
+        "name": "Объем встроенной памяти (Гб)",
+        "type": 11,
+        "value": "256"
     }
 },
 {
@@ -1755,6 +2276,51 @@
         "user": 3,
         "product": 11,
         "view_at": "2024-01-21"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 8,
+    "fields": {
+        "user": 4,
+        "product": 2,
+        "view_at": "2024-01-25"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 9,
+    "fields": {
+        "user": 4,
+        "product": 8,
+        "view_at": "2024-01-25"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 10,
+    "fields": {
+        "user": 4,
+        "product": 13,
+        "view_at": "2024-01-25"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 11,
+    "fields": {
+        "user": 4,
+        "product": 16,
+        "view_at": "2024-01-25"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 12,
+    "fields": {
+        "user": 4,
+        "product": 18,
+        "view_at": "2024-01-26"
     }
 },
 {
@@ -2027,6 +2593,66 @@
         "stock": 233,
         "discount": 1,
         "created_at": "2024-01-20"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 21,
+    "fields": {
+        "product": 18,
+        "seller": 1,
+        "price": "14999.00",
+        "stock": 37,
+        "discount": 1,
+        "created_at": "2024-01-26"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 22,
+    "fields": {
+        "product": 18,
+        "seller": 2,
+        "price": "15399.00",
+        "stock": 41,
+        "discount": 1,
+        "created_at": "2024-01-26"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 23,
+    "fields": {
+        "product": 19,
+        "seller": 1,
+        "price": "15999.00",
+        "stock": 71,
+        "discount": 1,
+        "created_at": "2024-01-26"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 24,
+    "fields": {
+        "product": 19,
+        "seller": 2,
+        "price": "16199.00",
+        "stock": 16,
+        "discount": 1,
+        "created_at": "2024-01-26"
+    }
+},
+{
+    "model": "sellers.sellerproduct",
+    "pk": 25,
+    "fields": {
+        "product": 20,
+        "seller": 1,
+        "price": "18999.00",
+        "stock": 55,
+        "discount": 1,
+        "created_at": "2024-01-26"
     }
 },
 {
