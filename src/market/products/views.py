@@ -32,7 +32,7 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
 
     def get_queryset(self) -> QuerySet[Any]:
         return super().get_queryset().prefetch_related('seller_products')
-    
+
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         response = super().get(request, *args, **kwargs)
         cart = Cart(request.session)

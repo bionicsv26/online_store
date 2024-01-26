@@ -1,13 +1,13 @@
 import logging
 
 from django.db.models import Q, Min, Max
-from django.db.models import Count
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from market.browsing_history_app.models import ProductBrowsingHistory
 from market.categories.mixins import MenuMixin
 from market.products.models import Product
+from django.db.models import Count
+from market.browsing_history_app.models import ProductBrowsingHistory
 
 log = logging.getLogger(__name__)
 
@@ -23,9 +23,9 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
             'tags',
         ).filter(seller_products__isnull=False)
 
-        search = self.request.GET.get('search')
-        if search:
-            queryset = queryset.filter(Q(name__istartswith=search) | Q(tags__name__istartswith=search))
+        tag = self.request.GET.get('tag')
+        if tag:
+            queryset = queryset.filter(Q(name__istartswith=tag) | Q(tags__name__istartswith=tag))
 
         category = self.request.GET.get('category')
         if category:
@@ -79,10 +79,11 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
         context = super(CatalogTemplateView, self).get_context_data(**kwargs)
         order_by = self.request.GET.get('order_by', 'price')
         category = self.request.GET.get('category')
-        search = self.request.GET.get('search')
+        tag = self.request.GET.get('tag')
 
         context['order_by'] = order_by
         context['category'] = category
+        context['tag'] = tag
         context['search'] = search
         context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
         context['price_filter'] = self.request.GET.get('price_filter')
@@ -96,6 +97,7 @@ class CatalogTemplateView(LoginRequiredMixin, MenuMixin, ListView):
                             values_list("product__name", flat=True)
                             )
         context['browsing_history'] = browsing_history
+        context['popular_tags'] = Tag.objects.annotate(total_products=Count('products')).order_by('-total_products')
         log.debug("Запуск рендеренга CatalogOldTemplateView")
         log.debug("Контекст готов. Продукты отсортированы")
         return context
