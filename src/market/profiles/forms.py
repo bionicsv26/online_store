@@ -103,3 +103,46 @@ class UserSetPasswordForm(forms.Form):
         if commit:
             self.user.save()
         return self.user
+
+class UserProfileForm(forms.Form):
+    avatar = forms.ImageField(label='Аватар')
+    password = forms.CharField(widget=forms.PasswordInput(), label='Пароль')
+    password_repeat = forms.CharField(widget=forms.PasswordInput(), label='Подтверждение пароля')
+
+    full_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-input', 'id': 'name'}),
+        label='ФИО',
+    )
+    phone = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-input', 'placeholder': '+7 (___) _______', 'id': 'phone'}),
+        label='Телефон',
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'class': 'form-input', 'id': 'mail'}),
+        label='E-mail',
+    )
+
+    def clean_full_name(self):
+        data = self.cleaned_data['full_name']
+        split_data = data.split()
+        if not ''.join(split_data).isalpha():
+            self.add_error('full_name', 'Это поле может содержать только буквы и пробелы')
+        if len(split_data) != 3:
+            self.add_error('full_name', 'Это поле должно состоять из 3-х слов')
+        for i_name in split_data:
+            if not i_name[0].isupper():
+                self.add_error('full_name', 'Фамилия, Имя и Отчество должно быть с заглавной буквы')
+        return data
+
+    def clean_phone(self):
+        data = self.cleaned_data['phone']
+        if re.fullmatch(r'\+7 \(\d{3}\) \d{7}', data) is None:
+            self.add_error('phone', 'Номер должен состоять из кода региона и 10 цифр')
+        return data
+
+    def clean_email(self):
+        data = self.cleaned_data['email']
+        regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+        if re.fullmatch(regex, data) is None:
+            self.add_error('email', 'Не правильный формат электронной почты')
+        return data

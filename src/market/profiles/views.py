@@ -1,10 +1,5 @@
-from django.urls import reverse
 from django.contrib import messages
-from django.views import View
-from django.views.generic import TemplateView
-
-from .forms import UserRegistrationForm
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views import View
