@@ -1,10 +1,10 @@
+from django.urls import reverse
 from django.contrib import messages
 from django.views import View
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
 from .forms import UserRegistrationForm
-from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.views.generic import (
@@ -21,19 +21,24 @@ log = logging.getLogger(__name__)
 
 class RegisterView(View):
     form_class = UserRegistrationForm
-    initial = {'key': 'value'}
     template_name = 'profiles/register.html'
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class(initial=self.initial)
+        form = self.form_class()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            form.save()
-            return redirect('market.profiles:login')
+            new_user = form.save(commit=False)
+            new_user.set_password(form.cleaned_data['password'])
+            new_user.save()
+
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Аккаунт для {username} создан.')
+
+            return redirect(to=reverse('market.profiles:login'))
 
         return render(request, self.template_name, {'form': form})
 
