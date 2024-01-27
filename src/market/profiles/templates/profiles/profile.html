@@ -34,7 +34,7 @@
                     </div>
                 <div class="Section-content">
                     <div class="Profile">
-                        <form class="form Profile-form" action="." method="post" enctype="multipart/form-data"Ф>
+                        <form class="form Profile-form" action="." method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <div class="row">
@@ -92,10 +92,21 @@
                                             <button class="btn btn_success" type="submit">Сохранить
                                             </button>
                                         </div>
-
-                                        <div class="Profile-success">
-                                            Профиль успешно сохранен
-                                        </div>
+                                        {% if notification_form_validation_error %}
+                                            <div class="Profile-success">
+                                                <p style="color:#FF0000">{{notification_form_validation_error}}</p>
+                                            </div>
+                                        {% endif %}
+                                        {% if notification_password_error %}
+                                            <div class="Profile-success">
+                                                <p style="color:#FF0000">{{notification_password_error}}</p>
+                                            </div>
+                                        {% endif %}
+                                        {% if notification_ok %}
+                                            <div class="Profile-success" >
+                                                <p style="color:#227700">{{notification_ok}}</p>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

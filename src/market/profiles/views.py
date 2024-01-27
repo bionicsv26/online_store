@@ -7,16 +7,18 @@ from .forms import UserRegistrationForm
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.urls import reverse
-from .forms import UserRegistrationForm, UserProfileForm
-from market.banner_app.mixins import BannerSliderMixin
-from market.categories.mixins import MenuMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
+from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from .models import Profile
 from market.products.models import Product
 from market.browsing_history_app.models import ProductBrowsingHistory
+from .forms import UserRegistrationForm, UserProfileForm
+from market.banner_app.mixins import BannerSliderMixin
+from market.categories.mixins import MenuMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 import logging
+
 
 log = logging.getLogger(__name__)
 
@@ -131,18 +133,28 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
             else:
                 log.debug("Введенные пароли отличаются. вызываем form.add_error")
                 form.add_error('password_repeat',
-                               'Пароль и подтверждение пароля не совпадают')  # Добавляем ошибку в форму
-                return self.render_to_response({'form': form})
+                               'Пароль и подтверждение пароля не совпадают')
+                return render(request,
+                              self.template_name,
+                              {'form': form,
+                               "notification_password_error":"Профиль не сохранен. Пароли не совпадают"})
+
             user = authenticate(request, username=request.user.username, password=password)
             if user is not None:
                 login(request, user)
-            return redirect(reverse(
-                'market.profiles:profile'
-            ))
+            return render(request,
+                          self.template_name,
+                          {'form': form,
+                           "notification_ok":"Профиль успешно сохранен."})
         else:
             log.debug("Форма заполнена не правильно. Проверка валидности не пройдена. "
-                      "Фаорма с описанием ошибки возвращается пользователю")
-            return self.render_to_response({'form': form})
+                      "Форма с описанием ошибки возвращается пользователю")
+            return render(request,
+                          self.template_name,
+                          {'form': form,
+                           "notification_form_validation_error":"Профиль не сохранен. "
+                                                                "Убедитесь, что все поля заполнены правильно "
+                                                                "и фотография выбрана."})
 
 
 class CartDetailsView(TemplateView):
