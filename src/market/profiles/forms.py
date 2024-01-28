@@ -132,6 +132,7 @@ class UserProfileForm(forms.Form):
         for i_name in split_data:
             if not i_name[0].isupper():
                 self.add_error('full_name', 'Фамилия, Имя и Отчество должно быть с заглавной буквы')
+                break
         return data
 
     def clean_phone(self):

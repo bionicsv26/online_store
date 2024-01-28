@@ -5,6 +5,11 @@
 
 {% endblock %}
 
+{% block additional_link_script %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="{% static 'assets/js/jquery.maskedinput.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'assets/css/making_an_order.css' %}">
+{% endblock %}
 
 {% block middle %}
 
@@ -63,6 +68,12 @@
                                           <div class="form-error">{{ form.phone.errors }}</div>
                                         {% endif %}
                                     </div>
+                                    <!-- Скрипт для маскирования номера телефона -->
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#phone').mask('+7 (999) 9999999', {autoclear: false});
+                                        });
+                                    </script>
 
                                     <div class="form-group">
                                         <label class="form-label"> {{ form.email.label }}</label>
