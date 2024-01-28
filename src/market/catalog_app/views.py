@@ -10,6 +10,7 @@ from market.products.models import Product
 from django.db.models import Count
 from market.browsing_history_app.models import ProductBrowsingHistory
 from market.search_app.mixins import SearchMixin
+from market.sellers.models import SellerProduct
 from market.tags.models import Tag
 
 log = logging.getLogger(__name__)
@@ -68,7 +69,7 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
             price_range = self.request.GET.get('price_filter').split(";")
             range_start = price_range[0]
             range_end = price_range[1]
-            queryset = queryset.filter(price__range=(range_start, range_end))
+            queryset = queryset.filter(seller_products__price__range=(range_start, range_end))
 
         title = self.request.GET.get('title')
         in_stock = self.request.GET.get('in_stock')
@@ -76,11 +77,11 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
 
         if title:
             queryset = queryset.filter(
-                Q(product__name__icontains=title) | Q(product__description__icontains=title)
+                Q(name__icontains=title) | Q(description__icontains=title)
             )
 
         if in_stock:
-            queryset = queryset.filter(stock__gt=0)
+            queryset = queryset.filter(seller_products__stock__gt=0)
 
         return queryset.reverse() if order_by.startswith('-') else queryset
 
@@ -94,7 +95,6 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
         context['order_by'] = order_by
         context['category'] = category
         context['tag'] = tag
-        context['search'] = search
         context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
         context['price_filter'] = self.request.GET.get('price_filter')
         if context['price_filter']:
