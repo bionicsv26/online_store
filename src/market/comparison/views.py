@@ -6,6 +6,7 @@ from django.views.generic import TemplateView
 
 from ..categories.mixins import MenuMixin
 from ..products.models import Product
+from ..search_app.mixins import SearchMixin
 from ..sellers.models import SellerProduct
 
 
@@ -79,7 +80,7 @@ class RemoveFromCompareView(MenuMixin, View):
         return HttpResponseRedirect(referer_url)
 
 
-class CompareListView(MenuMixin, TemplateView):
+class CompareListView(SearchMixin, MenuMixin, TemplateView):
     template_name = 'comparison/comparison.html'
 
     def get_context_data(self, **kwargs):

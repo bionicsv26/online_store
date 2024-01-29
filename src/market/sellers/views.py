@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 
 from market.categories.mixins import MenuMixin
 from market.orders.models import OrderStatus
+from market.search_app.mixins import SearchMixin
 from market.sellers.models import Seller
 from market.settingsapp.models import CacheTime
 
@@ -18,7 +19,7 @@ class SellerListView(ListView):
     context_object_name = 'sellers'
 
 
-class SellerDetailsView(MenuMixin, View):
+class SellerDetailsView(MenuMixin, View, SearchMixin):
     template_name = 'sellers/seller_details.html'
 
     def get(self, request: HttpRequest, seller_slug: str) -> HttpResponse:
