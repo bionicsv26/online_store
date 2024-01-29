@@ -37,7 +37,7 @@ urlpatterns = [
 
     path('cart/', include('market.cart.urls')),
     path('comparison/', include('market.comparison.urls')),
-    path('filter/', include('market.filter.urls'))
+    #path('filter/', include('market.filter.urls'))
 ]
 
 if settings.DEBUG:

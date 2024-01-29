@@ -37,7 +37,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="Cart-block Cart-block_delete"><a class="Cart-delete" href="{% url "cart:cart_remove" product.pk %}"><img src="assets/img/icons/card/delete.svg" alt="delete.svg" /></a>
+                                    <div class="Cart-block Cart-block_delete"><a class="Cart-delete" href="{% url 'market.cart:cart_remove' product.pk %}" ><img src="assets/img/icons/card/delete.svg" alt="delete.svg" /></a>
                                     </div>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                             <strong class="Cart-title">Итого:
                             </strong><span class="Cart-price">{{ cart.get_total_price }}$</span>
                         </div>
-                        <div class="Cart-block"><a class="btn btn_success btn_lg" href="order.html">Оформить заказ</a>
+                        <div class="Cart-block"><a class="btn btn_success btn_lg" href="market.orders:making_an_order">Оформить заказ</a>
                         </div>
                     </div>
                 </form>

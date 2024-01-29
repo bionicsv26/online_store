@@ -1,21 +1,19 @@
-from django.urls import reverse
 from django.contrib import messages
-from django.views import View
+from django.urls import reverse
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
+from django.views import View
 from django.views.generic import TemplateView
-
-from .forms import UserRegistrationForm
+from django.contrib.auth.models import User
+from .models import Profile
+from market.products.models import Product
+from market.browsing_history_app.models import ProductBrowsingHistory
+from .forms import UserRegistrationForm, UserProfileForm
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
-from django.views.generic import (
-    TemplateView,
-)
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-)
-from market.browsing_history_app.models import ProductBrowsingHistory
-from market.products.models import Product
+from django.contrib.auth.mixins import LoginRequiredMixin
 import logging
+
 
 log = logging.getLogger(__name__)
 
@@ -89,6 +87,69 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
 
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
     template_name = "profiles/profile.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        initial_data = {}
+        if self.request.user.is_authenticated:
+            log.debug("Пользователь авторизован, предзаполняем форму")
+            user = self.request.user
+            initial_data['email'] = user.email
+            profile = user.profile
+            initial_data['full_name'] = profile.full_name
+            initial_data['phone'] = profile.phone
+            initial_data['avatar'] = profile.avatar
+        else:
+            log.debug("Пользователь не авторизован, форма передается без предзаполнения")
+        context['form'] = UserProfileForm(initial=initial_data)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = UserProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            log.debug("Форма заполнена правильно. Проверка валидности прошла")
+            full_name = form.cleaned_data.get("full_name", "ФИО")
+            phone = form.cleaned_data.get("phone", "+7 (___) _______")
+            email = form.cleaned_data.get("email", 'user@server.com')
+            password = form.cleaned_data.get("password", "qwerty")
+            password_repeat = form.cleaned_data.get("password_repeat", "qwerty")
+
+            if password == password_repeat:
+                user = User.objects.get(id=request.user.id)
+                user.email = email
+                user.set_password(password)
+                user.save()
+                profile = Profile.objects.get(user=request.user.id)
+                profile.full_name = full_name
+                profile.phone = phone
+                profile.avatar = form.cleaned_data['avatar']
+                profile.save()
+                log.debug(f"Полученные из формы данные сохранены в БД User & Profile")
+            else:
+                log.debug("Введенные пароли отличаются. вызываем form.add_error")
+                form.add_error('password_repeat',
+                               'Пароль и подтверждение пароля не совпадают')
+                return render(request,
+                              self.template_name,
+                              {'form': form,
+                               "notification_password_error":"Профиль не сохранен. Пароли не совпадают"})
+
+            user = authenticate(request, username=request.user.username, password=password)
+            if user is not None:
+                login(request, user)
+            return render(request,
+                          self.template_name,
+                          {'form': form,
+                           "notification_ok":"Профиль успешно сохранен."})
+        else:
+            log.debug("Форма заполнена не правильно. Проверка валидности не пройдена. "
+                      "Форма с описанием ошибки возвращается пользователю")
+            return render(request,
+                          self.template_name,
+                          {'form': form,
+                           "notification_form_validation_error":"Профиль не сохранен. "
+                                                                "Убедитесь, что все поля заполнены правильно "
+                                                                "и фотография выбрана."})
 
 
 class CartDetailsView(TemplateView):
