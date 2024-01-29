@@ -5,9 +5,11 @@ from django.views.generic.base import View
 from django.http import HttpRequest, HttpResponse
 from .cart import Cart
 from market.products.models import Product
+from ..categories.mixins import MenuMixin
+from ..search_app.mixins import SearchMixin
 
-# Create your views here.
-class CartDetailsView(TemplateView):
+
+class CartDetailsView(TemplateView, MenuMixin, SearchMixin):
     template_name = 'cart/cart.html'
 
 

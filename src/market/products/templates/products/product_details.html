@@ -42,10 +42,10 @@
                   </div>
                 </div>
                 <div class="ProductCard-cartElement">
-                  <a class="btn btn_primary" href="#modal_open">
+                  <button class="btn btn_primary" type="submit">
                     <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
-                    <button class="btn-content" type="submit">Купить</button>
-                  </a>
+                    <span class="btn-content">Купить</span>
+                  </button>
                 </div>
                 {% if product.id not in request.session.compare_list %}
                   {% if request.session.compare_list|length < 4 %}
