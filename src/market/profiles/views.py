@@ -9,11 +9,14 @@ from .models import Profile
 from market.products.models import Product
 from market.browsing_history_app.models import ProductBrowsingHistory
 from .forms import UserRegistrationForm, UserProfileForm
+
+from .forms import UserRegistrationForm
+from ..search_app.mixins import SearchMixin
+from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 import logging
-
 
 log = logging.getLogger(__name__)
 
@@ -40,7 +43,8 @@ class RegisterView(View):
 
         return render(request, self.template_name, {'form': form})
 
-class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
+
+class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, SearchMixin):
     template_name = "profiles/account.html"
 
     def get(self, request, *args, **kwargs):
@@ -76,7 +80,6 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         })
         return self.render_to_response(context)
 
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['account_user_name'] = self.request.user
@@ -85,7 +88,7 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         return context
 
 
-class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin):
+class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, SearchMixin):
     template_name = "profiles/profile.html"
 
     def get_context_data(self, **kwargs):

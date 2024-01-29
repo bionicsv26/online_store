@@ -12,6 +12,8 @@ from .models import Order, OrderStatus
 from .serializers import OrderSerializer
 from ..categories.mixins import MenuMixin
 from ..profiles.models import Cart
+from ..search_app.forms import SearchForm
+from ..search_app.mixins import SearchMixin
 
 
 class OrderViewSet(ModelViewSet):
@@ -21,6 +23,7 @@ class OrderViewSet(ModelViewSet):
 
 class MakingOrderTemplateViewMixin(MenuMixin, TemplateView):
     template_name = 'orders/making_an_order.html'
+    search_form = SearchForm
 
 
 class CheckUserCacheMixin(UserPassesTestMixin):
@@ -41,7 +44,7 @@ class CheckUserCacheMixin(UserPassesTestMixin):
         return redirect(f'orders:making_an_order_page_{self.current_page}')
 
 
-class MakingOrderViewMixin(LoginRequiredMixin, MakingOrderTemplateViewMixin, FormView):
+class MakingOrderViewMixin(SearchMixin, LoginRequiredMixin, MakingOrderTemplateViewMixin, FormView):
     success_url = reverse_lazy('orders:making_an_order')
     page = None
 
@@ -72,6 +75,10 @@ class MakingOrderViewMixin(LoginRequiredMixin, MakingOrderTemplateViewMixin, For
         return context
 
     def post(self, request, *args, **kwargs):
+        url = self.get_search_redirect_url(request)
+        if url:
+            return redirect(url)
+
         form = self.form_class(request.POST)
         if form.is_valid():
             form_cache = cache.get(f'order_create_{self.request.user.id}')
@@ -112,7 +119,7 @@ class MakingOrderPage3View(CheckUserCacheMixin, MakingOrderViewMixin):
     page = 3
 
 
-class MakingOrderPage4View(CheckUserCacheMixin, MakingOrderTemplateViewMixin):
+class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplateViewMixin):
     page = 4
 
     def get_context_data(self, **kwargs):
@@ -139,7 +146,11 @@ class MakingOrderPage4View(CheckUserCacheMixin, MakingOrderTemplateViewMixin):
         })
         return context
 
-    def post(self, request: HttpRequest) -> HttpResponse:
+    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        url = self.get_search_redirect_url(request)
+        if url:
+            return redirect(url)
+
         form_data = cache.get(f'order_create_{request.user.id}')
         if not form_data:
             return redirect('orders:making_an_order_page_1')
@@ -147,7 +158,7 @@ class MakingOrderPage4View(CheckUserCacheMixin, MakingOrderTemplateViewMixin):
         form_1, form_2, form_3 = (value for key, value in form_data.items() if key.startswith('form_'))
 
         # создание заказа
-        not_payed_order_status = OrderStatus.objects.get(name='not paid')
+        not_paid_order_status = OrderStatus.objects.get(name='not paid')
         order = Order.objects.create(
             user=request.user,
             full_name=form_1['full_name'],
@@ -157,7 +168,7 @@ class MakingOrderPage4View(CheckUserCacheMixin, MakingOrderTemplateViewMixin):
             delivery_address=form_2['delivery_address'],
             delivery_method=form_2['delivery_method'],
             payment_method=form_3['payment_method'],
-            status=not_payed_order_status,
+            status=not_paid_order_status,
         )
 
         # добавление в заказ продуктов из корзины

@@ -14,6 +14,8 @@ import logging
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
 
+from ..search_app.mixins import SearchMixin
+
 from market.cart.cart import Cart
 from market.sellers.models import SellerProduct
 
@@ -22,7 +24,7 @@ from market.sellers.models import SellerProduct
 log = logging.getLogger(__name__)
 
 
-class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, DetailView):
+class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, DetailView, SearchMixin):
     template_name = 'products/product_details.html'
     model = Product
     context_object_name = 'product'
@@ -32,7 +34,7 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
 
     def get_queryset(self) -> QuerySet[Any]:
         return super().get_queryset().prefetch_related('seller_products')
-    
+
     def get(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
         response = super().get(request, *args, **kwargs)
         cart = Cart(request.session)
@@ -53,6 +55,10 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
 
 
     def post(self, request, *args, **kwargs):
+        url = self.get_search_redirect_url(request)
+        if url:
+            return redirect(url)
+
         form = self.form_class(request.POST)
         if form.is_valid():
             feedback_text = form.cleaned_data.get("feedback_text")
@@ -93,6 +99,7 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
                             values_list("product__name", flat=True)
                             )
         context['browsing_history'] = browsing_history
+        context['product_tags'] = context['product'].tags.all()
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
         return context

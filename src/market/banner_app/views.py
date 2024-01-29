@@ -10,8 +10,10 @@ from .models import BannerSlider
 from market.settingsapp.models import CacheTime
 import logging
 
+from ..search_app.mixins import SearchMixin
+
 log = logging.getLogger(__name__)
 
-class IndexTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, TopProductsMixin):
+class IndexTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, TopProductsMixin, SearchMixin):
     template_name = "banner_app/index.html"
 
