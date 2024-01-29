@@ -42,10 +42,10 @@
                   </div>
                 </div>
                 <div class="ProductCard-cartElement">
-                  <a class="btn btn_primary" href="#modal_open">
+                  <button class="btn btn_primary" type="submit">
                     <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
-                    <button class="btn-content" type="submit">Купить</button>
-                  </a>
+                    <span class="btn-content">Купить</span>
+                  </button>
                 </div>
                 {% if product.id not in request.session.compare_list %}
                   {% if request.session.compare_list|length < 4 %}
@@ -81,8 +81,14 @@
             </form>
             <div class="ProductCard-footer">
               <div class="ProductCard-tags">
-                <strong class="ProductCard-tagsTitle">Тэги:
-                </strong><a href="#">Аксессуары</a>,<a href="#">Дизайн</a>,<a href="#">Игры</a>
+                {% if product_tags %}
+                  <strong class="ProductCard-tagsTitle">Тэги:</strong>
+                  {% for tag in product_tags %}
+                    <a href="{% url 'market.catalog_app:catalog' %}?tag={{ tag.name }}">{{ tag.name }}</a>{% if product_tags.last != tag %},{% endif %}
+                  {% endfor %}
+                {% else %}
+                  <span style="color: #a8aab4">У этого продукта нет тегов</span>
+                {% endif %}
               </div>
             </div>
           </div>

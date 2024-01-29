@@ -1,6 +1,10 @@
 {% extends 'repeat_blocks.html' %}
 {% load static %}
 
+{% block title %}
+  <title>Каталог</title>
+{% endblock %}
+
 {% block header-slider %}
 
 {% if messages %}
@@ -63,9 +67,10 @@
             </strong>
           </header>
           <div class="Section-columnContent">
-            <div class="buttons"><a class="btn btn_default btn_sm" href="#">Видео</a><a class="btn btn_default btn_sm" href="#">Разработка</a><a class="btn btn_default btn_sm" href="#">Игры</a><a class="btn btn_default btn_sm" href="#">Asus</a><a class="btn btn_default btn_sm"
-                                                                                                                                                                                                                                                       href="#">Разработка</a><a
-                    class="btn btn_default btn_sm" href="#">Видео</a>
+            <div class="buttons">
+              {% for popular_tag in popular_tags %}
+                <a class="btn btn_default btn_sm" href="{% url 'market.catalog_app:catalog' %}?tag={{ popular_tag.name }}">{{ popular_tag.name }}</a>
+              {% endfor %}
             </div>
           </div>
         </div>
@@ -75,11 +80,10 @@
           <div class="Sort-title">Сортировать по:
           </div>
           <div class="Sort-variants">
-
-            <a class="Sort-sortBy Sort-sortBy_dec" href="?order_by=-rating{% if category %}&category={{ category }}{% endif %}">Популярности</a>
-            <a class="Sort-sortBy"  href="?order_by=price{% if category %}&category={{ category }}{% endif %}">Цене</a>
-            <a class="Sort-sortBy" href="?order_by=-feedback{% if category %}&category={{ category }}{% endif %}">Отзывам</a>
-            <a class="Sort-sortBy Sort-sortBy_inc" href="?order_by=-created_at{% if category %}&category={{ category }}{% endif %}">Новизне</a>
+            <a class="Sort-sortBy Sort-sortBy_dec" href="?order_by=-rating{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">Популярности</a>
+            <a class="Sort-sortBy" href="?order_by=price{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">Цене</a>
+            <a class="Sort-sortBy" href="?order_by=-feedback{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">Отзывам</a>
+            <a class="Sort-sortBy Sort-sortBy_inc" href="?order_by=-created_at{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">Новизне</a>
           </div>
         </div>
         <div class="Cards">
@@ -94,23 +98,22 @@
             <div class="Pagination">
               <div class="Pagination-ins">
                   {% if page_obj.has_previous %}
-                    <a href="?page=1&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">1 ... &laquo;</a>
+                    <a href="?page=1&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">1 ... &laquo;</a>
                     <a class="Pagination-element Pagination-element_prev"
-                       href="?page={{ page_obj.previous_page_number }}&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">{{ page_obj.previous_page_number }}
+                       href="?page={{ page_obj.previous_page_number }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">{{ page_obj.previous_page_number }}
                         <img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg"/>
                     </a>
                   {% endif %}
 
-
-                    <a class="Pagination-element Pagination-element_current" href="#">
-                        <span class="Pagination-text">{{ page_obj.number }}</span>
-                    </a>
+                <a class="Pagination-element Pagination-element_current" href="#">
+                  <span class="Pagination-text">{{ page_obj.number }}</span>
+                </a>
 
                   {% if page_obj.has_next %}
-                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">{{ page_obj.next_page_number }}
+                    <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}">{{ page_obj.next_page_number }}
                         <img src="{% static 'assets/img/icons/nextPagination.svg' %}" alt="nextPagination.svg"/>
                     </a>
-                    <a href="?page={{ page_obj.paginator.num_pages }}&order_by={{ order_by }}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}"> ...  {{ page_obj.paginator.num_pages }} &raquo;</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}&price_filter={{ price_filter }}&title={{ title }}&in_stock={{ in_stock }}"> ...  {{ page_obj.paginator.num_pages }} &raquo;</a>
                   {% endif %}
               </div>
             </div>
