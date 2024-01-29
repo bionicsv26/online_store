@@ -1,0 +1,9 @@
+{% load static %}
+
+{% if product.id not in request.session.compare_list %}
+  {% if request.session.compare_list|length < 4 %}
+<a class="Card-btn" title="Добавить в сравнение" href="{% url 'comparison:add_to_compare' product.id %}"><img src="{% static 'assets/img/icons/card/compare.svg' %}" alt="compare.svg"/></a>
+  {% endif %}
+{% else %}
+<a class="Card-btn" title="Убрать из сравнения" href="{% url 'comparison:remove_from_compare' product.id %}"><img src="{% static 'assets/img/icons/card/compare.svg' %}" alt="compare.svg"/></a>
+{% endif %}
