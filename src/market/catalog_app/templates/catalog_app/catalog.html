@@ -13,7 +13,9 @@
             {% for category in product.category.all %}
               <div class="Card-category">{% if category.parent %} {{ category.parent.name }} {% else %} {{ category.name }} {% endif %} </div>
             {% endfor %}
-            <div class="Card-hover"><a class="Card-btn" href="{% url "market.cart:cart_add" product.pk %}"><img src="{% static 'assets\img\icons\card\cart.svg' %}" alt="cart.svg"/></a></div>
+            <div class="Card-hover"><a class="Card-btn" title="Добавить в корзину" href="{% url 'market.cart:cart_add' product.pk %}"><img src="{% static 'assets\img\icons\card\cart.svg' %}" alt="cart.svg"/></a>
+            {% include 'comparison/compare_add_remove.html' %}
+            </div>
           </div>
         </div>
       </div>
