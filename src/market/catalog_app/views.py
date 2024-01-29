@@ -25,7 +25,6 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
         queryset = self.model.objects.prefetch_related(
             'seller_products',
             'tags',
-            'categories',
             'categories__parent',
         ).filter(seller_products__isnull=False)
 
