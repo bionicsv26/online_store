@@ -5,6 +5,11 @@
 
 {% endblock %}
 
+{% block additional_link_script %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="{% static 'assets/js/jquery.maskedinput.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'assets/css/making_an_order.css' %}">
+{% endblock %}
 
 {% block middle %}
 
@@ -34,54 +39,85 @@
                     </div>
                 <div class="Section-content">
                     <div class="Profile">
-                        <form class="form Profile-form" action="#" method="post">
+                        <form class="form Profile-form" action="." method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
                             <div class="row">
                                 <div class="row-block">
                                     <div class="form-group">
-                                        <label class="form-label" for="avatar">Аватар
-                                        </label>
+                                        <label class="form-label"> {{ form.avatar.label }}</label>
                                         <div class="Profile-avatar Profile-avatar_noimg">
-
-                                            <label class="Profile-fileLabel" for="avatar"><img src="assets/img/icons/upload.png" alt="#.png" />Загрузить фото
+                                            <label class="Account-avatar" for="avatar"><img src="{{ user.profile.avatar.url }}" alt="{{ user.profile.avatar.name }}"  />Загрузить фото
                                             </label>
-
                                             <input class="Profile-file form-input" id="avatar" name="avatar" type="file" data-validate="onlyImgAvatar" />
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="form-label" for="name">ФИО
-                                        </label>
-                                        <input class="form-input" id="name" name="name" type="text" value="" data-validate="require" />
+                                        <label class="form-label"> {{ form.full_name.label }}</label>
+                                        {{ form.full_name }}
+                                        {% if form.full_name.errors %}
+                                          <div class="form-error">{{ form.full_name.errors }}</div>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="row-block">
                                     <div class="form-group">
-                                        <label class="form-label" for="phone">Телефон
-                                        </label>
-                                        <input class="form-input" id="phone" name="phone" type="text" value="+70000000000" />
+                                        <label class="form-label"> {{ form.phone.label }}</label>
+                                        {{ form.phone }}
+                                        {% if form.phone.errors %}
+                                          <div class="form-error">{{ form.phone.errors }}</div>
+                                        {% endif %}
                                     </div>
+                                    <!-- Скрипт для маскирования номера телефона -->
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#phone').mask('+7 (999) 9999999', {autoclear: false});
+                                        });
+                                    </script>
+
                                     <div class="form-group">
-                                        <label class="form-label" for="mail">E-mail
-                                        </label>
-                                        <input class="form-input" id="mail" name="mail" type="text" value="send@test.test" data-validate="require" />
+                                        <label class="form-label"> {{ form.email.label }}</label>
+                                        {{ form.email }}
+                                        {% if form.email.errors %}
+                                          <div class="form-error">{{ form.email.errors }}</div>
+                                        {% endif %}
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="form-label" for="password">Пароль
-                                        </label>
-                                        <input class="form-input" id="password" name="password" type="password" placeholder="Тут можно изменить пароль" />
+                                        <label class="form-label"> {{ form.password.label }}</label>
+                                        {{ form.password }}
+
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="form-label" for="passwordReply">Подтверждение пароля
-                                        </label>
-                                        <input class="form-input" id="passwordReply" name="passwordReply" type="password" placeholder="Введите пароль повторно" />
+                                        <label class="form-label"> {{ form.password_repeat.label }}</label>
+                                        {{ form.password_repeat }}
+                                        {% if form.password_repeat.errors %}
+                                          <div class="form-error">{{ form.password_repeat.errors }}</div>
+                                        {% endif %}
                                     </div>
+
                                     <div class="form-group">
+
                                         <div class="Profile-btn">
                                             <button class="btn btn_success" type="submit">Сохранить
                                             </button>
                                         </div>
-                                        <div class="Profile-success">Профиль успешно сохранен
-                                        </div>
+                                        {% if notification_form_validation_error %}
+                                            <div class="Profile-success">
+                                                <p style="color:#FF0000">{{notification_form_validation_error}}</p>
+                                            </div>
+                                        {% endif %}
+                                        {% if notification_password_error %}
+                                            <div class="Profile-success">
+                                                <p style="color:#FF0000">{{notification_password_error}}</p>
+                                            </div>
+                                        {% endif %}
+                                        {% if notification_ok %}
+                                            <div class="Profile-success" >
+                                                <p style="color:#227700">{{notification_ok}}</p>
+                                            </div>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>

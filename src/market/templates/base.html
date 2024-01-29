@@ -157,7 +157,7 @@
                                                         <a class="dropdown-content-a" href="{% url 'market.profiles:logout' %}">Выход</a>
                                                     </div>
                                                 </div>
-                                                <a class="CartBlock-block" href="{% url "cart:cart_details" %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="cart.svg" /><span class="CartBlock-amount">{{ cart|length }}</span></a>
+                                                <a class="CartBlock-block" href="{% url 'market.cart:cart_details' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="cart.svg" /><span class="CartBlock-amount">{{ cart|length }}</span></a>
                                                 <div class="CartBlock-block"><span class="CartBlock-price">{{ cart.get_total_price }}$</span>
 
 
