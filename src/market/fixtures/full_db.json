@@ -1,1301 +1,5 @@
 [
 {
-    "model": "auth.permission",
-    "pk": 1,
-    "fields": {
-        "name": "Can add log entry",
-        "content_type": 1,
-        "codename": "add_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 2,
-    "fields": {
-        "name": "Can change log entry",
-        "content_type": 1,
-        "codename": "change_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 3,
-    "fields": {
-        "name": "Can delete log entry",
-        "content_type": 1,
-        "codename": "delete_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 4,
-    "fields": {
-        "name": "Can view log entry",
-        "content_type": 1,
-        "codename": "view_logentry"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 5,
-    "fields": {
-        "name": "Can add permission",
-        "content_type": 2,
-        "codename": "add_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 6,
-    "fields": {
-        "name": "Can change permission",
-        "content_type": 2,
-        "codename": "change_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 7,
-    "fields": {
-        "name": "Can delete permission",
-        "content_type": 2,
-        "codename": "delete_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 8,
-    "fields": {
-        "name": "Can view permission",
-        "content_type": 2,
-        "codename": "view_permission"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 9,
-    "fields": {
-        "name": "Can add group",
-        "content_type": 3,
-        "codename": "add_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 10,
-    "fields": {
-        "name": "Can change group",
-        "content_type": 3,
-        "codename": "change_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 11,
-    "fields": {
-        "name": "Can delete group",
-        "content_type": 3,
-        "codename": "delete_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 12,
-    "fields": {
-        "name": "Can view group",
-        "content_type": 3,
-        "codename": "view_group"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 13,
-    "fields": {
-        "name": "Can add user",
-        "content_type": 4,
-        "codename": "add_user"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 14,
-    "fields": {
-        "name": "Can change user",
-        "content_type": 4,
-        "codename": "change_user"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 15,
-    "fields": {
-        "name": "Can delete user",
-        "content_type": 4,
-        "codename": "delete_user"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 16,
-    "fields": {
-        "name": "Can view user",
-        "content_type": 4,
-        "codename": "view_user"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 17,
-    "fields": {
-        "name": "Can add content type",
-        "content_type": 5,
-        "codename": "add_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 18,
-    "fields": {
-        "name": "Can change content type",
-        "content_type": 5,
-        "codename": "change_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 19,
-    "fields": {
-        "name": "Can delete content type",
-        "content_type": 5,
-        "codename": "delete_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 20,
-    "fields": {
-        "name": "Can view content type",
-        "content_type": 5,
-        "codename": "view_contenttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 21,
-    "fields": {
-        "name": "Can add session",
-        "content_type": 6,
-        "codename": "add_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 22,
-    "fields": {
-        "name": "Can change session",
-        "content_type": 6,
-        "codename": "change_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 23,
-    "fields": {
-        "name": "Can delete session",
-        "content_type": 6,
-        "codename": "delete_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 24,
-    "fields": {
-        "name": "Can view session",
-        "content_type": 6,
-        "codename": "view_session"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 25,
-    "fields": {
-        "name": "Can add банер слайдер",
-        "content_type": 7,
-        "codename": "add_bannerslider"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 26,
-    "fields": {
-        "name": "Can change банер слайдер",
-        "content_type": 7,
-        "codename": "change_bannerslider"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 27,
-    "fields": {
-        "name": "Can delete банер слайдер",
-        "content_type": 7,
-        "codename": "delete_bannerslider"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 28,
-    "fields": {
-        "name": "Can view банер слайдер",
-        "content_type": 7,
-        "codename": "view_bannerslider"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 29,
-    "fields": {
-        "name": "Can add cache time",
-        "content_type": 8,
-        "codename": "add_cachetime"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 30,
-    "fields": {
-        "name": "Can change cache time",
-        "content_type": 8,
-        "codename": "change_cachetime"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 31,
-    "fields": {
-        "name": "Can delete cache time",
-        "content_type": 8,
-        "codename": "delete_cachetime"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 32,
-    "fields": {
-        "name": "Can view cache time",
-        "content_type": 8,
-        "codename": "view_cachetime"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 33,
-    "fields": {
-        "name": "Can add order",
-        "content_type": 9,
-        "codename": "add_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 34,
-    "fields": {
-        "name": "Can change order",
-        "content_type": 9,
-        "codename": "change_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 35,
-    "fields": {
-        "name": "Can delete order",
-        "content_type": 9,
-        "codename": "delete_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 36,
-    "fields": {
-        "name": "Can view order",
-        "content_type": 9,
-        "codename": "view_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 37,
-    "fields": {
-        "name": "Can add order status",
-        "content_type": 10,
-        "codename": "add_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 38,
-    "fields": {
-        "name": "Can change order status",
-        "content_type": 10,
-        "codename": "change_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 39,
-    "fields": {
-        "name": "Can delete order status",
-        "content_type": 10,
-        "codename": "delete_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 40,
-    "fields": {
-        "name": "Can view order status",
-        "content_type": 10,
-        "codename": "view_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 41,
-    "fields": {
-        "name": "Can add category",
-        "content_type": 11,
-        "codename": "add_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 42,
-    "fields": {
-        "name": "Can change category",
-        "content_type": 11,
-        "codename": "change_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 43,
-    "fields": {
-        "name": "Can delete category",
-        "content_type": 11,
-        "codename": "delete_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 44,
-    "fields": {
-        "name": "Can view category",
-        "content_type": 11,
-        "codename": "view_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 45,
-    "fields": {
-        "name": "Can add product",
-        "content_type": 12,
-        "codename": "add_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 46,
-    "fields": {
-        "name": "Can change product",
-        "content_type": 12,
-        "codename": "change_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 47,
-    "fields": {
-        "name": "Can delete product",
-        "content_type": 12,
-        "codename": "delete_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 48,
-    "fields": {
-        "name": "Can view product",
-        "content_type": 12,
-        "codename": "view_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 49,
-    "fields": {
-        "name": "Can add просмотр продукта",
-        "content_type": 13,
-        "codename": "add_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 50,
-    "fields": {
-        "name": "Can change просмотр продукта",
-        "content_type": 13,
-        "codename": "change_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 51,
-    "fields": {
-        "name": "Can delete просмотр продукта",
-        "content_type": 13,
-        "codename": "delete_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 52,
-    "fields": {
-        "name": "Can view просмотр продукта",
-        "content_type": 13,
-        "codename": "view_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 53,
-    "fields": {
-        "name": "Can add отзыв на продукт",
-        "content_type": 14,
-        "codename": "add_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 54,
-    "fields": {
-        "name": "Can change отзыв на продукт",
-        "content_type": 14,
-        "codename": "change_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 55,
-    "fields": {
-        "name": "Can delete отзыв на продукт",
-        "content_type": 14,
-        "codename": "delete_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 56,
-    "fields": {
-        "name": "Can view отзыв на продукт",
-        "content_type": 14,
-        "codename": "view_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 57,
-    "fields": {
-        "name": "Can add profile",
-        "content_type": 15,
-        "codename": "add_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 58,
-    "fields": {
-        "name": "Can change profile",
-        "content_type": 15,
-        "codename": "change_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 59,
-    "fields": {
-        "name": "Can delete profile",
-        "content_type": 15,
-        "codename": "delete_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 60,
-    "fields": {
-        "name": "Can view profile",
-        "content_type": 15,
-        "codename": "view_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 61,
-    "fields": {
-        "name": "Can add скидка",
-        "content_type": 16,
-        "codename": "add_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 62,
-    "fields": {
-        "name": "Can change скидка",
-        "content_type": 16,
-        "codename": "change_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 63,
-    "fields": {
-        "name": "Can delete скидка",
-        "content_type": 16,
-        "codename": "delete_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 64,
-    "fields": {
-        "name": "Can view скидка",
-        "content_type": 16,
-        "codename": "view_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 65,
-    "fields": {
-        "name": "Can add продавец",
-        "content_type": 17,
-        "codename": "add_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 66,
-    "fields": {
-        "name": "Can change продавец",
-        "content_type": 17,
-        "codename": "change_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 67,
-    "fields": {
-        "name": "Can delete продавец",
-        "content_type": 17,
-        "codename": "delete_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 68,
-    "fields": {
-        "name": "Can view продавец",
-        "content_type": 17,
-        "codename": "view_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 69,
-    "fields": {
-        "name": "Can add продукт продавца",
-        "content_type": 18,
-        "codename": "add_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 70,
-    "fields": {
-        "name": "Can change продукт продавца",
-        "content_type": 18,
-        "codename": "change_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 71,
-    "fields": {
-        "name": "Can delete продукт продавца",
-        "content_type": 18,
-        "codename": "delete_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 72,
-    "fields": {
-        "name": "Can view продукт продавца",
-        "content_type": 18,
-        "codename": "view_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 73,
-    "fields": {
-        "name": "Can add история просмотра",
-        "content_type": 19,
-        "codename": "add_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 74,
-    "fields": {
-        "name": "Can change история просмотра",
-        "content_type": 19,
-        "codename": "change_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 75,
-    "fields": {
-        "name": "Can delete история просмотра",
-        "content_type": 19,
-        "codename": "delete_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 76,
-    "fields": {
-        "name": "Can view история просмотра",
-        "content_type": 19,
-        "codename": "view_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 77,
-    "fields": {
-        "name": "Can add статус заказа",
-        "content_type": 9,
-        "codename": "add_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 78,
-    "fields": {
-        "name": "Can change статус заказа",
-        "content_type": 9,
-        "codename": "change_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 79,
-    "fields": {
-        "name": "Can delete статус заказа",
-        "content_type": 9,
-        "codename": "delete_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 80,
-    "fields": {
-        "name": "Can view статус заказа",
-        "content_type": 9,
-        "codename": "view_orderstatus"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 81,
-    "fields": {
-        "name": "Can add заказ",
-        "content_type": 10,
-        "codename": "add_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 82,
-    "fields": {
-        "name": "Can change заказ",
-        "content_type": 10,
-        "codename": "change_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 83,
-    "fields": {
-        "name": "Can delete заказ",
-        "content_type": 10,
-        "codename": "delete_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 84,
-    "fields": {
-        "name": "Can view заказ",
-        "content_type": 10,
-        "codename": "view_order"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 85,
-    "fields": {
-        "name": "Can add корзина",
-        "content_type": 11,
-        "codename": "add_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 86,
-    "fields": {
-        "name": "Can change корзина",
-        "content_type": 11,
-        "codename": "change_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 87,
-    "fields": {
-        "name": "Can delete корзина",
-        "content_type": 11,
-        "codename": "delete_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 88,
-    "fields": {
-        "name": "Can view корзина",
-        "content_type": 11,
-        "codename": "view_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 89,
-    "fields": {
-        "name": "Can add Категория",
-        "content_type": 12,
-        "codename": "add_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 90,
-    "fields": {
-        "name": "Can change Категория",
-        "content_type": 12,
-        "codename": "change_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 91,
-    "fields": {
-        "name": "Can delete Категория",
-        "content_type": 12,
-        "codename": "delete_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 92,
-    "fields": {
-        "name": "Can view Категория",
-        "content_type": 12,
-        "codename": "view_category"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 93,
-    "fields": {
-        "name": "Can add Продукт",
-        "content_type": 13,
-        "codename": "add_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 94,
-    "fields": {
-        "name": "Can change Продукт",
-        "content_type": 13,
-        "codename": "change_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 95,
-    "fields": {
-        "name": "Can delete Продукт",
-        "content_type": 13,
-        "codename": "delete_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 96,
-    "fields": {
-        "name": "Can view Продукт",
-        "content_type": 13,
-        "codename": "view_product"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 97,
-    "fields": {
-        "name": "Can add просмотр продукта",
-        "content_type": 14,
-        "codename": "add_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 98,
-    "fields": {
-        "name": "Can change просмотр продукта",
-        "content_type": 14,
-        "codename": "change_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 99,
-    "fields": {
-        "name": "Can delete просмотр продукта",
-        "content_type": 14,
-        "codename": "delete_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 100,
-    "fields": {
-        "name": "Can view просмотр продукта",
-        "content_type": 14,
-        "codename": "view_productviewhistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 101,
-    "fields": {
-        "name": "Can add отзыв на продукт",
-        "content_type": 15,
-        "codename": "add_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 102,
-    "fields": {
-        "name": "Can change отзыв на продукт",
-        "content_type": 15,
-        "codename": "change_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 103,
-    "fields": {
-        "name": "Can delete отзыв на продукт",
-        "content_type": 15,
-        "codename": "delete_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 104,
-    "fields": {
-        "name": "Can view отзыв на продукт",
-        "content_type": 15,
-        "codename": "view_productfeedback"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 105,
-    "fields": {
-        "name": "Can add profile",
-        "content_type": 16,
-        "codename": "add_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 106,
-    "fields": {
-        "name": "Can change profile",
-        "content_type": 16,
-        "codename": "change_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 107,
-    "fields": {
-        "name": "Can delete profile",
-        "content_type": 16,
-        "codename": "delete_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 108,
-    "fields": {
-        "name": "Can view profile",
-        "content_type": 16,
-        "codename": "view_profile"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 109,
-    "fields": {
-        "name": "Can add скидка",
-        "content_type": 17,
-        "codename": "add_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 110,
-    "fields": {
-        "name": "Can change скидка",
-        "content_type": 17,
-        "codename": "change_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 111,
-    "fields": {
-        "name": "Can delete скидка",
-        "content_type": 17,
-        "codename": "delete_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 112,
-    "fields": {
-        "name": "Can view скидка",
-        "content_type": 17,
-        "codename": "view_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 113,
-    "fields": {
-        "name": "Can add продавец",
-        "content_type": 18,
-        "codename": "add_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 114,
-    "fields": {
-        "name": "Can change продавец",
-        "content_type": 18,
-        "codename": "change_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 115,
-    "fields": {
-        "name": "Can delete продавец",
-        "content_type": 18,
-        "codename": "delete_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 116,
-    "fields": {
-        "name": "Can view продавец",
-        "content_type": 18,
-        "codename": "view_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 117,
-    "fields": {
-        "name": "Can add корзина",
-        "content_type": 16,
-        "codename": "add_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 118,
-    "fields": {
-        "name": "Can change корзина",
-        "content_type": 16,
-        "codename": "change_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 119,
-    "fields": {
-        "name": "Can delete корзина",
-        "content_type": 16,
-        "codename": "delete_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 120,
-    "fields": {
-        "name": "Can view корзина",
-        "content_type": 16,
-        "codename": "view_cart"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 121,
-    "fields": {
-        "name": "Can add история просмотра",
-        "content_type": 17,
-        "codename": "add_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 122,
-    "fields": {
-        "name": "Can change история просмотра",
-        "content_type": 17,
-        "codename": "change_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 123,
-    "fields": {
-        "name": "Can delete история просмотра",
-        "content_type": 17,
-        "codename": "delete_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 124,
-    "fields": {
-        "name": "Can view история просмотра",
-        "content_type": 17,
-        "codename": "view_productbrowsinghistory"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 125,
-    "fields": {
-        "name": "Can add скидка",
-        "content_type": 18,
-        "codename": "add_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 126,
-    "fields": {
-        "name": "Can change скидка",
-        "content_type": 18,
-        "codename": "change_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 127,
-    "fields": {
-        "name": "Can delete скидка",
-        "content_type": 18,
-        "codename": "delete_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 128,
-    "fields": {
-        "name": "Can view скидка",
-        "content_type": 18,
-        "codename": "view_discount"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 129,
-    "fields": {
-        "name": "Can add продавец",
-        "content_type": 19,
-        "codename": "add_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 130,
-    "fields": {
-        "name": "Can change продавец",
-        "content_type": 19,
-        "codename": "change_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 131,
-    "fields": {
-        "name": "Can delete продавец",
-        "content_type": 19,
-        "codename": "delete_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 132,
-    "fields": {
-        "name": "Can view продавец",
-        "content_type": 19,
-        "codename": "view_seller"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 133,
-    "fields": {
-        "name": "Can add продукт продавца",
-        "content_type": 20,
-        "codename": "add_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 134,
-    "fields": {
-        "name": "Can change продукт продавца",
-        "content_type": 20,
-        "codename": "change_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 135,
-    "fields": {
-        "name": "Can delete продукт продавца",
-        "content_type": 20,
-        "codename": "delete_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 136,
-    "fields": {
-        "name": "Can view продукт продавца",
-        "content_type": 20,
-        "codename": "view_sellerproduct"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 137,
-    "fields": {
-        "name": "Can add тип скидки",
-        "content_type": 21,
-        "codename": "add_discounttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 138,
-    "fields": {
-        "name": "Can change тип скидки",
-        "content_type": 21,
-        "codename": "change_discounttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 139,
-    "fields": {
-        "name": "Can delete тип скидки",
-        "content_type": 21,
-        "codename": "delete_discounttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 140,
-    "fields": {
-        "name": "Can view тип скидки",
-        "content_type": 21,
-        "codename": "view_discounttype"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 141,
-    "fields": {
-        "name": "Can add specification",
-        "content_type": 22,
-        "codename": "add_specification"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 142,
-    "fields": {
-        "name": "Can change specification",
-        "content_type": 22,
-        "codename": "change_specification"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 143,
-    "fields": {
-        "name": "Can delete specification",
-        "content_type": 22,
-        "codename": "delete_specification"
-    }
-},
-{
-    "model": "auth.permission",
-    "pk": 144,
-    "fields": {
-        "name": "Can view specification",
-        "content_type": 22,
-        "codename": "view_specification"
-    }
-},
-{
     "model": "auth.user",
     "pk": 1,
     "fields": {
@@ -1336,7 +40,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$260000$mvj8U0Nc1UbChRj1IMrGra$ElYUt8dcoXYVyU3o96JXorgRoQHuafCp0L2IQUzenys=",
-        "last_login": "2024-01-26T12:27:40.625Z",
+        "last_login": "2024-01-30T12:12:46.058Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -1563,6 +267,97 @@
             5,
             6,
             7
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 6,
+    "fields": {
+        "user": 3,
+        "cost": "0.00",
+        "delivery_city": "fsdf",
+        "delivery_address": "fdsfss",
+        "delivery_method": "ordinary",
+        "payment_method": "someone",
+        "full_name": "fdsf fs sf",
+        "phone": "+7 (432) 4424242",
+        "email": "admin@admin.ru",
+        "created_at": "2024-01-30T20:11:25.557Z",
+        "status": 1,
+        "seller_products": [
+            6,
+            13,
+            14,
+            16,
+            18,
+            23
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 7,
+    "fields": {
+        "user": 3,
+        "cost": "0.00",
+        "delivery_city": "авввв",
+        "delivery_address": "вввввв",
+        "delivery_method": "express",
+        "payment_method": "online",
+        "full_name": "Ян Ян Ян",
+        "phone": "+7 (232) 1142141",
+        "email": "admin@admin.ru",
+        "created_at": "2024-01-30T20:34:48.001Z",
+        "status": 1,
+        "seller_products": [
+            1,
+            6,
+            13,
+            14,
+            23,
+            25
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 8,
+    "fields": {
+        "user": 3,
+        "cost": "0.00",
+        "delivery_city": "gdfg",
+        "delivery_address": "gdfgg",
+        "delivery_method": "ordinary",
+        "payment_method": "online",
+        "full_name": "fgbf fgd gfdd",
+        "phone": "+7 (324) 2343242",
+        "email": "admin@admin.ru",
+        "created_at": "2024-01-31T17:33:12.754Z",
+        "status": 1,
+        "seller_products": [
+            1,
+            4
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 9,
+    "fields": {
+        "user": 3,
+        "cost": "0.00",
+        "delivery_city": "пав",
+        "delivery_address": "пвап",
+        "delivery_method": "ordinary",
+        "payment_method": "online",
+        "full_name": "павп пва пва",
+        "phone": "+7 (435) 4355555",
+        "email": "admin@admin.ru",
+        "created_at": "2024-01-31T17:52:35.486Z",
+        "status": 1,
+        "seller_products": [
+            1
         ]
     }
 },
@@ -2412,6 +1207,24 @@
     }
 },
 {
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 13,
+    "fields": {
+        "user": 3,
+        "product": 15,
+        "view_at": "2024-01-30"
+    }
+},
+{
+    "model": "browsing_history_app.productbrowsinghistory",
+    "pk": 14,
+    "fields": {
+        "user": 3,
+        "product": 1,
+        "view_at": "2024-01-31"
+    }
+},
+{
     "model": "sellers.seller",
     "pk": 1,
     "fields": {
@@ -2462,8 +1275,8 @@
         "product": 2,
         "seller": 3,
         "price": "12.00",
-        "stock": 31,
-        "discount": 1,
+        "stock": 25,
+        "discount": 3,
         "created_at": "2023-11-04"
     }
 },
@@ -2475,7 +1288,7 @@
         "seller": 3,
         "price": "123.00",
         "stock": 312,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-10-04"
     }
 },
@@ -2487,7 +1300,7 @@
         "seller": 3,
         "price": "324.00",
         "stock": 330,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-09-04"
     }
 },
@@ -2498,8 +1311,8 @@
         "product": 8,
         "seller": 1,
         "price": "2322.00",
-        "stock": 7,
-        "discount": 3,
+        "stock": 6,
+        "discount": 1,
         "created_at": "2023-08-04"
     }
 },
@@ -2511,7 +1324,7 @@
         "seller": 2,
         "price": "2344.00",
         "stock": 18,
-        "discount": 3,
+        "discount": 1,
         "created_at": "2023-07-04"
     }
 },
@@ -2522,7 +1335,7 @@
         "product": 1,
         "seller": 4,
         "price": "33.00",
-        "stock": 119,
+        "stock": 117,
         "discount": 1,
         "created_at": "2023-07-05"
     }
@@ -2559,7 +1372,7 @@
         "seller": 3,
         "price": "343.00",
         "stock": 342,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-05-04"
     }
 },
@@ -2571,7 +1384,7 @@
         "seller": 3,
         "price": "342.00",
         "stock": 42,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -2583,7 +1396,7 @@
         "seller": 3,
         "price": "100.00",
         "stock": 321,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-02"
     }
 },
@@ -2594,8 +1407,8 @@
         "product": 12,
         "seller": 3,
         "price": "32.00",
-        "stock": 3234,
-        "discount": 1,
+        "stock": 3232,
+        "discount": 3,
         "created_at": "2023-12-05"
     }
 },
@@ -2606,8 +1419,8 @@
         "product": 13,
         "seller": 3,
         "price": "11.00",
-        "stock": 322,
-        "discount": 1,
+        "stock": 320,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -2619,7 +1432,7 @@
         "seller": 3,
         "price": "13.00",
         "stock": 321,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -2630,8 +1443,8 @@
         "product": 15,
         "seller": 3,
         "price": "14.00",
-        "stock": 531,
-        "discount": 1,
+        "stock": 530,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -2643,7 +1456,7 @@
         "seller": 3,
         "price": "13.00",
         "stock": 431,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -2654,8 +1467,8 @@
         "product": 17,
         "seller": 3,
         "price": "15.00",
-        "stock": 1234,
-        "discount": 1,
+        "stock": 1233,
+        "discount": 3,
         "created_at": "2023-12-04"
     }
 },
@@ -2667,7 +1480,7 @@
         "seller": 3,
         "price": "111.00",
         "stock": 5,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2024-01-13"
     }
 },
@@ -2691,7 +1504,7 @@
         "seller": 1,
         "price": "14999.00",
         "stock": 37,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2024-01-26"
     }
 },
@@ -2703,7 +1516,7 @@
         "seller": 2,
         "price": "15399.00",
         "stock": 41,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2024-01-26"
     }
 },
@@ -2714,8 +1527,8 @@
         "product": 19,
         "seller": 1,
         "price": "15999.00",
-        "stock": 71,
-        "discount": 1,
+        "stock": 69,
+        "discount": 3,
         "created_at": "2024-01-26"
     }
 },
@@ -2727,7 +1540,7 @@
         "seller": 2,
         "price": "16199.00",
         "stock": 16,
-        "discount": 1,
+        "discount": 3,
         "created_at": "2024-01-26"
     }
 },
@@ -2738,8 +1551,8 @@
         "product": 20,
         "seller": 1,
         "price": "18999.00",
-        "stock": 55,
-        "discount": 1,
+        "stock": 54,
+        "discount": 3,
         "created_at": "2024-01-26"
     }
 },
@@ -2759,7 +1572,7 @@
     "pk": 2,
     "fields": {
         "type": 2,
-        "value": 30,
+        "value": 5,
         "amount_products": 5,
         "expires": null,
         "categories": []
@@ -2770,11 +1583,12 @@
     "pk": 3,
     "fields": {
         "type": 3,
-        "value": 30,
+        "value": 3,
         "amount_products": null,
         "expires": null,
         "categories": [
-            7
+            3,
+            8
         ]
     }
 },
@@ -2805,10 +1619,10 @@
     "fields": {
         "name": "выгодное",
         "products": [
+            1,
             2,
             4,
             6,
-            1,
             10,
             11,
             12,
