@@ -8,11 +8,10 @@ from django.contrib.auth.models import User
 from .models import Profile
 from market.products.models import Product
 from market.browsing_history_app.models import ProductBrowsingHistory
-from .forms import UserRegistrationForm, UserProfileForm
+from .forms import UserProfileForm
 
 from .forms import UserRegistrationForm
 from ..search_app.mixins import SearchMixin
-from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
