@@ -24,7 +24,7 @@
                                 <div class="Cart-block Cart-block_price">
                                     <div class="Cart-price">
                                       {% if cart.get_priority_discount_type == 'products_discount' and item.product.discount.value > 0 %}
-                                        <span class="discounted_price">{{ item.product.price|mul_price:item.quantity }} руб.</span> {{ item.product.get_format_discounted_price }} руб.
+                                        <span class="discounted_price">{{ item.product.price|mul_price:item.quantity }} руб.</span> {{ item.product.get_discounted_price|mul_price:item.quantity }} руб.
                                       {% else %}
                                         {{ item.product.price|mul_price:item.quantity }} руб.
                                       {% endif %}
