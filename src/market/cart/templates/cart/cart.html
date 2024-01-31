@@ -67,9 +67,11 @@
                         {% endif %}
                       </span>
                     </div>
-                    <div class="Cart-block">
-                      <button class="btn btn_success btn_lg" type="submit">Оформить заказ</button>
-                    </div>
+                    {% if cart|length > 0 %}
+                      <div class="Cart-block">
+                        <button class="btn btn_success btn_lg" type="submit">Оформить заказ</button>
+                      </div>
+                    {% endif %}
                 </div>
             </form>
         </div>
