@@ -137,7 +137,7 @@
                       {% for product in product.seller_products.all %}
                         <div class="row">
                           <div class="row-block">
-                            <a class="Order-title" href="oneorder.html">
+                            <a class="Order-title" href={% url 'sellers:seller-details' seller_slug=product.seller.slug %}>
                               {{ product.seller.name }}
                             </a>
                             <form>

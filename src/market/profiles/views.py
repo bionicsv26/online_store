@@ -107,6 +107,10 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         return context
 
     def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response:
+            return response
+
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             log.debug("Форма заполнена правильно. Проверка валидности прошла")
@@ -152,23 +156,3 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                            "notification_form_validation_error":"Профиль не сохранен. "
                                                                 "Убедитесь, что все поля заполнены правильно "
                                                                 "и фотография выбрана."})
-
-
-class CartDetailsView(TemplateView):
-    template_name = 'profiles/cart_details.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        cart = self.request.user.cart
-
-        context['cart'] = cart
-        context['seller_products'] = cart.seller_products.select_related(
-            'discount',
-            'discount__type',
-            'product',
-        ).prefetch_related(
-            'product__categories',
-        )
-        context['discounted_cart_cost'], context['priority_discount_type'] = cart.get_priority_discounted_cost()
-
-        return context
