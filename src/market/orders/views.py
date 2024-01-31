@@ -11,9 +11,9 @@ from .forms import OrderCreationPage1Form, OrderCreationPage2Form, OrderCreation
 from .models import Order, OrderStatus
 from .serializers import OrderSerializer
 from ..categories.mixins import MenuMixin
-from ..profiles.models import Cart
 from ..search_app.forms import SearchForm
 from ..search_app.mixins import SearchMixin
+from ..cart.cart import Cart
 
 
 class OrderViewSet(ModelViewSet):
@@ -131,18 +131,11 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
             'form_2': OrderCreationPage2Form(form_cache['form_2']),
             'form_3': OrderCreationPage3Form(form_cache['form_3']),
         }
-        cart = Cart.objects.prefetch_related(
-            'seller_products',
-            'seller_products__product',
-        ).get(user=self.request.user)
-        seller_products = cart.seller_products.all()
 
         context.update({
             'page': self.page,
             'current_page': form_cache.get('current_page'),
             'forms': forms,
-            'cart': cart,
-            'seller_products': seller_products
         })
         return context
 
@@ -172,7 +165,11 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
         )
 
         # добавление в заказ продуктов из корзины
-        order.seller_products.set(request.user.cart.seller_products.all())
+        cart = Cart(request.session)
+        seller_products_ids = cart.cart.keys()
+        order.seller_products.set(seller_products_ids)
 
+        cart.clear()
         cache.delete(f'order_create_{self.request.user.id}')
+
         return redirect(reverse('payment:payment', kwargs={'pk': order.pk}))

@@ -15,7 +15,7 @@ class CartDetailsView(TemplateView, MenuMixin, SearchMixin):
 
 class CartAddView(View):
     
-    def get(self, request:HttpRequest, product_id: str) -> HttpResponse:
+    def get(self, request: HttpRequest, product_id: str) -> HttpResponse:
         cart = Cart(request.session)
         product = get_object_or_404(Product, pk=int(product_id))
         seller_product = product.seller_products.order_by('price').first()
