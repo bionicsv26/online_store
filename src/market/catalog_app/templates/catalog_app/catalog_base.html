@@ -97,9 +97,8 @@
             <div class="Pagination">
               <div class="Pagination-ins">
                 {% if page_obj.has_previous %}
-                  <a href="?page=1&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">1 ... &laquo;</a>
+                  <a href="?page=1&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">1 &laquo;&laquo;&nbsp;&nbsp;</a>
                   <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.previous_page_number }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">
-                    {{ page_obj.previous_page_number }}
                     <img src="{% static 'assets/img/icons/prevPagination.svg' %}" alt="prevPagination.svg"/>
                   </a>
                 {% endif %}
@@ -107,11 +106,11 @@
                   <span class="Pagination-text">{{ page_obj.number }}</span>
                 </a>
                 {% if page_obj.has_next %}
-                  <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">{{ page_obj.next_page_number }}
+                  <a class="Pagination-element Pagination-element_prev" href="?page={{ page_obj.next_page_number }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">
                     <img src="{% static 'assets/img/icons/nextPagination.svg' %}" alt="nextPagination.svg"/>
                   </a>
                   <a href="?page={{ page_obj.paginator.num_pages }}&order_by={{ order_by }}{% if category %}&category={{ category }}{% endif %}{% if tag %}&tag={{ tag }}{% endif %}{% if query %}&query={{ query }}{% endif %}{% if price_filter %}&price_filter={{ price_filter }}{% endif %}{% if title %}&title={{ title }}{% endif %}{% if in_stock %}&in_stock={{ in_stock }}{% endif %}">
-                    ... {{ page_obj.paginator.num_pages }} &raquo;
+                    &nbsp;&nbsp;&raquo;&raquo; {{ page_obj.paginator.num_pages }}
                   </a>
                 {% endif %}
               </div>
