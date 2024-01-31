@@ -75,9 +75,9 @@ class MakingOrderViewMixin(SearchMixin, LoginRequiredMixin, MakingOrderTemplateV
         return context
 
     def post(self, request, *args, **kwargs):
-        url = self.get_search_redirect_url(request)
-        if url:
-            return redirect(url)
+        response = super().post(request, *args, **kwargs)
+        if response:
+            return response
 
         form = self.form_class(request.POST)
         if form.is_valid():
@@ -140,9 +140,9 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
         return context
 
     def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
-        url = self.get_search_redirect_url(request)
-        if url:
-            return redirect(url)
+        response = super().post(request, *args, **kwargs)
+        if response:
+            return response
 
         form_data = cache.get(f'order_create_{request.user.id}')
         if not form_data:
