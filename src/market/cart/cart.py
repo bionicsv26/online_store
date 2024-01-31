@@ -1,3 +1,4 @@
+from copy import deepcopy
 from decimal import Decimal
 from django.contrib import messages
 from django.conf import settings
@@ -27,7 +28,7 @@ class Cart:
         Прокорутить товарные позиции корзины в цикле и
         получить товары из базы данных
         """
-        cart = self.cart.copy()
+        cart = deepcopy(self.cart)
         for product in self.queryset:
             cart[str(product.id)]['product'] = product
         for item in cart.values():
@@ -47,6 +48,9 @@ class Cart:
         """
         product_id = str(product.id)
         product_stock = product.stock
+        if amount < 1:
+            self.remove(product_id)
+            return
 
         if product_stock >= amount:
             if product_id not in self.cart:
@@ -100,7 +104,7 @@ class Cart:
         """
         return sum(
             seller_product.get('product').get_discounted_price() * seller_product.get('quantity')
-            for seller_product in self
+            for seller_product in self.__iter__()
         )
 
     def get_priority_discounted_cost(self) -> Decimal:

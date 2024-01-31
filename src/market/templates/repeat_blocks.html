@@ -50,7 +50,9 @@
   </div>
 {% endblock %}
 
-
+{% block cart_cost %}
+  {{ cart.get_priority_discounted_cost|floatformat:2 }}&nbsp;руб.
+{% endblock %}
 
 {% block header-slider %}
 

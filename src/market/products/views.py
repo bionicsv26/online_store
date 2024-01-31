@@ -53,7 +53,6 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
 
         return response
 
-
     def post(self, request, *args, **kwargs):
         url = self.get_search_redirect_url(request)
         if url:

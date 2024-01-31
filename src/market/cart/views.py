@@ -12,6 +12,22 @@ from ..search_app.mixins import SearchMixin
 class CartDetailsView(TemplateView, MenuMixin, SearchMixin):
     template_name = 'cart/cart.html'
 
+    def post(self, request: HttpRequest, *args, **kwargs) -> HttpResponse:
+        url = self.get_search_redirect_url(request)
+        if url:
+            return redirect(url)
+
+        cart = Cart(request.session)
+        for item in cart:
+            seller_product = item.get('product')
+            seller_product_pk = str(seller_product.pk)
+            if seller_product_pk in request.POST:
+                quantity = request.POST.get(seller_product_pk)
+                if quantity.isdigit():
+                    cart.add(seller_product, amount=int(quantity))
+
+        return redirect(reverse('orders:making_an_order_page_1'))
+
 
 class CartAddView(View):
     

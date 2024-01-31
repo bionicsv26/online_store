@@ -1,5 +1,6 @@
 {% extends "repeat_blocks.html" %}
 {% load static %}
+{% load cart_filters %}
 
 {% block header-slider %}
 
@@ -9,11 +10,12 @@
     <div class="Section">
         <div class="wrap">
             <form class="form Cart" action="#" method="post">
+                {% csrf_token %}
                 {% for item in cart %}
                     {% with product=item.product %}
                         <div class="Cart-product">
                             <div class="Cart-block Cart-block_row">
-                                <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{% if product.product.preview %}{{ product.product.preview.url }}{% else %}{% static "img/no_image.png" %}{% endif %}assets/img/content/home/card.jpg" alt="card.jpg" /></a>
+                                <div class="Cart-block Cart-block_pict"><a class="Cart-pict" href="#"><img class="Cart-img" src="{{ product.product.preview.url }}" alt="card.jpg" /></a>
                                 </div>
                                 <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{{ product.product.get_absolute_url }}">{{ product.product.name }}</a>
                                     <div class="Cart-desc">{{ product.product.description }}
@@ -22,9 +24,9 @@
                                 <div class="Cart-block Cart-block_price">
                                     <div class="Cart-price">
                                       {% if cart.get_priority_discount_type == 'products_discount' and item.product.discount.value > 0 %}
-                                        <span style="text-decoration: line-through; color: #adaaac">{{ item.product.price }} руб.</span> {{ item.product.get_format_discounted_price }} руб.
+                                        <span style="text-decoration: line-through; color: #adaaac">{{ item.product.price|mul_price:item.quantity }} руб.</span> {{ item.product.get_format_discounted_price }} руб.
                                       {% else %}
-                                        {{ item.product.price }} руб.
+                                        {{ item.product.price|mul_price:item.quantity }} руб.
                                       {% endif %}
                                     </div>
                                 </div>
@@ -45,7 +47,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="Cart-block Cart-block_delete"><a class="Cart-delete" href="{% url 'market.cart:cart_remove' product.pk %}" ><img src="assets/img/icons/card/delete.svg" alt="delete.svg" /></a>
+                                <div class="Cart-block Cart-block_delete"><a class="Cart-delete" href="{% url 'market.cart:cart_remove' product.pk %}" ><img src="{% static 'assets/img/icons/card/delete.svg' %}" alt="delete.svg" /></a>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +67,8 @@
                         {% endif %}
                       </span>
                     </div>
-                    <div class="Cart-block"><a class="btn btn_success btn_lg" href="{% url 'orders:making_an_order_page_1' %}">Оформить заказ</a>
+                    <div class="Cart-block">
+                      <button class="btn btn_success btn_lg" type="submit">Оформить заказ</button>
                     </div>
                 </div>
             </form>

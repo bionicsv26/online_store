@@ -1,6 +1,7 @@
 {% extends 'orders/making_an_order_base.html' %}
 {% load static %}
 {% load orders_tags %}
+{% load cart_filters %}
 
 {% block form %}
   <form class="form" action="." method="post">
@@ -142,9 +143,9 @@
                   <div class="Cart-block Cart-block_price">
                     <div class="Cart-price">
                       {% if cart.get_priority_discount_type == 'products_discount' and item.product.discount.value > 0 %}
-                        <span style="text-decoration: line-through; color: #adaaac">{{ item.product.price }} руб.</span> {{ item.product.get_format_discounted_price }} руб.
+                        <span style="text-decoration: line-through; color: #adaaac">{{ item.product.price|mul_price:item.quantity }} руб.</span> {{ item.product.get_format_discounted_price }} руб.
                       {% else %}
-                        {{ item.product.price }} руб.
+                        {{ item.product.price|mul_price:item.quantity }} руб.
                       {% endif %}
                     </div>
                   </div>
