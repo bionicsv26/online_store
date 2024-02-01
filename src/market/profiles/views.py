@@ -88,6 +88,17 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         return context
 
 
+def clean_full_name(full_name:str) -> str | bool:
+    split_data = full_name.split()
+    if not ''.join(split_data).isalpha():
+        return 'Это поле может содержать только буквы и пробелы'
+    if len(split_data) != 3:
+        return 'Это поле должно состоять из 3-х слов'
+    for i_name in split_data:
+        if not i_name[0].isupper():
+            return 'Фамилия, Имя и Отчество должно быть с заглавной буквы'
+    return True
+
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, SearchMixin):
     template_name = "profiles/profile.html"
 
