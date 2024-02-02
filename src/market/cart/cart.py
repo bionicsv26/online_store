@@ -94,7 +94,7 @@ class Cart:
         """
         Получить стоимость корзины со скидкой
         """
-        if self.__len__() >= self.discount.amount_products:
+        if len(self) >= self.discount.amount_products:
             return self.get_total_price() * Decimal(1 - self.discount.value / 100)
         return self.get_total_price()
 
@@ -104,7 +104,7 @@ class Cart:
         """
         return sum(
             seller_product.get('product').get_discounted_price() * seller_product.get('quantity')
-            for seller_product in self.__iter__()
+            for seller_product in self
         )
 
     def get_priority_discounted_cost(self) -> Decimal:
