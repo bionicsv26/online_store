@@ -19,6 +19,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
+
 class RegisterView(View):
     form_class = UserRegistrationForm
     template_name = 'profiles/register.html'
@@ -111,6 +112,7 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         if response:
             return response
 
+        context = self.get_context_data()
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             log.debug("Форма заполнена правильно. Проверка валидности прошла")
@@ -130,29 +132,28 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                 profile.phone = phone
                 profile.avatar = form.cleaned_data['avatar']
                 profile.save()
-                log.debug(f"Полученные из формы данные сохранены в БД User & Profile")
+                log.debug("Полученные из формы данные сохранены в БД User & Profile")
             else:
                 log.debug("Введенные пароли отличаются. вызываем form.add_error")
                 form.add_error('password_repeat',
                                'Пароль и подтверждение пароля не совпадают')
-                return render(request,
-                              self.template_name,
-                              {'form': form,
-                               "notification_password_error":"Профиль не сохранен. Пароли не совпадают"})
+
+                context.update({'form': form,
+                                "notification_password_error": "Профиль не сохранен. Пароли не совпадают"})
+                return render(request, self.template_name, context)
 
             user = authenticate(request, username=request.user.username, password=password)
             if user is not None:
                 login(request, user)
-            return render(request,
-                          self.template_name,
-                          {'form': form,
-                           "notification_ok":"Профиль успешно сохранен."})
+
+            context.update({'form': form,
+                            "notification_ok": "Профиль успешно сохранен."})
+            return render(request, self.template_name, context)
         else:
             log.debug("Форма заполнена не правильно. Проверка валидности не пройдена. "
                       "Форма с описанием ошибки возвращается пользователю")
-            return render(request,
-                          self.template_name,
-                          {'form': form,
-                           "notification_form_validation_error":"Профиль не сохранен. "
-                                                                "Убедитесь, что все поля заполнены правильно "
-                                                                "и фотография выбрана."})
+            context.update({'form': form,
+                            "notification_form_validation_error": "Профиль не сохранен. "
+                                                                  "Убедитесь, что все поля заполнены правильно "
+                                                                  "и фотография выбрана."})
+            return render(request, self.template_name, context)
