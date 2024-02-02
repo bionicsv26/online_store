@@ -53,11 +53,10 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
 
         return response
 
-
     def post(self, request, *args, **kwargs):
-        url = self.get_search_redirect_url(request)
-        if url:
-            return redirect(url)
+        response = super().post(request, *args, **kwargs)
+        if response:
+            return response
 
         form = self.form_class(request.POST)
         if form.is_valid():

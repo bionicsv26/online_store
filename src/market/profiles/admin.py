@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from .models import Profile, Cart
+from .models import Profile
 
 
 @admin.register(Profile)
@@ -14,10 +14,3 @@ class ProfileAdmin(admin.ModelAdmin):
         return format_html(f'<img src="{obj.avatar.url}" style="max-height: 100px;">')
     
     show_avatar.short_description = 'Аватар'
-
-
-# временный объект
-@admin.register(Cart)
-class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'cost']
-    fields = ['user', 'seller_products', 'discount']

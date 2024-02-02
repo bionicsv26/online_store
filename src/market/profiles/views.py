@@ -8,17 +8,17 @@ from django.contrib.auth.models import User
 from .models import Profile
 from market.products.models import Product
 from market.browsing_history_app.models import ProductBrowsingHistory
-from .forms import UserRegistrationForm, UserProfileForm
+from .forms import UserProfileForm
 
 from .forms import UserRegistrationForm
 from ..search_app.mixins import SearchMixin
-from ..sellers.models import SellerProduct
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 import logging
 
 log = logging.getLogger(__name__)
+
 
 class RegisterView(View):
     form_class = UserRegistrationForm
@@ -108,6 +108,11 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         return context
 
     def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response:
+            return response
+
+        context = self.get_context_data()
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             log.debug("Форма заполнена правильно. Проверка валидности прошла")
@@ -127,49 +132,28 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                 profile.phone = phone
                 profile.avatar = form.cleaned_data['avatar']
                 profile.save()
-                log.debug(f"Полученные из формы данные сохранены в БД User & Profile")
+                log.debug("Полученные из формы данные сохранены в БД User & Profile")
             else:
                 log.debug("Введенные пароли отличаются. вызываем form.add_error")
                 form.add_error('password_repeat',
                                'Пароль и подтверждение пароля не совпадают')
-                return render(request,
-                              self.template_name,
-                              {'form': form,
-                               "notification_password_error":"Профиль не сохранен. Пароли не совпадают"})
+
+                context.update({'form': form,
+                                "notification_password_error": "Профиль не сохранен. Пароли не совпадают"})
+                return render(request, self.template_name, context)
 
             user = authenticate(request, username=request.user.username, password=password)
             if user is not None:
                 login(request, user)
-            return render(request,
-                          self.template_name,
-                          {'form': form,
-                           "notification_ok":"Профиль успешно сохранен."})
+
+            context.update({'form': form,
+                            "notification_ok": "Профиль успешно сохранен."})
+            return render(request, self.template_name, context)
         else:
             log.debug("Форма заполнена не правильно. Проверка валидности не пройдена. "
                       "Форма с описанием ошибки возвращается пользователю")
-            return render(request,
-                          self.template_name,
-                          {'form': form,
-                           "notification_form_validation_error":"Профиль не сохранен. "
-                                                                "Убедитесь, что все поля заполнены правильно "
-                                                                "и фотография выбрана."})
-
-
-class CartDetailsView(TemplateView):
-    template_name = 'profiles/cart_details.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        cart = self.request.user.cart
-
-        context['cart'] = cart
-        context['seller_products'] = cart.seller_products.select_related(
-            'discount',
-            'discount__type',
-            'product',
-        ).prefetch_related(
-            'product__categories',
-        )
-        context['discounted_cart_cost'], context['priority_discount_type'] = cart.get_priority_discounted_cost()
-
-        return context
+            context.update({'form': form,
+                            "notification_form_validation_error": "Профиль не сохранен. "
+                                                                  "Убедитесь, что все поля заполнены правильно "
+                                                                  "и фотография выбрана."})
+            return render(request, self.template_name, context)

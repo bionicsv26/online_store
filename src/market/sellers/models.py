@@ -1,5 +1,5 @@
+from decimal import Decimal
 from django.db import models
-from django.db.models import Q, Max
 
 from market.categories.models import Category
 from market.products.models import Product
@@ -40,8 +40,8 @@ class SellerProduct(models.Model):
     def __str__(self):
         return f'Продукт продавца "{self.product.name}"'
 
-    def get_discounted_price(self) -> float:
-        return float(self.price) * (1 - self.discount.value / 100)
+    def get_discounted_price(self) -> Decimal:
+        return self.price * Decimal(1 - self.discount.value / 100)
 
     def get_format_discounted_price(self) -> str:
         discounted_price = self.get_discounted_price()

@@ -45,6 +45,7 @@
         <link rel="stylesheet" href="{% static 'assets/css/fonts.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/basic.css' %}">
         <link rel="stylesheet" href="{% static 'assets/css/extra.css' %}">
+        <link rel="stylesheet" href="{% static 'assets/css/discount.css' %}">
 
         <script src="{% static 'assets/plg/CountDown/countdown.js' %}"></script>
 
@@ -158,9 +159,12 @@
                                                     </div>
                                                 </div>
                                                 <a class="CartBlock-block" href="{% url 'market.cart:cart_details' %}"><img class="CartBlock-img" src="{% static 'assets/img/icons/cart.svg' %}" alt="cart.svg" /><span class="CartBlock-amount">{{ cart|length }}</span></a>
-                                                <div class="CartBlock-block"><span class="CartBlock-price">{{ cart.get_total_price }}$</span>
+                                                <div class="CartBlock-block">
+                                                  <span class="CartBlock-price">
+                                                    {% block cart_cost %}
 
-
+                                                    {% endblock %}
+                                                  </span>
                                                 </div>
                                             </div>
                                         </div>
