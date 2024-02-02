@@ -44,11 +44,11 @@
                 </div>
                 <div class="ProductCard-cartElement">
                   <button class="btn btn_primary" type="submit">
-                    <img class="btn-icon" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
+                    <img class="btn-icon" href="{% url 'market.cart:cart_add' product.pk %}" src="{% static 'assets/img/icons/card/cart_white.svg' %}" alt="cart_white.svg"/>
                     <span class="btn-content">Купить</span>
                   </button>
                 </div>
-                {% if product.id not in request.session.compare_list %}
+                {% if product.id not in request.session.compare_list or not request.session.compare_list  %}
                   {% if request.session.compare_list|length < 4 %}
                 <div class="ProductCard-cartElement">
                   <a class="btn btn_primary" href="{% url 'comparison:add_to_compare' product.id %}">
@@ -140,7 +140,7 @@
                       {% for product in product.seller_products.all %}
                         <div class="row">
                           <div class="row-block">
-                            <a class="Order-title" href={% url 'sellers:seller-details' seller_slug=product.seller.slug %}>
+                            <a class="Order-title" href="{% url 'sellers:seller-details' seller_slug=product.seller.slug %}">
                               {{ product.seller.name }}
                             </a>
                             <form>
