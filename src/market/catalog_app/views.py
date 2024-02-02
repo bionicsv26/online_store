@@ -64,8 +64,9 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
                     Max('seller_products__created_at')
                 ).order_by('seller_products__created_at__max')
 
-        if self.request.GET.get('price_filter'):
-            price_range = self.request.GET.get('price_filter').split(";")
+        price_range = self.request.GET.get('price_filter')
+        if price_range:
+            price_range = price_range.split(";")
             range_start = price_range[0]
             range_end = price_range[1]
             queryset = queryset.filter(seller_products__price__range=(range_start, range_end))

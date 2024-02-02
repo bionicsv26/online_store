@@ -1,7 +1,7 @@
 import requests
 
 from django.db.models import F
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
 from django.views import View
 from django.views.generic import TemplateView
@@ -28,9 +28,9 @@ class PayView(SearchMixin, MenuMixin, View):
         })
 
     def post(self, request: HttpRequest, pk: int, *args, **kwargs) -> HttpResponse:
-        url = self.get_search_redirect_url(request)
-        if url:
-            return redirect(url)
+        response = super().post(request, *args, **kwargs)
+        if response:
+            return response
 
         form = PayForm(request.POST)
         if form.is_valid():
@@ -47,9 +47,7 @@ class PayView(SearchMixin, MenuMixin, View):
 
                 order.seller_products.update(stock=F('stock') - 1)
 
-                return redirect('payment:successfully', pk)
-
-            return redirect('payment:unsuccessfully', pk)
+            return redirect(reverse('market.profiles:account'))
 
         context = self.get_context_data()
         context['form'] = form

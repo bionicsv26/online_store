@@ -137,7 +137,7 @@
                       {% for product in product.seller_products.all %}
                         <div class="row">
                           <div class="row-block">
-                            <a class="Order-title" href="oneorder.html">
+                            <a class="Order-title" href={% url 'sellers:seller-details' seller_slug=product.seller.slug %}>
                               {{ product.seller.name }}
                             </a>
                             <form>
@@ -165,7 +165,15 @@
                             <div class="Order-info">
                               <div class="Order-infoType">Стоимость:
                               </div>
-                              <div class="Order-infoContent"><span class="Order-price">{{ product.price }}$</span>
+                              <div class="Order-infoContent">
+                              <span class="Order-price">
+                                {% if product.discount.type.name != 'undiscounted' %}
+                                  <span class="discounted_price">{{ product.price }} руб.</span>
+                                  {{ product.get_discounted_price|floatformat:2 }} руб.
+                                {% else %}
+                                  {{ product.price }} руб.
+                                {% endif %}
+                              </span>
                               </div>
                             </div>
                           </div>
