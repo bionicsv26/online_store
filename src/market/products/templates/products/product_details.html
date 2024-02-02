@@ -15,7 +15,10 @@
               <img src="{{ product.preview.url }}" alt="bigGoods.png"/>
             </div>
             <div class="ProductCard-picts">
-              <a class="ProductCard-pict ProductCard-pict_ACTIVE" href="#"><img src="{{ product.preview.url }}" alt="bigGoods.png"/></a>
+              <a class="ProductCard-pict ProductCard-pict_ACTIVE" href="{{ product.preview.url }}"><img src="{{ product.preview.url }}" alt="bigGoods.png"/></a>
+              {% for img in product.images.all %}
+                <a class="ProductCard-pict" href="{{ img.image.url }}"><img src="{{ img.image.url }}" alt="{{ img.image.name }}" /></a>
+              {% endfor %}
             </div>
           </div>
           <div class="ProductCard-desc">
