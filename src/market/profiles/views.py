@@ -121,6 +121,12 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         return context
 
     def post(self, request, *args, **kwargs):
+        response = super().post(request, *args, **kwargs)
+        if response:
+            return response
+
+        context = self.get_context_data()
+
         form = UserProfileForm(request.POST, request.FILES)
         if form.is_valid():
             log.debug("Форма заполнена правильно. Проверка валидности прошла")
@@ -140,10 +146,11 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                     log.debug("Введенные пароли отличаются. вызываем form.add_error")
                     form.add_error('password_repeat',
                                    'Пароль и подтверждение пароля не совпадают')
+                    context.update({'form': form,
+                                    "notification_password_error": "Профиль не сохранен. Пароли не совпадают"})
+
                     return render(request,
-                                  self.template_name,
-                                  {'form': form,
-                                   "notification_password_error": "Профиль не сохранен. Пароли не совпадают"})
+                                  self.template_name,context)
                 else:
                     if form.cleaned_data['password'] != user.password:
                         user.set_password(form.cleaned_data['password'])
@@ -156,27 +163,27 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                                             password=form.cleaned_data['password'])
                         if user is not None:
                             login(request, user)
+                        context.update({'form': form,
+                                        "notification_ok": "Профиль успешно сохранен."})
 
                         return render(request,
-                                      self.template_name,
-                                      {'form': form,
-                                       "notification_ok": "Профиль успешно сохранен."})
+                                      self.template_name, context)
             user.save()
             profile.save()
             log.debug(f"Полученные из формы данные сохранены в БД User & Profile")
+            context.update({'form': form,
+                            "notification_ok": "Профиль успешно сохранен."})
             return render(request,
-                          self.template_name,
-                          {'form': form,
-                           "notification_ok": "Профиль успешно сохранен."})
+                          self.template_name, context)
         else:
             log.debug("Форма заполнена не правильно. Проверка валидности не пройдена. "
                       "Форма с описанием ошибки возвращается пользователю")
-            return render(request,
-                          self.template_name,
-                          {'form': form,
-                           "notification_form_validation_error": "Профиль не сохранен. "
+            context.update({'form': form,
+                            "notification_form_validation_error": "Профиль не сохранен. "
                                                                  "Убедитесь, что все поля заполнены правильно "
                                                                  "и фотография выбрана."})
+            return render(request,
+                          self.template_name,context)
 
 class CartDetailsView(TemplateView):
     template_name = 'profiles/cart_details.html'
