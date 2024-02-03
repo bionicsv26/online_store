@@ -73,7 +73,6 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
 
         title = self.request.GET.get('title')
         in_stock = self.request.GET.get('in_stock')
-        # free_delivery = self.request.GET.get('free_delivery')
 
         if title:
             queryset = queryset.filter(
