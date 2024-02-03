@@ -42,7 +42,7 @@ class PayView(SearchMixin, MenuMixin, View):
             url = settings.BANK_PAY_URL
             r = requests.post(url, data=data)
             if r.json()['paid']:
-                order.status = OrderStatus.objects.get(name='paid')
+                order.status = OrderStatus.objects.get(value='paid')
                 order.save()
 
                 order.seller_products.update(stock=F('stock') - 1)

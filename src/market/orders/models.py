@@ -40,7 +40,8 @@ class OrderStatus(models.Model):
         verbose_name = 'статус заказа'
         verbose_name_plural = 'статусы заказа'
 
-    name = models.CharField(max_length=20, verbose_name='название')
+    value = models.CharField(null=True, max_length=256, verbose_name='значение')
+    name = models.CharField(max_length=256, verbose_name='название')
 
     def __str__(self):
         return self.name

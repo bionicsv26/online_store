@@ -152,7 +152,7 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
 
         # создание заказа
         cart = Cart(request.session)
-        not_paid_order_status = OrderStatus.objects.get(name='not paid')
+        not_paid_order_status = OrderStatus.objects.get(value='not_paid')
         order = Order.objects.create(
             user=request.user,
             full_name=form_1['full_name'],

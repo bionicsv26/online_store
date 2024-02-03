@@ -44,7 +44,7 @@ class SellerDetailsView(MenuMixin, View, SearchMixin):
             cache.set(f'seller_cache_{seller_slug}', seller, seller_cache_time)
 
         if not seller_products:
-            payed_status = OrderStatus.objects.get(name='paid')
+            payed_status = OrderStatus.objects.get(value='paid')
 
             seller_products = seller.seller_products.select_related(
                 'product', 'discount'
