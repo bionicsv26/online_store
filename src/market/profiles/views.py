@@ -122,17 +122,13 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
 
     def post(self, request, *args, **kwargs):
         form = UserProfileForm(request.POST, request.FILES)
-
         if form.is_valid():
             log.debug("Форма заполнена правильно. Проверка валидности прошла")
-
             user = User.objects.get(id=request.user.id)
             profile = Profile.objects.get(user=request.user.id)
-
-            # Проверяем каждое поле и сохраняем только то, что было обновлено
-            # if 'avatar' in form.changed_data:
-            #     print("if 'avatar' in form.changed_data:")
-            #     profile.avatar = form.cleaned_data['avatar']
+            if 'avatar' in form.changed_data:
+                print("if 'avatar' in form.changed_data:", form.cleaned_data['avatar'], type(form.cleaned_data['avatar']))
+                profile.avatar = form.cleaned_data['avatar']
             if 'full_name' in form.changed_data:
                 profile.full_name = form.cleaned_data['full_name']
             if 'phone' in form.changed_data:
@@ -165,7 +161,6 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                                       self.template_name,
                                       {'form': form,
                                        "notification_ok": "Профиль успешно сохранен."})
-
             user.save()
             profile.save()
             log.debug(f"Полученные из формы данные сохранены в БД User & Profile")
