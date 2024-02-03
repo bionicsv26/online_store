@@ -106,8 +106,8 @@ class UserSetPasswordForm(forms.Form):
 
 class UserProfileForm(forms.Form):
     avatar = forms.ImageField(label='Аватар', required=False)
-    password = forms.CharField(label='Пароль', required=False)
-    password_repeat = forms.CharField(label='Подтверждение пароля', required=False)
+    password = forms.CharField(widget=forms.PasswordInput(), label='Пароль', required=False)
+    password_repeat = forms.CharField(widget=forms.PasswordInput(), label='Подтверждение пароля', required=False)
 
     full_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-input', 'id': 'name'}),
