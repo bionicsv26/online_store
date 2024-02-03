@@ -105,21 +105,24 @@ class UserSetPasswordForm(forms.Form):
         return self.user
 
 class UserProfileForm(forms.Form):
-    avatar = forms.ImageField(label='Аватар')
-    password = forms.CharField(widget=forms.PasswordInput(), label='Пароль')
-    password_repeat = forms.CharField(widget=forms.PasswordInput(), label='Подтверждение пароля')
+    avatar = forms.ImageField(label='Аватар', required=False)
+    password = forms.CharField(widget=forms.PasswordInput(), label='Пароль', required=False)
+    password_repeat = forms.CharField(widget=forms.PasswordInput(), label='Подтверждение пароля', required=False)
 
     full_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-input', 'id': 'name'}),
         label='ФИО',
+        required = False,
     )
     phone = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-input', 'placeholder': '+7 (___) _______', 'id': 'phone'}),
         label='Телефон',
+        required=False,
     )
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={'class': 'form-input', 'id': 'mail'}),
         label='E-mail',
+        required=False,
     )
 
     def clean_full_name(self):
