@@ -151,6 +151,7 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
         form_1, form_2, form_3 = (value for key, value in form_data.items() if key.startswith('form_'))
 
         # создание заказа
+        cart = Cart(request.session)
         not_paid_order_status = OrderStatus.objects.get(name='not paid')
         order = Order.objects.create(
             user=request.user,
@@ -162,10 +163,10 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
             delivery_method=form_2['delivery_method'],
             payment_method=form_3['payment_method'],
             status=not_paid_order_status,
+            cost=cart.get_priority_discounted_cost(),
         )
 
         # добавление в заказ продуктов из корзины
-        cart = Cart(request.session)
         seller_products_ids = cart.cart.keys()
         order.seller_products.set(seller_products_ids)
 
