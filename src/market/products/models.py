@@ -76,6 +76,18 @@ class Product(models.Model):
             result = '{:.2f} - {:.2f}'.format(min_max['price__min'], min_max['price__max'])
 
         return result
+    
+
+def product_image_directory_path(instance: "ProductImage", filename: str) -> str:
+    return "products/product_{pk}/images/{filename}".format(
+        pk=instance.product.pk,
+        filename=filename,
+    )
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+    image = models.ImageField(upload_to=product_image_directory_path)
 
 
 class ProductViewHistory(models.Model):

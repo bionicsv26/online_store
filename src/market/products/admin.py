@@ -5,8 +5,11 @@ from .models import (
     ProductFeedback,
     ProductViewHistory,
 )
-from .models import Product, Specification
+from .models import Product, Specification, ProductImage
 
+
+class ImagesInline(admin.StackedInline):
+    model = ProductImage
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -14,6 +17,7 @@ class ProductAdmin(admin.ModelAdmin):
     list_display_links = 'name',
     prepopulated_fields = {'slug': ('name',)}
     filter_horizontal = ('specification', )
+    inlines = [ImagesInline]
 
 
 @admin.register(Specification)
