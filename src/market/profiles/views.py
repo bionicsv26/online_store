@@ -48,7 +48,8 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
     template_name = "profiles/account.html"
 
     def get(self, request, *args, **kwargs):
-        product_to_delete_from_browsing_history = self.request.GET.get('product_to_delete_from_browsing_history', 'none')
+        product_to_delete_from_browsing_history = self.request.GET.get('product_to_delete_from_browsing_history',
+                                                                       'none')
         if product_to_delete_from_browsing_history != 'none':
             product = Product.objects.get(slug=product_to_delete_from_browsing_history)
             log.debug(f"Получен сигнал об удалении продукта {product}")
@@ -99,6 +100,7 @@ def clean_full_name(full_name:str) -> str | bool:
             return 'Фамилия, Имя и Отчество должно быть с заглавной буквы'
     return True
 
+
 class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, SearchMixin):
     template_name = "profiles/profile.html"
 
@@ -119,52 +121,83 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
         return context
 
     def post(self, request, *args, **kwargs):
-        response = super().post(request, *args, **kwargs)
-        if response:
-            return response
-
-        context = self.get_context_data()
         form = UserProfileForm(request.POST, request.FILES)
+
         if form.is_valid():
             log.debug("Форма заполнена правильно. Проверка валидности прошла")
-            full_name = form.cleaned_data.get("full_name", "ФИО")
-            phone = form.cleaned_data.get("phone", "+7 (___) _______")
-            email = form.cleaned_data.get("email", 'user@server.com')
-            password = form.cleaned_data.get("password", "qwerty")
-            password_repeat = form.cleaned_data.get("password_repeat", "qwerty")
 
-            if password == password_repeat:
-                user = User.objects.get(id=request.user.id)
-                user.email = email
-                user.set_password(password)
-                user.save()
-                profile = Profile.objects.get(user=request.user.id)
-                profile.full_name = full_name
-                profile.phone = phone
-                profile.avatar = form.cleaned_data['avatar']
-                profile.save()
-                log.debug("Полученные из формы данные сохранены в БД User & Profile")
-            else:
-                log.debug("Введенные пароли отличаются. вызываем form.add_error")
-                form.add_error('password_repeat',
-                               'Пароль и подтверждение пароля не совпадают')
+            user = User.objects.get(id=request.user.id)
+            profile = Profile.objects.get(user=request.user.id)
 
-                context.update({'form': form,
-                                "notification_password_error": "Профиль не сохранен. Пароли не совпадают"})
-                return render(request, self.template_name, context)
+            # Проверяем каждое поле и сохраняем только то, что было обновлено
+            # if 'avatar' in form.changed_data:
+            #     print("if 'avatar' in form.changed_data:")
+            #     profile.avatar = form.cleaned_data['avatar']
+            if 'full_name' in form.changed_data:
+                profile.full_name = form.cleaned_data['full_name']
+            if 'phone' in form.changed_data:
+                profile.phone = form.cleaned_data['phone']
+            if 'email' in form.changed_data:
+                user.email = form.cleaned_data['email']
+            if ("password" in form.changed_data) and ("password_repeat" in form.changed_data):
+                if form.cleaned_data['password'] != form.cleaned_data['password_repeat']:
+                    log.debug("Введенные пароли отличаются. вызываем form.add_error")
+                    form.add_error('password_repeat',
+                                   'Пароль и подтверждение пароля не совпадают')
+                    return render(request,
+                                  self.template_name,
+                                  {'form': form,
+                                   "notification_password_error": "Профиль не сохранен. Пароли не совпадают"})
+                else:
+                    if form.cleaned_data['password'] != user.password:
+                        user.set_password(form.cleaned_data['password'])
+                        log.debug("Пароль был изменен.")
+                        user.save()
+                        profile.save()
 
-            user = authenticate(request, username=request.user.username, password=password)
-            if user is not None:
-                login(request, user)
+                        user = authenticate(request,
+                                            username=request.user.username,
+                                            password=form.cleaned_data['password'])
+                        if user is not None:
+                            login(request, user)
 
-            context.update({'form': form,
-                            "notification_ok": "Профиль успешно сохранен."})
-            return render(request, self.template_name, context)
+                        return render(request,
+                                      self.template_name,
+                                      {'form': form,
+                                       "notification_ok": "Профиль успешно сохранен."})
+
+            user.save()
+            profile.save()
+            log.debug(f"Полученные из формы данные сохранены в БД User & Profile")
+            return render(request,
+                          self.template_name,
+                          {'form': form,
+                           "notification_ok": "Профиль успешно сохранен."})
         else:
             log.debug("Форма заполнена не правильно. Проверка валидности не пройдена. "
                       "Форма с описанием ошибки возвращается пользователю")
-            context.update({'form': form,
-                            "notification_form_validation_error": "Профиль не сохранен. "
-                                                                  "Убедитесь, что все поля заполнены правильно "
-                                                                  "и фотография выбрана."})
-            return render(request, self.template_name, context)
+            return render(request,
+                          self.template_name,
+                          {'form': form,
+                           "notification_form_validation_error": "Профиль не сохранен. "
+                                                                 "Убедитесь, что все поля заполнены правильно "
+                                                                 "и фотография выбрана."})
+
+class CartDetailsView(TemplateView):
+    template_name = 'profiles/cart_details.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        cart = self.request.user.cart
+
+        context['cart'] = cart
+        context['seller_products'] = cart.seller_products.select_related(
+            'discount',
+            'discount__type',
+            'product',
+        ).prefetch_related(
+            'product__categories',
+        )
+        context['discounted_cart_cost'], context['priority_discount_type'] = cart.get_priority_discounted_cost()
+
+        return context
