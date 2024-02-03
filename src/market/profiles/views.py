@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.contrib.auth.models import User
 from .models import Profile
 from market.products.models import Product
@@ -11,6 +11,7 @@ from market.browsing_history_app.models import ProductBrowsingHistory
 from .forms import UserProfileForm
 
 from .forms import UserRegistrationForm
+from ..orders.models import Order
 from ..search_app.mixins import SearchMixin
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
@@ -203,3 +204,11 @@ class CartDetailsView(TemplateView):
         context['discounted_cart_cost'], context['priority_discount_type'] = cart.get_priority_discounted_cost()
 
         return context
+
+
+class OrdersHistoryView(LoginRequiredMixin, ListView, MenuMixin, SearchMixin):
+    template_name = 'profiles/orders_history.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)

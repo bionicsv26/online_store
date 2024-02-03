@@ -5,6 +5,15 @@ from market.sellers.models import SellerProduct
 
 
 class Order(models.Model):
+    DELIVERY_METHOD_CHOICES = [
+        ('ordinary', 'Обычная доставка'),
+        ('express', 'Экспресс доставка')
+    ]
+    PAYMENT_METHOD_CHOICES = [
+        ('online', 'Онлайн картой'),
+        ('someone', 'Онлайн со случайного чужого счета')
+    ]
+
     class Meta:
         verbose_name = 'заказ'
         verbose_name_plural = 'заказы'
@@ -14,8 +23,8 @@ class Order(models.Model):
     cost = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='общая стоимость заказа')
     delivery_city = models.CharField(null=True, max_length=256, verbose_name='город заказчика')
     delivery_address = models.TextField(verbose_name='адрес заказчика')
-    delivery_method = models.CharField(null=True, max_length=256, verbose_name='способ доставки')
-    payment_method = models.CharField(null=True, max_length=256, verbose_name='способ оплаты')
+    delivery_method = models.CharField(default=DELIVERY_METHOD_CHOICES[0], null=True, max_length=256, choices=DELIVERY_METHOD_CHOICES, verbose_name='способ доставки')
+    payment_method = models.CharField(default=PAYMENT_METHOD_CHOICES[0], null=True, max_length=256, choices=PAYMENT_METHOD_CHOICES, verbose_name='способ оплаты')
     full_name = models.CharField(null=True, max_length=256, verbose_name='ФИО')
     phone = models.CharField(null=True, max_length=256, verbose_name='телефон')
     email = models.EmailField(null=True, verbose_name='почта')
