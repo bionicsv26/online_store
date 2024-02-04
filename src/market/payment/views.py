@@ -47,18 +47,10 @@ class PayView(SearchMixin, MenuMixin, View):
 
                 order.seller_products.update(stock=F('stock') - 1)
 
-            return redirect(reverse('market.profiles:account'))
+            return redirect(reverse('orders:orders_history'))
 
         context = self.get_context_data()
         context['form'] = form
         context['search_form'] = SearchForm()
 
         return render(request, self.template_name, context=context)
-
-
-class PaymentSuccessfullyView(TemplateView):
-    template_name = 'payment/successfully_payment.html'
-
-
-class PaymentUnsuccessfullyView(TemplateView):
-    template_name = 'payment/unsuccessfully_payment.html'

@@ -27,5 +27,4 @@ urlpatterns = [
     path('register/', views.RegisterView.as_view(), name='register'),
     path('account/', views.AccountTemplateView.as_view(), name='account'),
     path('profile/', views.ProfileTemplateView.as_view(), name='profile'),
-    path('order-history/', views.OrdersHistoryView.as_view(), name='orders_history'),
 ]

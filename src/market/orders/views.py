@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.core.cache import cache
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, ListView
 from django.urls import reverse_lazy
 
 from rest_framework.viewsets import ModelViewSet
@@ -14,6 +14,14 @@ from ..categories.mixins import MenuMixin
 from ..search_app.forms import SearchForm
 from ..search_app.mixins import SearchMixin
 from ..cart.cart import Cart
+
+
+class OrdersHistoryView(LoginRequiredMixin, ListView, MenuMixin, SearchMixin):
+    template_name = 'orders/orders_history.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user).order_by('-created_at')
 
 
 class OrderViewSet(ModelViewSet):

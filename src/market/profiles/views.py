@@ -205,11 +205,3 @@ class CartDetailsView(TemplateView):
         context['discounted_cart_cost'], context['priority_discount_type'] = cart.get_priority_discounted_cost()
 
         return context
-
-
-class OrdersHistoryView(LoginRequiredMixin, ListView, MenuMixin, SearchMixin):
-    template_name = 'profiles/orders_history.html'
-    context_object_name = 'orders'
-
-    def get_queryset(self):
-        return Order.objects.filter(user=self.request.user).order_by('-created_at')
