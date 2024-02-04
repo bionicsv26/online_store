@@ -22,12 +22,15 @@ class OrdersHistoryView(LoginRequiredMixin, ListView, MenuMixin, SearchMixin):
     context_object_name = 'orders'
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user).order_by('-created_at')
+        return Order.objects.filter(user=self.request.user).select_related('status').order_by('-created_at')
 
 
 class OrderDetailView(LoginRequiredMixin, DetailView, MenuMixin, SearchMixin):
     template_name = 'orders/order_details.html'
-    queryset = Order.objects.select_related('status').prefetch_related('order_products__seller_product__product')
+    queryset = Order.objects.select_related('status').prefetch_related(
+        'order_products__seller_product__product',
+        'order_products__seller_product__discount',
+    )
     context_object_name = 'order'
 
     def get_context_data(self, **kwargs):
