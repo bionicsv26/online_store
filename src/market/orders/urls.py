@@ -11,6 +11,7 @@ router.register('orders', views.OrderViewSet)
 
 urlpatterns = [
     path('', views.OrdersHistoryView.as_view(), name='orders_history'),
+    path('<int:pk>/', views.OrderDetailView.as_view(), name='order_details'),
     path('create/page_1/', views.MakingOrderPage1View.as_view(), name='making_an_order_page_1'),
     path('create/page_2/', views.MakingOrderPage2View.as_view(), name='making_an_order_page_2'),
     path('create/page_3/', views.MakingOrderPage3View.as_view(), name='making_an_order_page_3'),

@@ -13,6 +13,7 @@ from ..orders.models import Order, OrderStatus
 from ..categories.mixins import MenuMixin
 from ..search_app.forms import SearchForm
 from ..search_app.mixins import SearchMixin
+from ..sellers.models import SellerProduct
 
 
 class PayView(SearchMixin, MenuMixin, View):
@@ -45,9 +46,10 @@ class PayView(SearchMixin, MenuMixin, View):
                 order.status = OrderStatus.objects.get(value='paid')
                 order.save()
 
-                order.seller_products.update(stock=F('stock') - 1)
+                seller_products = SellerProduct.objects.filter(order_products__orders=order)
+                seller_products.update(stock=F('stock') - 1)
 
-            return redirect(reverse('orders:orders_history'))
+            return redirect(reverse('orders:order_details', kwargs={'pk': order.pk}))
 
         context = self.get_context_data()
         context['form'] = form

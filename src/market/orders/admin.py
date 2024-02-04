@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Order, OrderStatus
+from .models import Order, OrderStatus, OrderProduct
 
 
-class ProductInline(admin.StackedInline):
-    model = Order.seller_products.through
+class OrderProductInline(admin.StackedInline):
+    model = Order.order_products.through
     extra = 0
 
 
@@ -14,7 +14,7 @@ class OrderAdmin(admin.ModelAdmin):
     list_display_links = 'pk',
     ordering = 'cost',
     inlines = [
-        ProductInline,
+        OrderProductInline,
     ]
     fieldsets = (
         ('Required', {
@@ -23,9 +23,9 @@ class OrderAdmin(admin.ModelAdmin):
                 'full_name',
                 'phone',
                 'email',
-                'seller_products',
                 'cost',
                 'status',
+                'discount_type',
                 'delivery_city',
                 'delivery_address',
                 'delivery_method',
@@ -37,5 +37,11 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(OrderStatus)
 class OrderStatusAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'name'
+    list_display = 'pk', 'name', 'value'
     list_display_links = 'name',
+
+
+@admin.register(OrderProduct)
+class OrderProductAdmin(admin.ModelAdmin):
+    list_display = 'pk', 'seller_product', 'amount'
+    list_display_links = 'seller_product',
