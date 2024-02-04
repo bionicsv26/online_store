@@ -132,7 +132,7 @@
 
             <div class="wrap">
                 <div class="row Header-rowMain">
-                    <div class="row-block Header-logo"><a class="logo" href="#"><img class="logo-image" src="{% static 'assets/img/logo.png' %}" alt="logo.png" /></a>
+                    <div class="row-block Header-logo"><a class="logo" href="{% url 'market.banner_app:index' %}"><img class="logo-image" src="{% static 'assets/img/logo.png' %}" alt="logo.png" /></a>
                     </div>
                         {% block main_header %}
                                         <nav class="row-block row-block_right Header-menu">
