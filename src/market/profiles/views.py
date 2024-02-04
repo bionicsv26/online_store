@@ -85,6 +85,7 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['account_user_name'] = self.request.user
+        context['last_order'] = Order.objects.filter(user=self.request.user).last()
         log.debug("Запуск рендеренга AccountTemplateView")
         log.debug("Контекст готов и передан на страницу account.html")
         return context
@@ -211,4 +212,4 @@ class OrdersHistoryView(LoginRequiredMixin, ListView, MenuMixin, SearchMixin):
     context_object_name = 'orders'
 
     def get_queryset(self):
-        return Order.objects.filter(user=self.request.user)
+        return Order.objects.filter(user=self.request.user).order_by('-created_at')
