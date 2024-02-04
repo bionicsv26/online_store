@@ -193,6 +193,7 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
         )
 
         # добавление в заказ продуктов из корзины
+        order.seller_products.set(cart.cart.keys())
         order_products = [
             OrderProduct.objects.get_or_create(seller_product=item.get('product'), amount=item.get('quantity'))[0]
             for item in cart

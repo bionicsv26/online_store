@@ -8,12 +8,18 @@ class OrderProductInline(admin.StackedInline):
     extra = 0
 
 
+class OrderSellerProductInline(admin.StackedInline):
+    model = Order.seller_products.through
+    extra = 0
+
+
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = 'pk', 'cost', 'delivery_address', 'status', 'created_at'
     list_display_links = 'pk',
     ordering = 'cost',
     inlines = [
+        OrderSellerProductInline,
         OrderProductInline,
     ]
     fieldsets = (
@@ -23,6 +29,7 @@ class OrderAdmin(admin.ModelAdmin):
                 'full_name',
                 'phone',
                 'email',
+                'seller_products',
                 'cost',
                 'status',
                 'discount_type',

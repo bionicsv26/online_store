@@ -19,6 +19,7 @@ class Order(models.Model):
         verbose_name_plural = 'заказы'
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE, related_name='orders', verbose_name='пользователь')
+    seller_products = models.ManyToManyField(SellerProduct, related_name='orders', verbose_name='продукты продавца')
     cost = models.DecimalField(default=0, max_digits=10, decimal_places=2, verbose_name='общая стоимость заказа')
     delivery_city = models.CharField(null=True, max_length=256, verbose_name='город заказчика')
     delivery_address = models.TextField(verbose_name='адрес заказчика')
