@@ -8,6 +8,7 @@ from django.shortcuts import get_object_or_404
 
 from market.categories.mixins import MenuMixin
 from market.orders.models import OrderStatus
+from market.products.models import Product
 from market.search_app.mixins import SearchMixin
 from market.sellers.models import Seller
 from market.settingsapp.models import CacheTime
@@ -36,31 +37,23 @@ class SellerDetailsView(MenuMixin, View, SearchMixin):
         cache_settings = CacheTime.objects.all().first()
 
         seller = cache.get(f'seller_cache_{seller_slug}')
-        seller_products = cache.get(f'seller_products_cache_{seller_slug}')
-
         if not seller:
             seller = get_object_or_404(Seller, slug=seller_slug)
             seller_cache_time = cache_settings.seller_data_cache
             cache.set(f'seller_cache_{seller_slug}', seller, seller_cache_time)
 
-        if not seller_products:
+        products = cache.get(f'products_cache_{seller_slug}')
+        if not products:
             payed_status = OrderStatus.objects.get(value='paid')
-
-            seller_products = seller.seller_products.select_related(
-                'product', 'discount'
-            ).prefetch_related(
-                'product__categories',
-                'orders__status',
+            products = Product.objects.filter(seller_products__seller=seller).prefetch_related(
+                'categories__parent',
             ).annotate(
-                paid_status_count=Count('orders__status', filter=Q(orders__status__name=payed_status.name))
+                paid_status_count=Count('seller_products__orders__status', filter=Q(seller_products__orders__status=payed_status))
             ).order_by('-paid_status_count')[:10]
 
-            top_seller_products_cache_time = cache_settings.top_products_cache
-            cache.set(f'seller_products_cache_{seller_slug}', seller_products, top_seller_products_cache_time)
+            top_products_cache_time = cache_settings.top_products_cache
+            cache.set(f'products_cache_{seller_slug}', products, top_products_cache_time)
 
         context['seller'] = seller
-        context['seller_products_categories'] = [
-            (seller_product, seller_product.product.categories.all())
-            for seller_product in seller_products
-        ]
+        context['products'] = products
         return context

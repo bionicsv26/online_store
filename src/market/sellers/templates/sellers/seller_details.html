@@ -25,21 +25,23 @@
           </div>
         </div>
         <div class="Seller__products">
-          <h2 class="products__title">Продукты продавца</h2>
+          <h2 class="products__title">Популярные продукты</h2>
           <div class="Cards">
-            {% for seller_product, seller_product_categories in seller_products_categories %}
+            {% for product in products %}
               <div class="Card">
-                <a href="{% url 'products:product-details' product_slug=seller_product.product.slug %}" class="Card-picture">
-                  <img src="{{ seller_product.product.preview.url }}" alt="Изображение продукта" class="Card__img">
+                <a href="{% url 'products:product-details' product_slug=product.slug %}" class="Card-picture">
+                  <img src="{{ product.preview.url }}" alt="Изображение продукта" class="Card__img">
                 </a>
                 <div class="Card-content">
                   <strong class="Card-title">
-                    <a href="{% url 'products:product-details' product_slug=seller_product.product.slug %}">{{ seller_product.product.name }}</a>
+                    <a href="{% url 'products:product-details' product_slug=product.slug %}">{{ product.name }}</a>
                   </strong>
                   <div class="Card-description">
-                    <div class="Card-cost"><span class="Card-price">{{ seller_product.price }} Р.</span></div>
+                    <div class="Card-cost"><span class="Card-price">{{ product.get_price_range }} руб.</span></div>
                     <div class="Card-category">{{ product.categories.first.parent.name }} / {{ product.categories.first.name }}</div>
-                    <div class="Card-hover"><a href="" class="Card-button"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="иконка корзины"></a></div>
+                    <div class="Card-hover"><a href="{% url 'market.cart:cart_add' product.pk %}" class="Card-btn"><img src="{% static 'assets/img/icons/card/cart.svg' %}" alt="иконка корзины"></a>
+                      {% include 'comparison/compare_add_remove.html' %}
+                    </div>
                   </div>
                 </div>
               </div>
