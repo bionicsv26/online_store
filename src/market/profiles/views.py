@@ -1,4 +1,7 @@
+from typing import Any
 from django.contrib import messages
+from django.contrib.auth.views import LoginView, LogoutView
+from django.http import HttpRequest, HttpResponse
 from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
@@ -10,12 +13,15 @@ from market.products.models import Product
 from market.browsing_history_app.models import ProductBrowsingHistory
 from .forms import UserProfileForm
 
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserLoginForm
 from ..orders.models import Order
 from ..search_app.mixins import SearchMixin
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
+from market.cart.cart import Cart
+from market.cart.rebuild_cart import create_json_cart, rebuild_cart
+from market.cart.models import UserCart
 import logging
 
 log = logging.getLogger(__name__)
@@ -43,6 +49,28 @@ class RegisterView(View):
             return redirect(to=reverse('market.profiles:login'))
 
         return render(request, self.template_name, {'form': form})
+
+
+class LoginView(LoginView):
+    authentication_form = UserLoginForm
+
+    def post(self, request: HttpRequest, *args: str, **kwargs: Any) -> HttpResponse:
+        response = super().post(request, *args, **kwargs)
+        if self.request.user.is_authenticated:
+            user = User.objects.get(pk=self.request.user.pk)
+            user_cart = UserCart.objects.get(user=user)
+            rebuild_cart(request.session, user_cart.items)
+            user_cart.delete()
+        return response
+
+class LogoutView(LogoutView):
+
+    def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
+        user = User.objects.get(pk=self.request.user.pk)
+        cart = Cart(request.session)
+        user_cart = create_json_cart(cart)
+        user_cart = UserCart.objects.create(user=user, items=user_cart)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, SearchMixin):
