@@ -6,9 +6,6 @@ from market.orders.models import Order
 
 
 class AddErrorMixin:
-    class Meta:
-        model = Order
-
     def clean(self):
         for field_name, field in self.fields.items():
             if field_name in self.errors.as_data():
