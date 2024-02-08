@@ -116,7 +116,7 @@ class Cart:
 
         return min((cart_discount_cost, total_discounted_seller_products_price))
 
-    def get_priority_discount_type(self) -> None:
+    def get_priority_discount_type(self) -> str:
         """
         Получить тип приоритетной скидки (скидка на корзину или суммарная скидка на все продукты)
         """
@@ -130,6 +130,6 @@ class Cart:
             discount_type = 'cart_discount'
 
         else:
-            discount_type = None
+            discount_type = 'undiscounted'
 
         return discount_type

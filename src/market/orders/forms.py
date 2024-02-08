@@ -2,8 +2,10 @@ import re
 
 from django import forms
 
+from market.orders.models import Order
 
-class OrderCreationForm(forms.Form):
+
+class AddErrorMixin:
     def clean(self):
         for field_name, field in self.fields.items():
             if field_name in self.errors.as_data():
@@ -12,7 +14,11 @@ class OrderCreationForm(forms.Form):
         return super().clean()
 
 
-class OrderCreationPage1Form(OrderCreationForm):
+class OrderCreationPage1Form(forms.ModelForm, AddErrorMixin):
+    class Meta:
+        model = Order
+        fields = 'full_name', 'phone', 'email'
+
     full_name = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-input', 'id': 'name'}),
         label='ФИО',
@@ -42,7 +48,14 @@ class OrderCreationPage1Form(OrderCreationForm):
         return data
 
 
-class OrderCreationPage2Form(OrderCreationForm):
+class OrderCreationPage2Form(forms.ModelForm, AddErrorMixin):
+    class Meta:
+        model = Order
+        fields = 'delivery_city', 'delivery_address', 'delivery_method'
+        widgets = {
+            'delivery_method': forms.RadioSelect()
+        }
+
     delivery_city = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-input'}),
         label='Город',
@@ -51,18 +64,12 @@ class OrderCreationPage2Form(OrderCreationForm):
         widget=forms.TextInput(attrs={'class': 'form-input'}),
         label='Адрес',
     )
-    delivery_method = forms.ChoiceField(
-        widget=forms.RadioSelect(),
-        choices=[('ordinary', 'Обычная доставка'), ('express', 'Экспресс доставка')],
-        label='Способ доставки',
-        initial='ordinary'
-    )
 
 
-class OrderCreationPage3Form(OrderCreationForm):
-    payment_method = forms.ChoiceField(
-        widget=forms.RadioSelect(),
-        choices=[('online', 'Онлайн картой'), ('someone', 'Онлайн со случайного чужого счета')],
-        label='Способ оплаты',
-        initial='online',
-    )
+class OrderCreationPage3Form(forms.ModelForm, AddErrorMixin):
+    class Meta:
+        model = Order
+        fields = 'payment_method',
+        widgets = {
+            'payment_method': forms.RadioSelect()
+        }

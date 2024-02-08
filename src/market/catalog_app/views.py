@@ -46,7 +46,7 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
         match order_by:
             case 'rating' | '-rating':
                 queryset = queryset.annotate(
-                    num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__name='paid'))
+                    num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__value='paid'))
                 ).order_by('num_of_sale')
 
             case 'price' | '-price':

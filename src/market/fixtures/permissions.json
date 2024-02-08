@@ -2086,5 +2086,41 @@
         "content_type": 20,
         "codename": "view_seller"
     }
+},
+{
+    "model": "auth.permission",
+    "pk": 93,
+    "fields": {
+        "name": "Can add продукт заказа",
+        "content_type": 24,
+        "codename": "add_orderproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 94,
+    "fields": {
+        "name": "Can change продукт заказа",
+        "content_type": 24,
+        "codename": "change_orderproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 95,
+    "fields": {
+        "name": "Can delete продукт заказа",
+        "content_type": 24,
+        "codename": "delete_orderproduct"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 96,
+    "fields": {
+        "name": "Can view продукт заказа",
+        "content_type": 24,
+        "codename": "view_orderproduct"
+    }
 }
 ]

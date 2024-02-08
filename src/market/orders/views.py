@@ -2,18 +2,42 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.core.cache import cache
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, TemplateView, ListView, DetailView
 from django.urls import reverse_lazy
 
 from rest_framework.viewsets import ModelViewSet
 
 from .forms import OrderCreationPage1Form, OrderCreationPage2Form, OrderCreationPage3Form
-from .models import Order, OrderStatus
+from .models import Order, OrderStatus, OrderProduct
 from .serializers import OrderSerializer
 from ..categories.mixins import MenuMixin
 from ..search_app.forms import SearchForm
 from ..search_app.mixins import SearchMixin
 from ..cart.cart import Cart
+from ..sellers.models import DiscountType
+
+
+class OrdersHistoryView(LoginRequiredMixin, ListView, MenuMixin, SearchMixin):
+    template_name = 'orders/orders_history.html'
+    context_object_name = 'orders'
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user).select_related('status').order_by('-created_at')
+
+
+class OrderDetailView(LoginRequiredMixin, DetailView, MenuMixin, SearchMixin):
+    template_name = 'orders/order_details.html'
+    queryset = Order.objects.select_related('status').prefetch_related(
+        'order_products__seller_product__product',
+        'order_products__seller_product__discount',
+    )
+    context_object_name = 'order'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        order = context.get('order')
+        context['order_products'] = order.order_products.all()
+        return context
 
 
 class OrderViewSet(ModelViewSet):
@@ -151,7 +175,9 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
         form_1, form_2, form_3 = (value for key, value in form_data.items() if key.startswith('form_'))
 
         # создание заказа
-        not_paid_order_status = OrderStatus.objects.get(name='not paid')
+        cart = Cart(request.session)
+        not_paid_order_status = OrderStatus.objects.get(value='not_paid')
+        discount_type = DiscountType.objects.get(name=cart.get_priority_discount_type())
         order = Order.objects.create(
             user=request.user,
             full_name=form_1['full_name'],
@@ -162,12 +188,17 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
             delivery_method=form_2['delivery_method'],
             payment_method=form_3['payment_method'],
             status=not_paid_order_status,
+            cost=cart.get_priority_discounted_cost(),
+            discount_type=discount_type,
         )
 
         # добавление в заказ продуктов из корзины
-        cart = Cart(request.session)
-        seller_products_ids = cart.cart.keys()
-        order.seller_products.set(seller_products_ids)
+        order.seller_products.set(cart.cart.keys())
+        order_products = [
+            OrderProduct.objects.get_or_create(seller_product=item.get('product'), amount=item.get('quantity'))[0]
+            for item in cart
+        ]
+        order.order_products.set(order_products)
 
         cart.clear()
         cache.delete(f'order_create_{self.request.user.id}')
