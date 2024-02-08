@@ -53,7 +53,7 @@ class TopProductsMixin(ContextMixin):
         if not top_products:
             log.debug(f"There is no top_products in the cache yet")
             queryset = Product.objects.prefetch_related('categories__parent').annotate(
-                num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__name='paid'))
+                num_of_sale=Count('seller_products__orders', filter=Q(seller_products__orders__status__value='paid'))
             ).order_by("-num_of_sale")
 
             if queryset.exists():

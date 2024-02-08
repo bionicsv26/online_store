@@ -66,7 +66,6 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse("products:product-details", kwargs={"product_slug": self.slug})
-    
 
     def get_price_range(self) -> str:
         min_max = self.seller_products.aggregate(Min('price'), Max('price'))
