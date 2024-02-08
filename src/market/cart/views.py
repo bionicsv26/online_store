@@ -1,10 +1,11 @@
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, get_object_or_404
 from django.urls import reverse
-from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import TemplateView
 from django.views.generic.base import View
-from django.http import HttpRequest, HttpResponse
-from .cart import Cart
+
 from market.products.models import Product
+from .cart import Cart
 from ..categories.mixins import MenuMixin
 from ..search_app.mixins import SearchMixin
 
@@ -40,7 +41,8 @@ class CartAddView(View):
         seller_product = product.seller_products.order_by('price').first()
 
         cart.add(seller_product, amount=1)
-        return redirect(reverse('market.catalog_app:catalog'))
+        referer_url: str = self.request.META.get('HTTP_REFERER')
+        return HttpResponseRedirect(referer_url)
     
 
 class CartRemoveView(View):
