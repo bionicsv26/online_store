@@ -1,6 +1,10 @@
 {% extends 'repeat_blocks.html' %}
 {% load static %}
 
+{% block title %}
+  <title>Профиль</title>
+{% endblock %}
+
 {% block header-slider %}
 
 {% endblock %}
@@ -29,7 +33,7 @@
                                         </li>
                                         <li class="menu-item_ACTIVE menu-item"><a class="menu-link" href="{% url 'market.profiles:profile' %}">Профиль</a>
                                         </li>
-                                        <li class="menu-item"><a class="menu-link" href="#">История заказов</a>
+                                        <li class="menu-item"><a class="menu-link" href="{% url 'orders:orders_history' %}">История заказов</a>
                                         </li>
 
                                     </ul>

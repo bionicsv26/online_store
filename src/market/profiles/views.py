@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.contrib.auth.models import User
 from .models import Profile
 from market.products.models import Product
@@ -11,6 +11,7 @@ from market.browsing_history_app.models import ProductBrowsingHistory
 from .forms import UserProfileForm
 
 from .forms import UserRegistrationForm
+from ..orders.models import Order
 from ..search_app.mixins import SearchMixin
 from market.banner_app.mixins import BannerSliderMixin
 from market.categories.mixins import MenuMixin
@@ -84,6 +85,7 @@ class AccountTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['account_user_name'] = self.request.user
+        context['last_order'] = Order.objects.filter(user=self.request.user).last()
         log.debug("Запуск рендеренга AccountTemplateView")
         log.debug("Контекст готов и передан на страницу account.html")
         return context
