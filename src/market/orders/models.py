@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.db.models import F
 
 from market.sellers.models import SellerProduct, DiscountType
 
@@ -30,16 +31,27 @@ class Order(models.Model):
     email = models.EmailField(null=True, verbose_name='почта')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='дата и время обновления заказа')
     status = models.ForeignKey('OrderStatus', null=True, on_delete=models.PROTECT, related_name='orders', verbose_name='статус заказа')
-    order_products = models.ManyToManyField('OrderProduct', related_name='orders', verbose_name='продукт заказа')
+    quantity_products = models.JSONField(null=True, verbose_name='продукт заказа')
     discount_type = models.ForeignKey(DiscountType, null=True, on_delete=models.PROTECT, related_name='order', verbose_name='тип скидки')
 
     def __str__(self):
         return f'Заказ {self.pk}'
 
     def check_paid(self):
-        if self.status.value == 'paid':
-            return True
-        return False
+        return self.save.value == 'paid'
+
+    def get_products(self):
+        products_ids = self.quantity_products.keys()
+        return SellerProduct.objects.filter(pk__in=products_ids)
+
+    def change_stock(self):
+        quantity_products = self.quantity_products
+        for seller_product in self.get_products():
+            seller_product.stock -= quantity_products[str(seller_product.pk)]
+            seller_product.save()
+
+    def get_product_quantity(self, seller_product):
+        return self.quantity_products.get(str(seller_product.pk))
 
 
 class OrderProduct(models.Model):

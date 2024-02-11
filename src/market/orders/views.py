@@ -10,6 +10,7 @@ from rest_framework.viewsets import ModelViewSet
 from .forms import OrderCreationPage1Form, OrderCreationPage2Form, OrderCreationPage3Form
 from .models import Order, OrderStatus, OrderProduct
 from .serializers import OrderSerializer
+from ..cart.rebuild_cart import create_json_cart
 from ..categories.mixins import MenuMixin
 from ..search_app.forms import SearchForm
 from ..search_app.mixins import SearchMixin
@@ -28,15 +29,18 @@ class OrdersHistoryView(LoginRequiredMixin, ListView, MenuMixin, SearchMixin):
 class OrderDetailView(LoginRequiredMixin, DetailView, MenuMixin, SearchMixin):
     template_name = 'orders/order_details.html'
     queryset = Order.objects.select_related('status').prefetch_related(
-        'order_products__seller_product__product',
-        'order_products__seller_product__discount',
+        'seller_products__product',
+        'seller_products__discount',
     )
     context_object_name = 'order'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         order = context.get('order')
-        context['order_products'] = order.order_products.all()
+        context['seller_products_and_quantity'] = [
+            (seller_product, order.get_product_quantity(seller_product))
+            for seller_product in order.get_products()
+        ]
         return context
 
 
@@ -190,15 +194,11 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
             status=not_paid_order_status,
             cost=cart.get_priority_discounted_cost(),
             discount_type=discount_type,
+            quantity_products=create_json_cart(cart),
         )
 
         # добавление в заказ продуктов из корзины
         order.seller_products.set(cart.cart.keys())
-        order_products = [
-            OrderProduct.objects.get_or_create(seller_product=item.get('product'), amount=item.get('quantity'))[0]
-            for item in cart
-        ]
-        order.order_products.set(order_products)
 
         cart.clear()
         cache.delete(f'order_create_{self.request.user.id}')

@@ -3,11 +3,6 @@ from django.contrib import admin
 from .models import Order, OrderStatus, OrderProduct
 
 
-class OrderProductInline(admin.StackedInline):
-    model = Order.order_products.through
-    extra = 0
-
-
 class OrderSellerProductInline(admin.StackedInline):
     model = Order.seller_products.through
     extra = 0
@@ -20,7 +15,6 @@ class OrderAdmin(admin.ModelAdmin):
     ordering = 'cost',
     inlines = [
         OrderSellerProductInline,
-        OrderProductInline,
     ]
     fieldsets = (
         ('Required', {
