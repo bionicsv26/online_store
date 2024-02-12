@@ -153,8 +153,8 @@
                                                 <div class="dropdown">
                                                     <button class="dropbtn"><img class="CartBlock-img" src="{% static 'assets/img/icons/loon-icon.svg' %}" alt="loon-icon.svg" /></button>
                                                     <div class="dropdown-content">
-                                                        <a class="dropdown-content-a" href="{% url 'market.profiles:account' %}">Личный кабинет</a>
                                                         {% if user.is_authenticated %}
+                                                          <a class="dropdown-content-a" href="{% url 'market.profiles:account' %}">Личный кабинет</a>
                                                           <a class="dropdown-content-a" href="{% url 'market.profiles:logout' %}">Выйти</a>
                                                         {% else %}
                                                           <a class="dropdown-content-a" href="{% url 'market.profiles:login' %}">Войти</a>

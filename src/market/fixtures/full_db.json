@@ -40,7 +40,7 @@
     "pk": 3,
     "fields": {
         "password": "pbkdf2_sha256$260000$mvj8U0Nc1UbChRj1IMrGra$ElYUt8dcoXYVyU3o96JXorgRoQHuafCp0L2IQUzenys=",
-        "last_login": "2024-02-05T13:04:33.048Z",
+        "last_login": "2024-02-12T13:09:54.919Z",
         "is_superuser": true,
         "username": "admin",
         "first_name": "",
@@ -103,6 +103,42 @@
         "is_staff": false,
         "is_active": true,
         "date_joined": "2024-02-05T13:59:11.567Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$43oJeRzOUOEVevwGjAgRvZ$zmtUMwd0crbJD/k5W5Shm4iuUcHXYuEe2K+WRMQ9vMA=",
+        "last_login": "2024-02-11T12:39:21.988Z",
+        "is_superuser": false,
+        "username": "Коля",
+        "first_name": "",
+        "last_name": "",
+        "email": "test3@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-02-11T11:11:49.861Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$260000$7QhqDn6ufwnvnUUJ0UINvV$e2MrdBACOcxvbkA4FOP+VF4D4fFmENjxCaF+xQP0pb0=",
+        "last_login": "2024-02-12T13:30:51.366Z",
+        "is_superuser": false,
+        "username": "Паша",
+        "first_name": "",
+        "last_name": "",
+        "email": "test4@example.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-02-12T13:30:47.359Z",
         "groups": [],
         "user_permissions": []
     }
@@ -211,14 +247,11 @@
         "email": "admin@admin.ru",
         "created_at": "2024-02-04T17:09:11.939Z",
         "status": 1,
+        "quantity_products": {},
         "discount_type": 3,
         "seller_products": [
             1,
             14
-        ],
-        "order_products": [
-            1,
-            9
         ]
     }
 },
@@ -237,12 +270,10 @@
         "email": "admin@admin.ru",
         "created_at": "2024-02-04T17:22:06.861Z",
         "status": 1,
+        "quantity_products": {},
         "discount_type": 1,
         "seller_products": [
             20
-        ],
-        "order_products": [
-            10
         ]
     }
 },
@@ -261,16 +292,114 @@
         "email": "example@example.com",
         "created_at": "2024-02-04T17:33:52.803Z",
         "status": 1,
+        "quantity_products": {},
         "discount_type": 3,
         "seller_products": [
             1,
             14,
             17
-        ],
-        "order_products": [
-            8,
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 24,
+    "fields": {
+        "user": 3,
+        "cost": "32.40",
+        "delivery_city": "das",
+        "delivery_address": "dadda",
+        "delivery_method": "ordinary",
+        "payment_method": "online",
+        "full_name": "fdsf fds fs",
+        "phone": "+7 (312) 3213131",
+        "email": "admin@admin.ru",
+        "created_at": "2024-02-11T13:15:52.157Z",
+        "status": 2,
+        "quantity_products": {
+            "1": 1,
+            "14": 1,
+            "17": 1
+        },
+        "discount_type": 3,
+        "seller_products": [
             1,
-            11
+            14,
+            17
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 25,
+    "fields": {
+        "user": 3,
+        "cost": "115.20",
+        "delivery_city": "dfsfdfsdf",
+        "delivery_address": "fsss",
+        "delivery_method": "ordinary",
+        "payment_method": "online",
+        "full_name": "vdcs fs fsadf",
+        "phone": "+7 (434) 2423432",
+        "email": "admin@admin.ru",
+        "created_at": "2024-02-11T13:40:40.709Z",
+        "status": 1,
+        "quantity_products": {
+            "13": 4
+        },
+        "discount_type": 3,
+        "seller_products": [
+            13
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 26,
+    "fields": {
+        "user": 3,
+        "cost": "137.75",
+        "delivery_city": "fd",
+        "delivery_address": "fsfs",
+        "delivery_method": "ordinary",
+        "payment_method": "online",
+        "full_name": "gre gdf gd",
+        "phone": "+7 (424) 3243244",
+        "email": "admin@admin.ru",
+        "created_at": "2024-02-11T14:27:57.250Z",
+        "status": 1,
+        "quantity_products": {
+            "16": 5,
+            "18": 5
+        },
+        "discount_type": 2,
+        "seller_products": [
+            16,
+            18
+        ]
+    }
+},
+{
+    "model": "orders.order",
+    "pk": 27,
+    "fields": {
+        "user": 3,
+        "cost": "124.16",
+        "delivery_city": "fsf",
+        "delivery_address": "fsfsf",
+        "delivery_method": "ordinary",
+        "payment_method": "online",
+        "full_name": "fgd fsdf s",
+        "phone": "+7 (323) 2131232",
+        "email": "admin@admin.ru",
+        "created_at": "2024-02-11T14:41:33.298Z",
+        "status": 1,
+        "quantity_products": {
+            "13": 4
+        },
+        "discount_type": 3,
+        "seller_products": [
+            13
         ]
     }
 },
@@ -1500,7 +1629,7 @@
         "product": 12,
         "seller": 3,
         "price": "32.00",
-        "stock": 3231,
+        "stock": 3223,
         "discount": 3,
         "created_at": "2023-12-05"
     }
@@ -1536,7 +1665,7 @@
         "product": 15,
         "seller": 3,
         "price": "14.00",
-        "stock": 529,
+        "stock": 524,
         "discount": 3,
         "created_at": "2023-12-04"
     }
@@ -1560,7 +1689,7 @@
         "product": 17,
         "seller": 3,
         "price": "15.00",
-        "stock": 1233,
+        "stock": 1228,
         "discount": 3,
         "created_at": "2023-12-04"
     }
@@ -1676,7 +1805,7 @@
     "pk": 3,
     "fields": {
         "type": 3,
-        "value": 10,
+        "value": 3,
         "amount_products": null,
         "expires": null,
         "categories": [
@@ -1704,6 +1833,38 @@
     "pk": 3,
     "fields": {
         "name": "products_discount"
+    }
+},
+{
+    "model": "cart.usercart",
+    "pk": 10,
+    "fields": {
+        "user": 7,
+        "items": {
+            "1": 1,
+            "13": 1,
+            "14": 1,
+            "18": 1
+        }
+    }
+},
+{
+    "model": "cart.usercart",
+    "pk": 19,
+    "fields": {
+        "user": 3,
+        "items": {}
+    }
+},
+{
+    "model": "cart.usercart",
+    "pk": 20,
+    "fields": {
+        "user": 8,
+        "items": {
+            "1": 1,
+            "6": 3
+        }
     }
 },
 {
