@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Order, OrderStatus, OrderProduct
+from .models import Order, OrderStatus
 
 
 class OrderSellerProductInline(admin.StackedInline):
@@ -40,9 +40,3 @@ class OrderAdmin(admin.ModelAdmin):
 class OrderStatusAdmin(admin.ModelAdmin):
     list_display = 'pk', 'name', 'value'
     list_display_links = 'name',
-
-
-@admin.register(OrderProduct)
-class OrderProductAdmin(admin.ModelAdmin):
-    list_display = 'pk', 'seller_product', 'amount'
-    list_display_links = 'seller_product',

@@ -54,15 +54,6 @@ class Order(models.Model):
         return self.quantity_products.get(str(seller_product.pk))
 
 
-class OrderProduct(models.Model):
-    class Meta:
-        verbose_name = 'продукт заказа'
-        verbose_name_plural = 'продукты заказа'
-
-    seller_product = models.ForeignKey(SellerProduct, on_delete=models.CASCADE, related_name='order_products', verbose_name='продукт продавца')
-    amount = models.PositiveIntegerField(verbose_name='количество')
-
-
 class OrderStatus(models.Model):
     class Meta:
         verbose_name = 'статус заказа'

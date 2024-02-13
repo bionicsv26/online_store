@@ -826,5 +826,77 @@
         "content_type": 23,
         "codename": "view_discounttype"
     }
+},
+{
+    "model": "auth.permission",
+    "pk": 93,
+    "fields": {
+        "name": "Can add user cart",
+        "content_type": 24,
+        "codename": "add_usercart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 94,
+    "fields": {
+        "name": "Can change user cart",
+        "content_type": 24,
+        "codename": "change_usercart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 95,
+    "fields": {
+        "name": "Can delete user cart",
+        "content_type": 24,
+        "codename": "delete_usercart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 96,
+    "fields": {
+        "name": "Can view user cart",
+        "content_type": 24,
+        "codename": "view_usercart"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 97,
+    "fields": {
+        "name": "Can add Тэг",
+        "content_type": 25,
+        "codename": "add_tag"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 98,
+    "fields": {
+        "name": "Can change Тэг",
+        "content_type": 25,
+        "codename": "change_tag"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 99,
+    "fields": {
+        "name": "Can delete Тэг",
+        "content_type": 25,
+        "codename": "delete_tag"
+    }
+},
+{
+    "model": "auth.permission",
+    "pk": 100,
+    "fields": {
+        "name": "Can view Тэг",
+        "content_type": 25,
+        "codename": "view_tag"
+    }
 }
 ]
