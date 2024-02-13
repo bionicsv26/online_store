@@ -10,11 +10,12 @@ from rest_framework.viewsets import ModelViewSet
 from .forms import OrderCreationPage1Form, OrderCreationPage2Form, OrderCreationPage3Form
 from .models import Order, OrderStatus
 from .serializers import OrderSerializer
+from .tasks import order_created
+from ..cart.cart import Cart
 from ..cart.rebuild_cart import create_json_cart
 from ..categories.mixins import MenuMixin
 from ..search_app.forms import SearchForm
 from ..search_app.mixins import SearchMixin
-from ..cart.cart import Cart
 from ..sellers.models import DiscountType
 
 
@@ -201,6 +202,8 @@ class MakingOrderPage4View(SearchMixin, CheckUserCacheMixin, MakingOrderTemplate
         order.seller_products.set(cart.cart.keys())
 
         cart.clear()
+        # запустить асинхронное задание
+        order_created.delay(order.id)
         cache.delete(f'order_create_{self.request.user.id}')
 
         return redirect(reverse('payment:payment', kwargs={'pk': order.pk}))
