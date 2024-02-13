@@ -14,12 +14,6 @@ from market.sellers.models import Seller
 from market.settingsapp.models import CacheTime
 
 
-class SellerListView(ListView):
-    template_name = 'sellers/sellers_list.html'
-    model = Seller
-    context_object_name = 'sellers'
-
-
 class SellerDetailsView(MenuMixin, View, SearchMixin):
     template_name = 'sellers/seller_details.html'
 
