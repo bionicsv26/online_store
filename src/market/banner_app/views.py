@@ -1,4 +1,4 @@
-from .mixins import BannerSliderMixin, TopProductsMixin
+from .mixins import BannerSliderMixin, TopProductsMixin, TopRatingProductsMixin
 from market.categories.mixins import MenuMixin
 from django.views.generic import (
     TemplateView,
@@ -14,6 +14,6 @@ from ..search_app.mixins import SearchMixin
 
 log = logging.getLogger(__name__)
 
-class IndexTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, TopProductsMixin, SearchMixin):
+class IndexTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, TopProductsMixin, TopRatingProductsMixin, SearchMixin):
     template_name = "banner_app/index.html"
 
