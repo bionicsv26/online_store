@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from .models import Profile
 from market.products.models import Product
@@ -64,13 +64,16 @@ class LoginView(LoginView):
                 user_cart.delete()
         return response
 
+
 class LogoutView(LogoutView):
 
     def dispatch(self, request: HttpRequest, *args: Any, **kwargs: Any) -> HttpResponse:
-        user = User.objects.get(pk=self.request.user.pk)
-        cart = Cart(request.session)
-        user_cart = create_json_cart(cart)
-        user_cart = UserCart.objects.create(user=user, items=user_cart)
+        if self.request.user.is_authenticated:
+            user = User.objects.get(pk=self.request.user.pk)
+            cart = Cart(request.session)
+            user_cart = create_json_cart(cart)
+            user_cart = UserCart.objects.create(user=user, items=user_cart)
+
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -215,22 +218,3 @@ class ProfileTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, M
                                                                  "и фотография выбрана."})
             return render(request,
                           self.template_name,context)
-
-class CartDetailsView(TemplateView):
-    template_name = 'profiles/cart_details.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        cart = self.request.user.cart
-
-        context['cart'] = cart
-        context['seller_products'] = cart.seller_products.select_related(
-            'discount',
-            'discount__type',
-            'product',
-        ).prefetch_related(
-            'product__categories',
-        )
-        context['discounted_cart_cost'], context['priority_discount_type'] = cart.get_priority_discounted_cost()
-
-        return context

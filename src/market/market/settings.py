@@ -228,8 +228,8 @@ ORDERS_API_URL = os.getenv('ORDERS_API_URL')
 
 LOGIN_URL = reverse_lazy('market.profiles:login')
 LOGOUT_URL = reverse_lazy('market.profiles:logout')
-LOGIN_REDIRECT_URL = reverse_lazy('market.banner_app:index')
-LOGOUT_REDIRECT_URL = LOGIN_URL
+LOGIN_REDIRECT_URL = reverse_lazy('market.profiles:profile')
+LOGOUT_REDIRECT_URL = reverse_lazy('market.banner_app:index')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

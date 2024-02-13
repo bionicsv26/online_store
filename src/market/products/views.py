@@ -5,14 +5,12 @@ from django.views.generic import DetailView
 from .forms import ProductFeedbackForm
 from market.categories.mixins import MenuMixin
 from market.banner_app.mixins import BannerSliderMixin
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin,
-)
 from market.products.models import Product, ProductFeedback
 from market.browsing_history_app.models import ProductBrowsingHistory
 import logging
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, redirect
+from django.conf import settings
 
 from ..search_app.mixins import SearchMixin
 
@@ -24,7 +22,7 @@ from market.sellers.models import SellerProduct
 log = logging.getLogger(__name__)
 
 
-class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, DetailView, SearchMixin):
+class ProductDetailView(MenuMixin, BannerSliderMixin, DetailView, SearchMixin):
     template_name = 'products/product_details.html'
     model = Product
     context_object_name = 'product'
@@ -58,6 +56,9 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
         if response:
             return response
 
+        if not request.user.is_authenticated:
+            return redirect(settings.LOGIN_URL)
+
         form = self.form_class(request.POST)
         if form.is_valid():
             feedback_text = form.cleaned_data.get("feedback_text")
@@ -83,21 +84,23 @@ class ProductDetailView(MenuMixin, BannerSliderMixin, LoginRequiredMixin, Detail
 
         # Проверяем, был ли данный товар уже в списке ранее просмотренных товаров. Если нет, то добавляем
         # Если товар уже в списке, то не добавляем
-        products = (ProductBrowsingHistory.objects.
-                    select_related('user', 'product').
-                    filter(user=self.request.user))
-        product = self.get_object()
-        if not products.filter(product=product).exists():
-            ProductBrowsingHistory.objects.create(
-                user=self.request.user,
-                product=product,
-            )
-        browsing_history = (ProductBrowsingHistory.objects.
-                            select_related('user', 'product').
-                            filter(user=self.request.user).
-                            values_list("product__name", flat=True)
-                            )
-        context['browsing_history'] = browsing_history
+        if self.request.user.is_authenticated:
+            products = (ProductBrowsingHistory.objects.
+                        select_related('user', 'product').
+                        filter(user=self.request.user))
+            product = self.get_object()
+            if not products.filter(product=product).exists():
+                ProductBrowsingHistory.objects.create(
+                    user=self.request.user,
+                    product=product,
+                )
+            browsing_history = (ProductBrowsingHistory.objects.
+                                select_related('user', 'product').
+                                filter(user=self.request.user).
+                                values_list("product__name", flat=True)
+                                )
+            context['browsing_history'] = browsing_history
+
         context['product_tags'] = context['product'].tags.all()
         log.debug("Запуск рендеренга ProductDetailView")
         log.debug("Контекст для ProductDetailView готов. ")
