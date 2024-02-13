@@ -38,7 +38,7 @@ class Order(models.Model):
         return f'Заказ {self.pk}'
 
     def check_paid(self):
-        return self.save.value == 'paid'
+        return self.status.value == 'paid'
 
     def get_products(self):
         products_ids = self.quantity_products.keys()
