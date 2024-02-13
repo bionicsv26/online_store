@@ -8,6 +8,26 @@
 
     <div class="Section Section_column Section_columnLeft Section_columnDesktop">
             <div class="wrap">
+                <div class="Section-column">
+                    <div class="Section-columnSection Section-columnSection_mark">
+                      <header class="Section-columnHeader">
+                        <strong class="Section-columnTitle">ВЫБОР ПОКУПАТЕЛЕЙ
+                        </strong>
+                      </header>
+
+                          <div class="Card"><a class="Card-picture" href="{% url 'products:product-details' product_slug=top_rating_product.slug %}"><img src="{{ top_rating_product.preview.url }}" alt="card.jpg"/></a>
+                            <div class="Card-content">
+                              <strong class="Card-title"><a href="{% url 'products:product-details' product_slug=top_rating_product.slug %}">{{ top_rating_product.name }}</a>
+                              </strong>
+                              <div class="Card-description">
+                                <div class="Card-cost"><span class="Card-price">{{ top_rating_product.get_price_range }}</span>
+                                </div>
+                                <div class="Card-category">{{ top_rating_product.categories.first.parent.name }} / {{ top_rating_product.categories.first.name }}</div>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
 
                 <div class="Section-content">
                     <header class="Section-header">
