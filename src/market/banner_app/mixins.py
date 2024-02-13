@@ -6,7 +6,7 @@ from market.settingsapp.models import CacheTime
 from django.db.models import Count, Q
 import logging
 
-from ..products.models import Product
+from ..products.models import Product, ProductFeedback
 
 log = logging.getLogger(__name__)
 
@@ -74,5 +74,18 @@ class TopProductsMixin(ContextMixin):
             context['top_products_card_hide_md_hide_1450'] = top_products[6:8]
         elif 0 < len(top_products) < 8:
             context['top_products_card'] = top_products
+
+        return context
+
+
+class TopRatingProductsMixin(ContextMixin):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        top_rating_products = Product.objects.annotate(
+            num_of_feedbacks=Count('productfeedback')
+        ).order_by("-num_of_feedbacks")[:5]
+        log.debug(f"top_rating_products: {top_rating_products}, len = {len(top_rating_products)}")
+
+        context['top_rating_product'] = random.choice(top_rating_products)
 
         return context
