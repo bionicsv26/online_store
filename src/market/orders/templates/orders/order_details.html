@@ -97,27 +97,29 @@
               </div>
             </div>
             <div class="Cart Cart_order">
-              {% for product in order_products %}
+              {% for seller_product, quantity in seller_products_and_quantity %}
                 <div class="Cart-product">
                   <div class="Cart-block Cart-block_row">
                     <div class="Cart-block Cart-block_pict">
-                      <a class="Cart-pict" href="{% url 'products:product-details' product_slug=product.seller_product.product.slug %}"><img class="Cart-img" src="{{ product.seller_product.product.preview.url }}" alt="card.jpg"/>
+                      <a class="Cart-pict" href="{% url 'products:product-details' product_slug=seller_product.product.slug %}"><img class="Cart-img" src="{{ seller_product.product.preview.url }}" alt="card.jpg"/>
                       </a>
                     </div>
-                    <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'products:product-details' product_slug=product.seller_product.product.slug %}">{{ product.seller_product.product.name }}</a>
+                    <div class="Cart-block Cart-block_info"><a class="Cart-title" href="{% url 'products:product-details' product_slug=seller_product.product.slug %}">{{ seller_product.product.name }}</a>
                       <div class="Cart-desc">Это супер ноутбук, 3 гб. 4 ядра
                       </div>
                     </div>
                     <div class="Cart-block Cart-block_price">
                       <div class="Cart-price">
-                        {% if order.discount_type.name == 'products_discount' and product.seller_product.discount.value > 0 %}
-                          {{ product.seller_product.get_discounted_price|mul_price:product.amount }} руб.
+                        {% if order.discount_type.name == 'products_discount' and seller_product.discount.value > 0 %}
+                          {{ seller_product.get_discounted_price|mul_price:quantity }} руб.
+                        {% else %}
+                          {{ seller_product.price|mul_price:quantity }} руб.
                         {% endif %}
                       </div>
                     </div>
                   </div>
                   <div class="Cart-block Cart-block_row">
-                    <div class="Cart-block Cart-block_amount">{{ product.amount }} шт.
+                    <div class="Cart-block Cart-block_amount">{{ quantity }} шт.
                     </div>
                   </div>
                 </div>

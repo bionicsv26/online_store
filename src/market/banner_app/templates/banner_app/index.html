@@ -78,8 +78,9 @@
                                       <div class="Card-description">
                                         <div class="Card-cost"><span class="Card-price">{{ product.get_price_range }} руб.</span></div>
                                         <div class="Card-category">{{ product.categories.first.parent.name }} / {{ product.categories.first.name }}</div>
-                                        <div class="Card-hover"><a class="Card-btn" title="Добавить в корзину" href="{% url 'market.cart:cart_add' product.pk %}"><img src="{% static 'assets\img\icons\card\cart.svg' %}" alt="cart.svg"/></a></div>
-                                        {% include 'comparison/compare_add_remove.html' %}
+                                        <div class="Card-hover"><a class="Card-btn" title="Добавить в корзину" href="{% url 'market.cart:cart_add' product.pk %}"><img src="{% static 'assets\img\icons\card\cart.svg' %}" alt="cart.svg"/></a>
+                                          {% include 'comparison/compare_add_remove.html' %}
+                                        </div>
                                       </div>
                                     </div>
                                 </div>
