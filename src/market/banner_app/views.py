@@ -14,6 +14,6 @@ from ..search_app.mixins import SearchMixin
 
 log = logging.getLogger(__name__)
 
-class IndexTemplateView(LoginRequiredMixin, TemplateView, BannerSliderMixin, MenuMixin, TopProductsMixin, TopRatingProductsMixin, SearchMixin):
+class IndexTemplateView(TemplateView, BannerSliderMixin, MenuMixin, TopProductsMixin, TopRatingProductsMixin, SearchMixin):
     template_name = "banner_app/index.html"
 

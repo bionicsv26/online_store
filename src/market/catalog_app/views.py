@@ -16,7 +16,7 @@ from market.tags.models import Tag
 log = logging.getLogger(__name__)
 
 
-class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
+class CatalogTemplateView(SearchMixin, MenuMixin, ListView):
     template_name = "catalog_app/catalog.html"
     model = Product
     paginate_by = 8
@@ -96,16 +96,21 @@ class CatalogTemplateView(LoginRequiredMixin, SearchMixin, MenuMixin, ListView):
         context['tag'] = tag
         context['max_price'] = SellerProduct.objects.aggregate(Max('price'))['price__max']
         context['price_filter'] = self.request.GET.get('price_filter')
+
         if context['price_filter']:
             context['set_price'] = context['price_filter'].split(";")[1]
+
         context['title'] = self.request.GET.get('title')
         context['in_stock'] = self.request.GET.get('in_stock')
-        browsing_history = (ProductBrowsingHistory.objects.
-                            select_related('user', 'product').
-                            filter(user=self.request.user).
-                            values_list("product__name", flat=True)
-                            )
-        context['browsing_history'] = browsing_history
+
+        if self.request.user.is_authenticated:
+            browsing_history = (ProductBrowsingHistory.objects.
+                                select_related('user', 'product').
+                                filter(user=self.request.user).
+                                values_list("product__name", flat=True)
+                                )
+            context['browsing_history'] = browsing_history
+
         context['popular_tags'] = Tag.objects.annotate(total_products=Count('products')).order_by('-total_products')[:5]
         context['query'] = query
         log.debug("Запуск рендеренга CatalogOldTemplateView")
