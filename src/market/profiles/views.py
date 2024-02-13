@@ -58,12 +58,10 @@ class LoginView(LoginView):
         response = super().post(request, *args, **kwargs)
         if self.request.user.is_authenticated:
             user = User.objects.get(pk=self.request.user.pk)
-            try:
-                user_cart = UserCart.objects.get(user=user)
+            user_cart = UserCart.objects.filter(user=user).first()
+            if user_cart:
                 rebuild_cart(request.session, user_cart.items)
                 user_cart.delete()
-            except UserCart.DoesNotExist:
-                pass
         return response
 
 class LogoutView(LogoutView):
