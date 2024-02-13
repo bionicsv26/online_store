@@ -41,7 +41,6 @@ class PayView(LoginRequiredMixin, View, MenuMixin, SearchMixin):
             }
             url = settings.BANK_PAY_URL
             r = requests.post(url, data=data)
-            print(r.status_code, r.json()['paid'])
             if r.status_code == 200 and r.json()['paid']:
                 order.status = OrderStatus.objects.get(value='paid')
                 order.change_stock()
