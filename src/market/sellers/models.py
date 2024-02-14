@@ -56,7 +56,7 @@ class Discount(models.Model):
 
     type = models.ForeignKey('DiscountType', null=True, on_delete=models.PROTECT, related_name='discounts', verbose_name='тип')
     value = models.IntegerField(default=0, verbose_name='скидка в %')
-    amount_products = models.IntegerField(null=True, blank=True, verbose_name='количество товаров в корзине')
+    amount_products = models.IntegerField(default=0, blank=True, verbose_name='количество товаров в корзине')
     categories = models.ManyToManyField(Category, blank=True, related_name='discounts', verbose_name='скидка на категории')
     expires = models.DateTimeField(null=True, blank=True, verbose_name='дата и время окончания скидки')
 
