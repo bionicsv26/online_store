@@ -18,7 +18,7 @@ class Cart:
             # сохранить пустую корзину
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
-        discount_type, _ = DiscountType.objects.get_or_create(name='undiscounted')
+        discount_type, _ = DiscountType.objects.get_or_create(name='cart_discount')
         self.discount, _ = Discount.objects.get_or_create(type=discount_type)
 
         product_ids = self.cart.keys()
