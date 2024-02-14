@@ -44,7 +44,6 @@ class RegisterView(View):
             new_user.save()
 
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Аккаунт для {username} создан.')
 
             return redirect(to=reverse('market.profiles:login'))
 
