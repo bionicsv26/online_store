@@ -69,7 +69,7 @@ class DiscountType(models.Model):
         verbose_name = 'тип скидки'
         verbose_name_plural = 'типы скидки'
 
-    name = models.CharField(max_length=256, verbose_name='название')
+    name = models.CharField(unique=True, max_length=256, verbose_name='название')
 
     def __str__(self):
         return f'Тип скидки <{self.name}>'
