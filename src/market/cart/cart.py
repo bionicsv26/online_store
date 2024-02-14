@@ -58,8 +58,6 @@ class Cart:
                                          'price': str(product.price)}
             else:
                 self.cart[product_id]['quantity'] = amount
-        else:
-            messages.error(self.request, f'У продавца только {product_stock} товаров')
         self.save()
 
     def save(self):
