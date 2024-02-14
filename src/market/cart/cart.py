@@ -2,7 +2,7 @@ from copy import deepcopy
 from decimal import Decimal
 from django.contrib import messages
 from django.conf import settings
-from market.sellers.models import SellerProduct, Discount
+from market.sellers.models import SellerProduct, Discount, DiscountType
 
 
 class Cart:
@@ -18,7 +18,8 @@ class Cart:
             # сохранить пустую корзину
             cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
-        self.discount, _ = Discount.objects.get_or_create(type__name='cart_discount')
+        discount_type, _ = DiscountType.objects.get_or_create(name='undiscounted')
+        self.discount, _ = Discount.objects.get_or_create(type=discount_type)
 
         product_ids = self.cart.keys()
         self.queryset = SellerProduct.objects.select_related('discount', 'product').filter(id__in=product_ids)
