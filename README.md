@@ -1,4 +1,4 @@
-# python_django_team33
+# online platform for selling goods created on Django (team project)
 
 
 
@@ -15,7 +15,7 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.skillbox.ru/kurator_skillbox/python_django_team33.git
+git remote add origin https://github.com/bionicsv26/online_store.git
 git branch -M master
 git push -uf origin master
 ```
